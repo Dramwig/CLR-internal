@@ -1,0 +1,11 @@
+milestone: M0.1
+stage: source_train_dedup
+seed: 11
+train: /home/me/datasets/.cache/huggingface/datasets--zen-E--GSM8k-Aug/snapshots/c4972fba71a612e2089d8fb10f78caa01c740083/gsm8k_aug_train.json
+original:
+  val: data/gsm8k_val.json
+  cal: data/gsm8k_cal.json
+  test: data/gsm8k_test.json
+val_size: 300
+split_path: data/splits/gsm8k_M01_v2.json
+output: data/M01_v2
