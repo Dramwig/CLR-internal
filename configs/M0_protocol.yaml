@@ -1,0 +1,11 @@
+milestone: M0
+seeds: [11, 22, 33]
+sigma: [0, 0.01, 0.03, 0.1, 0.3]
+rollouts: 16
+from_step: 0
+noise_split: val
+reproduction_split: test
+smoke_fraction_max: 0.05
+smoke_seconds_max: 900
+ci: student_t_over_seed_means_95_percent
+note: Deterministic greedy seeds are repeated inference, not independent trained checkpoints.
