@@ -1,0 +1,33 @@
+{
+  "status": "not_accepted",
+  "official_weights_verified": true,
+  "model_loaded": true,
+  "smoke_passed": false,
+  "full_reproduction_ran": false,
+  "noise_curve_ran": false,
+  "unresolved": [
+    {
+      "kind": "stable_vram",
+      "detail": "GPU3 preflight repeatedly 6.55–7.34 GiB; GPU5 real generation OOM at ~14.83 GiB model-process usage. Require >=18 GiB CUDA free without reducing protocol."
+    },
+    {
+      "kind": "determinism",
+      "detail": "Second identical-seed evaluation interrupted by OOM; no complete max-difference result."
+    },
+    {
+      "kind": "runtime_encoding",
+      "detail": "Primary OOM masked in outer metrics by ASCII error logging. Primary traceback preserved. UTF-8 startup mitigation added; cause of encoding/locale change unresolved."
+    },
+    {
+      "kind": "full_experiment_cost",
+      "detail": "Two-question throughput extrapolates ~26 GPUh for official benchmark and ~1416.8 GPUh for 300*5*16*3 noise generations; uncertain projection, neither full experiment launched."
+    },
+    {
+      "kind": "historical_harness_version",
+      "detail": "Official paper exact lm-eval version unpinned; this branch explicitly uses0.4.8, transformers4.52.4."
+    }
+  ],
+  "gpu_hours_recorded": 0.07281607977968332,
+  "source_forward_calls": 340,
+  "recurrent_core_calls": 10880
+}

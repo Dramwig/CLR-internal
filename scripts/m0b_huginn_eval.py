@@ -7,6 +7,9 @@ through frozen project IDs. This is not the old M0 hand-written zero-shot loop.
 import argparse
 import hashlib
 import json
+import os
+import sys
+import locale
 import importlib.metadata
 from pathlib import Path
 import signal
@@ -75,10 +78,21 @@ def summarize_samples(rows, expected_ids):
 
 
 def main(c):
+    for key,value in c.get('runtime_environment',{}).items():
+        os.environ[key]=str(value)
+    if c.get('runtime_environment',{}).get('PYTHONUTF8')=='1' and not sys.flags.utf8_mode:
+        # UTF-8 mode is an interpreter startup setting; honor the YAML by re-exec.
+        os.execv(sys.executable,[sys.executable,*sys.argv])
     with recorded(c) as run:
+        if not sys.flags.utf8_mode:
+            raise RuntimeError('Start this harness process with PYTHONUTF8=1 so runtime locale changes cannot break run records')
         entry=Path(__file__);(run.path/'entrypoint_snapshot.py').write_text(entry.read_text())
         write_json(run.path/'entrypoint_sha256.json',{'sha256':sha(entry)})
+        write_json(run.path/'actual_versions.json',{'torch':torch.__version__,'numpy':np.__version__,
+            'transformers':importlib.metadata.version('transformers'),'lm_eval':importlib.metadata.version('lm_eval'),
+            'utf8_mode':sys.flags.utf8_mode,'lc_ctype':locale.setlocale(locale.LC_CTYPE)})
         start=time.perf_counter()
+        run.write_metrics(gpu_hours=0,source_forward_calls=0,recurrent_core_calls=0)
         def timeout(signum,frame):
             raise TimeoutError('M0b smoke exceeded the configured wall-clock gate; no full evaluation allowed')
         signal.signal(signal.SIGALRM,timeout)
@@ -105,81 +119,101 @@ def main(c):
         if free < c['min_free_gib']*1024**3:
             raise RuntimeError(f'Insufficient free VRAM: {free/1024**3:.2f} GiB, required {c["min_free_gib"]}')
         gpu_start=time.perf_counter()
-        model=HFLM(pretrained=str(snapshot),trust_remote_code=True,dtype='bfloat16',
-                   mean_recurrence=c['mean_recurrence'],device=c['device'],batch_size=1,
-                   local_files_only=True)
         calls={'forward':0,'core':0}
-        def count(module,inputs): calls['forward']+=1
-        handle=model.model.register_forward_pre_hook(count)
-        original=model.model.core_block_forward
-        state={'step':0,'noise':None}
-        trace={'pass':0,'vectors':[],'index':0,'max_diff':0.0}
-        original_generate=model.model.generate
-        def generate(this,*args,**kwargs):
-            state['step']=0
-            state['noise']=RelativeNoise({'sigma':c.get('sigma',0),'from_step':c.get('from_step',0),'seed':c.get('perturb_seed',c['seed'])},c['device'])
-            return original_generate(*args,**kwargs)
-        model.model.generate=types.MethodType(generate,model.model)
-        def core(this,*args,**kwargs):
-            x,idx=original(*args,**kwargs)
-            step=state['step'];state['step']+=1;calls['core']+=1
-            if c.get('sigma',0)>0 and step>=c.get('from_step',0):
-                # Each recurrent state at the current answer position, after core,
-                # before the next recurrence. Initial state remains official random.
-                x=x.clone();x[:,-1:,:]=state['noise'](x[:,-1:,:],step)
+        trace=None
+        try:
+            model=HFLM(pretrained=str(snapshot),trust_remote_code=True,dtype='bfloat16',
+                       mean_recurrence=c['mean_recurrence'],device=c['device'],batch_size=1,
+                       local_files_only=True)
+            def count(module,inputs): calls['forward']+=1
+            handle=model.model.register_forward_pre_hook(count)
+            original=model.model.core_block_forward
+            state={'step':0,'noise':None}
+            trace={'pass':0,'vectors':[],'index':0,'max_diff':0.0}
+            original_generate=model.model.generate
+            def generate(this,*args,**kwargs):
+                state['step']=0
+                state['noise']=RelativeNoise({'sigma':c.get('sigma',0),'from_step':c.get('from_step',0),'seed':c.get('perturb_seed',c['seed'])},c['device'])
+                return original_generate(*args,**kwargs)
+            model.model.generate=types.MethodType(generate,model.model)
+            def core(this,*args,**kwargs):
+                x,idx=original(*args,**kwargs)
+                step=state['step'];state['step']+=1;calls['core']+=1
+                if c.get('sigma',0)>0 and step>=c.get('from_step',0):
+                    # Each recurrent state at the current answer position, after core,
+                    # before the next recurrence. Initial state remains official random.
+                    x=x.clone();x[:,-1:,:]=state['noise'](x[:,-1:,:],step)
+                if c.get('verify_determinism',False):
+                    z=x[:,-1:,:].detach().cpu()
+                    if not torch.isfinite(z).all():
+                        raise FloatingPointError('Non-finite recurrent state during determinism check')
+                    if trace['pass']==0:
+                        trace['vectors'].append(z.clone())
+                    else:
+                        if trace['index']>=len(trace['vectors']):
+                            raise ValueError('Repeated evaluation has more recurrent steps')
+                        ref=trace['vectors'][trace['index']]
+                        if ref.shape!=z.shape:
+                            raise ValueError('Repeated evaluation changed latent shape')
+                        trace['max_diff']=max(trace['max_diff'],float((ref.float()-z.float()).abs().max()))
+                        trace['index']+=1
+                return x,idx
+            model.model.core_block_forward=types.MethodType(core,model.model)
+            write_json(run.path/'model_config.json',model.model.config.to_dict())
+            write_json(run.path/'generation_config.json',model.model.generation_config.to_dict())
+            write_json(run.path/'effective_harness_settings.json',{'max_length':model.max_length,
+                'max_gen_toks':model.max_gen_toks,'add_bos_token':model.add_bos_token,
+                'batch_size':model.batch_size,'tokenizer_default_padding_side':model.tokenizer.padding_side,
+                'harness_generation_padding_side':'left',
+                'eot_token_id':model.eot_token_id})
+            eval_kwargs=dict(model=model,tasks=[task],batch_size=1,
+                num_fewshot=8,bootstrap_iters=0,log_samples=True,
+                system_instruction=c['system_instruction'],apply_chat_template=True,
+                fewshot_as_multiturn=True,random_seed=c['python_seed'],numpy_random_seed=c['numpy_seed'],
+                torch_random_seed=c['seed'],fewshot_random_seed=c['fewshot_seed'])
+            results=lm_eval.simple_evaluate(**eval_kwargs)
+            (run.path/'first_pass_results.json').write_text(json.dumps(results,ensure_ascii=False,indent=2,default=str)+'\n',encoding='utf-8')
+            determinism={}
             if c.get('verify_determinism',False):
-                z=x[:,-1:,:].detach().cpu()
-                if trace['pass']==0:
-                    trace['vectors'].append(z.clone())
-                else:
-                    if trace['index']>=len(trace['vectors']):
-                        raise ValueError('Repeated evaluation has more recurrent steps')
-                    ref=trace['vectors'][trace['index']]
-                    if ref.shape!=z.shape:
-                        raise ValueError('Repeated evaluation changed latent shape')
-                    trace['max_diff']=max(trace['max_diff'],float((ref.float()-z.float()).abs().max()))
-                    trace['index']+=1
-            return x,idx
-        model.model.core_block_forward=types.MethodType(core,model.model)
-        write_json(run.path/'model_config.json',model.model.config.to_dict())
-        write_json(run.path/'generation_config.json',model.model.generation_config.to_dict())
-        write_json(run.path/'effective_harness_settings.json',{'max_length':model.max_length,
-            'max_gen_toks':model.max_gen_toks,'add_bos_token':model.add_bos_token,
-            'batch_size':model.batch_size,'padding_side':model.tokenizer.padding_side,
-            'eot_token_id':model.eot_token_id})
-        eval_kwargs=dict(model=model,tasks=[task],batch_size=1,
-            num_fewshot=8,bootstrap_iters=0,log_samples=True,
-            system_instruction=c['system_instruction'],apply_chat_template=True,
-            fewshot_as_multiturn=True,random_seed=c['seed'],numpy_random_seed=c['seed'],
-            torch_random_seed=c['seed'],fewshot_random_seed=c['seed'])
-        results=lm_eval.simple_evaluate(**eval_kwargs)
-        determinism={}
-        if c.get('verify_determinism',False):
-            trace['pass']=1
-            repeated=lm_eval.simple_evaluate(**eval_kwargs)
-            if trace['index']!=len(trace['vectors']):
-                raise ValueError('Repeated evaluation has fewer recurrent steps')
-            def by_id(result):
-                return {(r['doc']['id'],r['filter']):r['filtered_resps'] for r in result['samples']['gsm8k_cot_m0b_v2']}
-            a,b=by_id(results),by_id(repeated)
-            determinism={'max_latent_elementwise_difference':trace['max_diff'],
-                'answers_identical':a==b,'compared_latent_steps':len(trace['vectors']),
-                'same_rng_seed':c['seed'],'dtype':'bfloat16'}
-            write_json(run.path/'determinism.json',determinism)
-            trace['vectors'].clear()
-        handle.remove()
-        samples=results.pop('samples')
-        # Harness responses and both official answer filters retained verbatim.
-        (run.path/'samples.json').write_text(json.dumps(samples,ensure_ascii=False,indent=2,default=str)+'\n')
-        (run.path/'harness_results.json').write_text(json.dumps(results,ensure_ascii=False,indent=2,default=str)+'\n')
-        rows=samples['gsm8k_cot_m0b_v2']
-        metrics=summarize_samples(rows,[r['id'] for r in task.eval_docs])
-        signal.alarm(0)
-        run.write_metrics(status='completed',smoke_passed=c['mode']=='smoke',
-            metrics=metrics,determinism=determinism,wall_seconds=time.perf_counter()-start,
-            gpu_hours=(time.perf_counter()-gpu_start)/3600,gpu_model=torch.cuda.get_device_name(c['device']),
-            source_forward_calls=calls['forward'],recurrent_core_calls=calls['core'],n=len(task.eval_docs))
-        print(run.path,flush=True)
+                trace['pass']=1
+                repeated=lm_eval.simple_evaluate(**eval_kwargs)
+                if trace['index']!=len(trace['vectors']):
+                    raise ValueError('Repeated evaluation has fewer recurrent steps')
+                def by_id(result):
+                    return {(r['doc']['id'],r['filter']):r['filtered_resps'] for r in result['samples']['gsm8k_cot_m0b_v2']}
+                a,b=by_id(results),by_id(repeated)
+                determinism={'max_latent_elementwise_difference':trace['max_diff'],
+                    'answers_identical':a==b,'compared_latent_steps':len(trace['vectors']),
+                    'same_rng_seed':c['seed'],'dtype':'bfloat16'}
+                write_json(run.path/'determinism.json',determinism)
+                trace['vectors'].clear()
+            handle.remove()
+            samples=results.pop('samples')
+            # Harness responses and both official answer filters retained verbatim.
+            (run.path/'samples.json').write_text(json.dumps(samples,ensure_ascii=False,indent=2,default=str)+'\n')
+            (run.path/'harness_results.json').write_text(json.dumps(results,ensure_ascii=False,indent=2,default=str)+'\n')
+            rows=samples['gsm8k_cot_m0b_v2']
+            metrics=summarize_samples(rows,[r['id'] for r in task.eval_docs])
+            clean_metrics={}
+            if c.get('clean_subset_path'):
+                clean_ids=json.loads(Path(c['clean_subset_path']).read_text())['test']
+                clean_rows=[r for r in rows if r['doc']['id'] in set(clean_ids)]
+                clean_metrics=summarize_samples(clean_rows,clean_ids)
+                write_json(run.path/'clean_subset_provenance.json',{'split_sha256':sha(c['clean_subset_path']),'ids':clean_ids})
+            signal.alarm(0)
+            run.write_metrics(status='completed',smoke_passed=c['mode']=='smoke',
+                metrics=metrics,clean_subset_metrics=clean_metrics,determinism=determinism,wall_seconds=time.perf_counter()-start,
+                gpu_hours=(time.perf_counter()-gpu_start)/3600,gpu_model=torch.cuda.get_device_name(c['device']),
+                source_forward_calls=calls['forward'],recurrent_core_calls=calls['core'],n=len(task.eval_docs))
+            print(run.path,flush=True)
+        finally:
+            if trace is not None:
+                write_json(run.path/'determinism_progress.json',{'baseline_steps':len(trace['vectors']),
+                    'compared_steps':trace['index'],'max_elementwise_difference_so_far':trace['max_diff'],
+                    'evaluation_pass':trace['pass']})
+            run.write_metrics(gpu_hours=(time.perf_counter()-gpu_start)/3600,
+                source_forward_calls=calls['forward'],recurrent_core_calls=calls['core'])
+
 
 
 if __name__=='__main__':

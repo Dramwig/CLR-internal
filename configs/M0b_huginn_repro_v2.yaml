@@ -1,0 +1,27 @@
+clean_subset_path: data/splits/gsm8k_M01_v2.json
+data_path: data/gsm8k_test.json
+device: cuda:3
+fewshot_seed: 1234
+from_step: 0
+limit: 1319
+mean_recurrence: 32
+milestone: M0b
+min_free_gib: 18
+mode: full
+numpy_seed: 1234
+python_seed: 0
+revision: bb6621b65e90b6a4b9b29ef88dc83866d450470c
+runtime_environment:
+  NCCL_IB_DISABLE: '1'
+  NCCL_P2P_DISABLE: '1'
+  PYTHONUTF8: '1'
+seed: 1234
+sigma: 0
+smoke_run: null
+split: test
+split_path: data/splits/gsm8k_M0_v1.json
+system_instruction: You are a helpful assistant that can assist users with mathematical
+  reasoning.
+verified_manifest: runs/20261028T111806531496Z_c0fb096f3f3e_1f3fea/verified_manifest.json
+verify_determinism: false
+version: v2

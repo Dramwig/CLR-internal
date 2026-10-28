@@ -1,18 +1,26 @@
-milestone: M0b
-version: v2
-mode: smoke
-seed: 11
-timeout_seconds: 900
-revision: bb6621b65e90b6a4b9b29ef88dc83866d450470c
-verified_manifest: runs/20261028T111806531496Z_c0fb096f3f3e_1f3fea/verified_manifest.json
-data_path: data/gsm8k_val.json
-split_path: data/splits/gsm8k_M0_v1.json
-split: val
-limit: 2
+data_path: data/M01_v2/val.json
 device: cuda:5
-min_free_gib: 14
-mean_recurrence: 32
-sigma: 0
+fewshot_seed: 1234
 from_step: 0
-system_instruction: You are a helpful assistant that can assist users with mathematical reasoning.
+limit: 2
+mean_recurrence: 32
+milestone: M0b
+min_free_gib: 18
+mode: smoke
+numpy_seed: 1234
+python_seed: 0
+revision: bb6621b65e90b6a4b9b29ef88dc83866d450470c
+runtime_environment:
+  NCCL_IB_DISABLE: '1'
+  NCCL_P2P_DISABLE: '1'
+  PYTHONUTF8: '1'
+seed: 1234
+sigma: 0
+split: val
+split_path: data/splits/gsm8k_M01_v2.json
+system_instruction: You are a helpful assistant that can assist users with mathematical
+  reasoning.
+timeout_seconds: 900
+verified_manifest: runs/20261028T111806531496Z_c0fb096f3f3e_1f3fea/verified_manifest.json
 verify_determinism: true
+version: v2

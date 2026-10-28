@@ -1,0 +1,10 @@
+/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.3) doesn't match a supported version!
+  warnings.warn(
+Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 2 examples [00:00, 147.43 examples/s]
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m0b_huginn_eval.py", line 216, in <module>
+    args=p.parse_args();main(load_config(args.config,args.overrides))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m0b_huginn_eval.py", line 116, in main
+    raise RuntimeError(f'Insufficient free VRAM: {free/1024**3:.2f} GiB, required {c["min_free_gib"]}')
+RuntimeError: Insufficient free VRAM: 6.55 GiB, required 18

@@ -1,0 +1,21 @@
+/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.3) doesn't match a supported version!
+  warnings.warn(
+Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 2 examples [00:00, 158.07 examples/s]
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m0b_huginn_eval.py", line 203, in <module>
+    args=p.parse_args();main(load_config(args.config,args.overrides))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m0b_huginn_eval.py", line 113, in main
+    model=HFLM(pretrained=str(snapshot),trust_remote_code=True,dtype='bfloat16',
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/.venv/huginn-eval/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 118, in __init__
+    accelerator = Accelerator(kwargs_handlers=[accelerator_kwargs])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/accelerate/accelerator.py", line 462, in __init__
+    self.state = AcceleratorState(
+                 ^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/accelerate/state.py", line 912, in __init__
+    PartialState(cpu, **kwargs)
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/accelerate/state.py", line 313, in __init__
+    raise NotImplementedError(
+NotImplementedError: Using RTX 4000 series doesn't support faster communication broadband via P2P or IB. Please set `NCCL_P2P_DISABLE="1"` and `NCCL_IB_DISABLE="1" or use `accelerate launch` which will do this automatically.

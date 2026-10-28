@@ -31,3 +31,11 @@ def test_question_bootstrap_extremes_and_reproducibility():
     assert question_ci([1]*3)['ci95']==[1.,1.]
     assert question_ci([0,1,1,1])==question_ci([0,1,1,1])
     with pytest.raises(ValueError):question_ci([])
+
+
+def test_utf8_startup_survives_c_locale_for_error_records(tmp_path):
+    import subprocess,sys
+    target=tmp_path/'error.txt'
+    code="import locale,pathlib,sys;locale.setlocale(locale.LC_ALL,'C');pathlib.Path(sys.argv[1]).write_text('— 未回退模型')"
+    subprocess.run([sys.executable,'-X','utf8','-c',code,str(target)],check=True)
+    assert target.read_text(encoding='utf-8')=='— 未回退模型'
