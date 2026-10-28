@@ -1,5 +1,5 @@
 """Execute the unmodified official CODI test.py; only supply local verified data."""
-import argparse,contextlib,io,json,sys,time
+import argparse,contextlib,io,json,sys,time,os
 from pathlib import Path
 import torch
 from datasets import Dataset
@@ -11,7 +11,9 @@ from clr.utils.stats import mean_ci
 
 def main(c):
  with recorded(c) as run:
-    t=time.perf_counter();check_device(c['source'])
+    t=time.perf_counter()
+    for key,value in c['runtime'].items():os.environ[key]=str(value)
+    check_device(c['source'])
     rows=json.loads(Path(c['data_path']).read_text())
     if c['mode']=='smoke':
         if c['split']=='test' or c['limit']>len(rows)*.05:raise ValueError('Invalid smoke')

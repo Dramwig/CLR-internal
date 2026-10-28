@@ -6,6 +6,9 @@ limit: null
 milestone: M0
 mode: full
 rollouts: 16
+runtime:
+  NCCL_IB_DISABLE: '1'
+  NCCL_P2P_DISABLE: '1'
 seeds:
 - 11
 - 22
