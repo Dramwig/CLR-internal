@@ -73,3 +73,19 @@ def test_huginn_recurrent_positions_noise_and_restore():
     assert torch.equal(a['latent_steps'][0],c['latent_steps'][0])
     assert not torch.equal(a['latent_steps'][1],c['latent_steps'][1])
     assert source.model.core_block_forward==method
+
+def test_codi_equal_length_batch_preserves_zero_noise(base):
+    class Model(torch.nn.Module):
+        def __init__(self):
+            super().__init__();self.codi=base;self.prj=torch.nn.Identity();self.bot_id=20;self.eot_id=21;self.model_name='gpt2'
+        def get_embd(self,*args):return self.codi.get_input_embeddings()
+    source=CODISource.__new__(CODISource);source.model=Model();source.device=torch.device('cpu')
+    source.tokenizer=Tokenizer();source.forward_calls=0;source.config={'num_latent':3,'layer':-1,'max_new_tokens':4}
+    a=source.run_batch(['q']*2)
+    b=source.run_batch(['q']*2,[{'from_step':0,'sigma':0.,'seed':x} for x in [11,22]])
+    for x,y in zip(a,b):
+        assert x['answer']==y['answer']
+        assert max_latent_difference(x['latent_steps'],y['latent_steps'])==0
+    one=source.run('q')
+    assert a[0]['answer']==one['answer']
+    assert max_latent_difference(a[0]['latent_steps'],one['latent_steps'])<1e-5

@@ -25,6 +25,7 @@ def main(c):
         if c['mode']=='full':
             proof=json.loads(Path(c['smoke_run'],'metrics.json').read_text())
             smoke_cfg=json.loads(Path(c['smoke_run'],'config.json').read_text())
+            if smoke_cfg.get('baseline_batch_size',1)!=c.get('baseline_batch_size',1) or (c['experiment']=='noise' and smoke_cfg.get('rollout_batch_size',1)!=c.get('rollout_batch_size',1)):raise ValueError('Batch protocol requires matching smoke')
             if proof['status']!='completed' or smoke_cfg['mode']!='smoke' or smoke_cfg['source']!=c['source']:raise ValueError('Matching successful smoke required')
         if c['limit'] is not None:rows=sorted(rows,key=lambda r:r['id'])[:c['limit']]
         write_json(run.path/'selection.json',{'problem_ids':[r['id'] for r in rows],
@@ -36,23 +37,43 @@ def main(c):
         seed_results=[]
         for seed in c['seeds']:
             seed_everything(seed);base=[];diffs=[];noise_result={}
-            for row in rows:
-                a=source.run(row['question']);b=source.run(row['question'])
-                diffs.append(max_latent_difference(a['latent_steps'],b['latent_steps']))
-                zero=source.run(row['question'],{'from_step':0,'sigma':0.,'seed':seed})
-                if a['answer']!=zero['answer'] or max_latent_difference(a['latent_steps'],zero['latent_steps'])!=0:
-                    raise RuntimeError('Zero-noise identity failed')
+            predictions={}
+            batch_size=c.get('baseline_batch_size',1)
+            if batch_size>1:
+                groups={}
+                for row in rows:
+                    length=len(source.tokenizer.encode(row['question'].strip().replace('  ',' ')))
+                    groups.setdefault(length,[]).append(row)
+                for group in groups.values():
+                    for offset in range(0,len(group),batch_size):
+                        batch=group[offset:offset+batch_size]
+                        outs=source.run_batch([r['question'] for r in batch])
+                        predictions.update({r['id']:o for r,o in zip(batch,outs)})
+            for index,row in enumerate(rows):
+                a=predictions[row['id']] if batch_size>1 else source.run(row['question'])
+                if index<c.get('determinism_limit',len(rows)):
+                    # Repeat the identical single-input call; batch/single numerical drift is separate.
+                    single=source.run(row['question']) if batch_size>1 else a
+                    b=source.run(row['question'])
+                    diffs.append(max_latent_difference(single['latent_steps'],b['latent_steps']))
+                    zero=source.run(row['question'],{'from_step':0,'sigma':0.,'seed':seed})
+                    if single['answer']!=zero['answer'] or max_latent_difference(single['latent_steps'],zero['latent_steps'])!=0:
+                        raise RuntimeError('Zero-noise identity failed')
+                    run.logger.log('determinism',seed=seed,problem_id=row['id'],max_abs=diffs[-1],batch_vs_single_max_abs=max_latent_difference(a['latent_steps'],single['latent_steps']),batch_vs_single_answer_equal=a['answer']==single['answer'])
                 base.append(score_answer(a['answer'],row['answer'],c['task']))
-                run.logger.log('determinism',seed=seed,problem_id=row['id'],max_abs=diffs[-1],answer=a['answer'],meta=a['meta'])
+                run.logger.log('prediction',seed=seed,problem_id=row['id'],answer=a['answer'],correct=base[-1],meta=a['meta'])
             if c['experiment']=='noise':
                 for sigma in c['sigma']:
                     acc=[];div=[];invalid=[]
                     for row in rows:
                         answers=[];correct=[]
-                        for k in range(c['rollouts']):
-                            # Stable independently seeded noise per problem/seed/rollout, common random numbers across sigma.
-                            ns=int(hashlib.sha256(f'{seed}/{row["id"]}/{k}'.encode()).hexdigest()[:8],16)
-                            out=source.run(row['question'],{'from_step':c['from_step'],'sigma':sigma,'seed':ns})
+                        perts=[{'from_step':c['from_step'],'sigma':sigma,'seed':int(hashlib.sha256(f'{seed}/{row["id"]}/{k}'.encode()).hexdigest()[:8],16)} for k in range(c['rollouts'])]
+                        if c.get('rollout_batch_size',1)==c['rollouts']:
+                            outputs=source.run_batch([row['question']]*c['rollouts'],perts)
+                        elif c.get('rollout_batch_size',1)==1:
+                            outputs=[source.run(row['question'],p) for p in perts]
+                        else:raise ValueError('Supported rollout batch sizes: 1 or K')
+                        for k,out in enumerate(outputs):
                             answer=canonical_answer(out['answer'],c['task']);answers.append(answer)
                             correct.append(score_answer(out['answer'],row['answer'],c['task']))
                             run.logger.log('rollout',seed=seed,problem_id=row['id'],sigma=sigma,k=k,answer=out['answer'],canonical=answer,correct=correct[-1],meta=out['meta'])

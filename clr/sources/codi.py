@@ -68,3 +68,41 @@ class CODISource:
 
 def load(config):
     return CODISource(config)
+
+@torch.inference_mode()
+def _run_batch(self,problems,perturbs=None):
+    """Equal-token-length batching only; no padding can enter latent KV attention.
+
+    Used for K independent noise rollouts. Explicit batch kernels may differ
+    numerically from batch=1; batch size is part of the experiment protocol.
+    """
+    c=self.config;m=self.model;n=len(problems)
+    if not n:raise ValueError('Empty batch')
+    rows=[self.tokenizer.encode(question(p).strip().replace('  ',' '))+[m.bot_id] for p in problems]
+    if len(set(map(len,rows)))!=1:raise ValueError('Batch requires equal token lengths; padding forbidden')
+    if len(rows[0])+c['num_latent']+1+c['max_new_tokens']>m.codi.config.max_position_embeddings:raise ValueError('Context budget exceeded')
+    perturbs=perturbs or [None]*n
+    if len(perturbs)!=n:raise ValueError('Perturb batch size mismatch')
+    noises=[RelativeNoise(p,self.device) for p in perturbs];steps=[[] for _ in rows];start=self.forward_calls
+    ids=torch.tensor(rows,device=self.device)
+    out=self._forward(input_ids=ids,attention_mask=torch.ones_like(ids),use_cache=True,output_hidden_states=True)
+    for t in range(c['num_latent']):
+        z=torch.cat([noise(out.hidden_states[-1][i:i+1,-1:,:],t) for i,noise in enumerate(noises)])
+        obs=(z if c['layer']==-1 else out.hidden_states[c['layer']][:,-1:,:]).detach().cpu()
+        for i in range(n):steps[i].append(obs[i,0].clone())
+        out=self._forward(inputs_embeds=m.prj(z),past_key_values=out.past_key_values,use_cache=True,output_hidden_states=True)
+    cache=out.past_key_values;emb=m.get_embd(m.codi,m.model_name)
+    inp=emb(ids.new_full((n,1),m.eot_id));tokens=[[] for _ in rows];finished=[False]*n
+    for _ in range(c['max_new_tokens']):
+        out=self._forward(inputs_embeds=inp,past_key_values=cache,use_cache=True);cache=out.past_key_values
+        tok=out.logits[:,-1,:m.codi.config.vocab_size-1].argmax(-1)
+        for i,token in enumerate(tok.tolist()):
+            if not finished[i]:
+                tokens[i].append(token);finished[i]=token==self.tokenizer.eos_token_id
+        if all(finished):break
+        inp=emb(tok[:,None])
+    return [{'answer':self.tokenizer.decode(tokens[i],skip_special_tokens=True),'latent_steps':steps[i],
+      'meta':{'source':'codi','layer':c['layer'],'batch_size':n,'batch_forward_calls':self.forward_calls-start,
+      'generated_tokens':len(tokens[i]),'hit_token_limit':not finished[i],'perturb':perturbs[i]}} for i in range(n)]
+
+CODISource.run_batch=_run_batch
