@@ -1,0 +1,8 @@
+files:
+- pytorch_model.bin
+- README.md
+milestone: M0
+repo: zen-E/CODI-gpt2
+revision: fd641b3d3edc59e4f534b55588e906588c9e36bb
+seed: 11
+stage: download

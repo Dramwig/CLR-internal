@@ -1,0 +1,10 @@
+files:
+- '*.json'
+- '*.py'
+- '*.safetensors'
+- README.md
+milestone: M0
+repo: tomg-group-umd/huginn-0125
+revision: bb6621b65e90b6a4b9b29ef88dc83866d450470c
+seed: 11
+stage: download

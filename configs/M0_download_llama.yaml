@@ -1,0 +1,9 @@
+files:
+- config.json
+- tokenizer*
+- special_tokens_map.json
+milestone: M0
+repo: meta-llama/Llama-3.2-1B-Instruct
+revision: 9213176726f574b556790deb65791e0c5aa438b6
+seed: 11
+stage: download

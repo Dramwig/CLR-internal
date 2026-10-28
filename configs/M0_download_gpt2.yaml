@@ -1,0 +1,11 @@
+files:
+- config.json
+- tokenizer*
+- vocab.json
+- merges.txt
+- model.safetensors
+milestone: M0
+repo: openai-community/gpt2
+revision: 607a30d783dfa663caf39e06633721c8d4cfcd7e
+seed: 11
+stage: download
