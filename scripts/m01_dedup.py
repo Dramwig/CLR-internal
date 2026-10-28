@@ -8,6 +8,9 @@ from clr.data.splits import freeze,problem_id
 p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();c=load_config(a.config,a.overrides)
 with recorded(c) as run:
  t=time.perf_counter();train=json.loads(Path(c['train']).read_text())
+ if isinstance(train,dict) and set(train)=={'question','cot','answer'}:
+    if len({len(v) for v in train.values()})!=1:raise ValueError('Unequal training columns')
+    train=[dict(zip(train,values)) for values in zip(*train.values())]
  if not isinstance(train,list):raise ValueError('Unexpected training corpus format')
  original={k:json.loads(Path(path).read_text()) for k,path in c['original'].items()}
  rows=[{**r,'original_split':k} for k,items in original.items() for r in items]

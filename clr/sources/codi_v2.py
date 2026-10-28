@@ -34,7 +34,7 @@ class CODISourceV2(CODISource):
         if width+1+c['num_latent']+1+c['max_new_tokens']>m.codi.config.max_position_embeddings:raise ValueError('Context budget exceeded')
         ids=torch.tensor([[m.pad_token_id]*(width-len(r))+r+[m.bot_id] for r in rows],device=self.device)
         mask=torch.tensor([[0]*(width-len(r))+[1]*(len(r)+1) for r in rows],device=self.device)
-        perturbs=perts if (perts:=perturbs) is not None else [None]*n
+        perturbs=perturbs if perturbs is not None else [None]*n
         if len(perturbs)!=n:raise ValueError('Perturb count mismatch')
         noises=[RelativeNoise(p,self.device) for p in perturbs]
         decode=decode or {'temperature':0,'seeds':[0]*n}
@@ -48,7 +48,11 @@ class CODISourceV2(CODISource):
         elif c['position_ids']!='implicit_absolute':raise ValueError('Unknown position policy')
         out=self._forward(input_ids=ids,attention_mask=mask if c['prefill_attention_mask'] else None,use_cache=True,output_hidden_states=True,**kwargs)
         for t in range(c['num_latent']):
-            z=torch.cat([noise(out.hidden_states[-1][i:i+1,-1:,:],t) for i,noise in enumerate(noises)])
+            # Preserve upstream tensor strides when noise is inactive. A cat()
+            # here changes the bf16 linear kernel even for sigma=0.
+            z=out.hidden_states[-1][:,-1,:].unsqueeze(1)
+            if any(p and p['sigma']>0 and t>=p['from_step'] for p in perturbs):
+                z=torch.cat([noise(z[i:i+1],t) for i,noise in enumerate(noises)])
             if capture_latents:
                 obs=(z if c['layer']==-1 else out.hidden_states[c['layer']][:,-1:,:]).detach().cpu()
                 for i in range(n):steps[i].append(obs[i,0].clone())
@@ -58,7 +62,9 @@ class CODISourceV2(CODISource):
             out=self._forward(inputs_embeds=m.prj(z),past_key_values=out.past_key_values,use_cache=True,output_hidden_states=True,
                 attention_mask=mask if c['carry_attention_mask'] else None,**kwargs)
         cache=out.past_key_values;emb=m.get_embd(m.codi,m.model_name)
-        inp=emb(ids.new_full((n,1),m.eot_id));tokens=[[] for _ in rows];finished=[False]*n
+        # Upstream expands a single EOT embedding across the batch (stride 0).
+        inp=emb(ids.new_tensor([m.eot_id])).unsqueeze(0).expand(n,-1,-1)
+        tokens=[[] for _ in rows];finished=[False]*n
         for _ in range(c['max_new_tokens']):
             mask=torch.cat([mask,torch.ones((n,1),device=self.device,dtype=mask.dtype)],dim=1)
             kwargs={}

@@ -1,0 +1,20 @@
+num_latent: 6
+padding: canonical_reference_cohort_128
+source:
+  base_path: /home/me/models/huggingface/models--openai-community--gpt2/snapshots/607a30d783dfa663caf39e06633721c8d4cfcd7e
+  carry_attention_mask: false
+  checkpoint: /home/me/models/huggingface/models--zen-E--CODI-gpt2/snapshots/fd641b3d3edc59e4f534b55588e906588c9e36bb/pytorch_model.bin
+  code_path: third_party/codi
+  device: cuda:3
+  dtype: float32
+  family: gpt2
+  layer: -1
+  max_new_tokens: 256
+  min_free_gib: 3
+  num_latent: 6
+  position_ids: implicit_absolute
+  prefill_attention_mask: true
+  prj_dim: 768
+statistics: question_bootstrap_10000
+status: unapproved
+version: v2-fp32-fallback

@@ -1,0 +1,29 @@
+milestone: M0.1
+stage: noise_v2
+mode: full
+protocol: configs/protocol_codi_v2.yaml
+data: data/M01_v2/val.json
+splits: data/splits/gsm8k_M01_v2.json
+limit: null
+threads: 2
+smoke_run: null
+K: 16
+seeds:
+- 11
+- 22
+- 33
+sigmas:
+- 0
+- 0.1
+- 0.3
+- 0.5
+- 0.75
+- 1.0
+- 1.5
+- 2.0
+from_steps:
+- 0
+- 3
+temperatures:
+- 0.5
+- 1.0
