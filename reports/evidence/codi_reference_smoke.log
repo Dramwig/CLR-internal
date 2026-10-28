@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m0_codi_reference.py", line 43, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m0_codi_reference.py", line 23, in main
+    mod=import_file('third_party/codi/test.py','clr_official_test')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/sources/common.py", line 36, in import_file
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/me/PaperField/CalReader/third_party/codi/test.py", line 23, in <module>
+    import transformers
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/__init__.py", line 27, in <module>
+    from . import dependency_versions_check
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/utils/__init__.py", line 36, in <module>
+    from .chat_template_utils import DocstringParsingException, TypeHintParsingException, get_json_schema
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/utils/chat_template_utils.py", line 41, in <module>
+    from PIL.Image import Image
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/PIL/Image.py", line 90, in <module>
+    from . import _imaging as core
+ImportError: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.29' not found (required by /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/PIL/../../.././libLerc.so.4)

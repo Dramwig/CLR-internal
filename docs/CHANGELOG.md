@@ -15,3 +15,10 @@
 - 冻结GSM8K问题级val/cal/test；测试仅用于最终源复现，噪声曲线在事先指定的64题val面板运行。
 - 推理新增显式batch16，按等长token组执行，避免padding改变latent attention。单样本与批处理smoke分别留档，禁止静默替换。确定性抽查16题，batch与single漂移另计。
 - Coconut实际batch32成本探针OOM；此前明确batch8的吞吐外推仅为粗略预算，不能当作精度实验或完整官方recipe预算。
+
+### M0 CODI子结果交付
+
+- 官方未修改test.py对照为43.594%，CLR等长接口为41.698%；差异完整保留并分析，未用测试结果调整checkpoint、sigma或指标。
+- 64题固定val面板完成5个sigma × K16 × 3 seeds；报告负面准确率变化和batch数值差异。
+- 15项最小测试通过；Idea A仓库保持未修改。
+- M0整体仍有LLaMA授权、Coconut预算/显存、Huginn不完整权重等阻塞，不标记完成。

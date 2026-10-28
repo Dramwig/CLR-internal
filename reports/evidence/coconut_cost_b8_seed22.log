@@ -1,0 +1,2 @@
+Passing a tuple of `past_key_values` is deprecated and will be removed in Transformers v4.53.0. You should pass an instance of `Cache` instead, e.g. `past_key_values=DynamicCache.from_legacy_cache(past_key_values)`.
+/home/me/PaperField/CalReader/runs/20261028T094604795255Z_c8ad2bfd9b63_9a78db {'gsm8k_aug': 2168.4881685127443, 'prosqa': 107.17209003044748}

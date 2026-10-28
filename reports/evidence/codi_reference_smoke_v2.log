@@ -1,0 +1,23 @@
+cuda
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m0_codi_reference.py", line 54, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m0_codi_reference.py", line 29, in main
+    train=mod.TrainingArguments(output_dir=str(run.path/'official'),bf16=True,seed=11,model_max_length=512,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 158, in __init__
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/training_args.py", line 1738, in __post_init__
+    self.device
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/training_args.py", line 2268, in device
+    return self._setup_devices
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/utils/generic.py", line 67, in __get__
+    cached = self.fget(obj)
+             ^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/training_args.py", line 2195, in _setup_devices
+    self.distributed_state = PartialState(**accelerator_state_kwargs)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/accelerate/state.py", line 313, in __init__
+    raise NotImplementedError(
+NotImplementedError: Using RTX 4000 series doesn't support faster communication broadband via P2P or IB. Please set `NCCL_P2P_DISABLE="1"` and `NCCL_IB_DISABLE="1" or use `accelerate launch` which will do this automatically.
