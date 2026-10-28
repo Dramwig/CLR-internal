@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from clr.utils.config import load_config
 from clr.utils.records import recorded
 from clr.utils.idea_a import write_json
+from clr.utils.stats import mean_ci
 
 def read(run_id):
  p=Path('runs')/run_id;return json.loads((p/'metrics.json').read_text()),json.loads((p/'config.json').read_text())
@@ -18,6 +19,8 @@ def main(c):
  with recorded(c) as report_run:
     repro,rc=read(c['repro_run']);noise,nc=read(c['noise_run']);smoke,sc=read(c['smoke_run']);reference,refc=read(c['reference_run'])
     if repro['status']!='completed' or noise['status']!='completed':raise RuntimeError('Cannot publish incomplete CODI runs as full results')
+    costs=[read(r)[0] for r in c['cost_runs']]
+    cost_stat=mean_ci([r['estimated_gpu_hours_per_seed']['prosqa'] for r in costs])
     xs=[float(x) for x in noise['noise']];fig,axes=plt.subplots(1,2,figsize=(10,3.6))
     for ax,key,title,scale in zip(axes,['accuracy','distinct_answers'],['Accuracy (%)','Distinct valid answers / 16 rollouts'],[100,1]):
         stats=[noise['noise'][str(x)] if str(x) in noise['noise'] else noise['noise'][str(int(x))] for x in xs]
@@ -62,7 +65,8 @@ HF API 元数据和模型卡快照保存在 `reports/evidence/`；完整文件�
 
 | 源 / 数据集 | 论文准确率 (%) | 本次均值 ± 95% CI (%) | 差值 pp | 状态 |
 |---|---:|---:|---:|---|
-| CODI-GPT2 / GSM8K test (1319) | 43.7 | {pm(repro['aggregate']['accuracy'],100)} | {delta:+.2f} | 完成；`{c['repro_run']}` |
+| CODI-GPT2 官方test.py / GSM8K | 43.7 | {pm(reference['accuracy'],100)} | {100*reference['accuracy']['mean']-43.7:+.3f} | 完成；`{c['reference_run']}` |
+| CODI-GPT2 CLR接口 / GSM8K test (1319) | 43.7 | {pm(repro['aggregate']['accuracy'],100)} | {delta:+.3f} | 完成；`{c['repro_run']}` |
 | CODI-LLaMA1B / GSM8K | 51.9（论文A4的β=20配置，主图对应关系待进一步核对） | N/A | N/A | 基础模型访问401 |
 | Coconut / GSM8K | 34.1 ± 1.5（论文原表的误差条，非本次95%CI） | N/A | N/A | 无已核实官方权重；训练阻塞 |
 | Coconut / ProsQA | 97.0 ± 0.3（论文原表） | N/A | N/A | 同上 |
@@ -70,7 +74,7 @@ HF API 元数据和模型卡快照保存在 `reports/evidence/`；完整文件�
 
 论文依据：[CODI v3 Table 2/A3/A4](https://arxiv.org/pdf/2502.21074v3)、[Coconut Table 1](https://arxiv.org/html/2412.06769v2)、[Huginn Table 2](https://arxiv.org/html/2502.05171v2)。论文数字与本机实测严格分列。
 
-CODI-GPT2 与论文偏差为 {delta:+.2f}pp。{'超过2pp：需要优先核查官方上传 checkpoint 与论文训练版本/seed、batch128 padding及旧attention mask、torch/transformers版本差异；目前不能把偏差归因于单一因素，不用测试集调参。' if abs(delta)>2 else '未超过预设2pp分析门槛。环境、batch大小和官方checkpoint训练seed信息不全仍是复现限制。'}
+CODI-GPT2 与论文偏差为 {delta:+.3f}pp。{'超过2pp：需要优先核查官方上传 checkpoint 与论文训练版本/seed、batch128 padding及旧attention mask、torch/transformers版本差异；目前不能把偏差归因于单一因素，不用测试集调参。' if abs(delta)>2 else '未超过预设2pp分析门槛。环境、batch大小和官方checkpoint训练seed信息不全仍是复现限制。'}
 
 官方脚本三次对照为 **{pm(reference['accuracy'],100)}%**，与43.7%差 {100*reference['accuracy']['mean']-43.7:+.3f}pp。使用同一官方权重、相同1319道题、相同数值答案提取，仅替换官方数据加载函数为已下载的相同问题/答案；未修改上游test.py。附加hook只计数forward。运行：`{c['reference_run']}`。
 
@@ -100,7 +104,9 @@ CODI-GPT2 与论文偏差为 {delta:+.2f}pp。{'超过2pp：需要优先核查�
 
 使用官方 GPT-2 架构与真实 ProsQA 前8条训练样本、随机初始化权重测**计算吞吐**，不是训练精度实验。配置 `M0_coconut_cost.yaml` 的初次运行快照 batch=8，FP32，与官方dtype一致；0/3/6 latent阶段的batch耗时均值分别约0.181/2.478/4.171秒。运行 `20261028T091345344806Z_324d80d867fe_b8cc5d`。
 
-按最慢已测阶段恒定吞吐外推，ProsQA 17886题×50epochs 为约129.52 GPU小时/seed，三个seed约388.56 GPU小时；这是共享GPU上的保守估计，不是实际训练耗时，也未计验证、checkpoint、DDP开销。GSM8K-Aug的2620.64 GPU小时估算使用ProsQA序列长度做代理，**不是有效的GSM8K精确预算**；要得到可信预算须用实际增强训练数据重测。最初公式使用385000近似题数；官方论文实际385620，已在后续配置修正，未改旧结果。
+三次明确batch=8的吞吐探针（seed11/22/33，不是batch32失败后偷偷降低训练设置）对ProsQA的每seed预算估计为 **{pm(cost_stat)} GPU小时（95% t CI）**。这只是吞吐抽样误差区间，未包含模型、数据长度、DDP与共享负载变化带来的系统不确定性；平均值及区间下端仍超过40小时。来源：`{c['cost_runs']}`。
+
+按初次运行的最慢已测阶段恒定吞吐外推，ProsQA 17886题×50epochs 为约129.52 GPU小时/seed，三个seed约388.56 GPU小时；这是共享GPU上的保守估计，不是实际训练耗时，也未计验证、checkpoint、DDP开销。GSM8K-Aug的2620.64 GPU小时估算使用ProsQA序列长度做代理，**不是有效的GSM8K精确预算**；要得到可信预算须用实际增强训练数据重测。最初公式使用385000近似题数；官方论文实际385620，已在后续配置修正，未改旧结果。
 
 随后按官方batch=32做探针时触发CUDA OOM（尝试额外申请3.64 GiB），完整 traceback 已记录；没有自动减batch重跑。因此Coconut两个数据集均暂缓：ProsQA成本估算超过40 GPU小时，GSM8K还存在实际recipe显存与预算未验证阻塞。不能声称两者已按官方recipe训练。
 
@@ -124,8 +130,8 @@ PYTHONPATH=. OMP_NUM_THREADS=4 HF_HUB_OFFLINE=1 .venv/bin/python scripts/m0_eval
 尚需：解决LLaMA官方授权；在足够显存下验证Huginn及官方评测协议；对Coconut制定40GPU小时以内可执行的官方训练方案或保持暂缓；补齐这些源的复现、确定性和噪声曲线。M0不宣称全部完成，后续结果须另建运行与报告版本。
 '''
     Path('reports/M0_repro.md').write_text(text)
-    write_json(report_run.path/'sources.json',{'repro':c['repro_run'],'noise':c['noise_run'],'smoke':c['smoke_run'],'reference':c['reference_run']})
-    report_run.write_metrics(status='completed',kind='derived_report',delta_pp=delta,gpu_hours=0,source_forward_calls=0)
+    write_json(report_run.path/'sources.json',{'repro':c['repro_run'],'noise':c['noise_run'],'smoke':c['smoke_run'],'reference':c['reference_run'],'cost':c['cost_runs']})
+    report_run.write_metrics(status='completed',kind='derived_report',prosqa_cost_estimate=cost_stat,delta_pp=delta,gpu_hours=0,source_forward_calls=0)
     print(report_run.path)
 
 if __name__=='__main__':
