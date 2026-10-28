@@ -1,0 +1,22 @@
+base_path: /home/me/models/huggingface/models--openai-community--gpt2/snapshots/607a30d783dfa663caf39e06633721c8d4cfcd7e
+batch_size: 8
+data_path: third_party/coconut/data/prosqa_train.json
+device: cuda:7
+dtype: float32
+latent_counts:
+- 0
+- 3
+- 6
+milestone: M0
+min_free_gib: 10
+recipes:
+  gsm8k_aug:
+    epochs: 47
+    examples: 385000
+  prosqa:
+    epochs: 50
+    examples: 17886
+seed: 11
+stage: cost_probe
+steps: 3
+warmup: 1
