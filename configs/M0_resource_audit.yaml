@@ -1,0 +1,12 @@
+milestone: M0
+resources:
+- file: pytorch_model.bin
+  path: /home/me/models/huggingface/models--zen-E--CODI-gpt2/snapshots/fd641b3d3edc59e4f534b55588e906588c9e36bb/pytorch_model.bin
+  repo: zen-E/CODI-gpt2
+  revision: fd641b3d3edc59e4f534b55588e906588c9e36bb
+- file: model.safetensors
+  path: /home/me/models/huggingface/models--openai-community--gpt2/snapshots/607a30d783dfa663caf39e06633721c8d4cfcd7e/model.safetensors
+  repo: openai-community/gpt2
+  revision: 607a30d783dfa663caf39e06633721c8d4cfcd7e
+seed: 11
+stage: resource_audit
