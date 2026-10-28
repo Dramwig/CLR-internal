@@ -3,7 +3,7 @@ __pycache__/
 .pytest_cache/
 outputs/
 runs/
-data/
+/data/
 third_party/
 .env
 *.egg-info/

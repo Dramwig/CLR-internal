@@ -14,8 +14,8 @@ with recorded(c) as run:
         rows=[]
         for line in r.text.strip().splitlines():
             parts=line.split('||')
-            if len(parts)!=3: raise ValueError('Unexpected official dataset format')
-            q,steps,answer=parts
+            if len(parts)!=2 or '##' not in parts[1]: raise ValueError('Unexpected official dataset format')
+            q=parts[0];answer=parts[1].split('##')[-1]
             rows.append({'id':problem_id(q),'question':q.strip(),'answer':answer.strip()})
         data[split]=rows
     # Freeze independent val/cal problems; retain official test unchanged.
