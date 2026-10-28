@@ -1,0 +1,13 @@
+milestone: M0b
+version: v2
+stage: official_resume_and_lfs_verify
+seed: 11
+repo: tomg-group-umd/huginn-0125
+revision: bb6621b65e90b6a4b9b29ef88dc83866d450470c
+cache_dir: /home/me/models/huggingface
+max_workers: 4
+allow_patterns:
+  - '*.json'
+  - '*.py'
+  - '*.safetensors'
+  - README.md

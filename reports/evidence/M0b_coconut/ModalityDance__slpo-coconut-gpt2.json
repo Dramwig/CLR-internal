@@ -1,0 +1,120 @@
+{
+  "_id": "6a5d320212a6c557c93554ec",
+  "id": "ModalityDance/slpo-coconut-gpt2",
+  "private": false,
+  "pipeline_tag": "text-generation",
+  "library_name": "transformers",
+  "tags": [
+    "transformers",
+    "safetensors",
+    "gpt2",
+    "latent-reasoning",
+    "coconut",
+    "slpo",
+    "reinforcement-learning",
+    "text-generation",
+    "arxiv:2607.19691",
+    "base_model:ModalityDance/latent-tts-coconut",
+    "base_model:finetune:ModalityDance/latent-tts-coconut",
+    "license:mit",
+    "text-generation-inference",
+    "endpoints_compatible",
+    "region:us"
+  ],
+  "downloads": 97,
+  "likes": 0,
+  "modelId": "ModalityDance/slpo-coconut-gpt2",
+  "author": "ModalityDance",
+  "sha": "3355e8c89256d26638580ef7f097e171a4296516",
+  "lastModified": "2026-07-23T05:51:29.000Z",
+  "gated": false,
+  "disabled": false,
+  "widgetData": [
+    {
+      "text": "Hi, what can you help me with?"
+    },
+    {
+      "text": "What is 84 * 3 / 2?"
+    },
+    {
+      "text": "Tell me an interesting fact about the universe!"
+    },
+    {
+      "text": "Explain quantum computing in simple terms."
+    }
+  ],
+  "model-index": null,
+  "config": {
+    "architectures": [
+      "LatentCOCONUTGPT2"
+    ],
+    "model_type": "gpt2",
+    "tokenizer_config": {
+      "bos_token": "<|endoftext|>",
+      "eos_token": "<|endoftext|>",
+      "pad_token": "<|endoftext|>",
+      "unk_token": "<|endoftext|>"
+    }
+  },
+  "cardData": {
+    "license": "mit",
+    "library_name": "transformers",
+    "pipeline_tag": "text-generation",
+    "tags": [
+      "latent-reasoning",
+      "coconut",
+      "slpo",
+      "gpt2",
+      "reinforcement-learning"
+    ],
+    "base_model": "ModalityDance/latent-tts-coconut"
+  },
+  "transformersInfo": {
+    "auto_model": "LatentCOCONUTGPT2",
+    "processor": "AutoTokenizer"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "added_tokens.json"
+    },
+    {
+      "rfilename": "config.json"
+    },
+    {
+      "rfilename": "generation_config.json"
+    },
+    {
+      "rfilename": "merges.txt"
+    },
+    {
+      "rfilename": "model.safetensors"
+    },
+    {
+      "rfilename": "special_tokens_map.json"
+    },
+    {
+      "rfilename": "tokenizer.json"
+    },
+    {
+      "rfilename": "tokenizer_config.json"
+    },
+    {
+      "rfilename": "vocab.json"
+    }
+  ],
+  "spaces": [],
+  "createdAt": "2026-07-19T20:22:26.000Z",
+  "safetensors": {
+    "parameters": {
+      "F32": 125033473
+    },
+    "total": 125033473
+  },
+  "usedStorage": 500149220
+}

@@ -1,0 +1,5 @@
+/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.3) doesn't match a supported version!
+  warnings.warn(
+Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 2 examples [00:00, 252.70 examples/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 58.53it/s]
+/home/me/PaperField/CalReader/runs/20261028T115251348952Z_da3a5f18684d_62c6c5

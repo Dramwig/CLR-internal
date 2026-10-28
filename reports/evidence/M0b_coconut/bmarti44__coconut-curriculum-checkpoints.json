@@ -1,0 +1,826 @@
+{
+  "_id": "6991e5bf8a82d63a7c808409",
+  "id": "bmarti44/coconut-curriculum-checkpoints",
+  "private": false,
+  "tags": [
+    "latent-reasoning",
+    "chain-of-thought",
+    "continuous-thought",
+    "coconut",
+    "prosqa",
+    "graph-traversal",
+    "curriculum-learning",
+    "pause-tokens",
+    "gpt2",
+    "en",
+    "dataset:prosqa",
+    "arxiv:2412.06769",
+    "arxiv:2512.21711",
+    "arxiv:2310.02226",
+    "base_model:openai-community/gpt2",
+    "base_model:finetune:openai-community/gpt2",
+    "license:mit",
+    "region:us"
+  ],
+  "downloads": 0,
+  "likes": 1,
+  "modelId": "bmarti44/coconut-curriculum-checkpoints",
+  "author": "bmarti44",
+  "sha": "4f9380d59f570b3dabce13ca7eed6a376e209c35",
+  "lastModified": "2026-02-18T14:37:40.000Z",
+  "gated": false,
+  "disabled": false,
+  "model-index": null,
+  "config": {},
+  "cardData": {
+    "license": "mit",
+    "tags": [
+      "latent-reasoning",
+      "chain-of-thought",
+      "continuous-thought",
+      "coconut",
+      "prosqa",
+      "graph-traversal",
+      "curriculum-learning",
+      "pause-tokens",
+      "gpt2"
+    ],
+    "base_model": "openai-community/gpt2",
+    "datasets": [
+      "prosqa"
+    ],
+    "language": [
+      "en"
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "coconut/checkpoint_1"
+    },
+    {
+      "rfilename": "coconut/checkpoint_10"
+    },
+    {
+      "rfilename": "coconut/checkpoint_11"
+    },
+    {
+      "rfilename": "coconut/checkpoint_12"
+    },
+    {
+      "rfilename": "coconut/checkpoint_13"
+    },
+    {
+      "rfilename": "coconut/checkpoint_14"
+    },
+    {
+      "rfilename": "coconut/checkpoint_15"
+    },
+    {
+      "rfilename": "coconut/checkpoint_16"
+    },
+    {
+      "rfilename": "coconut/checkpoint_17"
+    },
+    {
+      "rfilename": "coconut/checkpoint_18"
+    },
+    {
+      "rfilename": "coconut/checkpoint_19"
+    },
+    {
+      "rfilename": "coconut/checkpoint_2"
+    },
+    {
+      "rfilename": "coconut/checkpoint_20"
+    },
+    {
+      "rfilename": "coconut/checkpoint_21"
+    },
+    {
+      "rfilename": "coconut/checkpoint_22"
+    },
+    {
+      "rfilename": "coconut/checkpoint_23"
+    },
+    {
+      "rfilename": "coconut/checkpoint_24"
+    },
+    {
+      "rfilename": "coconut/checkpoint_25"
+    },
+    {
+      "rfilename": "coconut/checkpoint_26"
+    },
+    {
+      "rfilename": "coconut/checkpoint_27"
+    },
+    {
+      "rfilename": "coconut/checkpoint_28"
+    },
+    {
+      "rfilename": "coconut/checkpoint_29"
+    },
+    {
+      "rfilename": "coconut/checkpoint_3"
+    },
+    {
+      "rfilename": "coconut/checkpoint_30"
+    },
+    {
+      "rfilename": "coconut/checkpoint_31"
+    },
+    {
+      "rfilename": "coconut/checkpoint_32"
+    },
+    {
+      "rfilename": "coconut/checkpoint_33"
+    },
+    {
+      "rfilename": "coconut/checkpoint_34"
+    },
+    {
+      "rfilename": "coconut/checkpoint_35"
+    },
+    {
+      "rfilename": "coconut/checkpoint_36"
+    },
+    {
+      "rfilename": "coconut/checkpoint_37"
+    },
+    {
+      "rfilename": "coconut/checkpoint_38"
+    },
+    {
+      "rfilename": "coconut/checkpoint_39"
+    },
+    {
+      "rfilename": "coconut/checkpoint_4"
+    },
+    {
+      "rfilename": "coconut/checkpoint_40"
+    },
+    {
+      "rfilename": "coconut/checkpoint_41"
+    },
+    {
+      "rfilename": "coconut/checkpoint_42"
+    },
+    {
+      "rfilename": "coconut/checkpoint_43"
+    },
+    {
+      "rfilename": "coconut/checkpoint_44"
+    },
+    {
+      "rfilename": "coconut/checkpoint_45"
+    },
+    {
+      "rfilename": "coconut/checkpoint_46"
+    },
+    {
+      "rfilename": "coconut/checkpoint_47"
+    },
+    {
+      "rfilename": "coconut/checkpoint_48"
+    },
+    {
+      "rfilename": "coconut/checkpoint_49"
+    },
+    {
+      "rfilename": "coconut/checkpoint_5"
+    },
+    {
+      "rfilename": "coconut/checkpoint_50"
+    },
+    {
+      "rfilename": "coconut/checkpoint_6"
+    },
+    {
+      "rfilename": "coconut/checkpoint_7"
+    },
+    {
+      "rfilename": "coconut/checkpoint_8"
+    },
+    {
+      "rfilename": "coconut/checkpoint_9"
+    },
+    {
+      "rfilename": "coconut/checkpoint_best"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_1"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_10"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_11"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_12"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_13"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_14"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_15"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_16"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_17"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_18"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_19"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_2"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_20"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_21"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_22"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_23"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_24"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_25"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_26"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_27"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_28"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_29"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_3"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_30"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_31"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_32"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_33"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_34"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_35"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_36"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_37"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_38"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_39"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_4"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_40"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_41"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_42"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_43"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_44"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_45"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_46"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_47"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_48"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_49"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_5"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_50"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_6"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_7"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_8"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_9"
+    },
+    {
+      "rfilename": "cot-baseline/checkpoint_best"
+    },
+    {
+      "rfilename": "experiments/causal_sanity/exp0_sanity_result.json"
+    },
+    {
+      "rfilename": "experiments/causal_sanity/m1_causal.json"
+    },
+    {
+      "rfilename": "experiments/corruption/m3_corruption.json"
+    },
+    {
+      "rfilename": "experiments/corruption/m5_corruption.json"
+    },
+    {
+      "rfilename": "experiments/corruption/results.json"
+    },
+    {
+      "rfilename": "experiments/entropy_diagnostic.json"
+    },
+    {
+      "rfilename": "experiments/fig3_corruption_curves_fixed.png"
+    },
+    {
+      "rfilename": "experiments/m3_test_eval.json"
+    },
+    {
+      "rfilename": "experiments/m5_test_eval.json"
+    },
+    {
+      "rfilename": "experiments/m6/accuracy.json"
+    },
+    {
+      "rfilename": "experiments/m6/corruption.json"
+    },
+    {
+      "rfilename": "experiments/m6/m6_hidden_states.npz"
+    },
+    {
+      "rfilename": "experiments/m6/m6_labels.json"
+    },
+    {
+      "rfilename": "experiments/m6/m6_linear_perm.json"
+    },
+    {
+      "rfilename": "experiments/m6/m6_transplant.json"
+    },
+    {
+      "rfilename": "experiments/m6/mcnemar.json"
+    },
+    {
+      "rfilename": "experiments/m6/per_sample_correctness.json"
+    },
+    {
+      "rfilename": "experiments/m6/summary.json"
+    },
+    {
+      "rfilename": "experiments/m6_epoch39/accuracy.json"
+    },
+    {
+      "rfilename": "experiments/m6_epoch39/per_sample_correctness.json"
+    },
+    {
+      "rfilename": "experiments/m6_epoch39/summary.json"
+    },
+    {
+      "rfilename": "experiments/mlp_probe_grid_search.json"
+    },
+    {
+      "rfilename": "experiments/ood/detailed_outputs.json"
+    },
+    {
+      "rfilename": "experiments/ood/log.txt"
+    },
+    {
+      "rfilename": "experiments/ood/results.json"
+    },
+    {
+      "rfilename": "experiments/per_sample_correctness.json"
+    },
+    {
+      "rfilename": "experiments/per_sample_logprobs.json"
+    },
+    {
+      "rfilename": "experiments/per_sample_logprobs_v3.json"
+    },
+    {
+      "rfilename": "experiments/per_sample_species_logprobs_m3_vs_m5.json"
+    },
+    {
+      "rfilename": "experiments/per_sample_species_logprobs_m3_vs_m6.json"
+    },
+    {
+      "rfilename": "experiments/per_sample_species_logprobs_m5_vs_m6.json"
+    },
+    {
+      "rfilename": "experiments/probing/log.txt"
+    },
+    {
+      "rfilename": "experiments/probing/m3_probing.json"
+    },
+    {
+      "rfilename": "experiments/probing/m5_probing.json"
+    },
+    {
+      "rfilename": "experiments/probing/results.json"
+    },
+    {
+      "rfilename": "experiments/probing_corrected/m3_hidden_states.npz"
+    },
+    {
+      "rfilename": "experiments/probing_corrected/m3_labels.json"
+    },
+    {
+      "rfilename": "experiments/probing_corrected/m3_linear_perm.json"
+    },
+    {
+      "rfilename": "experiments/probing_corrected/m5_hidden_states.npz"
+    },
+    {
+      "rfilename": "experiments/probing_corrected/m5_labels.json"
+    },
+    {
+      "rfilename": "experiments/probing_corrected/m5_linear_perm.json"
+    },
+    {
+      "rfilename": "experiments/probing_corrected/results_linear_perm.json"
+    },
+    {
+      "rfilename": "experiments/wilcoxon_diagnostics.json"
+    },
+    {
+      "rfilename": "experiments/wilcoxon_sensitivity.json"
+    },
+    {
+      "rfilename": "experiments/wilcoxon_sensitivity_v3.json"
+    },
+    {
+      "rfilename": "experiments/wilcoxon_teacher_forced_m3_vs_m5.json"
+    },
+    {
+      "rfilename": "experiments/wilcoxon_teacher_forced_m3_vs_m6.json"
+    },
+    {
+      "rfilename": "experiments/wilcoxon_teacher_forced_m5_vs_m6.json"
+    },
+    {
+      "rfilename": "paper/manuscript.pdf"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_1"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_10"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_11"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_12"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_13"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_14"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_15"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_16"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_17"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_18"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_19"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_2"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_20"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_21"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_22"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_23"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_24"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_25"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_26"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_27"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_28"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_29"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_3"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_30"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_31"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_32"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_33"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_34"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_35"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_36"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_37"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_38"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_39"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_4"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_40"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_41"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_42"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_43"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_44"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_45"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_46"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_47"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_48"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_49"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_5"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_50"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_6"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_7"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_8"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_9"
+    },
+    {
+      "rfilename": "pause-curriculum/checkpoint_best"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_1"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_10"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_11"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_12"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_13"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_14"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_15"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_16"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_17"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_18"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_19"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_2"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_20"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_21"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_22"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_23"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_24"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_25"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_26"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_27"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_28"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_29"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_3"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_30"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_31"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_32"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_33"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_34"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_35"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_36"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_37"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_38"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_39"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_4"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_40"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_41"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_42"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_43"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_44"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_45"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_46"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_47"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_48"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_49"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_5"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_50"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_6"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_7"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_8"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_9"
+    },
+    {
+      "rfilename": "pause-multipass/checkpoint_best"
+    }
+  ],
+  "spaces": [],
+  "createdAt": "2026-02-15T15:26:55.000Z",
+  "usedStorage": 153837731916
+}

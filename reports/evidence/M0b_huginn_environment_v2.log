@@ -1,0 +1,187 @@
+Collecting transformers==4.52.4
+  Using cached transformers-4.52.4-py3-none-any.whl.metadata (38 kB)
+Collecting lm-eval==0.4.8
+  Downloading lm_eval-0.4.8-py3-none-any.whl.metadata (50 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.5/50.5 kB 166.2 kB/s eta 0:00:00
+Requirement already satisfied: filelock in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from transformers==4.52.4) (3.19.1)
+Requirement already satisfied: huggingface-hub<1.0,>=0.30.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from transformers==4.52.4) (0.36.0)
+Requirement already satisfied: numpy>=1.17 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from transformers==4.52.4) (1.26.4)
+Requirement already satisfied: packaging>=20.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from transformers==4.52.4) (26.3)
+Requirement already satisfied: pyyaml>=5.1 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from transformers==4.52.4) (6.0.3)
+Requirement already satisfied: regex!=2019.12.17 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from transformers==4.52.4) (2026.9.29)
+Requirement already satisfied: requests in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from transformers==4.52.4) (2.32.5)
+Collecting tokenizers<0.22,>=0.21 (from transformers==4.52.4)
+  Using cached tokenizers-0.21.4-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+Requirement already satisfied: safetensors>=0.4.3 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from transformers==4.52.4) (0.6.2)
+Requirement already satisfied: tqdm>=4.27 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from transformers==4.52.4) (4.67.1)
+Requirement already satisfied: accelerate>=0.26.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from lm-eval==0.4.8) (1.10.1)
+Collecting evaluate (from lm-eval==0.4.8)
+  Downloading evaluate-0.4.6-py3-none-any.whl.metadata (9.5 kB)
+Requirement already satisfied: datasets>=2.16.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from lm-eval==0.4.8) (3.6.0)
+Collecting jsonlines (from lm-eval==0.4.8)
+  Using cached jsonlines-4.0.0-py3-none-any.whl.metadata (1.6 kB)
+Collecting numexpr (from lm-eval==0.4.8)
+  Downloading numexpr-2.14.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+Requirement already satisfied: peft>=0.2.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from lm-eval==0.4.8) (0.17.1)
+Collecting pybind11>=2.6.2 (from lm-eval==0.4.8)
+  Downloading pybind11-3.1.0-py3-none-any.whl.metadata (10 kB)
+Collecting pytablewriter (from lm-eval==0.4.8)
+  Downloading pytablewriter-1.2.1-py3-none-any.whl.metadata (38 kB)
+Collecting rouge-score>=0.0.4 (from lm-eval==0.4.8)
+  Downloading rouge_score-0.1.2.tar.gz (17 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting sacrebleu>=1.5.0 (from lm-eval==0.4.8)
+  Downloading sacrebleu-2.6.0-py3-none-any.whl.metadata (39 kB)
+Requirement already satisfied: scikit-learn>=0.24.1 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from lm-eval==0.4.8) (1.7.2)
+Collecting sqlitedict (from lm-eval==0.4.8)
+  Downloading sqlitedict-2.1.0.tar.gz (21 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: torch>=1.8 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from lm-eval==0.4.8) (2.5.1)
+Collecting tqdm-multiprocess (from lm-eval==0.4.8)
+  Downloading tqdm_multiprocess-0.0.11-py3-none-any.whl.metadata (5.7 kB)
+Requirement already satisfied: zstandard in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from lm-eval==0.4.8) (0.23.0)
+Requirement already satisfied: dill in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from lm-eval==0.4.8) (0.3.8)
+Collecting word2number (from lm-eval==0.4.8)
+  Downloading word2number-1.1.zip (9.7 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting more_itertools (from lm-eval==0.4.8)
+  Downloading more_itertools-11.2.1-py3-none-any.whl.metadata (42 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.7/42.7 kB 813.2 kB/s eta 0:00:00
+Requirement already satisfied: psutil in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from accelerate>=0.26.0->lm-eval==0.4.8) (7.2.2)
+Requirement already satisfied: pyarrow>=15.0.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from datasets>=2.16.0->lm-eval==0.4.8) (20.0.0)
+Requirement already satisfied: pandas in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from datasets>=2.16.0->lm-eval==0.4.8) (2.3.3)
+Requirement already satisfied: xxhash in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from datasets>=2.16.0->lm-eval==0.4.8) (4.0.2)
+Requirement already satisfied: multiprocess<0.70.17 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from datasets>=2.16.0->lm-eval==0.4.8) (0.70.16)
+Requirement already satisfied: fsspec<=2025.3.0,>=2023.1.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.16.0->lm-eval==0.4.8) (2025.3.0)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from huggingface-hub<1.0,>=0.30.0->transformers==4.52.4) (4.16.0)
+Requirement already satisfied: hf-xet<2.0.0,>=1.1.3 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from huggingface-hub<1.0,>=0.30.0->transformers==4.52.4) (1.7.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from requests->transformers==4.52.4) (3.4.3)
+Requirement already satisfied: idna<4,>=2.5 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from requests->transformers==4.52.4) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from requests->transformers==4.52.4) (2.5.0)
+Requirement already satisfied: certifi>=2017.4.17 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from requests->transformers==4.52.4) (2025.8.3)
+Collecting absl-py (from rouge-score>=0.0.4->lm-eval==0.4.8)
+  Downloading absl_py-2.5.1-py3-none-any.whl.metadata (3.3 kB)
+Collecting nltk (from rouge-score>=0.0.4->lm-eval==0.4.8)
+  Downloading nltk-3.10.4-py3-none-any.whl.metadata (5.0 kB)
+Requirement already satisfied: six>=1.14.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from rouge-score>=0.0.4->lm-eval==0.4.8) (1.17.0)
+Collecting portalocker (from sacrebleu>=1.5.0->lm-eval==0.4.8)
+  Downloading portalocker-4.4.2-py3-none-any.whl.metadata (10 kB)
+Collecting tabulate>=0.8.9 (from sacrebleu>=1.5.0->lm-eval==0.4.8)
+  Using cached tabulate-0.10.0-py3-none-any.whl.metadata (40 kB)
+Collecting colorama (from sacrebleu>=1.5.0->lm-eval==0.4.8)
+  Using cached colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting lxml (from sacrebleu>=1.5.0->lm-eval==0.4.8)
+  Downloading lxml-6.1.3-cp311-cp311-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+Requirement already satisfied: scipy>=1.8.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from scikit-learn>=0.24.1->lm-eval==0.4.8) (1.15.3)
+Requirement already satisfied: joblib>=1.2.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from scikit-learn>=0.24.1->lm-eval==0.4.8) (1.6.0)
+Requirement already satisfied: threadpoolctl>=3.1.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from scikit-learn>=0.24.1->lm-eval==0.4.8) (3.7.0)
+Requirement already satisfied: sympy==1.13.1 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from torch>=1.8->lm-eval==0.4.8) (1.13.1)
+Requirement already satisfied: networkx in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from torch>=1.8->lm-eval==0.4.8) (3.5)
+Requirement already satisfied: jinja2 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from torch>=1.8->lm-eval==0.4.8) (3.1.6)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from sympy==1.13.1->torch>=1.8->lm-eval==0.4.8) (1.3.0)
+Requirement already satisfied: attrs>=19.2.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from jsonlines->lm-eval==0.4.8) (26.1.0)
+Requirement already satisfied: setuptools>=38.3.0 in ./.venv/huginn-eval/lib/python3.11/site-packages (from pytablewriter->lm-eval==0.4.8) (65.5.0)
+Collecting DataProperty<2,>=1.1.0 (from pytablewriter->lm-eval==0.4.8)
+  Downloading dataproperty-1.1.1-py3-none-any.whl.metadata (12 kB)
+Collecting mbstrdecoder<2,>=1.0.0 (from pytablewriter->lm-eval==0.4.8)
+  Downloading mbstrdecoder-1.1.5-py3-none-any.whl.metadata (4.3 kB)
+Collecting pathvalidate<4,>=2.3.0 (from pytablewriter->lm-eval==0.4.8)
+  Downloading pathvalidate-3.3.1-py3-none-any.whl.metadata (12 kB)
+Collecting tabledata<2,>=1.3.1 (from pytablewriter->lm-eval==0.4.8)
+  Downloading tabledata-1.3.5-py3-none-any.whl.metadata (4.0 kB)
+Collecting tcolorpy<1,>=0.0.5 (from pytablewriter->lm-eval==0.4.8)
+  Downloading tcolorpy-0.1.7-py3-none-any.whl.metadata (6.3 kB)
+Collecting typepy<2,>=1.3.2 (from typepy[datetime]<2,>=1.3.2->pytablewriter->lm-eval==0.4.8)
+  Downloading typepy-1.3.5-py3-none-any.whl.metadata (9.6 kB)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.16.0->lm-eval==0.4.8) (3.14.5)
+Requirement already satisfied: cloudpickle>=3.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from joblib>=1.2.0->scikit-learn>=0.24.1->lm-eval==0.4.8) (3.1.2)
+Collecting chardet<7,>=3.0.4 (from mbstrdecoder<2,>=1.0.0->pytablewriter->lm-eval==0.4.8)
+  Downloading chardet-6.0.0.post1-py3-none-any.whl.metadata (3.3 kB)
+Collecting python-dateutil<3.0.0,>=2.8.0 (from typepy[datetime]<2,>=1.3.2->pytablewriter->lm-eval==0.4.8)
+  Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Requirement already satisfied: pytz>=2018.9 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from typepy[datetime]<2,>=1.3.2->pytablewriter->lm-eval==0.4.8) (2026.5)
+Requirement already satisfied: MarkupSafe>=2.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from jinja2->torch>=1.8->lm-eval==0.4.8) (3.0.2)
+Collecting defusedxml (from nltk->rouge-score>=0.0.4->lm-eval==0.4.8)
+  Using cached defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+Collecting click (from nltk->rouge-score>=0.0.4->lm-eval==0.4.8)
+  Using cached click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Requirement already satisfied: tzdata>=2022.7 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from pandas->datasets>=2.16.0->lm-eval==0.4.8) (2025.2)
+Requirement already satisfied: aiohappyeyeballs>=2.5.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.16.0->lm-eval==0.4.8) (2.7.1)
+Requirement already satisfied: aiosignal>=1.4.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.16.0->lm-eval==0.4.8) (1.4.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.16.0->lm-eval==0.4.8) (1.8.0)
+Requirement already satisfied: multidict<8.0,>=4.5 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.16.0->lm-eval==0.4.8) (7.2.1)
+Requirement already satisfied: propcache>=0.2.0 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.16.0->lm-eval==0.4.8) (0.5.4)
+Requirement already satisfied: yarl<2.0,>=1.25.1 in /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.16.0->lm-eval==0.4.8) (1.25.1)
+Using cached transformers-4.52.4-py3-none-any.whl (10.5 MB)
+Downloading lm_eval-0.4.8-py3-none-any.whl (3.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.9/3.9 MB 1.3 MB/s eta 0:00:00
+Downloading evaluate-0.4.6-py3-none-any.whl (84 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 84.1/84.1 kB 378.7 kB/s eta 0:00:00
+Downloading pybind11-3.1.0-py3-none-any.whl (319 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 319.4/319.4 kB 1.2 MB/s eta 0:00:00
+Downloading sacrebleu-2.6.0-py3-none-any.whl (100 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100.8/100.8 kB 1.3 MB/s eta 0:00:00
+Using cached tokenizers-0.21.4-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.1 MB)
+Using cached jsonlines-4.0.0-py3-none-any.whl (8.7 kB)
+Downloading more_itertools-11.2.1-py3-none-any.whl (74 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 74.4/74.4 kB 2.2 MB/s eta 0:00:00
+Downloading numexpr-2.14.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (443 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 443.5/443.5 kB 1.2 MB/s eta 0:00:00
+Downloading pytablewriter-1.2.1-py3-none-any.whl (91 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 91.1/91.1 kB 1.3 MB/s eta 0:00:00
+Downloading tqdm_multiprocess-0.0.11-py3-none-any.whl (9.8 kB)
+Downloading dataproperty-1.1.1-py3-none-any.whl (27 kB)
+Downloading mbstrdecoder-1.1.5-py3-none-any.whl (8.0 kB)
+Downloading pathvalidate-3.3.1-py3-none-any.whl (24 kB)
+Downloading tabledata-1.3.5-py3-none-any.whl (11 kB)
+Using cached tabulate-0.10.0-py3-none-any.whl (39 kB)
+Downloading tcolorpy-0.1.7-py3-none-any.whl (8.1 kB)
+Downloading typepy-1.3.5-py3-none-any.whl (31 kB)
+Downloading absl_py-2.5.1-py3-none-any.whl (137 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.7/137.7 kB 1.4 MB/s eta 0:00:00
+Using cached colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Downloading lxml-6.1.3-cp311-cp311-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 1.3 MB/s eta 0:00:00
+Downloading nltk-3.10.4-py3-none-any.whl (1.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 1.3 MB/s eta 0:00:00
+Downloading portalocker-4.4.2-py3-none-any.whl (129 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 129.7/129.7 kB 1.5 MB/s eta 0:00:00
+Downloading chardet-6.0.0.post1-py3-none-any.whl (627 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 627.2/627.2 kB 1.1 MB/s eta 0:00:00
+Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Using cached click-8.5.0-py3-none-any.whl (125 kB)
+Using cached defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+Building wheels for collected packages: rouge-score, sqlitedict, word2number
+  Building wheel for rouge-score (setup.py): started
+  Building wheel for rouge-score (setup.py): finished with status 'done'
+  Created wheel for rouge-score: filename=rouge_score-0.1.2-py3-none-any.whl size=24935 sha256=ecf99dbd695c27cc13bd11595075101bee93e5268d7d0e729f0d2fd4e65a93a8
+  Stored in directory: /home/me/.cache/pip/wheels/1e/19/43/8a442dc83660ca25e163e1bd1f89919284ab0d0c1475475148
+  Building wheel for sqlitedict (setup.py): started
+  Building wheel for sqlitedict (setup.py): finished with status 'done'
+  Created wheel for sqlitedict: filename=sqlitedict-2.1.0-py3-none-any.whl size=16864 sha256=3fae0e9ffd27568ab8f4cb95a2b298608c9ff60676db9677c1f66418cb33b9c2
+  Stored in directory: /home/me/.cache/pip/wheels/73/63/89/7210274f9b7fb033b8f22671f64c0e0b55083d30c3c046a3ff
+  Building wheel for word2number (setup.py): started
+  Building wheel for word2number (setup.py): finished with status 'done'
+  Created wheel for word2number: filename=word2number-1.1-py3-none-any.whl size=5566 sha256=e083658d9bc38e9e99650e69f80382df6bd93d20ed35a55cf22b6dd9a70f67f6
+  Stored in directory: /home/me/.cache/pip/wheels/cd/ef/ae/073b491b14d25e2efafcffca9e16b2ee6d114ec5c643ba4f06
+Successfully built rouge-score sqlitedict word2number
+Installing collected packages: word2number, sqlitedict, tcolorpy, tabulate, python-dateutil, pybind11, portalocker, pathvalidate, numexpr, more_itertools, lxml, jsonlines, defusedxml, colorama, click, chardet, absl-py, tqdm-multiprocess, sacrebleu, nltk, mbstrdecoder, typepy, tokenizers, rouge-score, transformers, evaluate, DataProperty, tabledata, pytablewriter, lm-eval
+  Attempting uninstall: python-dateutil
+    Found existing installation: python-dateutil 3.0.0
+    Not uninstalling python-dateutil at /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages, outside environment /home/me/PaperField/CalReader/.venv/huginn-eval
+    Can't uninstall 'python-dateutil'. No files were found to uninstall.
+  Attempting uninstall: tokenizers
+    Found existing installation: tokenizers 0.22.2
+    Not uninstalling tokenizers at /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages, outside environment /home/me/PaperField/CalReader/.venv/huginn-eval
+    Can't uninstall 'tokenizers'. No files were found to uninstall.
+  Attempting uninstall: transformers
+    Found existing installation: transformers 4.57.1
+    Not uninstalling transformers at /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages, outside environment /home/me/PaperField/CalReader/.venv/huginn-eval
+    Can't uninstall 'transformers'. No files were found to uninstall.
+Successfully installed DataProperty-1.1.1 absl-py-2.5.1 chardet-6.0.0.post1 click-8.5.0 colorama-0.4.6 defusedxml-0.7.1 evaluate-0.4.6 jsonlines-4.0.0 lm-eval-0.4.8 lxml-6.1.3 mbstrdecoder-1.1.5 more_itertools-11.2.1 nltk-3.10.4 numexpr-2.14.2 pathvalidate-3.3.1 portalocker-4.4.2 pybind11-3.1.0 pytablewriter-1.2.1 python-dateutil-2.9.0.post0 rouge-score-0.1.2 sacrebleu-2.6.0 sqlitedict-2.1.0 tabledata-1.3.5 tabulate-0.10.0 tcolorpy-0.1.7 tokenizers-0.21.4 tqdm-multiprocess-0.0.11 transformers-4.52.4 typepy-1.3.5 word2number-1.1
+
+[notice] A new release of pip is available: 24.0 -> 26.2.2
+[notice] To update, run: /home/me/PaperField/CalReader/.venv/huginn-eval/bin/python -m pip install --upgrade pip

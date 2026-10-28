@@ -1,0 +1,6 @@
+name: M0b_coconut_inventory_v1
+kind: metadata_evidence_audit
+seed: 0
+manifest: reports/evidence/M0b_coconut/manifest.json
+report: reports/M0b_coconut_third_party.md
+weights_allowed: false

@@ -1,0 +1,18 @@
+milestone: M0b
+version: v2
+mode: smoke
+seed: 11
+timeout_seconds: 900
+revision: bb6621b65e90b6a4b9b29ef88dc83866d450470c
+verified_manifest: runs/20261028T111806531496Z_c0fb096f3f3e_1f3fea/verified_manifest.json
+data_path: data/gsm8k_val.json
+split_path: data/splits/gsm8k_M0_v1.json
+split: val
+limit: 2
+device: cuda:5
+min_free_gib: 14
+mean_recurrence: 32
+sigma: 0
+from_step: 0
+system_instruction: You are a helpful assistant that can assist users with mathematical reasoning.
+verify_determinism: true

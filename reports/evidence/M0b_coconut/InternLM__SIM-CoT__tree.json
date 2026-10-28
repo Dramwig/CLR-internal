@@ -1,0 +1,602 @@
+{
+  "sha": "cd3291dac9fe1e495da9fe00e61a9b96a884b2ed",
+  "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/cd3291dac9fe1e495da9fe00e61a9b96a884b2ed",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b7faf403d915ca307532bb0eb9cceaf0214e8e5b",
+      "size": 4688,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/b7faf403d915ca307532bb0eb9cceaf0214e8e5b"
+    },
+    {
+      "path": "CODI",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6a147511f1e735caf1775d81edf9969e6ad78924",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/6a147511f1e735caf1775d81edf9969e6ad78924"
+    },
+    {
+      "path": "CODI/imgs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ddbe323cf84c334a341f893ec00f1c65eb50f058",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/ddbe323cf84c334a341f893ec00f1c65eb50f058"
+    },
+    {
+      "path": "CODI/imgs/codi_method_v4.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41d56b288963a868f5c472968eb8d3f06ad785c8",
+      "size": 292953,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/41d56b288963a868f5c472968eb8d3f06ad785c8"
+    },
+    {
+      "path": "CODI/outputs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "caf0b7e44092cee9d4428ae46fc21d5e6d943431",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/caf0b7e44092cee9d4428ae46fc21d5e6d943431"
+    },
+    {
+      "path": "CODI/outputs/decoded_latent.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f549646f0dd04c9b35089e51479450ac21988da",
+      "size": 443774,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/2f549646f0dd04c9b35089e51479450ac21988da"
+    },
+    {
+      "path": "CODI/probe_latent_token.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "804ec0e262bef0e949e30fa290d4eaa2e286c31f",
+      "size": 15619,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/804ec0e262bef0e949e30fa290d4eaa2e286c31f"
+    },
+    {
+      "path": "CODI/requirements.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f75860d1ba8a37e9186359bc9fa464d63ba3cb0f",
+      "size": 1251,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/f75860d1ba8a37e9186359bc9fa464d63ba3cb0f"
+    },
+    {
+      "path": "CODI/scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7f95af7fcec4b82fa38df4f2252a62ae63e3f935",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/7f95af7fcec4b82fa38df4f2252a62ae63e3f935"
+    },
+    {
+      "path": "CODI/scripts/probe_latent_token.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d64beb6fd539f0ef3c369e0e7f3175bd36a58584",
+      "size": 664,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/d64beb6fd539f0ef3c369e0e7f3175bd36a58584"
+    },
+    {
+      "path": "CODI/scripts/test_gpt2.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "373172ff06b33eee5d0d9c330722b5135f976693",
+      "size": 450,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/373172ff06b33eee5d0d9c330722b5135f976693"
+    },
+    {
+      "path": "CODI/scripts/test_gpt2_decoder-copy.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "fabaa29ff1c97d4a523c5bae1590a0076121da93",
+      "size": 628,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/fabaa29ff1c97d4a523c5bae1590a0076121da93"
+    },
+    {
+      "path": "CODI/scripts/test_llama1b-copy.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6890bbcdda4d84913402ef9fc2777eceffd616b3",
+      "size": 674,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/6890bbcdda4d84913402ef9fc2777eceffd616b3"
+    },
+    {
+      "path": "CODI/scripts/test_llama1b.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "466bafb1dcf99748c07e9247b96c2b3a9b3dbc09",
+      "size": 542,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/466bafb1dcf99748c07e9247b96c2b3a9b3dbc09"
+    },
+    {
+      "path": "CODI/scripts/test_llama3b-copy.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6b9d11f8a3d715ac9b0e73e8d829056396833770",
+      "size": 772,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/6b9d11f8a3d715ac9b0e73e8d829056396833770"
+    },
+    {
+      "path": "CODI/scripts/test_llama8b-copy.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "91c6644df9406424806919189fab4b5058d20e7a",
+      "size": 772,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/91c6644df9406424806919189fab4b5058d20e7a"
+    },
+    {
+      "path": "CODI/scripts/train_gpt2_commonsense.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "200d40d28be9a8e6011068c1d7e55539c1b62685",
+      "size": 984,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/200d40d28be9a8e6011068c1d7e55539c1b62685"
+    },
+    {
+      "path": "CODI/scripts/train_gpt2_gsm8k-aug-decoder-2.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e141b6d97eefaacde4f880f877eeeac1e61d5cd0",
+      "size": 1187,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/e141b6d97eefaacde4f880f877eeeac1e61d5cd0"
+    },
+    {
+      "path": "CODI/scripts/train_gpt2_gsm8k-aug-nl.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5461f848fdd84940f662e2de7cba411ea32a2536",
+      "size": 1070,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/5461f848fdd84940f662e2de7cba411ea32a2536"
+    },
+    {
+      "path": "CODI/scripts/train_gpt2_gsm8k-aug.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf9cf907a331cef4ba840ced70292c3a3d6f5463",
+      "size": 1062,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/cf9cf907a331cef4ba840ced70292c3a3d6f5463"
+    },
+    {
+      "path": "CODI/scripts/train_llama1b_gsm8k-aug-decoder.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "5f64637abd0e5db626a672c5f3f6ea89e9f509b2",
+      "size": 1195,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/5f64637abd0e5db626a672c5f3f6ea89e9f509b2"
+    },
+    {
+      "path": "CODI/scripts/train_llama1b_gsm8k-aug-nl.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f18ab7081724eda38d2b0734526d6d077542a2de",
+      "size": 1107,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/f18ab7081724eda38d2b0734526d6d077542a2de"
+    },
+    {
+      "path": "CODI/scripts/train_llama1b_gsm8k-aug.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "336079be9a3a8e093399780f1b8216332fde6a00",
+      "size": 1105,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/336079be9a3a8e093399780f1b8216332fde6a00"
+    },
+    {
+      "path": "CODI/scripts/train_llama3b_gsm8k-aug-decoder-2.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "776a5fd97fd98c1eb597c773545244a3c25f42ea",
+      "size": 1281,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/776a5fd97fd98c1eb597c773545244a3c25f42ea"
+    },
+    {
+      "path": "CODI/scripts/train_llama8b_gsm8k-aug-decoder-2.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "556a317de3acd228f423ba60a5f54aa8ffcc6d72",
+      "size": 1282,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/556a317de3acd228f423ba60a5f54aa8ffcc6d72"
+    },
+    {
+      "path": "CODI/scripts/train_llama_commonsense.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cffb2151e5f15f68b9d5fa83e6212cd8f4b3c5a4",
+      "size": 1043,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/cffb2151e5f15f68b9d5fa83e6212cd8f4b3c5a4"
+    },
+    {
+      "path": "CODI/src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9e0f7cf5fbcd0d4e31d459384700a035859711f3",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/9e0f7cf5fbcd0d4e31d459384700a035859711f3"
+    },
+    {
+      "path": "CODI/src/model.py",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "edaa4f156e95802eade4b627b3118fa657b57c25",
+      "size": 35065,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/edaa4f156e95802eade4b627b3118fa657b57c25"
+    },
+    {
+      "path": "CODI/test.py",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "eb21193a74ea81da3bb7d130d9665d4eb257971b",
+      "size": 19290,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/eb21193a74ea81da3bb7d130d9665d4eb257971b"
+    },
+    {
+      "path": "CODI/train.py",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a3afa8dd40f11a42912fdc89b0e361f20304e063",
+      "size": 21391,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/a3afa8dd40f11a42912fdc89b0e361f20304e063"
+    },
+    {
+      "path": "Coconut",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3a718d67ba50d787653b99db44129b26aac8d7c8",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/3a718d67ba50d787653b99db44129b26aac8d7c8"
+    },
+    {
+      "path": "Coconut/CODE_OF_CONDUCT.md",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "cf9dc244896688c330dba81d06f2cfc5568d7aea",
+      "size": 3536,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/cf9dc244896688c330dba81d06f2cfc5568d7aea"
+    },
+    {
+      "path": "Coconut/CONTRIBUTING.md",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "110b2a9852f1b7c05923cc1880cf78d21880c420",
+      "size": 1233,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/110b2a9852f1b7c05923cc1880cf78d21880c420"
+    },
+    {
+      "path": "Coconut/LICENSE",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a45a376fb0fcd4a3de06b6c096e62028929a2dcb",
+      "size": 1087,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/a45a376fb0fcd4a3de06b6c096e62028929a2dcb"
+    },
+    {
+      "path": "Coconut/args",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ef0bde803dfe1972b8cbc60195d57c0b1c24889f",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/ef0bde803dfe1972b8cbc60195d57c0b1c24889f"
+    },
+    {
+      "path": "Coconut/args/gsm_coconut.yaml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b6eb512ba410ac0c66819037e795fb3ae42d5eb9",
+      "size": 987,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/b6eb512ba410ac0c66819037e795fb3ae42d5eb9"
+    },
+    {
+      "path": "Coconut/args/gsm_coconut_eval.yaml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "9899093b70399e51d7f090a4a4a527055e7b5cb0",
+      "size": 606,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/9899093b70399e51d7f090a4a4a527055e7b5cb0"
+    },
+    {
+      "path": "Coconut/args/gsm_cot.yaml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6bb0dcd82ebf40361759dce8ba8c671830f8b6c6",
+      "size": 822,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/6bb0dcd82ebf40361759dce8ba8c671830f8b6c6"
+    },
+    {
+      "path": "Coconut/args/gsm_cot_eval.yaml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "4bd301c1a10eda27c3be53801109d19d4cfdd076",
+      "size": 844,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/4bd301c1a10eda27c3be53801109d19d4cfdd076"
+    },
+    {
+      "path": "Coconut/args/gsm_simcot.yaml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "1d1670d2e7c4b73b00f15b6521b3be72960711a3",
+      "size": 823,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/1d1670d2e7c4b73b00f15b6521b3be72960711a3"
+    },
+    {
+      "path": "Coconut/args/gsm_simcot_eval.yaml",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a4588bd2162c4ae64424688ab7d1971a4b24ba42",
+      "size": 808,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/a4588bd2162c4ae64424688ab7d1971a4b24ba42"
+    },
+    {
+      "path": "Coconut/assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3bc2f926f8fc49538de87e40cae4e20ea1792d8b",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/3bc2f926f8fc49538de87e40cae4e20ea1792d8b"
+    },
+    {
+      "path": "Coconut/assets/coconut.png",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "bfcf3c6a88e66319cd610890289177f1653a85f5",
+      "size": 482120,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/bfcf3c6a88e66319cd610890289177f1653a85f5"
+    },
+    {
+      "path": "Coconut/ckpts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7f72c306bbd8b2ae59e1b56560d1fd50109d8dc8",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/7f72c306bbd8b2ae59e1b56560d1fd50109d8dc8"
+    },
+    {
+      "path": "Coconut/ckpts/gsm_cot",
+      "mode": "120000",
+      "type": "blob",
+      "sha": "97af6ded47c7a2c8d521bef5ee0d255df0f5ba31",
+      "size": 60,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/97af6ded47c7a2c8d521bef5ee0d255df0f5ba31"
+    },
+    {
+      "path": "Coconut/coconut.py",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e0c200b9d80996c6487a16c56f9c5a92913daebb",
+      "size": 39861,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/e0c200b9d80996c6487a16c56f9c5a92913daebb"
+    },
+    {
+      "path": "Coconut/dataset.py",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b0b9c86a680c14056043138863a26c31730f6bcc",
+      "size": 22062,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/b0b9c86a680c14056043138863a26c31730f6bcc"
+    },
+    {
+      "path": "Coconut/plot_loss.py",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "5f1fdb466a7f0ce1ce1284cc812f3bf71f7b7e32",
+      "size": 2401,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/5f1fdb466a7f0ce1ce1284cc812f3bf71f7b7e32"
+    },
+    {
+      "path": "Coconut/preprocessing",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f7c8bd47203c291129d9e9db4cf82af257c2b194",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/f7c8bd47203c291129d9e9db4cf82af257c2b194"
+    },
+    {
+      "path": "Coconut/preprocessing/gsm_icot.bash",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "00e62409ba692087f300ca01e24f5d691381d12f",
+      "size": 793,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/00e62409ba692087f300ca01e24f5d691381d12f"
+    },
+    {
+      "path": "Coconut/preprocessing/gsm_icot.py",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "141457031e5e5624c7445b1d1908f04f067fdb91",
+      "size": 913,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/141457031e5e5624c7445b1d1908f04f067fdb91"
+    },
+    {
+      "path": "Coconut/preprocessing/prontoqa.py",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "0e863693c50f879079b3d9451f13a1c4c35c24f4",
+      "size": 731,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/0e863693c50f879079b3d9451f13a1c4c35c24f4"
+    },
+    {
+      "path": "Coconut/requirements.txt",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6447874e6050a0a7cb878209d84049ca0ba893a1",
+      "size": 89,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/6447874e6050a0a7cb878209d84049ca0ba893a1"
+    },
+    {
+      "path": "Coconut/run.py",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "43f1f1b8a7bb3a8fd8690f6a35eaddd521b18d0c",
+      "size": 20591,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/43f1f1b8a7bb3a8fd8690f6a35eaddd521b18d0c"
+    },
+    {
+      "path": "Coconut/utils.py",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "3116ff7c996825d5261d8b3aa28ff374b50ed1cc",
+      "size": 508,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/3116ff7c996825d5261d8b3aa28ff374b50ed1cc"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "size": 11357,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6654073d62a90e61f7e0c98810e2cb6de6f717d",
+      "size": 10071,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/e6654073d62a90e61f7e0c98810e2cb6de6f717d"
+    },
+    {
+      "path": "assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5229ac98ae5eea6695127085b7355f49e462027d",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/5229ac98ae5eea6695127085b7355f49e462027d"
+    },
+    {
+      "path": "assets/readme",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d1722408cc5507727e11e1894258883228f64305",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/d1722408cc5507727e11e1894258883228f64305"
+    },
+    {
+      "path": "assets/readme/hero.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "358894d2daf91f935829885111e7050a902bb76a",
+      "size": 229569,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/358894d2daf91f935829885111e7050a902bb76a"
+    },
+    {
+      "path": "assets/readme/latent-walkthrough.gif",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e068f66a17bf634329eae2b77e83e709de63eef",
+      "size": 579633,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/8e068f66a17bf634329eae2b77e83e709de63eef"
+    },
+    {
+      "path": "assets/readme/latent-walkthrough.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92f3b9b25e2ad2a36ea59ba73615eebe49d6aa53",
+      "size": 96954,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/92f3b9b25e2ad2a36ea59ba73615eebe49d6aa53"
+    },
+    {
+      "path": "assets/readme/make_results.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b245dc2d71cc2da446771f2fe74a0eadb3332317",
+      "size": 5570,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/b245dc2d71cc2da446771f2fe74a0eadb3332317"
+    },
+    {
+      "path": "assets/readme/make_visuals.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3fe3129ec9f1a35131192996976f03212cc808a0",
+      "size": 7572,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/3fe3129ec9f1a35131192996976f03212cc808a0"
+    },
+    {
+      "path": "assets/readme/results-overview.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e8bf2ef34d742fbee64a97ffc0ac02adb0c1ed6",
+      "size": 173718,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/5e8bf2ef34d742fbee64a97ffc0ac02adb0c1ed6"
+    },
+    {
+      "path": "assets/readme/results-overview.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b5724914ef8a85e0026c876a9030a7f1011060c",
+      "size": 66524,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/5b5724914ef8a85e0026c876a9030a7f1011060c"
+    },
+    {
+      "path": "assets/readme/source.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc9072a50e6ab5213f9ecd6bbcb3bd8ac7d28c23",
+      "size": 2725,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/cc9072a50e6ab5213f9ecd6bbcb3bd8ac7d28c23"
+    },
+    {
+      "path": "assets/simcot_arch.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef17966066de9c1448941e9306bf520781f3fbd7",
+      "size": 2618491,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/ef17966066de9c1448941e9306bf520781f3fbd7"
+    },
+    {
+      "path": "assets/simcot_experiment1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffcbcc2208d8addb0681e18b63bfd12a4d99af83",
+      "size": 194609,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/ffcbcc2208d8addb0681e18b63bfd12a4d99af83"
+    },
+    {
+      "path": "assets/simcot_experiment2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84f9c155832f9e97c0909612a20a421cc7a2d910",
+      "size": 191707,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/84f9c155832f9e97c0909612a20a421cc7a2d910"
+    },
+    {
+      "path": "assets/simcot_experiment3.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76fbd16df6828bfebb38338f37e258d069ea9562",
+      "size": 337598,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/76fbd16df6828bfebb38338f37e258d069ea9562"
+    },
+    {
+      "path": "assets/simcot_observation.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f68a3146abcab2351b1339911706f978cf1e245",
+      "size": 525254,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/1f68a3146abcab2351b1339911706f978cf1e245"
+    },
+    {
+      "path": "assets/visual.gif",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2e37f7823f53b9e88ebf364d25b49e3fbe2c8e0",
+      "size": 136964,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/e2e37f7823f53b9e88ebf364d25b49e3fbe2c8e0"
+    },
+    {
+      "path": "docs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5c6044e2754d3ab79a56e4fea6e7e1a2f91338fe",
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/trees/5c6044e2754d3ab79a56e4fea6e7e1a2f91338fe"
+    },
+    {
+      "path": "docs/readme-visuals.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6818cfdf1a0b7cc7eae8c28890e536be04e84df5",
+      "size": 2712,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/6818cfdf1a0b7cc7eae8c28890e536be04e84df5"
+    },
+    {
+      "path": "requirements.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9333439fec4571bf71e43ed120d6db5dabbaaf49",
+      "size": 3894,
+      "url": "https://api.github.com/repos/InternLM/SIM-CoT/git/blobs/9333439fec4571bf71e43ed120d6db5dabbaaf49"
+    }
+  ],
+  "truncated": false
+}

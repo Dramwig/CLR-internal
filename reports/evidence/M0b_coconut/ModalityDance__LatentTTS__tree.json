@@ -1,0 +1,346 @@
+{
+  "sha": "23e756b6c27bf884aaead146f85b2cf0aecfc34d",
+  "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/trees/23e756b6c27bf884aaead146f85b2cf0aecfc34d",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b7faf403d915ca307532bb0eb9cceaf0214e8e5b",
+      "size": 4688,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/b7faf403d915ca307532bb0eb9cceaf0214e8e5b"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "247e62a5eec2c3043c1d75d9397aea178fe58a8b",
+      "size": 1079,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/247e62a5eec2c3043c1d75d9397aea178fe58a8b"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e617d2b6d9a3b62595f9805c9639ecc30f334a94",
+      "size": 15229,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/e617d2b6d9a3b62595f9805c9639ecc30f334a94"
+    },
+    {
+      "path": "assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f93369bf1b0a3ccbe27af7ce9b47d8e4545d9f48",
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/trees/f93369bf1b0a3ccbe27af7ce9b47d8e4545d9f48"
+    },
+    {
+      "path": "assets/LOGO.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0989a4a54b5de5a9cc14b11faf94e95e2e241fd",
+      "size": 9284,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/e0989a4a54b5de5a9cc14b11faf94e95e2e241fd"
+    },
+    {
+      "path": "assets/README legacy.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7641a69fc0eb7b5fb962ba0a6d848c54cfda3080",
+      "size": 3815,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/7641a69fc0eb7b5fb962ba0a6d848c54cfda3080"
+    },
+    {
+      "path": "assets/accepted.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34bd3abc1c8a0fbbac1cb7cf9903256963a05024",
+      "size": 2860459,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/34bd3abc1c8a0fbbac1cb7cf9903256963a05024"
+    },
+    {
+      "path": "assets/main.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2be11a5a7c706071e6737045b8a781087dcbe20a",
+      "size": 237747,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/2be11a5a7c706071e6737045b8a781087dcbe20a"
+    },
+    {
+      "path": "assets/main_no_caption.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea90d01d6c8fbfd6a7cdec673073cf88692ad601",
+      "size": 180717,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/ea90d01d6c8fbfd6a7cdec673073cf88692ad601"
+    },
+    {
+      "path": "data",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "275f8c16a2997e8a48df0020031c1ba523ec771e",
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/trees/275f8c16a2997e8a48df0020031c1ba523ec771e"
+    },
+    {
+      "path": "data/gsm_hard.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "768763bfeb409857dd3a8949467ec090dff4319e",
+      "size": 431675,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/768763bfeb409857dd3a8949467ec090dff4319e"
+    },
+    {
+      "path": "data/gsm_test.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1453c574308632fd6ec0d5c50b602dc7e8f27976",
+      "size": 447368,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/1453c574308632fd6ec0d5c50b602dc7e8f27976"
+    },
+    {
+      "path": "data/gsm_train.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb2b1ff1caa85166974b8b00cbe5619a070b1998",
+      "size": 104324531,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/cb2b1ff1caa85166974b8b00cbe5619a070b1998"
+    },
+    {
+      "path": "data/gsm_valid.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eed02fd0d3417427f0033b06895e8a2cdfe4859d",
+      "size": 165759,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/eed02fd0d3417427f0033b06895e8a2cdfe4859d"
+    },
+    {
+      "path": "data/multiarith.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab729ba241c6db04e14d13a16b5dd2eb04c8e057",
+      "size": 112147,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/ab729ba241c6db04e14d13a16b5dd2eb04c8e057"
+    },
+    {
+      "path": "requirements.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10340b0d35ec1b615e16e2d3af70b56299a678bd",
+      "size": 191,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/10340b0d35ec1b615e16e2d3af70b56299a678bd"
+    },
+    {
+      "path": "run_annotation.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0cec25a5eb44bbb0660264f928c2bf9c946ac39d",
+      "size": 840,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/0cec25a5eb44bbb0660264f928c2bf9c946ac39d"
+    },
+    {
+      "path": "run_tests.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0906e5b0f929adbd45254e24511b11ed0e67a8a9",
+      "size": 2930,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/0906e5b0f929adbd45254e24511b11ed0e67a8a9"
+    },
+    {
+      "path": "run_tests_llama.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f6df05a300b9ed492cc02f35731d45b64679abd",
+      "size": 2984,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/9f6df05a300b9ed492cc02f35731d45b64679abd"
+    },
+    {
+      "path": "run_tts_with_rm.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77ecfde6fbff2cdbbb9d6ce0cce66ec40959fc4f",
+      "size": 1240,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/77ecfde6fbff2cdbbb9d6ce0cce66ec40959fc4f"
+    },
+    {
+      "path": "src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5c323215a732568294f25a109efcbf66f14dccb4",
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/trees/5c323215a732568294f25a109efcbf66f14dccb4"
+    },
+    {
+      "path": "src/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20e1a8674407c40106af578e89a4120bbdbfecc2",
+      "size": 53,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/20e1a8674407c40106af578e89a4120bbdbfecc2"
+    },
+    {
+      "path": "src/annotate_data.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ef94b486642839edbb1c45deba28014962ae726",
+      "size": 34990,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/0ef94b486642839edbb1c45deba28014962ae726"
+    },
+    {
+      "path": "src/dataset.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8fab01ca7ae4984742904b0d03b69eb30dd131a",
+      "size": 12380,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/b8fab01ca7ae4984742904b0d03b69eb30dd131a"
+    },
+    {
+      "path": "src/generation_mixin.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9f8bcec188ff06a08338c558fbc50e5788b713c",
+      "size": 39536,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/e9f8bcec188ff06a08338c558fbc50e5788b713c"
+    },
+    {
+      "path": "src/infer_gpt2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62dcbc4922b4b2a59ddb06fd9854dc29f4210db5",
+      "size": 6327,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/62dcbc4922b4b2a59ddb06fd9854dc29f4210db5"
+    },
+    {
+      "path": "src/infer_gpt2_rm.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fef4adef95d767642739849605d510307b75d174",
+      "size": 11742,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/fef4adef95d767642739849605d510307b75d174"
+    },
+    {
+      "path": "src/infer_llama.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "baf17fab0bbe6914a0a8d6898c8bc482e8d5f3f8",
+      "size": 6299,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/baf17fab0bbe6914a0a8d6898c8bc482e8d5f3f8"
+    },
+    {
+      "path": "src/models",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "19372f9fc620eea9cc4e6666c223f07b5a58c4c4",
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/trees/19372f9fc620eea9cc4e6666c223f07b5a58c4c4"
+    },
+    {
+      "path": "src/models/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a6854b1283c35bdcdb27d69292f6a3ebac5c37a",
+      "size": 56,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/7a6854b1283c35bdcdb27d69292f6a3ebac5c37a"
+    },
+    {
+      "path": "src/models/coconut.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b06d2c51dc967d93f524e0530c0220e9e1672171",
+      "size": 619,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/b06d2c51dc967d93f524e0530c0220e9e1672171"
+    },
+    {
+      "path": "src/models/codi.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98fb0e8421ca56d709f7aa4e8355505ed74138b7",
+      "size": 4346,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/98fb0e8421ca56d709f7aa4e8355505ed74138b7"
+    },
+    {
+      "path": "src/models/colar.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "39e0bb4a221b129736a5285708a6ce79e28dcfbd",
+      "size": 4530,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/39e0bb4a221b129736a5285708a6ce79e28dcfbd"
+    },
+    {
+      "path": "src/models/gpt2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9292e257eeeeb269f584a47501f399a34bb8ffc",
+      "size": 8663,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/f9292e257eeeeb269f584a47501f399a34bb8ffc"
+    },
+    {
+      "path": "src/models/llama.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40e1effeeb938a42641d415cc0828b57f44b4a6b",
+      "size": 4897,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/40e1effeeb938a42641d415cc0828b57f44b4a6b"
+    },
+    {
+      "path": "src/models/loss.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76cb63e81f24ef559686ded0fc3ac706c0f63758",
+      "size": 2756,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/76cb63e81f24ef559686ded0fc3ac706c0f63758"
+    },
+    {
+      "path": "src/models/perturbation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "844feaf2bde916bb7c0b9deb436dea9615f8f27f",
+      "size": 2178,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/844feaf2bde916bb7c0b9deb436dea9615f8f27f"
+    },
+    {
+      "path": "src/paths.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48dc440e53dbc3b80384af0c2e370bcca2af5968",
+      "size": 1244,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/48dc440e53dbc3b80384af0c2e370bcca2af5968"
+    },
+    {
+      "path": "src/train.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ebb527394de756a8f9f7dba204f0df141507771",
+      "size": 958,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/7ebb527394de756a8f9f7dba204f0df141507771"
+    },
+    {
+      "path": "src/trainer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "761e3ae2dadb44c17ca34f4fdd5f385e3e280af7",
+      "size": 21013,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/761e3ae2dadb44c17ca34f4fdd5f385e3e280af7"
+    },
+    {
+      "path": "src/utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8af5dcae7878e72f2027b5f45057c1cc25229b2d",
+      "size": 3987,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/8af5dcae7878e72f2027b5f45057c1cc25229b2d"
+    },
+    {
+      "path": "training_args",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bbb5357048672809a33530f3131f32087ad5a96b",
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/trees/bbb5357048672809a33530f3131f32087ad5a96b"
+    },
+    {
+      "path": "training_args/train_coconut.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f62c3bdd7981711916c3c5a1f71ccb89e5d29465",
+      "size": 636,
+      "url": "https://api.github.com/repos/ModalityDance/LatentTTS/git/blobs/f62c3bdd7981711916c3c5a1f71ccb89e5d29465"
+    }
+  ],
+  "truncated": false
+}

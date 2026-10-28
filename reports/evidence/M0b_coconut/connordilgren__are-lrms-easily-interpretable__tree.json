@@ -1,0 +1,1039 @@
+{
+  "sha": "3c0c004e2cec09bdb26861c4fe5e39d2b0278cfe",
+  "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/3c0c004e2cec09bdb26861c4fe5e39d2b0278cfe",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8abb8d0ed7b1fca7c35da7c67f7b569f80356e81",
+      "size": 61,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/8abb8d0ed7b1fca7c35da7c67f7b569f80356e81"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d20c8edc425f2f84ba80688f464cccbb1f3ed0c2",
+      "size": 1091,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/d20c8edc425f2f84ba80688f464cccbb1f3ed0c2"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e28344a26bed539606ac1c0cbb2ec5eab3704c6d",
+      "size": 18427,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e28344a26bed539606ac1c0cbb2ec5eab3704c6d"
+    },
+    {
+      "path": "analyzers",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "46d6d23ad2ec9b2491f467e4dccac158d0662d5f",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/46d6d23ad2ec9b2491f467e4dccac158d0662d5f"
+    },
+    {
+      "path": "analyzers/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "analyzers/base.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9563834c7ecf0004585ab539b01f9697271a6633",
+      "size": 8132,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/9563834c7ecf0004585ab539b01f9697271a6633"
+    },
+    {
+      "path": "args_coconut-cot-no_cot",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2c5f8d80c29d7ec16315bcabc5b5c3e49557c00a",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/2c5f8d80c29d7ec16315bcabc5b5c3e49557c00a"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/gpt2_gsm8k_coconut.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8b9bccd3f93e0fad8ed7b6dd15599f484d83f5d",
+      "size": 615,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/a8b9bccd3f93e0fad8ed7b6dd15599f484d83f5d"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/gpt2_gsm8k_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9928e3d215b3ce1e947a64141bc9acfed11c9515",
+      "size": 582,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/9928e3d215b3ce1e947a64141bc9acfed11c9515"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/gpt2_gsm8k_no_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66b27ebc8ea66e619e5d24a96804d8a2cad54e2e",
+      "size": 585,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/66b27ebc8ea66e619e5d24a96804d8a2cad54e2e"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/gpt2_prontoqa_coconut.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59368452834d50e15806a8e301988ea160ab73c3",
+      "size": 580,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/59368452834d50e15806a8e301988ea160ab73c3"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/gpt2_prontoqa_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6591ea7126a196c7967e14884e0e268c46b5a963",
+      "size": 577,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/6591ea7126a196c7967e14884e0e268c46b5a963"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/gpt2_prontoqa_no_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89e3118758514efa41951e6d9bbcce61001c4615",
+      "size": 580,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/89e3118758514efa41951e6d9bbcce61001c4615"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/gpt2_prosqa_coconut.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a68b47146164de389ee8ca840bb45920ff78f736",
+      "size": 574,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/a68b47146164de389ee8ca840bb45920ff78f736"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/gpt2_prosqa_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01cc89d640c544126b05ee7949150a6d415b5375",
+      "size": 571,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/01cc89d640c544126b05ee7949150a6d415b5375"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/gpt2_prosqa_no_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c229d0dd2a0eb3fda955b83dd4fcf4a4d462419b",
+      "size": 574,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/c229d0dd2a0eb3fda955b83dd4fcf4a4d462419b"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/llama32-1b_gsm8k_coconut.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0008595fc56ceb3bf555127550a6535cdeeae8c",
+      "size": 655,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/f0008595fc56ceb3bf555127550a6535cdeeae8c"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/llama32-1b_gsm8k_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "823b9a3b3b5967eb00ebb668a0ce4a989dc289d9",
+      "size": 598,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/823b9a3b3b5967eb00ebb668a0ce4a989dc289d9"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/llama32-1b_gsm8k_no_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0a5d34c86dfc66bdb46f776e1e5db0964dd5d39",
+      "size": 601,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/f0a5d34c86dfc66bdb46f776e1e5db0964dd5d39"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/llama32-1b_prontoqa_coconut.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a48a31b802b205ad1dd7ed276794489df2e986c",
+      "size": 653,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/6a48a31b802b205ad1dd7ed276794489df2e986c"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/llama32-1b_prontoqa_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fbd32cdbe0c78a6224e62fd6a831c14d55db4ce",
+      "size": 593,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/6fbd32cdbe0c78a6224e62fd6a831c14d55db4ce"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/llama32-1b_prontoqa_no_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43a8e56e90b99752db1d741981667961005b314b",
+      "size": 596,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/43a8e56e90b99752db1d741981667961005b314b"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/llama32-1b_prosqa_coconut.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34bb78819fe7cd8f147344215cab647cfc38ac6a",
+      "size": 645,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/34bb78819fe7cd8f147344215cab647cfc38ac6a"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/llama32-1b_prosqa_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bcf6812363000b2364ebeee709fbdc084a555d5c",
+      "size": 587,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/bcf6812363000b2364ebeee709fbdc084a555d5c"
+    },
+    {
+      "path": "args_coconut-cot-no_cot/llama32-1b_prosqa_no_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "527f6fac23eb470682d10b16b4b165a5447783e1",
+      "size": 590,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/527f6fac23eb470682d10b16b4b165a5447783e1"
+    },
+    {
+      "path": "args_coconut_multimode",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ae0763f5c807c50ffb09c9f1a4a11220f8e57f3f",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/ae0763f5c807c50ffb09c9f1a4a11220f8e57f3f"
+    },
+    {
+      "path": "args_coconut_multimode/gpt2_gsm8k_multimode.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5feb39cb5cbca44c421d92b8e79fd1efc18ce86c",
+      "size": 766,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/5feb39cb5cbca44c421d92b8e79fd1efc18ce86c"
+    },
+    {
+      "path": "args_coconut_multimode/gpt2_prontoqa_multimode.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3fff2a917eeb862df6955c302e35aa16ad41bd0",
+      "size": 761,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/c3fff2a917eeb862df6955c302e35aa16ad41bd0"
+    },
+    {
+      "path": "args_coconut_multimode/gpt2_prosqa_multimode.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ff8215dbd5fa4f81761f7b5f56df6ae0f2f3248",
+      "size": 755,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/2ff8215dbd5fa4f81761f7b5f56df6ae0f2f3248"
+    },
+    {
+      "path": "args_coconut_multimode/llama32-1b_gsm8k_multimode.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b37c5034061a5b0ad7db9717272b80b87bfe3f7f",
+      "size": 799,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/b37c5034061a5b0ad7db9717272b80b87bfe3f7f"
+    },
+    {
+      "path": "args_coconut_multimode/llama32-1b_prontoqa_multimode.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3d43d9f4aa77d0f48cb4afefa70e881a5e8dfbf",
+      "size": 794,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/b3d43d9f4aa77d0f48cb4afefa70e881a5e8dfbf"
+    },
+    {
+      "path": "args_coconut_multimode/llama32-1b_prosqa_multimode.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25ea1b599b6ee396f688b21b2d8eb23c178e7573",
+      "size": 788,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/25ea1b599b6ee396f688b21b2d8eb23c178e7573"
+    },
+    {
+      "path": "args_codi",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "deb6dd8bed2eeb895dc554abbfe12208ff66c31f",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/deb6dd8bed2eeb895dc554abbfe12208ff66c31f"
+    },
+    {
+      "path": "args_codi/train_gpt2_prontoqa_codi.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "64b65ac6510bfa103f30d9f01395d13cfcf55688",
+      "size": 985,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/64b65ac6510bfa103f30d9f01395d13cfcf55688"
+    },
+    {
+      "path": "args_codi/train_gpt2_prosqa_codi.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "961eca0660235227a1d956e3a4de293ccf1bcc3f",
+      "size": 981,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/961eca0660235227a1d956e3a4de293ccf1bcc3f"
+    },
+    {
+      "path": "args_codi/train_llama32-1b_gsm8k_codi.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18c285bac42d9bdc2ab191f6d2df83ee82dd40a3",
+      "size": 1065,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/18c285bac42d9bdc2ab191f6d2df83ee82dd40a3"
+    },
+    {
+      "path": "args_codi/train_llama32-1b_prontoqa_codi.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4648460da35569ee88c56ca473ffbd66b3cfd93b",
+      "size": 1050,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/4648460da35569ee88c56ca473ffbd66b3cfd93b"
+    },
+    {
+      "path": "args_codi/train_llama32-1b_prosqa_codi.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e07141fd26084dfc5a29072257d7b6ae6895b29c",
+      "size": 1033,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e07141fd26084dfc5a29072257d7b6ae6895b29c"
+    },
+    {
+      "path": "args_codi_multimode",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "627db99747b5e4ce022b9cd0d57fa4fb482de057",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/627db99747b5e4ce022b9cd0d57fa4fb482de057"
+    },
+    {
+      "path": "args_codi_multimode/train_gpt2_gsm8k_codi_multimode.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60f31d6285e27c66e7f200b2b8680cada09e7105",
+      "size": 1046,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/60f31d6285e27c66e7f200b2b8680cada09e7105"
+    },
+    {
+      "path": "args_codi_multimode/train_gpt2_prontoqa_codi_multimode.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2263542f3d86b4df54e0751092cb655b479880f0",
+      "size": 1059,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/2263542f3d86b4df54e0751092cb655b479880f0"
+    },
+    {
+      "path": "args_codi_multimode/train_gpt2_prosqa_codi_multimode.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38f720570604a6f7279e3a9a64ff6ecea80818c5",
+      "size": 1065,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/38f720570604a6f7279e3a9a64ff6ecea80818c5"
+    },
+    {
+      "path": "args_codi_multimode/train_llama32-1b_gsm8k_codi_multimode.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28960d2d68295763390bc4a1b47f4d9c364285b7",
+      "size": 1137,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/28960d2d68295763390bc4a1b47f4d9c364285b7"
+    },
+    {
+      "path": "args_codi_multimode/train_llama32-1b_prontoqa_codi_multimode.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72d6228ea4a72398edd3e8692c133f5a7a3c2258",
+      "size": 1136,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/72d6228ea4a72398edd3e8692c133f5a7a3c2258"
+    },
+    {
+      "path": "args_codi_multimode/train_llama32-1b_prosqa_codi_multimode.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92b4f82049c89d9beede858df7ae481635c12159",
+      "size": 1130,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/92b4f82049c89d9beede858df7ae481635c12159"
+    },
+    {
+      "path": "data",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3fe420f6420444c1620c2ef9ae25b967da73a135",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/3fe420f6420444c1620c2ef9ae25b967da73a135"
+    },
+    {
+      "path": "data/prontoqa_test.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7222832226883a545328f2398dc4976b1bb85c7d",
+      "size": 735282,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/7222832226883a545328f2398dc4976b1bb85c7d"
+    },
+    {
+      "path": "data/prontoqa_train.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ee2c4d95ad52355adfccc2119c959505b5f6139",
+      "size": 9322220,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/3ee2c4d95ad52355adfccc2119c959505b5f6139"
+    },
+    {
+      "path": "data/prontoqa_valid.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bab758f0378fd18c597c1a27fc60d85a67c1d033",
+      "size": 184382,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/bab758f0378fd18c597c1a27fc60d85a67c1d033"
+    },
+    {
+      "path": "data/prosqa_test.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73ff837a94b1f10e604a6d31a4c2fa6c131b687f",
+      "size": 856611,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/73ff837a94b1f10e604a6d31a4c2fa6c131b687f"
+    },
+    {
+      "path": "data/prosqa_train.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf26632b9d3f4e812966563eed769b1cfe40c624",
+      "size": 30872695,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/cf26632b9d3f4e812966563eed769b1cfe40c624"
+    },
+    {
+      "path": "data/prosqa_valid.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8df0c62fd6a6c55bfc31345181f505185c4efbd7",
+      "size": 518208,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/8df0c62fd6a6c55bfc31345181f505185c4efbd7"
+    },
+    {
+      "path": "dataset_utils",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f534ffdbb5b4645e0ab7422ec3f34f12c2c19691",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/f534ffdbb5b4645e0ab7422ec3f34f12c2c19691"
+    },
+    {
+      "path": "dataset_utils/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "dataset_utils/adapters.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da57895cdaa02685b46d59c398c48eceac49e8a6",
+      "size": 8616,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/da57895cdaa02685b46d59c398c48eceac49e8a6"
+    },
+    {
+      "path": "dataset_utils/base.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2cfd7b37eb03e746018e9c1b0ffce63192ec1b5f",
+      "size": 1552,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/2cfd7b37eb03e746018e9c1b0ffce63192ec1b5f"
+    },
+    {
+      "path": "download_checkpoints.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24405af9fdb1f4ed19b7e9016876310981843a4d",
+      "size": 3016,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/24405af9fdb1f4ed19b7e9016876310981843a4d"
+    },
+    {
+      "path": "experiments",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "df628cdf40e9f8acdd295536314a72c678afbcc2",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/df628cdf40e9f8acdd295536314a72c678afbcc2"
+    },
+    {
+      "path": "experiments/back_tracking_vp",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "847b24de0da682928226c00a9c7dae574d0cc7b4",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/847b24de0da682928226c00a9c7dae574d0cc7b4"
+    },
+    {
+      "path": "experiments/back_tracking_vp/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "experiments/back_tracking_vp/analyze_gt_representation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1188eb8b4f321d770f432e32e546a6296da85487",
+      "size": 59180,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/1188eb8b4f321d770f432e32e546a6296da85487"
+    },
+    {
+      "path": "experiments/back_tracking_vp/analyze_incorrect_predictions.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1635e75b0cfa84f8a53afef47b0d8c767a51520b",
+      "size": 10384,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/1635e75b0cfa84f8a53afef47b0d8c767a51520b"
+    },
+    {
+      "path": "experiments/back_tracking_vp/backtrace_computation_tree.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a2dc51cc883ea3fd7dede0b59b0e24610b39bb8",
+      "size": 47072,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/9a2dc51cc883ea3fd7dede0b59b0e24610b39bb8"
+    },
+    {
+      "path": "experiments/back_tracking_vp/plot_correct_and_incorrect_summary.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a4767dabf226e78ef0a24bcf33453fe92a6da92e",
+      "size": 11631,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/a4767dabf226e78ef0a24bcf33453fe92a6da92e"
+    },
+    {
+      "path": "experiments/back_tracking_vp/plot_incorrect_results.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37f9669e816affff62116136d03ab1fba3ae27e7",
+      "size": 19492,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/37f9669e816affff62116136d03ab1fba3ae27e7"
+    },
+    {
+      "path": "experiments/back_tracking_vp/plot_results.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35d3bd7768a3e4a6948eabaf12a16bf905009fd7",
+      "size": 49504,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/35d3bd7768a3e4a6948eabaf12a16bf905009fd7"
+    },
+    {
+      "path": "experiments/back_tracking_vp/run_all.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ff6c6b878ba85be7d12cb0beca9bcaf828c2eb1c",
+      "size": 15058,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/ff6c6b878ba85be7d12cb0beca9bcaf828c2eb1c"
+    },
+    {
+      "path": "experiments/back_tracking_vp/solution_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43e4fdf6ed99ab3ee0a25e446c13c53b5a29a4a9",
+      "size": 1235,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/43e4fdf6ed99ab3ee0a25e446c13c53b5a29a4a9"
+    },
+    {
+      "path": "experiments/back_tracking_vp/summarize_incorrect_gt_representation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d299f9daf47ccff1bf2f817e0b388660ed52698",
+      "size": 19764,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/5d299f9daf47ccff1bf2f817e0b388660ed52698"
+    },
+    {
+      "path": "experiments/back_tracking_vp/visualize_samples.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "53eadb46b8e598ea0244773a3718391b1c668bff",
+      "size": 4678,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/53eadb46b8e598ea0244773a3718391b1c668bff"
+    },
+    {
+      "path": "experiments/dataset_performance",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7af83e1932dfe25c11a2303dd29ce0fc5401b32d",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/7af83e1932dfe25c11a2303dd29ce0fc5401b32d"
+    },
+    {
+      "path": "experiments/dataset_performance/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "460c7a8e1f109a00b54a8822382807d17b385e51",
+      "size": 49,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/460c7a8e1f109a00b54a8822382807d17b385e51"
+    },
+    {
+      "path": "experiments/dataset_performance/count_tokens.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30e6036c9b500f2378ebb3ee60af188cab86bd5d",
+      "size": 7697,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/30e6036c9b500f2378ebb3ee60af188cab86bd5d"
+    },
+    {
+      "path": "experiments/dataset_performance/plot_multimode_dumbbell.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "200dc2ad4da1fcba5d68002d6e93a083fbb7d7c1",
+      "size": 14106,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/200dc2ad4da1fcba5d68002d6e93a083fbb7d7c1"
+    },
+    {
+      "path": "experiments/dataset_performance/run.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8273d9c4972c2ca09063c22672a59cbcb8ea0979",
+      "size": 15932,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/8273d9c4972c2ca09063c22672a59cbcb8ea0979"
+    },
+    {
+      "path": "experiments/dataset_performance/run_all.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "f7e7d5aa0cc5b48ba10cd660b07d33942a6e21bc",
+      "size": 10917,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/f7e7d5aa0cc5b48ba10cd660b07d33942a6e21bc"
+    },
+    {
+      "path": "experiments/dataset_performance/summarize_multimode.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc710947d277d506dff7912ccf4b403faa49ee46",
+      "size": 3841,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/dc710947d277d506dff7912ccf4b403faa49ee46"
+    },
+    {
+      "path": "experiments/dataset_performance/summarize_results.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14422648f5d00f9c9944100c465ca30f9a69e6bb",
+      "size": 9789,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/14422648f5d00f9c9944100c465ca30f9a69e6bb"
+    },
+    {
+      "path": "experiments/early_stopping",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "dd9f151ac6eeceaa3b496b35572dc39eddf3e565",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/dd9f151ac6eeceaa3b496b35572dc39eddf3e565"
+    },
+    {
+      "path": "experiments/early_stopping/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72769237ed085218061f0ff5e06c28688c4a4216",
+      "size": 284,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/72769237ed085218061f0ff5e06c28688c4a4216"
+    },
+    {
+      "path": "experiments/early_stopping/plot.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf064e3549ef309b523b87a0d73d4b4b7f8807bb",
+      "size": 82995,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/cf064e3549ef309b523b87a0d73d4b4b7f8807bb"
+    },
+    {
+      "path": "experiments/early_stopping/run.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7ed969e9ac325b075eb438c73db049333a3b743",
+      "size": 68108,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/a7ed969e9ac325b075eb438c73db049333a3b743"
+    },
+    {
+      "path": "experiments/early_stopping/run_all.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ed50b8d561372c4c01d6e15a3326add38e829fc7",
+      "size": 12463,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/ed50b8d561372c4c01d6e15a3326add38e829fc7"
+    },
+    {
+      "path": "experiments/forward_chaining",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "44bb745a7e36764505b4772153c77159d3138e4e",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/44bb745a7e36764505b4772153c77159d3138e4e"
+    },
+    {
+      "path": "experiments/forward_chaining/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b7908d9c2ed57d2551f370356533a7c967ef5ee",
+      "size": 30,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/7b7908d9c2ed57d2551f370356533a7c967ef5ee"
+    },
+    {
+      "path": "experiments/forward_chaining/plot_hyperparam_sweep.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2a09cae76a50299919b8c2a49ee8e06956a2bb4",
+      "size": 40468,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e2a09cae76a50299919b8c2a49ee8e06956a2bb4"
+    },
+    {
+      "path": "experiments/forward_chaining/run.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ac5e12c4d4ddeeab7178496760448dc375c5e32",
+      "size": 155260,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/8ac5e12c4d4ddeeab7178496760448dc375c5e32"
+    },
+    {
+      "path": "experiments/forward_chaining/run_all.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e11c65a89db55b75fc03121bca6f8604b05df093",
+      "size": 10961,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e11c65a89db55b75fc03121bca6f8604b05df093"
+    },
+    {
+      "path": "experiments/forward_chaining/validation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "950eeba2e4525d558ce3bd777ecf2d57f4b6be6e",
+      "size": 66247,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/950eeba2e4525d558ce3bd777ecf2d57f4b6be6e"
+    },
+    {
+      "path": "experiments/forward_chaining/visualize.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37d5433c488bb2fa5cc6ae419e1499b100127544",
+      "size": 69540,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/37d5433c488bb2fa5cc6ae419e1499b100127544"
+    },
+    {
+      "path": "model_paths.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5629a38f6677f5e13ded868a7d163d25ea137233",
+      "size": 3670,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/5629a38f6677f5e13ded868a7d163d25ea137233"
+    },
+    {
+      "path": "models",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "883af79a553c0ed2d18639790f558db510cc8e02",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/883af79a553c0ed2d18639790f558db510cc8e02"
+    },
+    {
+      "path": "models/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "models/base.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e96966dcbb7e806dfb0bfc9c95194d00e02e9bc",
+      "size": 12272,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/8e96966dcbb7e806dfb0bfc9c95194d00e02e9bc"
+    },
+    {
+      "path": "models/coconut",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6baa579295846e6e6953c7a27d7ef7467f7ecfe2",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/6baa579295846e6e6953c7a27d7ef7467f7ecfe2"
+    },
+    {
+      "path": "models/coconut/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "models/coconut/coconut_model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f38269ccd80be97bc5f13599b9f50469137e513c",
+      "size": 9210,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/f38269ccd80be97bc5f13599b9f50469137e513c"
+    },
+    {
+      "path": "models/coconut/coconut_wrapper.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5dcd2a92e72cd208d81992255b5f5a17f3646e9",
+      "size": 37562,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e5dcd2a92e72cd208d81992255b5f5a17f3646e9"
+    },
+    {
+      "path": "models/codi",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "15cd8413bd8bd134a8474700427696b586a221a5",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/15cd8413bd8bd134a8474700427696b586a221a5"
+    },
+    {
+      "path": "models/codi/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "models/codi/codi_model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb5944a267c1610c7e079d397447ef69acd2b274",
+      "size": 10477,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/cb5944a267c1610c7e079d397447ef69acd2b274"
+    },
+    {
+      "path": "models/codi/codi_wrapper.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20d485a49103685b7447fc62edc437b34a6b67a3",
+      "size": 69506,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/20d485a49103685b7447fc62edc437b34a6b67a3"
+    },
+    {
+      "path": "models/cot",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3f7831db3d2cf9a070287a53efc505cc235b5122",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/3f7831db3d2cf9a070287a53efc505cc235b5122"
+    },
+    {
+      "path": "models/cot/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "models/cot/cot_model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5655e70a6ca48daea71e20a34d6e82dc5120323d",
+      "size": 5951,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/5655e70a6ca48daea71e20a34d6e82dc5120323d"
+    },
+    {
+      "path": "models/factory.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b24fe7e07ff56a56c58d5ee00a2161f5f8645e7a",
+      "size": 5661,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/b24fe7e07ff56a56c58d5ee00a2161f5f8645e7a"
+    },
+    {
+      "path": "models/multimode_coconut",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "aaad96d6b428dd2b80f795493da698be55a4aefa",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/aaad96d6b428dd2b80f795493da698be55a4aefa"
+    },
+    {
+      "path": "models/multimode_coconut/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "models/multimode_coconut/multimode_coconut_model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0b353cd78f98ab7aae0d20ce4e8859d9fd9958e",
+      "size": 13177,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/d0b353cd78f98ab7aae0d20ce4e8859d9fd9958e"
+    },
+    {
+      "path": "models/multimode_codi",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3a6ee17604b21891d51b50bd1e5f4469451775d4",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/3a6ee17604b21891d51b50bd1e5f4469451775d4"
+    },
+    {
+      "path": "models/multimode_codi/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce67802def9787a2483e99ec4de40d5708e91fb1",
+      "size": 508,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/ce67802def9787a2483e99ec4de40d5708e91fb1"
+    },
+    {
+      "path": "models/multimode_codi/multimode_codi_model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f43a751ed40211043382f5625aae4f0a1af8951d",
+      "size": 10833,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/f43a751ed40211043382f5625aae4f0a1af8951d"
+    },
+    {
+      "path": "models/multimode_codi/multimode_codi_wrapper.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0207d3463bed1e1ebd428c4fd3b099c350c0fed6",
+      "size": 25870,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/0207d3463bed1e1ebd428c4fd3b099c350c0fed6"
+    },
+    {
+      "path": "models/no_cot",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1e30355f83dd5ffbbf07ff3232e989c9d19f1855",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/1e30355f83dd5ffbbf07ff3232e989c9d19f1855"
+    },
+    {
+      "path": "models/no_cot/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "models/no_cot/no_cot_model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f559b3780539c21efb91ab84c6c9de94dedb63e",
+      "size": 643,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/0f559b3780539c21efb91ab84c6c9de94dedb63e"
+    },
+    {
+      "path": "preprocessing",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c947d3559b85d1982d1d42f1211a77483eda8fb4",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/c947d3559b85d1982d1d42f1211a77483eda8fb4"
+    },
+    {
+      "path": "preprocessing/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "preprocessing/gsm_constants.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e58191031b157d2b900b77c755b559e9d52f8cc",
+      "size": 2842,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/7e58191031b157d2b900b77c755b559e9d52f8cc"
+    },
+    {
+      "path": "preprocessing/prepare_gsm8k.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c070cfa07e2d5fc0277dab38cdee44418fe1d5e",
+      "size": 46781,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/9c070cfa07e2d5fc0277dab38cdee44418fe1d5e"
+    },
+    {
+      "path": "requirements.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a63ea4b92f0dd565f5d632241e36299695237e4",
+      "size": 218,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/4a63ea4b92f0dd565f5d632241e36299695237e4"
+    },
+    {
+      "path": "src_coconut_multimode",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c222632273ae0f4aa0e27c009dc676a896b6a36c",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/c222632273ae0f4aa0e27c009dc676a896b6a36c"
+    },
+    {
+      "path": "src_coconut_multimode/coconut.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "646acb08f149afec075eefb212c8aa1f3ac8ceda",
+      "size": 16168,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/646acb08f149afec075eefb212c8aa1f3ac8ceda"
+    },
+    {
+      "path": "src_coconut_multimode/dataset.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce10608ce505d06eefe0629f8cae6a67364eb65c",
+      "size": 23320,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/ce10608ce505d06eefe0629f8cae6a67364eb65c"
+    },
+    {
+      "path": "src_coconut_multimode/run.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c61f04001aa024085dae68b9429ee48c362eb663",
+      "size": 31866,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/c61f04001aa024085dae68b9429ee48c362eb663"
+    },
+    {
+      "path": "src_coconut_multimode/utils",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fe08e97809bf17d788fcd84d84bb92abd2987220",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/fe08e97809bf17d788fcd84d84bb92abd2987220"
+    },
+    {
+      "path": "src_coconut_multimode/utils/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3116ff7c996825d5261d8b3aa28ff374b50ed1cc",
+      "size": 508,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/3116ff7c996825d5261d8b3aa28ff374b50ed1cc"
+    },
+    {
+      "path": "src_codi_multimode",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2a34e1f8e848f14d485deece7d0985508ae91bfb",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/2a34e1f8e848f14d485deece7d0985508ae91bfb"
+    },
+    {
+      "path": "src_codi_multimode/src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "20483cecf1094a7b3d0654aebf61978fd2196174",
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/trees/20483cecf1094a7b3d0654aebf61978fd2196174"
+    },
+    {
+      "path": "src_codi_multimode/src/model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "178d99c3b98156bbb418f9fa7f1f6e53f9e7d3d0",
+      "size": 22122,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/178d99c3b98156bbb418f9fa7f1f6e53f9e7d3d0"
+    },
+    {
+      "path": "src_codi_multimode/test.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f4b6b0ba8dc56716bcd3e4364e5ec7b01874f87b",
+      "size": 21279,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/f4b6b0ba8dc56716bcd3e4364e5ec7b01874f87b"
+    },
+    {
+      "path": "src_codi_multimode/train.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e782d0c608b5152367afd372850bdda03a0a42e",
+      "size": 36074,
+      "url": "https://api.github.com/repos/connordilgren/are-lrms-easily-interpretable/git/blobs/2e782d0c608b5152367afd372850bdda03a0a42e"
+    }
+  ],
+  "truncated": false
+}

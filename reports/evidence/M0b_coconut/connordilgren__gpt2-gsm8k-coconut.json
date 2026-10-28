@@ -1,0 +1,56 @@
+{
+  "_id": "6a46a4590c92c541bfb3a527",
+  "id": "connordilgren/gpt2-gsm8k-coconut",
+  "private": false,
+  "tags": [
+    "latent-reasoning",
+    "interpretability",
+    "reasoning",
+    "coconut",
+    "gsm8k",
+    "en",
+    "arxiv:2604.04902",
+    "base_model:openai-community/gpt2",
+    "base_model:finetune:openai-community/gpt2",
+    "license:mit",
+    "region:us"
+  ],
+  "downloads": 0,
+  "likes": 0,
+  "modelId": "connordilgren/gpt2-gsm8k-coconut",
+  "author": "connordilgren",
+  "sha": "24f1422fcf6d557fd359fc818a4d1d0fde4aac7f",
+  "lastModified": "2026-07-02T17:48:20.000Z",
+  "gated": false,
+  "disabled": false,
+  "model-index": null,
+  "config": {},
+  "cardData": {
+    "license": "mit",
+    "base_model": "openai-community/gpt2",
+    "language": [
+      "en"
+    ],
+    "tags": [
+      "latent-reasoning",
+      "interpretability",
+      "reasoning",
+      "coconut",
+      "gsm8k"
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "checkpoint_33"
+    }
+  ],
+  "spaces": [],
+  "createdAt": "2026-07-02T17:48:09.000Z",
+  "usedStorage": 806633890
+}

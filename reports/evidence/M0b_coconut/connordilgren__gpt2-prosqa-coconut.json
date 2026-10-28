@@ -1,0 +1,56 @@
+{
+  "_id": "6a46a4c80c92c541bfb3b0aa",
+  "id": "connordilgren/gpt2-prosqa-coconut",
+  "private": false,
+  "tags": [
+    "latent-reasoning",
+    "interpretability",
+    "reasoning",
+    "coconut",
+    "prosqa",
+    "en",
+    "arxiv:2604.04902",
+    "base_model:openai-community/gpt2",
+    "base_model:finetune:openai-community/gpt2",
+    "license:mit",
+    "region:us"
+  ],
+  "downloads": 0,
+  "likes": 0,
+  "modelId": "connordilgren/gpt2-prosqa-coconut",
+  "author": "connordilgren",
+  "sha": "b8be0b21d5b4d8465ef305debdc9c4a4ac3e60a0",
+  "lastModified": "2026-07-02T17:50:11.000Z",
+  "gated": false,
+  "disabled": false,
+  "model-index": null,
+  "config": {},
+  "cardData": {
+    "license": "mit",
+    "base_model": "openai-community/gpt2",
+    "language": [
+      "en"
+    ],
+    "tags": [
+      "latent-reasoning",
+      "interpretability",
+      "reasoning",
+      "coconut",
+      "prosqa"
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "checkpoint_40"
+    }
+  ],
+  "spaces": [],
+  "createdAt": "2026-07-02T17:50:00.000Z",
+  "usedStorage": 806633890
+}

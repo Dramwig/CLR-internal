@@ -1,0 +1,21 @@
+data_path: data/gsm8k_val.json
+device: cuda:5
+from_step: 0
+limit: 2
+mean_recurrence: 32
+milestone: M0b
+min_free_gib: 14
+mode: smoke
+revision: bb6621b65e90b6a4b9b29ef88dc83866d450470c
+seed: 11
+sigma: 0
+snapshot: /home/me/models/huggingface/models--tomg-group-umd--huginn-0125/snapshots/bb6621b65e90b6a4b9b29ef88dc83866d450470c
+split: val
+split_path: data/splits/gsm8k_M0_v1.json
+stage: cpu_protocol_render_only
+system_instruction: You are a helpful assistant that can assist users with mathematical
+  reasoning.
+timeout_seconds: 900
+verified_manifest: runs/20261028T111806531496Z_c0fb096f3f3e_1f3fea/verified_manifest.json
+verify_determinism: true
+version: v2

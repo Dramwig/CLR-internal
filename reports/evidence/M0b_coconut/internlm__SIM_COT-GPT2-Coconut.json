@@ -1,0 +1,192 @@
+{
+  "_id": "68d6855b3096cbb9af271096",
+  "id": "internlm/SIM_COT-GPT2-Coconut",
+  "private": false,
+  "tags": [
+    "chain-of-thought",
+    "implicit-reasoning",
+    "multimodal",
+    "gpt2",
+    "instruction-tuned",
+    "en",
+    "dataset:gsm8k",
+    "dataset:svamp",
+    "dataset:multi_arith",
+    "arxiv:2509.20317",
+    "license:mit",
+    "model-index",
+    "region:us"
+  ],
+  "downloads": 62,
+  "likes": 2,
+  "modelId": "internlm/SIM_COT-GPT2-Coconut",
+  "author": "internlm",
+  "sha": "676c8a8aeb4afcef3a4fb98da9d539588d969340",
+  "lastModified": "2025-09-28T04:27:31.000Z",
+  "gated": false,
+  "disabled": false,
+  "model-index": [
+    {
+      "name": "SIM_COT-GPT2-Coconut",
+      "results": [
+        {
+          "task": {
+            "type": "math-word-problems",
+            "name": "Arithmetic Reasoning"
+          },
+          "dataset": {
+            "name": "GSM8K",
+            "type": "gsm8k"
+          },
+          "metrics": [
+            {
+              "type": "accuracy",
+              "value": "xx.x",
+              "verified": false
+            }
+          ]
+        },
+        {
+          "task": {
+            "type": "math-word-problems",
+            "name": "MultiArith"
+          },
+          "dataset": {
+            "name": "MultiArith",
+            "type": "multi_arith"
+          },
+          "metrics": [
+            {
+              "type": "accuracy",
+              "value": "xx.x",
+              "verified": false
+            }
+          ]
+        },
+        {
+          "task": {
+            "type": "math-word-problems",
+            "name": "SVAMP"
+          },
+          "dataset": {
+            "name": "SVAMP",
+            "type": "svamp"
+          },
+          "metrics": [
+            {
+              "type": "accuracy",
+              "value": "xx.x",
+              "verified": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "config": {},
+  "cardData": {
+    "language": [
+      "en"
+    ],
+    "license": "mit",
+    "tags": [
+      "chain-of-thought",
+      "implicit-reasoning",
+      "multimodal",
+      "gpt2",
+      "instruction-tuned"
+    ],
+    "datasets": [
+      "gsm8k",
+      "svamp",
+      "multi_arith"
+    ],
+    "model-index": [
+      {
+        "name": "SIM_COT-GPT2-Coconut",
+        "results": [
+          {
+            "task": {
+              "type": "math-word-problems",
+              "name": "Arithmetic Reasoning"
+            },
+            "dataset": {
+              "name": "GSM8K",
+              "type": "gsm8k"
+            },
+            "metrics": [
+              {
+                "type": "accuracy",
+                "value": "xx.x",
+                "verified": false
+              }
+            ]
+          },
+          {
+            "task": {
+              "type": "math-word-problems",
+              "name": "MultiArith"
+            },
+            "dataset": {
+              "name": "MultiArith",
+              "type": "multi_arith"
+            },
+            "metrics": [
+              {
+                "type": "accuracy",
+                "value": "xx.x",
+                "verified": false
+              }
+            ]
+          },
+          {
+            "task": {
+              "type": "math-word-problems",
+              "name": "SVAMP"
+            },
+            "dataset": {
+              "name": "SVAMP",
+              "type": "svamp"
+            },
+            "metrics": [
+              {
+                "type": "accuracy",
+                "value": "xx.x",
+                "verified": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "assets/coconut_teaser.png"
+    },
+    {
+      "rfilename": "assets/gpt2.png"
+    },
+    {
+      "rfilename": "assets/llama1b.png"
+    },
+    {
+      "rfilename": "assets/llama3b_8b.png"
+    },
+    {
+      "rfilename": "checkpoint_28"
+    },
+    {
+      "rfilename": "config.json"
+    }
+  ],
+  "spaces": [],
+  "createdAt": "2025-09-26T12:21:47.000Z",
+  "usedStorage": 1462105399
+}

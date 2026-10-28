@@ -1,0 +1,56 @@
+{
+  "_id": "6a46a4db1dff6ff95a1a5a31",
+  "id": "connordilgren/gpt2-prosqa-multimode-coconut",
+  "private": false,
+  "tags": [
+    "latent-reasoning",
+    "interpretability",
+    "reasoning",
+    "multimode_coconut",
+    "prosqa",
+    "en",
+    "arxiv:2604.04902",
+    "base_model:openai-community/gpt2",
+    "base_model:finetune:openai-community/gpt2",
+    "license:mit",
+    "region:us"
+  ],
+  "downloads": 0,
+  "likes": 0,
+  "modelId": "connordilgren/gpt2-prosqa-multimode-coconut",
+  "author": "connordilgren",
+  "sha": "a30a6c05aeda5db0d27cc6ebd7ec1c627ea72ca8",
+  "lastModified": "2026-07-02T17:50:34.000Z",
+  "gated": false,
+  "disabled": false,
+  "model-index": null,
+  "config": {},
+  "cardData": {
+    "license": "mit",
+    "base_model": "openai-community/gpt2",
+    "language": [
+      "en"
+    ],
+    "tags": [
+      "latent-reasoning",
+      "interpretability",
+      "reasoning",
+      "multimode_coconut",
+      "prosqa"
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "checkpoint_49"
+    }
+  ],
+  "spaces": [],
+  "createdAt": "2026-07-02T17:50:19.000Z",
+  "usedStorage": 806633890
+}

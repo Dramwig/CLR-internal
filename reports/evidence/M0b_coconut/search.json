@@ -1,0 +1,1735 @@
+[
+  {
+    "_id": "6a9a5f20ae635b9b09276ad0",
+    "id": "jihwan1205/svp-v-coconut-gpt2",
+    "likes": 2,
+    "private": false,
+    "downloads": 504,
+    "tags": [
+      "transformers",
+      "safetensors",
+      "gpt2",
+      "text-generation",
+      "latent-reasoning",
+      "continuous-thought",
+      "coconut",
+      "grpo",
+      "reinforcement-learning",
+      "dataset:zen-E/GSM8k-Aug",
+      "base_model:ModalityDance/latent-tts-coconut",
+      "base_model:finetune:ModalityDance/latent-tts-coconut",
+      "license:mit",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "transformers",
+    "createdAt": "2026-09-04T06:03:12.000Z",
+    "modelId": "jihwan1205/svp-v-coconut-gpt2"
+  },
+  {
+    "_id": "69635a4100600e42ae549e77",
+    "id": "ModalityDance/latent-tts-coconut",
+    "likes": 0,
+    "private": false,
+    "downloads": 414,
+    "tags": [
+      "transformers",
+      "safetensors",
+      "gpt2",
+      "text-generation",
+      "arxiv:2510.07745",
+      "arxiv:2412.06769",
+      "base_model:openai-community/gpt2",
+      "base_model:finetune:openai-community/gpt2",
+      "license:mit",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "transformers",
+    "createdAt": "2026-01-11T08:07:29.000Z",
+    "modelId": "ModalityDance/latent-tts-coconut"
+  },
+  {
+    "_id": "66dc8c6e9231031ad3a8836c",
+    "id": "Coconuty/Whispertales_model_v4_q8_0.GGUF",
+    "likes": 0,
+    "private": false,
+    "downloads": 142,
+    "tags": [
+      "gguf",
+      "endpoints_compatible",
+      "region:us",
+      "conversational"
+    ],
+    "createdAt": "2024-09-07T17:25:02.000Z",
+    "modelId": "Coconuty/Whispertales_model_v4_q8_0.GGUF"
+  },
+  {
+    "_id": "6a5d320212a6c557c93554ec",
+    "id": "ModalityDance/slpo-coconut-gpt2",
+    "likes": 0,
+    "private": false,
+    "downloads": 97,
+    "tags": [
+      "transformers",
+      "safetensors",
+      "gpt2",
+      "latent-reasoning",
+      "coconut",
+      "slpo",
+      "reinforcement-learning",
+      "text-generation",
+      "arxiv:2607.19691",
+      "base_model:ModalityDance/latent-tts-coconut",
+      "base_model:finetune:ModalityDance/latent-tts-coconut",
+      "license:mit",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "transformers",
+    "createdAt": "2026-07-19T20:22:26.000Z",
+    "modelId": "ModalityDance/slpo-coconut-gpt2"
+  },
+  {
+    "_id": "68b13b3d50db935715a04f76",
+    "id": "mradermacher/coconut-qwen2.5-7b-GGUF",
+    "likes": 0,
+    "private": false,
+    "downloads": 89,
+    "tags": [
+      "transformers",
+      "gguf",
+      "en",
+      "base_model:agurung/coconut-qwen2.5-7b",
+      "base_model:quantized:agurung/coconut-qwen2.5-7b",
+      "endpoints_compatible",
+      "region:us",
+      "conversational"
+    ],
+    "library_name": "transformers",
+    "createdAt": "2025-08-29T05:31:41.000Z",
+    "modelId": "mradermacher/coconut-qwen2.5-7b-GGUF"
+  },
+  {
+    "_id": "68d6855b3096cbb9af271096",
+    "id": "internlm/SIM_COT-GPT2-Coconut",
+    "likes": 2,
+    "private": false,
+    "downloads": 62,
+    "tags": [
+      "chain-of-thought",
+      "implicit-reasoning",
+      "multimodal",
+      "gpt2",
+      "instruction-tuned",
+      "en",
+      "dataset:gsm8k",
+      "dataset:svamp",
+      "dataset:multi_arith",
+      "arxiv:2509.20317",
+      "license:mit",
+      "model-index",
+      "region:us"
+    ],
+    "createdAt": "2025-09-26T12:21:47.000Z",
+    "modelId": "internlm/SIM_COT-GPT2-Coconut"
+  },
+  {
+    "_id": "68afb346afd4c78b5d609071",
+    "id": "agurung/coconut-qwen2.5-7b",
+    "likes": 2,
+    "private": false,
+    "downloads": 40,
+    "tags": [
+      "safetensors",
+      "qwen2",
+      "region:us"
+    ],
+    "createdAt": "2025-08-28T01:39:18.000Z",
+    "modelId": "agurung/coconut-qwen2.5-7b"
+  },
+  {
+    "_id": "6ac0a2b29057bb51ee0a1336",
+    "id": "ixrbhii/coconut-disease-convnext",
+    "likes": 0,
+    "private": false,
+    "downloads": 37,
+    "tags": [
+      "timm",
+      "safetensors",
+      "agriculture",
+      "plant-disease",
+      "convnext",
+      "image-classification",
+      "license:cc-by-4.0",
+      "region:us"
+    ],
+    "pipeline_tag": "image-classification",
+    "library_name": "timm",
+    "createdAt": "2026-10-03T06:37:38.000Z",
+    "modelId": "ixrbhii/coconut-disease-convnext"
+  },
+  {
+    "_id": "628c39bc4c5a62a1d21712ed",
+    "id": "Lucifer-nick/coconut_smiles",
+    "likes": 0,
+    "private": false,
+    "downloads": 36,
+    "tags": [
+      "transformers",
+      "pytorch",
+      "jax",
+      "roberta",
+      "fill-mask",
+      "license:apache-2.0",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "fill-mask",
+    "library_name": "transformers",
+    "createdAt": "2022-05-24T01:49:48.000Z",
+    "modelId": "Lucifer-nick/coconut_smiles"
+  },
+  {
+    "_id": "69293b3799e505ebfc3ec778",
+    "id": "coconut19/llama-dialog-lora",
+    "likes": 0,
+    "private": false,
+    "downloads": 25,
+    "tags": [
+      "peft",
+      "safetensors",
+      "base_model:adapter:meta-llama/Llama-3.2-1B-Instruct",
+      "lora",
+      "transformers",
+      "dialogue",
+      "podcast",
+      "text-generation",
+      "conversational",
+      "en",
+      "dataset:li2017dailydialog/daily_dialog",
+      "base_model:meta-llama/Llama-3.2-1B-Instruct",
+      "license:llama3.2",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "peft",
+    "createdAt": "2025-11-28T06:03:35.000Z",
+    "modelId": "coconut19/llama-dialog-lora"
+  },
+  {
+    "_id": "6a676e683e5d5b2d2b74f39a",
+    "id": "RHYu2233/latent-ecot-coconut-libero90",
+    "likes": 0,
+    "private": false,
+    "downloads": 22,
+    "tags": [
+      "prismatic",
+      "vision-language-action",
+      "vla",
+      "robotics",
+      "chain-of-thought",
+      "latent-reasoning",
+      "coconut",
+      "libero",
+      "arxiv:2505.08243",
+      "arxiv:2412.06769",
+      "arxiv:2407.08693",
+      "license:mit",
+      "region:us"
+    ],
+    "pipeline_tag": "robotics",
+    "library_name": "prismatic",
+    "createdAt": "2026-07-27T14:42:48.000Z",
+    "modelId": "RHYu2233/latent-ecot-coconut-libero90"
+  },
+  {
+    "_id": "68333db082964b7bc667b180",
+    "id": "danielpedrozo/gpt2-coconut-gsm-from-cot7",
+    "likes": 0,
+    "private": false,
+    "downloads": 20,
+    "tags": [
+      "transformers",
+      "safetensors",
+      "gpt2",
+      "text-generation",
+      "arxiv:1910.09700",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "transformers",
+    "createdAt": "2025-05-25T15:56:32.000Z",
+    "modelId": "danielpedrozo/gpt2-coconut-gsm-from-cot7"
+  },
+  {
+    "_id": "699c6bb320eff7a0957851e4",
+    "id": "CoconutEmb/SFT-Qwen2.5-1.5B-Instruct-TongSearch",
+    "likes": 0,
+    "private": false,
+    "downloads": 20,
+    "tags": [
+      "transformers",
+      "safetensors",
+      "qwen2",
+      "text-generation",
+      "llama-factory",
+      "full",
+      "generated_from_trainer",
+      "conversational",
+      "base_model:Qwen/Qwen2.5-1.5B-Instruct",
+      "base_model:finetune:Qwen/Qwen2.5-1.5B-Instruct",
+      "license:other",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "transformers",
+    "createdAt": "2026-02-23T15:01:07.000Z",
+    "modelId": "CoconutEmb/SFT-Qwen2.5-1.5B-Instruct-TongSearch"
+  },
+  {
+    "_id": "68db922cca88f5ace25b8275",
+    "id": "Yodhasu04/AURA-Coconut-stage1-adapter",
+    "likes": 0,
+    "private": false,
+    "downloads": 19,
+    "tags": [
+      "peft",
+      "safetensors",
+      "base_model:adapter:Yodhasu04/AURA-Qwen_Based_4B_Reasoning",
+      "lora",
+      "sft",
+      "transformers",
+      "trl",
+      "text-generation",
+      "conversational",
+      "arxiv:1910.09700",
+      "base_model:Yodhasu04/AURA-Qwen_Based_4B_Reasoning",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "peft",
+    "createdAt": "2025-09-30T08:17:48.000Z",
+    "modelId": "Yodhasu04/AURA-Coconut-stage1-adapter"
+  },
+  {
+    "_id": "67a046a2498ec29f59866f4f",
+    "id": "Ericccc1235/coconut-qwen-2.5-0.5-gsm8k-ct",
+    "likes": 0,
+    "private": false,
+    "downloads": 17,
+    "tags": [
+      "transformers",
+      "safetensors",
+      "qwen2",
+      "text-generation",
+      "conversational",
+      "arxiv:1910.09700",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "transformers",
+    "createdAt": "2025-02-03T04:31:30.000Z",
+    "modelId": "Ericccc1235/coconut-qwen-2.5-0.5-gsm8k-ct"
+  },
+  {
+    "_id": "6960cbe147d2e9ec0b202f7c",
+    "id": "dd101bb/latent-tts-coconut",
+    "likes": 1,
+    "private": false,
+    "downloads": 17,
+    "tags": [
+      "safetensors",
+      "gpt2",
+      "arxiv:2510.07745",
+      "arxiv:2412.06769",
+      "base_model:openai-community/gpt2",
+      "base_model:finetune:openai-community/gpt2",
+      "license:mit",
+      "region:us"
+    ],
+    "createdAt": "2026-01-09T09:35:29.000Z",
+    "modelId": "dd101bb/latent-tts-coconut"
+  },
+  {
+    "_id": "692b0dd995512abda389103b",
+    "id": "yusuffarhan/qwen-coconut-latent",
+    "likes": 0,
+    "private": false,
+    "downloads": 16,
+    "tags": [
+      "peft",
+      "safetensors",
+      "base_model:adapter:Qwen/Qwen3-4B",
+      "lora",
+      "transformers",
+      "text-generation",
+      "conversational",
+      "arxiv:1910.09700",
+      "base_model:Qwen/Qwen3-4B",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "peft",
+    "createdAt": "2025-11-29T15:14:33.000Z",
+    "modelId": "yusuffarhan/qwen-coconut-latent"
+  },
+  {
+    "_id": "68298262daebdf28b9bf6632",
+    "id": "coconutdoyou/roberta-base-klue-ynat-classification",
+    "likes": 0,
+    "private": false,
+    "downloads": 15,
+    "tags": [
+      "transformers",
+      "tensorboard",
+      "safetensors",
+      "roberta",
+      "text-classification",
+      "generated_from_trainer",
+      "base_model:klue/roberta-base",
+      "base_model:finetune:klue/roberta-base",
+      "text-embeddings-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-classification",
+    "library_name": "transformers",
+    "createdAt": "2025-05-18T06:46:58.000Z",
+    "modelId": "coconutdoyou/roberta-base-klue-ynat-classification"
+  },
+  {
+    "_id": "68f9163c1e28d5e6f1639ba3",
+    "id": "coconut29/LyriCAR-SD",
+    "likes": 0,
+    "private": false,
+    "downloads": 15,
+    "tags": [
+      "transformers",
+      "safetensors",
+      "lyric-translation",
+      "music-generation",
+      "multimodal",
+      "text-to-audio",
+      "en",
+      "license:apache-2.0",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-to-audio",
+    "library_name": "transformers",
+    "createdAt": "2025-10-22T17:37:00.000Z",
+    "modelId": "coconut29/LyriCAR-SD"
+  },
+  {
+    "_id": "678ac0578b0ce22ae8aeb517",
+    "id": "coconutsc/roberta_email_sms_spam_classifier",
+    "likes": 0,
+    "private": false,
+    "downloads": 14,
+    "tags": [
+      "transformers",
+      "safetensors",
+      "roberta",
+      "text-classification",
+      "generated_from_trainer",
+      "base_model:FacebookAI/roberta-base",
+      "base_model:finetune:FacebookAI/roberta-base",
+      "license:mit",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-classification",
+    "library_name": "transformers",
+    "createdAt": "2025-01-17T20:40:55.000Z",
+    "modelId": "coconutsc/roberta_email_sms_spam_classifier"
+  },
+  {
+    "_id": "67fa31d16c39ce11f2b0c8f6",
+    "id": "CocoNutZENG/NeuroExpert_Qwen2.5",
+    "likes": 0,
+    "private": false,
+    "downloads": 14,
+    "tags": [
+      "peft",
+      "safetensors",
+      "medical",
+      "text-generation",
+      "zh",
+      "en",
+      "dataset:FreedomIntelligence/Huatuo26M-Lite",
+      "dataset:CocoNutZENG/NeuroQABenchmark",
+      "base_model:Qwen/Qwen2.5-7B-Instruct",
+      "base_model:adapter:Qwen/Qwen2.5-7B-Instruct",
+      "license:mit",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "peft",
+    "createdAt": "2025-04-12T09:26:41.000Z",
+    "modelId": "CocoNutZENG/NeuroExpert_Qwen2.5"
+  },
+  {
+    "_id": "6833e656d5c438959f7ae2d3",
+    "id": "danielpedrozo/GPT2-124M-Coconut-ckp-RL",
+    "likes": 0,
+    "private": false,
+    "downloads": 14,
+    "tags": [
+      "transformers",
+      "safetensors",
+      "gpt2",
+      "text-generation",
+      "generated_from_trainer",
+      "open-r1",
+      "trl",
+      "grpo",
+      "conversational",
+      "dataset:DigitalLearningGmbH/MATH-lighteval",
+      "arxiv:2402.03300",
+      "base_model:danielpedrozo/gpt2-coconut-gsm-from-cot7",
+      "base_model:finetune:danielpedrozo/gpt2-coconut-gsm-from-cot7",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "transformers",
+    "createdAt": "2025-05-26T03:56:06.000Z",
+    "modelId": "danielpedrozo/GPT2-124M-Coconut-ckp-RL"
+  },
+  {
+    "_id": "68db9214a6c4e984dd2aab96",
+    "id": "Yodhasu04/Coconut_test_stg1",
+    "likes": 0,
+    "private": false,
+    "downloads": 14,
+    "tags": [
+      "safetensors",
+      "qwen3",
+      "license:mit",
+      "region:us"
+    ],
+    "createdAt": "2025-09-30T08:17:24.000Z",
+    "modelId": "Yodhasu04/Coconut_test_stg1"
+  },
+  {
+    "_id": "6880a22957dc952410b211e4",
+    "id": "dd101bb/gpt2-gsm-coconut",
+    "likes": 0,
+    "private": false,
+    "downloads": 13,
+    "tags": [
+      "safetensors",
+      "gpt2",
+      "region:us"
+    ],
+    "createdAt": "2025-07-23T08:49:45.000Z",
+    "modelId": "dd101bb/gpt2-gsm-coconut"
+  },
+  {
+    "_id": "699caa6d10144804029c1ab0",
+    "id": "agurung/qwen-coconut-ff-v2",
+    "likes": 0,
+    "private": false,
+    "downloads": 13,
+    "tags": [
+      "safetensors",
+      "qwen2",
+      "coconut",
+      "latent-reasoning",
+      "qwen2.5",
+      "qwen2.5-7b",
+      "flawed-fictions",
+      "base_model:Qwen/Qwen2.5-7B-Instruct",
+      "base_model:finetune:Qwen/Qwen2.5-7B-Instruct",
+      "license:apache-2.0",
+      "region:us"
+    ],
+    "createdAt": "2026-02-23T19:28:45.000Z",
+    "modelId": "agurung/qwen-coconut-ff-v2"
+  },
+  {
+    "_id": "685bc27f563e125f90cb4a59",
+    "id": "coconut00/mistral-small-3.2-lora-250625",
+    "likes": 0,
+    "private": false,
+    "downloads": 12,
+    "tags": [
+      "peft",
+      "safetensors",
+      "arxiv:1910.09700",
+      "base_model:mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+      "base_model:adapter:mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+      "region:us"
+    ],
+    "library_name": "peft",
+    "createdAt": "2025-06-25T09:33:51.000Z",
+    "modelId": "coconut00/mistral-small-3.2-lora-250625"
+  },
+  {
+    "_id": "69bc41bf29dccc3f68f3bd4c",
+    "id": "agurung/coconut-qwen3-4b-ff",
+    "likes": 0,
+    "private": false,
+    "downloads": 12,
+    "tags": [
+      "safetensors",
+      "qwen3",
+      "region:us"
+    ],
+    "createdAt": "2026-03-19T18:34:39.000Z",
+    "modelId": "agurung/coconut-qwen3-4b-ff"
+  },
+  {
+    "_id": "6a72b278a5d1718b0e6611d3",
+    "id": "cds-jb/spillover-coconut_water",
+    "likes": 0,
+    "private": false,
+    "downloads": 12,
+    "tags": [
+      "peft",
+      "safetensors",
+      "lora",
+      "model-organism",
+      "interpretability",
+      "spillover",
+      "sdf",
+      "base_model:Qwen/Qwen3-14B",
+      "base_model:adapter:Qwen/Qwen3-14B",
+      "license:apache-2.0",
+      "region:us"
+    ],
+    "library_name": "peft",
+    "createdAt": "2026-08-05T03:48:08.000Z",
+    "modelId": "cds-jb/spillover-coconut_water"
+  },
+  {
+    "_id": "677009c89bdcd6d932a054da",
+    "id": "KlaraLabs/coconut-qwen-stages_stage_5",
+    "likes": 0,
+    "private": false,
+    "downloads": 11,
+    "tags": [
+      "peft",
+      "safetensors",
+      "arxiv:1910.09700",
+      "base_model:Qwen/Qwen2.5-0.5B-Instruct",
+      "base_model:adapter:Qwen/Qwen2.5-0.5B-Instruct",
+      "region:us"
+    ],
+    "library_name": "peft",
+    "createdAt": "2024-12-28T14:23:04.000Z",
+    "modelId": "KlaraLabs/coconut-qwen-stages_stage_5"
+  },
+  {
+    "_id": "6770095eb4d82123513c925a",
+    "id": "KlaraLabs/coconut-qwen-stages_stage_2",
+    "likes": 0,
+    "private": false,
+    "downloads": 9,
+    "tags": [
+      "peft",
+      "safetensors",
+      "arxiv:1910.09700",
+      "base_model:Qwen/Qwen2.5-0.5B-Instruct",
+      "base_model:adapter:Qwen/Qwen2.5-0.5B-Instruct",
+      "region:us"
+    ],
+    "library_name": "peft",
+    "createdAt": "2024-12-28T14:21:18.000Z",
+    "modelId": "KlaraLabs/coconut-qwen-stages_stage_2"
+  },
+  {
+    "_id": "67700a339c58914c882006c7",
+    "id": "KlaraLabs/coconut-qwen-stages_stage_7",
+    "likes": 0,
+    "private": false,
+    "downloads": 9,
+    "tags": [
+      "peft",
+      "safetensors",
+      "arxiv:1910.09700",
+      "base_model:Qwen/Qwen2.5-0.5B-Instruct",
+      "base_model:adapter:Qwen/Qwen2.5-0.5B-Instruct",
+      "region:us"
+    ],
+    "library_name": "peft",
+    "createdAt": "2024-12-28T14:24:51.000Z",
+    "modelId": "KlaraLabs/coconut-qwen-stages_stage_7"
+  },
+  {
+    "_id": "6a00a7011edb08a88dad1473",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-final-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 9,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-10T15:40:49.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-final-v1"
+  },
+  {
+    "_id": "677009929c58914c881fd8e7",
+    "id": "KlaraLabs/coconut-qwen-stages_stage_3",
+    "likes": 0,
+    "private": false,
+    "downloads": 8,
+    "tags": [
+      "peft",
+      "safetensors",
+      "arxiv:1910.09700",
+      "base_model:Qwen/Qwen2.5-0.5B-Instruct",
+      "base_model:adapter:Qwen/Qwen2.5-0.5B-Instruct",
+      "region:us"
+    ],
+    "library_name": "peft",
+    "createdAt": "2024-12-28T14:22:10.000Z",
+    "modelId": "KlaraLabs/coconut-qwen-stages_stage_3"
+  },
+  {
+    "_id": "68e4f1d4c0caf02ee98eb927",
+    "id": "Yodhasu04/coconutstg2adapt",
+    "likes": 0,
+    "private": false,
+    "downloads": 8,
+    "tags": [
+      "peft",
+      "safetensors",
+      "base_model:adapter:Yodhasu04/Coconut_test_stg1",
+      "lora",
+      "sft",
+      "transformers",
+      "trl",
+      "text-generation",
+      "conversational",
+      "arxiv:1910.09700",
+      "base_model:Yodhasu04/Coconut_test_stg1",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "peft",
+    "createdAt": "2025-10-07T10:56:20.000Z",
+    "modelId": "Yodhasu04/coconutstg2adapt"
+  },
+  {
+    "_id": "68ecb3a13c7869302d975715",
+    "id": "Yodhasu04/coconutstg3adapt",
+    "likes": 0,
+    "private": false,
+    "downloads": 8,
+    "tags": [
+      "peft",
+      "safetensors",
+      "base_model:adapter:Yodhasu04/coconutstg2model",
+      "lora",
+      "transformers",
+      "text-generation",
+      "conversational",
+      "arxiv:1910.09700",
+      "base_model:Yodhasu04/coconutstg2model",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "peft",
+    "createdAt": "2025-10-13T08:09:05.000Z",
+    "modelId": "Yodhasu04/coconutstg3adapt"
+  },
+  {
+    "_id": "699eb4dd44520c293ac579d8",
+    "id": "CoconutEmb/Coconut-Qwen2.5-1.5B-Instruct-TongSearch_16-retrvonly-last",
+    "likes": 0,
+    "private": false,
+    "downloads": 8,
+    "tags": [
+      "safetensors",
+      "Qwen2CoconutEmb",
+      "region:us"
+    ],
+    "createdAt": "2026-02-25T08:37:49.000Z",
+    "modelId": "CoconutEmb/Coconut-Qwen2.5-1.5B-Instruct-TongSearch_16-retrvonly-last"
+  },
+  {
+    "_id": "6a17088999bcad651f1e5464",
+    "id": "ingeol/t0527_vidr1_zebra_mmlatent_coconut_bce_last-final",
+    "likes": 0,
+    "private": false,
+    "downloads": 8,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-27T15:06:49.000Z",
+    "modelId": "ingeol/t0527_vidr1_zebra_mmlatent_coconut_bce_last-final"
+  },
+  {
+    "_id": "66728fcecbf550c42a0fc15c",
+    "id": "manhattan23/output_train_colormap_coconut",
+    "likes": 0,
+    "private": false,
+    "downloads": 7,
+    "tags": [
+      "diffusers",
+      "safetensors",
+      "stable-diffusion",
+      "stable-diffusion-diffusers",
+      "text-to-image",
+      "controlnet",
+      "diffusers-training",
+      "base_model:stabilityai/stable-diffusion-2-1-base",
+      "base_model:adapter:stabilityai/stable-diffusion-2-1-base",
+      "license:creativeml-openrail-m",
+      "region:us"
+    ],
+    "pipeline_tag": "text-to-image",
+    "library_name": "diffusers",
+    "createdAt": "2024-06-19T07:59:10.000Z",
+    "modelId": "manhattan23/output_train_colormap_coconut"
+  },
+  {
+    "_id": "6770091a4e3011eeec1c7ea1",
+    "id": "KlaraLabs/coconut-qwen-stages_stage_0",
+    "likes": 0,
+    "private": false,
+    "downloads": 7,
+    "tags": [
+      "peft",
+      "safetensors",
+      "arxiv:1910.09700",
+      "base_model:Qwen/Qwen2.5-0.5B-Instruct",
+      "base_model:adapter:Qwen/Qwen2.5-0.5B-Instruct",
+      "region:us"
+    ],
+    "library_name": "peft",
+    "createdAt": "2024-12-28T14:20:10.000Z",
+    "modelId": "KlaraLabs/coconut-qwen-stages_stage_0"
+  },
+  {
+    "_id": "69bc41bf836daa3c3bae7d10",
+    "id": "agurung/coconut-gemma-3-4b-ff",
+    "likes": 0,
+    "private": false,
+    "downloads": 7,
+    "tags": [
+      "safetensors",
+      "gemma3",
+      "region:us"
+    ],
+    "createdAt": "2026-03-19T18:34:39.000Z",
+    "modelId": "agurung/coconut-gemma-3-4b-ff"
+  },
+  {
+    "_id": "6a0b2f17a4813b36213e70c2",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only_bce_ft-final-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 7,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-18T15:24:07.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only_bce_ft-final-v1"
+  },
+  {
+    "_id": "64dd98971a145091529475bd",
+    "id": "coconutzhang/llama-2-7b-miniguanaco",
+    "likes": 0,
+    "private": false,
+    "downloads": 6,
+    "tags": [
+      "transformers",
+      "pytorch",
+      "llama",
+      "text-generation",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "transformers",
+    "createdAt": "2023-08-17T03:48:39.000Z",
+    "modelId": "coconutzhang/llama-2-7b-miniguanaco"
+  },
+  {
+    "_id": "68e4f3b4d5e8a6ad7db5b136",
+    "id": "Yodhasu04/coconutstg2model",
+    "likes": 0,
+    "private": false,
+    "downloads": 6,
+    "tags": [
+      "safetensors",
+      "qwen3",
+      "region:us"
+    ],
+    "createdAt": "2025-10-07T11:04:20.000Z",
+    "modelId": "Yodhasu04/coconutstg2model"
+  },
+  {
+    "_id": "69c77243b9482b7254afa1b7",
+    "id": "coconutyang/prime_dereal",
+    "likes": 0,
+    "private": false,
+    "downloads": 6,
+    "tags": [
+      "safetensors",
+      "qwen2",
+      "license:mit",
+      "region:us"
+    ],
+    "createdAt": "2026-03-28T06:16:35.000Z",
+    "modelId": "coconutyang/prime_dereal"
+  },
+  {
+    "_id": "6a00a65e70626a27f111f9d2",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-step-3000",
+    "likes": 0,
+    "private": false,
+    "downloads": 6,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-10T15:38:06.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-step-3000"
+  },
+  {
+    "_id": "6a00bbbb5f1f045d69fecf37",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only-final",
+    "likes": 0,
+    "private": false,
+    "downloads": 6,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-10T17:09:15.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only-final"
+  },
+  {
+    "_id": "6a0b3dcfd269ab1675ee471d",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first_bce_ft-step-3000-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 6,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-18T16:26:55.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first_bce_ft-step-3000-v1"
+  },
+  {
+    "_id": "6a0b3e2ce3b37f7f3185ac63",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first_bce_ft-final-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 6,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-18T16:28:28.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first_bce_ft-final-v1"
+  },
+  {
+    "_id": "6a0df5bcfcd1b1e6fa6928bb",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first-step-12000",
+    "likes": 0,
+    "private": false,
+    "downloads": 6,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-20T17:56:12.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first-step-12000"
+  },
+  {
+    "_id": "6a0f50affb32acb331a2f48c",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last_bce_ft-step-3000-v2",
+    "likes": 0,
+    "private": false,
+    "downloads": 6,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-21T18:36:31.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last_bce_ft-step-3000-v2"
+  },
+  {
+    "_id": "6a0f51061e069b8184fb9343",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last_bce_ft-final",
+    "likes": 0,
+    "private": false,
+    "downloads": 6,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-21T18:37:58.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last_bce_ft-final"
+  },
+  {
+    "_id": "6a166a6266863e7bff72a578",
+    "id": "ingeol/test_vidr1_zebra_mmlatent_coconut_bce_last-final",
+    "likes": 0,
+    "private": false,
+    "downloads": 6,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-27T03:52:02.000Z",
+    "modelId": "ingeol/test_vidr1_zebra_mmlatent_coconut_bce_last-final"
+  },
+  {
+    "_id": "6a17083288d773a498db3263",
+    "id": "ingeol/t0527_vidr1_zebra_mmlatent_coconut_bce_last-step-10350",
+    "likes": 0,
+    "private": false,
+    "downloads": 6,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-27T15:05:22.000Z",
+    "modelId": "ingeol/t0527_vidr1_zebra_mmlatent_coconut_bce_last-step-10350"
+  },
+  {
+    "_id": "64d6137d1a81ece17d809db9",
+    "id": "merit/Model_Coconut",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "transformers",
+      "pytorch",
+      "t5",
+      "text2text-generation",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "library_name": "transformers",
+    "createdAt": "2023-08-11T10:54:53.000Z",
+    "modelId": "merit/Model_Coconut"
+  },
+  {
+    "_id": "677009fffa494e4686504505",
+    "id": "KlaraLabs/coconut-qwen-stages_stage_6",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "peft",
+      "safetensors",
+      "arxiv:1910.09700",
+      "base_model:Qwen/Qwen2.5-0.5B-Instruct",
+      "base_model:adapter:Qwen/Qwen2.5-0.5B-Instruct",
+      "region:us"
+    ],
+    "library_name": "peft",
+    "createdAt": "2024-12-28T14:23:59.000Z",
+    "modelId": "KlaraLabs/coconut-qwen-stages_stage_6"
+  },
+  {
+    "_id": "67bc4d3c901bc06e89eb7008",
+    "id": "RedMaverick84/airtok-coconuts",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "diffusers",
+      "flux",
+      "lora",
+      "replicate",
+      "text-to-image",
+      "en",
+      "base_model:black-forest-labs/FLUX.1-dev",
+      "base_model:adapter:black-forest-labs/FLUX.1-dev",
+      "license:other",
+      "region:us"
+    ],
+    "pipeline_tag": "text-to-image",
+    "library_name": "diffusers",
+    "createdAt": "2025-02-24T10:43:08.000Z",
+    "modelId": "RedMaverick84/airtok-coconuts"
+  },
+  {
+    "_id": "68ecb5d01a2e12abdef8e9b4",
+    "id": "Yodhasu04/coconutstg3model",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "safetensors",
+      "qwen3",
+      "region:us"
+    ],
+    "createdAt": "2025-10-13T08:18:24.000Z",
+    "modelId": "Yodhasu04/coconutstg3model"
+  },
+  {
+    "_id": "6a0079385f1f045d69f5dd15",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first-step-3000",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-10T12:25:28.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first-step-3000"
+  },
+  {
+    "_id": "6a00e8ad2c7617c8bb4968e1",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_th_last-step-3000",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-10T20:21:01.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_th_last-step-3000"
+  },
+  {
+    "_id": "6a062eee2c26bee397d2cbfe",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last_ep1_bce_ft-final-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-14T20:22:06.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last_ep1_bce_ft-final-v1"
+  },
+  {
+    "_id": "6a0db4e5516d80b20fe2daee",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first-step-6000",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-20T13:19:33.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first-step-6000"
+  },
+  {
+    "_id": "6a0e7865acaaf8c0577e953d",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-final",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-21T03:13:41.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-final"
+  },
+  {
+    "_id": "6a0eeb06b3ff0e5ef65b5e84",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only-step-12000",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-21T11:22:46.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only-step-12000"
+  },
+  {
+    "_id": "6a0f114af49ac78321b5c35d",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first_bce_ft-step-3000-v2",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-21T14:06:02.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first_bce_ft-step-3000-v2"
+  },
+  {
+    "_id": "6a0f11a5093512f038ebbac2",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first_bce_ft-final",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-21T14:07:33.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first_bce_ft-final"
+  },
+  {
+    "_id": "6a0f2705648a74f8283cd4c5",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only_bce_ft-final",
+    "likes": 0,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-21T15:38:45.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only_bce_ft-final"
+  },
+  {
+    "_id": "64ff7799af1e402143600092",
+    "id": "coconutzhang/llama-2-7b-ghcv1",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "transformers",
+      "pytorch",
+      "llama",
+      "text-generation",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "transformers",
+    "createdAt": "2023-09-11T20:24:57.000Z",
+    "modelId": "coconutzhang/llama-2-7b-ghcv1"
+  },
+  {
+    "_id": "64ffe9efcc88b84c06ac956e",
+    "id": "coconutzhang/llama-2-7b-ghcv1-test",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "transformers",
+      "pytorch",
+      "llama",
+      "text-generation",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "transformers",
+    "createdAt": "2023-09-12T04:32:47.000Z",
+    "modelId": "coconutzhang/llama-2-7b-ghcv1-test"
+  },
+  {
+    "_id": "67702f0235722632fc31342a",
+    "id": "KlaraLabs/coconut-qwen-progressive_7",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "peft",
+      "safetensors",
+      "arxiv:1910.09700",
+      "base_model:Qwen/Qwen2.5-0.5B-Instruct",
+      "base_model:adapter:Qwen/Qwen2.5-0.5B-Instruct",
+      "region:us"
+    ],
+    "library_name": "peft",
+    "createdAt": "2024-12-28T17:01:54.000Z",
+    "modelId": "KlaraLabs/coconut-qwen-progressive_7"
+  },
+  {
+    "_id": "699c7b02de9c19892731a351",
+    "id": "CoconutEmb/Coconut-Qwen2.5-1.5B-Instruct-TongSearch_16-qaonly-retrvonly",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "Qwen2CoconutEmb",
+      "region:us"
+    ],
+    "createdAt": "2026-02-23T16:06:26.000Z",
+    "modelId": "CoconutEmb/Coconut-Qwen2.5-1.5B-Instruct-TongSearch_16-qaonly-retrvonly"
+  },
+  {
+    "_id": "699eb0008da616309e364047",
+    "id": "CoconutEmb/Coconut-Qwen2.5-1.5B-Instruct-retrvonly",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "Qwen2CoconutEmb",
+      "region:us"
+    ],
+    "createdAt": "2026-02-25T08:17:04.000Z",
+    "modelId": "CoconutEmb/Coconut-Qwen2.5-1.5B-Instruct-retrvonly"
+  },
+  {
+    "_id": "69a02f1cde7f4a5597c92802",
+    "id": "CoconutEmb/Coconut-Qwen2.5-3B-Instruct-TongSearch_8",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "Qwen2CoconutEmb",
+      "region:us"
+    ],
+    "createdAt": "2026-02-26T11:31:40.000Z",
+    "modelId": "CoconutEmb/Coconut-Qwen2.5-3B-Instruct-TongSearch_8"
+  },
+  {
+    "_id": "6a00d27b6e23a9bf2e0d5c05",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_th_first-final",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-10T18:46:19.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_th_first-final"
+  },
+  {
+    "_id": "6a00e95ce47463df1c046c60",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_th_last-final",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-10T20:23:56.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_th_last-final"
+  },
+  {
+    "_id": "6a00fe23f81adb817e54f279",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_th_only-final",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-10T21:52:35.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_th_only-final"
+  },
+  {
+    "_id": "6a029496379e95f4e0f6edad",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-step-10350-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-12T02:46:46.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-step-10350-v1"
+  },
+  {
+    "_id": "6a064c8c83b099c94f973fce",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last_bce_ft-final-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-14T22:28:28.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last_bce_ft-final-v1"
+  },
+  {
+    "_id": "6a06e30316cf9b1439481bb4",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only-step-6000-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-15T09:10:27.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only-step-6000-v1"
+  },
+  {
+    "_id": "6a0eb2c6755e8e57062c224f",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only-step-6000",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-21T07:22:46.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only-step-6000"
+  },
+  {
+    "_id": "6a0f26a93320458656c4650f",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only_bce_ft-step-3000-v2",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-21T15:37:13.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only_bce_ft-step-3000-v2"
+  },
+  {
+    "_id": "6a166a0f3b305a1a2fa68c19",
+    "id": "ingeol/test_vidr1_zebra_mmlatent_coconut_bce_last-step-1000",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-27T03:50:39.000Z",
+    "modelId": "ingeol/test_vidr1_zebra_mmlatent_coconut_bce_last-step-1000"
+  },
+  {
+    "_id": "6a4fc227a4b75e64f64d2049",
+    "id": "thomas-ferraz/Coconut-u0.3-Llama3.2-1B-GSM8kAug",
+    "likes": 0,
+    "private": false,
+    "downloads": 4,
+    "tags": [
+      "safetensors",
+      "llama",
+      "region:us"
+    ],
+    "createdAt": "2026-07-09T15:45:43.000Z",
+    "modelId": "thomas-ferraz/Coconut-u0.3-Llama3.2-1B-GSM8kAug"
+  },
+  {
+    "_id": "66533776b47c060e53ae43fe",
+    "id": "CocoNutZENG/Epipaca",
+    "likes": 1,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "peft",
+      "safetensors",
+      "trl",
+      "sft",
+      "generated_from_trainer",
+      "base_model:hfl/llama-3-chinese-8b-instruct",
+      "base_model:adapter:hfl/llama-3-chinese-8b-instruct",
+      "license:apache-2.0",
+      "region:us"
+    ],
+    "library_name": "peft",
+    "createdAt": "2024-05-26T13:21:58.000Z",
+    "modelId": "CocoNutZENG/Epipaca"
+  },
+  {
+    "_id": "69c06497f46b7dff73567704",
+    "id": "LauraGG/llama3.1-8b-coconut-cot-73pct",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "llama",
+      "region:us"
+    ],
+    "createdAt": "2026-03-22T21:52:23.000Z",
+    "modelId": "LauraGG/llama3.1-8b-coconut-cot-73pct"
+  },
+  {
+    "_id": "6a00bb11e0f3c86e2e6a3522",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only-step-3000",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-10T17:06:25.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only-step-3000"
+  },
+  {
+    "_id": "6a00d1c99d8f8736831cefd4",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_th_first-step-3000",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-10T18:43:21.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_th_first-step-3000"
+  },
+  {
+    "_id": "6a00fd6cd7f6f107c1ca1b9f",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_th_only-step-3000",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-10T21:49:32.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_th_only-step-3000"
+  },
+  {
+    "_id": "6a025eb37e546aa734617db8",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-step-6000-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-11T22:56:51.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-step-6000-v1"
+  },
+  {
+    "_id": "6a064c440ea571df77a78ee7",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last_bce_ft-step-3000-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-14T22:27:16.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last_bce_ft-step-3000-v1"
+  },
+  {
+    "_id": "6a067f6583b099c94f9f409c",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first-step-6000-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-15T02:05:25.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first-step-6000-v1"
+  },
+  {
+    "_id": "6a06a8c88af659353a395e28",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first-step-12000-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-15T05:02:00.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_first-step-12000-v1"
+  },
+  {
+    "_id": "6a070820af319fc9b516a46a",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only-step-12000-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-15T11:48:48.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only-step-12000-v1"
+  },
+  {
+    "_id": "6a0b2ebc8e6dad18a9ecd24c",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only_bce_ft-step-3000-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-18T15:22:36.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_only_bce_ft-step-3000-v1"
+  },
+  {
+    "_id": "6a0e48fae46ef21e104266bd",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-step-6000",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-20T23:51:22.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-step-6000"
+  },
+  {
+    "_id": "6a0e77f3f27e4e44e9a36ccc",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-step-10350",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-21T03:11:47.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last-step-10350"
+  },
+  {
+    "_id": "6a16d8078644bcac94a76e6b",
+    "id": "ingeol/t0527_vidr1_zebra_mmlatent_coconut_bce_last-step-6000",
+    "likes": 0,
+    "private": false,
+    "downloads": 3,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-27T11:39:51.000Z",
+    "modelId": "ingeol/t0527_vidr1_zebra_mmlatent_coconut_bce_last-step-6000"
+  },
+  {
+    "_id": "69397421df4305ddd27734a5",
+    "id": "coconut817/PPO-LunarLander-v2",
+    "likes": 0,
+    "private": false,
+    "downloads": 2,
+    "tags": [
+      "stable-baselines3",
+      "LunarLander-v2",
+      "deep-reinforcement-learning",
+      "reinforcement-learning",
+      "model-index",
+      "region:us"
+    ],
+    "pipeline_tag": "reinforcement-learning",
+    "library_name": "stable-baselines3",
+    "createdAt": "2025-12-10T13:22:41.000Z",
+    "modelId": "coconut817/PPO-LunarLander-v2"
+  },
+  {
+    "_id": "6a062e9a2d027edbf6a64f48",
+    "id": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last_ep1_bce_ft-step-3000-v1",
+    "likes": 0,
+    "private": false,
+    "downloads": 2,
+    "tags": [
+      "safetensors",
+      "qwen3_vl",
+      "region:us"
+    ],
+    "createdAt": "2026-05-14T20:20:42.000Z",
+    "modelId": "ingeol/vidr1_zebra_mmlatent_coconut_bce_last_ep1_bce_ft-step-3000-v1"
+  },
+  {
+    "_id": "6a495bb8b45fdd4da1639f15",
+    "id": "thomas-ferraz/Coconut-Llama3.2-1B-GSM8kAug",
+    "likes": 0,
+    "private": false,
+    "downloads": 2,
+    "tags": [
+      "safetensors",
+      "llama",
+      "region:us"
+    ],
+    "createdAt": "2026-07-04T19:15:04.000Z",
+    "modelId": "thomas-ferraz/Coconut-Llama3.2-1B-GSM8kAug"
+  },
+  {
+    "_id": "659b5fdd816bb94a4fc67c45",
+    "id": "GraydientPlatformAPI/coconut2",
+    "likes": 0,
+    "private": false,
+    "downloads": 1,
+    "tags": [
+      "diffusers",
+      "safetensors",
+      "license:openrail",
+      "endpoints_compatible",
+      "diffusers:StableDiffusionPipeline",
+      "region:us"
+    ],
+    "pipeline_tag": "text-to-image",
+    "library_name": "diffusers",
+    "createdAt": "2024-01-08T02:37:17.000Z",
+    "modelId": "GraydientPlatformAPI/coconut2"
+  }
+]
