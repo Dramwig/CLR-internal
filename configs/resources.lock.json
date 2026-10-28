@@ -1,0 +1,89 @@
+{
+  "codi_gpt2": {
+    "repo": "zen-E/CODI-gpt2",
+    "revision": "fd641b3d3edc59e4f534b55588e906588c9e36bb",
+    "files": [
+      ".gitattributes",
+      "README.md",
+      "pytorch_model.bin"
+    ]
+  },
+  "codi_llama1b": {
+    "repo": "zen-E/CODI-llama3.2-1b-Instruct",
+    "revision": "b2c88ba224b06b12b52ef39b87f794b98a6eb1c8",
+    "files": [
+      ".gitattributes",
+      "README.md",
+      "pytorch_model.bin"
+    ]
+  },
+  "huginn": {
+    "repo": "tomg-group-umd/huginn-0125",
+    "revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+    "files": [
+      ".gitattributes",
+      "README.md",
+      "asset1.gif",
+      "asset2.jpeg",
+      "config.json",
+      "generation_config.json",
+      "model-00001-of-00004.safetensors",
+      "model-00002-of-00004.safetensors",
+      "model-00003-of-00004.safetensors",
+      "model-00004-of-00004.safetensors",
+      "model.safetensors.index.json",
+      "raven_config_minimal.py",
+      "raven_modeling_minimal.py",
+      "special_tokens_map.json",
+      "tokenizer.json",
+      "tokenizer_config.json"
+    ]
+  },
+  "gpt2": {
+    "repo": "openai-community/gpt2",
+    "revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e",
+    "files": [
+      ".gitattributes",
+      "64-8bits.tflite",
+      "64-fp16.tflite",
+      "64.tflite",
+      "README.md",
+      "config.json",
+      "flax_model.msgpack",
+      "generation_config.json",
+      "merges.txt",
+      "model.safetensors",
+      "onnx/config.json",
+      "onnx/decoder_model.onnx",
+      "onnx/decoder_model_merged.onnx",
+      "onnx/decoder_with_past_model.onnx",
+      "onnx/generation_config.json",
+      "onnx/merges.txt",
+      "onnx/special_tokens_map.json",
+      "onnx/tokenizer.json",
+      "onnx/tokenizer_config.json",
+      "onnx/vocab.json",
+      "pytorch_model.bin",
+      "rust_model.ot",
+      "tf_model.h5",
+      "tokenizer.json",
+      "tokenizer_config.json",
+      "vocab.json"
+    ]
+  },
+  "codi_code": {
+    "path": "third_party/codi",
+    "commit": "2c2314662c63e9f482ebc46614ffe9af17a241e5",
+    "remote": "https://github.com/zhenyi4/codi.git"
+  },
+  "coconut_code": {
+    "path": "third_party/coconut",
+    "commit": "27273cb8cca4bb763c041a63b036d0c3b7cbbb48",
+    "remote": "https://github.com/facebookresearch/coconut.git"
+  },
+  "huginn_code": {
+    "path": "third_party/huginn",
+    "commit": "1ea7220ec7eb42d13e89db0663df254d0bcdc28e",
+    "remote": "https://github.com/seal-rg/recurrent-pretraining.git"
+  }
+}
