@@ -1,0 +1,34 @@
+data_path: data/gsm8k_test.json
+experiment: reproduction
+from_step: 0
+limit: null
+milestone: M0
+mode: full
+rollouts: 16
+seeds:
+- 11
+- 22
+- 33
+sigma:
+- 0
+- 0.01
+- 0.03
+- 0.1
+- 0.3
+smoke_run: null
+source:
+  base_path: /home/me/models/huggingface/models--openai-community--gpt2/snapshots/607a30d783dfa663caf39e06633721c8d4cfcd7e
+  checkpoint: /home/me/models/huggingface/models--zen-E--CODI-gpt2/snapshots/fd641b3d3edc59e4f534b55588e906588c9e36bb/pytorch_model.bin
+  code_path: third_party/codi
+  device: cuda:7
+  dtype: bfloat16
+  family: gpt2
+  layer: -1
+  max_new_tokens: 256
+  min_free_gib: 3
+  num_latent: 6
+  prj_dim: 768
+source_name: codi
+split: test
+split_path: data/splits/gsm8k_M0_v1.json
+task: gsm8k
