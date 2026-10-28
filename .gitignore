@@ -1,0 +1,15 @@
+.cache/
+__pycache__/
+.pytest_cache/
+outputs/
+runs/
+data/
+third_party/
+.env
+*.egg-info/
+build/
+dist/
+
+.venv/
+!data/splits/
+!data/splits/*.json

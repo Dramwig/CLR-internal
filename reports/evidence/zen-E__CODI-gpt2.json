@@ -1,0 +1,54 @@
+{
+  "_id": "68409a5bc4a2e2f4c3e836cc",
+  "id": "zen-E/CODI-gpt2",
+  "private": false,
+  "tags": [
+    "pytorch",
+    "en",
+    "dataset:zen-E/GSM8k-Aug",
+    "arxiv:2502.21074",
+    "base_model:openai-community/gpt2",
+    "base_model:finetune:openai-community/gpt2",
+    "license:mit",
+    "region:us"
+  ],
+  "downloads": 0,
+  "likes": 0,
+  "modelId": "zen-E/CODI-gpt2",
+  "author": "zen-E",
+  "sha": "fd641b3d3edc59e4f534b55588e906588c9e36bb",
+  "lastModified": "2025-06-04T19:17:36.000Z",
+  "gated": false,
+  "disabled": false,
+  "model-index": null,
+  "config": {},
+  "cardData": {
+    "license": "mit",
+    "datasets": [
+      "zen-E/GSM8k-Aug"
+    ],
+    "language": [
+      "en"
+    ],
+    "metrics": [
+      "accuracy"
+    ],
+    "base_model": [
+      "openai-community/gpt2"
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "pytorch_model.bin"
+    }
+  ],
+  "spaces": [],
+  "createdAt": "2025-06-04T19:11:23.000Z",
+  "usedStorage": 812743873
+}
