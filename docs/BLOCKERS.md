@@ -55,3 +55,26 @@ ChunkedEncodingError: ('Connection broken: IncompleteRead(6985878 bytes read, 60
 8. **M0状态**：仅CODI-GPT2子结果完成；M0整体未完成、未整体验收。M1前仍需处理以上阻塞；不能用未测源的N/A当作负准确率结果。
 
 已修复的启动问题：官方数据分隔符误读（修正前未生成划分）、datasets/torch导入顺序冲突、RTX的NCCL P2P/IB配置。失败记录保留，不覆盖。
+
+## 2026-10-28T11:37:47.054738+00:00 — 20261028T113746024609Z_6b6596ff9777_336d96
+ValueError: Unexpected training corpus format
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261028T113746024609Z_6b6596ff9777_336d96/traceback.txt`。未回退模型或设置。
+
+## 2026-10-28T11:49:09.632677+00:00 — 20261028T114858268738Z_327fccf26f2d_b9a29c
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cuda:3! (when checking argument for argument other in method wrapper_CUDA__equal)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261028T114858268738Z_327fccf26f2d_b9a29c/traceback.txt`。未回退模型或设置。
+
+## M0.1 v2（2026-10-28，待审查，非完成标记）
+
+- **生成协议一致率门槛未通过**：官方bf16 batch128参考复放1318/1319（99.924%）；batch=1、fp32生产候选为1257/1319（95.299%），准确率43.745%。两者不是同一个通过项。不能自行把用户要求的≥99%改成仅要求参考复放。已提交具体报告供用户选择是否保留此门槛或明确接受精度协议差异。完整噪声试验受此门槛阻止；M1不启动。
+- **batch不变性失败**：真实bf16 batch1/4/16存在不同答案。采用用户预先允许的batch1/fp32候选并记录差异，但该候选不是自动验收。最终完整batch对比见 `reports/M0.1_protocol.md`。
+- **残差定位**：官方batch128复放仅剩索引1306（官方7、CLR8）不同；逐参数相等、prefill相等，首次投影后输入差0.25。测试no_grad与inference_mode没有消除此差异，不能把这个假说写成结论。
+- **G-σ未完成**：300题面板已冻结，18设置×K16的1题smoke完成（183.706秒，1个seed），尚无300题×3seed全量曲线，无sigma推荐。当前吞吐线性外推约45.9 GPU wall小时；不能当作已发生成本或精确预算。
+- **去重假设**：全发布GSM8k-Aug（385620条）比实际经过长度/格式过滤的源训练数据更宽；任意13-gram重合即移除，可能把共享模板也排除。归一化精确匹配0；原val/cal/test分别移除3/4/7题。用户允许的原500池重分配已冻结val300/cal193/test1312，不使用test补充val。
+- **已修复格式失败**：首次去重假设训练JSON是记录列表，实际为等长question/cot/answer三列；失败run保留，修正后完成，未换数据。
+- **诊断入口失败**：残差追踪初版SyntaxError发生于Run创建之前，日志 `reports/evidence_v2/residual.log`，无完整成本信息。下一次官方TrainingArguments重置到cuda:0而CLR在cuda:3，参数比较报跨设备错误（自动run记录保留）；之后明确恢复配置device，实际追踪成功。未把失败结果当实验。
+- **M0b**：Huginn仍使用官方HF恢复下载（max_workers=4），网络read timeout由HF继续续传；只已完成文件通过官方LFS SHA后才可验收，真实权重加载/复现尚未完成。CODI-LLaMA1B等待用户HF授权，不寻找替代。Coconut暂停训练与使用；第三方检索仅报告，见 `reports/M0b_coconut_third_party.md`。
+
+## 2026-10-28T12:01:32.180691+00:00 — 20261028T120131639183Z_f055d9571168_dba8d7
+RuntimeError: Source protocol agreement gate has not passed; full noise study blocked
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261028T120131639183Z_f055d9571168_dba8d7/traceback.txt`。未回退模型或设置。

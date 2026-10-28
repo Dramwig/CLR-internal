@@ -1,0 +1,149 @@
+[
+  {
+    "run": "20261028T111806531496Z_c0fb096f3f3e_1f3fea",
+    "status": "running",
+    "wall_seconds": null,
+    "gpu_hours": null,
+    "source_forward_calls": null
+  },
+  {
+    "run": "20261028T112257909657Z_b586cfa12e6d_c28453",
+    "status": "completed",
+    "wall_seconds": 872.0729670668952,
+    "gpu_hours": 0,
+    "source_forward_calls": 0
+  },
+  {
+    "run": "20261028T112259065238Z_7f9b74475d64_3b30a2",
+    "status": "completed",
+    "wall_seconds": null,
+    "gpu_hours": 0,
+    "source_forward_calls": 0
+  },
+  {
+    "run": "20261028T112341606990Z_4b258d612bbb_cd4f89",
+    "status": "completed",
+    "wall_seconds": null,
+    "gpu_hours": 0,
+    "source_forward_calls": 0
+  },
+  {
+    "run": "20261028T112542150283Z_51404df459a8_c0e6f8",
+    "status": "completed",
+    "wall_seconds": 13.100306048989296,
+    "gpu_hours": 0.0036389739024970265,
+    "source_forward_calls": 152
+  },
+  {
+    "run": "20261028T112650372083Z_b9f4b7cf0dd0_49c0a0",
+    "status": "completed",
+    "wall_seconds": 885.0304233869538,
+    "gpu_hours": 0.24584178427415382,
+    "source_forward_calls": 23271
+  },
+  {
+    "run": "20261028T113219652835Z_298f2ae23802_c769e7",
+    "status": "completed",
+    "wall_seconds": 13.20636770897545,
+    "gpu_hours": 0.0036684354747154027,
+    "source_forward_calls": 152
+  },
+  {
+    "run": "20261028T113719033012Z_061ff5625b3f_43f735",
+    "status": "completed",
+    "wall_seconds": 703.859593759058,
+    "gpu_hours": 0.19551655382196056,
+    "source_forward_calls": 17469
+  },
+  {
+    "run": "20261028T113731644018Z_bd22f83542f1_787cd5",
+    "status": "completed",
+    "wall_seconds": 14.869045263854787,
+    "gpu_hours": 0.004130290351070774,
+    "source_forward_calls": 170
+  },
+  {
+    "run": "20261028T113746024609Z_6b6596ff9777_336d96",
+    "status": "failed",
+    "wall_seconds": null,
+    "gpu_hours": null,
+    "source_forward_calls": null
+  },
+  {
+    "run": "20261028T113854046823Z_6b6596ff9777_f8f563",
+    "status": "completed",
+    "wall_seconds": 41.88792916783132,
+    "gpu_hours": 0,
+    "source_forward_calls": 0
+  },
+  {
+    "run": "20261028T113859453994Z_51404df459a8_7ff062",
+    "status": "completed",
+    "wall_seconds": 12.130628401879221,
+    "gpu_hours": 0.003369619000522006,
+    "source_forward_calls": 152
+  },
+  {
+    "run": "20261028T113955263232Z_8b6dd51d9c3c_584510",
+    "status": "completed",
+    "wall_seconds": 269.06140531995334,
+    "gpu_hours": 0.07473927925554259,
+    "source_forward_calls": 5950
+  },
+  {
+    "run": "20261028T114343503174Z_51404df459a8_09c0d2",
+    "status": "completed",
+    "wall_seconds": 14.17373977904208,
+    "gpu_hours": 0.0039371499386228,
+    "source_forward_calls": 152
+  },
+  {
+    "run": "20261028T114344168937Z_d4e87644eae3_a5d51d",
+    "status": "completed",
+    "wall_seconds": 183.70608750893734,
+    "gpu_hours": 0.0510294687524826,
+    "source_forward_calls": 4640
+  },
+  {
+    "run": "20261028T114427198025Z_36f6e51a20c0_41a262",
+    "status": "completed",
+    "wall_seconds": 859.9036013928708,
+    "gpu_hours": 0.23886211149801967,
+    "source_forward_calls": 23435
+  },
+  {
+    "run": "20261028T114521673631Z_a2f920caf521_460a1f",
+    "status": "completed",
+    "wall_seconds": 25.42383575695567,
+    "gpu_hours": 0.007062176969743127,
+    "source_forward_calls": 432
+  },
+  {
+    "run": "20261028T114858268738Z_327fccf26f2d_b9a29c",
+    "status": "failed",
+    "wall_seconds": null,
+    "gpu_hours": null,
+    "source_forward_calls": null
+  },
+  {
+    "run": "20261028T115010959519Z_327fccf26f2d_73c340",
+    "status": "completed",
+    "wall_seconds": 11.863882325123996,
+    "gpu_hours": 0.0032955236669578074,
+    "source_forward_calls": 30
+  },
+  {
+    "run": "20261028T115142332539Z_327fccf26f2d_c98b52",
+    "status": "completed",
+    "wall_seconds": 12.013641350902617,
+    "gpu_hours": 0.003337126834731963,
+    "source_forward_calls": 30
+  },
+  {
+    "run": "20261028T115251348952Z_da3a5f18684d_62c6c5",
+    "status": "completed",
+    "wall_seconds": null,
+    "gpu_hours": 0,
+    "source_forward_calls": 0
+  }
+]

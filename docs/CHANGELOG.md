@@ -22,3 +22,10 @@
 - 64题固定val面板完成5个sigma × K16 × 3 seeds；报告负面准确率变化和batch数值差异。
 - 15项最小测试通过；Idea A仓库保持未修改。
 - M0整体仍有LLaMA授权、Coconut预算/显存、Huginn不完整权重等阻塞，不标记完成。
+
+## 2026-10-28 — M0.1 v2（审查中）
+- 新建CODI v2接口，显式记录左padding上下文、mask、position、张量布局及fp32/batch1候选；v1接口未修改。
+- 按题10k bootstrap替换确定性评测的重复seed CI；保留旧报告不追改。
+- 官方GSM8k-Aug归一化精确/13-gram去重，获准将原500验证池重划为清洁val300/cal193，test移除7题至1312；原v1划分不变。
+- 新增18设置K16噪声与采样对照程序、V直方图和非退化门槛，smoke通过；完整噪声与M1受生成协议一致率门槛阻止。
+- 新增M0b Huginn官方恢复/校验与原生harness入口，Coconut仅第三方元数据报告。

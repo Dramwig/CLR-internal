@@ -1,0 +1,25 @@
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/peft/tuners/lora/layer.py:1768: UserWarning: fan_in_fan_out is set to False but the target module is `Conv1D`. Setting fan_in_fan_out to True.
+  warnings.warn(
+Passing a tuple of `past_key_values` is deprecated and will be removed in Transformers v4.53.0. You should pass an instance of `Cache` instead, e.g. `past_key_values=DynamicCache.from_legacy_cache(past_key_values)`.
+batch 1 done 64 / 1319
+batch 1 done 128 / 1319
+batch 1 done 192 / 1319
+batch 1 done 256 / 1319
+batch 1 done 320 / 1319
+batch 1 done 384 / 1319
+batch 1 done 448 / 1319
+batch 1 done 512 / 1319
+batch 1 done 576 / 1319
+batch 1 done 640 / 1319
+batch 1 done 704 / 1319
+batch 1 done 768 / 1319
+batch 1 done 832 / 1319
+batch 1 done 896 / 1319
+batch 1 done 960 / 1319
+batch 1 done 1024 / 1319
+batch 1 done 1088 / 1319
+batch 1 done 1152 / 1319
+batch 1 done 1216 / 1319
+batch 1 done 1280 / 1319
+/home/me/PaperField/CalReader/runs/20261028T113719033012Z_061ff5625b3f_43f735 {'1': {'accuracy': {'mean': 0.43745261561789234, 'ci95': [0.41091736163760423, 0.46398786959818045], 'n_questions': 1319, 'bootstrap_resamples': 10000, 'bootstrap_rng_seed': 20261028}, 'agreement_first_batch': {'mean': 1.0, 'ci95': [1.0, 1.0], 'n_questions': 1319, 'bootstrap_resamples': 10000, 'bootstrap_rng_seed': 20261028}, 'agreement_official': {'mean': 0.9529946929492039, 'ci95': [0.9416224412433661, 0.9643669446550417], 'n_questions': 1319, 'bootstrap_resamples': 10000, 'bootstrap_rng_seed': 20261028}}}

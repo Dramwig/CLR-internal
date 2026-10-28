@@ -31,6 +31,8 @@ def main(c):
     ma=mod.ModelArguments(model_name_or_path=conf['base_path'],train=False,lora_init=True,lora_r=128,lora_alpha=32,ckpt_dir=str(Path(conf['checkpoint']).parent))
     da=mod.DataArguments(data_name='gsm8k',batch_size=128);mod.data_args=da
     ta=mod.TrainingArguments(output_dir=str(run.path/'official'),bf16=True,seed=11,model_max_length=512,greedy=True,num_latent=6,use_prj=True,prj_dim=768,prj_no_ln=False,prj_dropout=0.,inf_latent_iterations=6,inf_num_iterations=1,remove_eos=True,use_lora=True,report_to=[])
+    # TrainingArguments initializes cuda:0; restore the configured device.
+    torch.cuda.set_device(conf['device'])
     with (run.path/'official.log').open('w') as f,contextlib.redirect_stdout(f):mod.evaluation(ma,da,ta)
     source=load(conf);source.model.codi.register_forward_hook(hook('clr'),with_kwargs=True)
     weight_diffs=[]
@@ -41,7 +43,7 @@ def main(c):
     outputs=source.run_batch([{**r,'pad_to':width} for r in rows],capture_latents=False)
     write_json(run.path/'predictions.json',[{'id':r['id'],'answer':o['answer']} for r,o in zip(rows,outputs)])
     comparisons=[]
-    for i,(a,b) in enumerate(zip(traces['official'],traces['clr']))):
+    for i,(a,b) in enumerate(zip(traces['official'],traces['clr'])):
         comparisons.append({'call':i,'shapes':[a['shape'],b['shape']],'strides':[a['strides'],b['strides']],
           'input_max_abs':(a['input'].float()-b['input'].float()).abs().max().item(),
           'mask_equal':(a['mask'] is None and b['mask'] is None) or (a['mask'] is not None and b['mask'] is not None and torch.equal(a['mask'],b['mask'])),

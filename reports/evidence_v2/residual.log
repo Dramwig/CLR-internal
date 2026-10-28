@@ -1,0 +1,4 @@
+  File "/home/me/PaperField/CalReader/scripts/m01_residual.py", line 44
+    for i,(a,b) in enumerate(zip(traces['official'],traces['clr']))):
+                                                                   ^
+SyntaxError: unmatched ')'

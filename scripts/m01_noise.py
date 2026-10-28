@@ -9,6 +9,7 @@ from clr.data.noise_stats_v2 import summarize,recommend
 from clr.utils.config import load_config
 from clr.utils.idea_a import seed_everything,write_json
 from clr.utils.records import recorded
+from clr.utils.stats import mean_ci
 
 def seed_for(seed,pid,k):
     return int.from_bytes(hashlib.sha256(f'{seed}:{pid}:{k}'.encode()).digest()[:8],'big')%(2**63-1)
@@ -61,9 +62,14 @@ def main(c):
         # Mean of per-seed nondegeneracy (do not pool K across seeds).
         baseline=sum(r['metrics']['accuracy']['mean'] for r in results if r['setting']=={'sigma':0,'from_step':0,'temperature':0})/len(c['seeds'])
         candidates=[]
+        seed_summary=[]
         for setting in settings:
             subset=[r for r in results if r['setting']==setting]
             candidates.append({**setting,'accuracy_drop':baseline-sum(r['metrics']['accuracy']['mean'] for r in subset)/len(subset),'nondegenerate':sum(r['metrics']['nondegenerate']['mean'] for r in subset)/len(subset)})
+            if len(subset)>=3:
+                seed_summary.append({'setting':setting,'statistics':'mean and 95% Student-t CI across stochastic seed means; question bootstrap is separately in summary.json',
+                  'metrics':{key:mean_ci([r['metrics'][key]['mean'] for r in subset]) for key in ['accuracy','nondegenerate','invalid_rate','distinct_answers','distinct_answers_including_invalid']}})
+        write_json(run.path/'seed_summary.json',seed_summary)
         recommendation=recommend(candidates) if c['mode']=='full' else {'selected':None,'reason':'Smoke is not eligible for sigma selection'}
         write_json(run.path/'recommendation.json',recommendation)
         run.write_metrics(status='completed',protocol_sha256=p_hash,questions=len(rows),K=c['K'],seeds=c['seeds'],recommendation=recommendation)

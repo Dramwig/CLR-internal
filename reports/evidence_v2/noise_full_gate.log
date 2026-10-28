@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m01_noise.py", line 81, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m01_noise.py", line 32, in main
+    if not protocol['official_alignment_passed']:raise RuntimeError('Source protocol agreement gate has not passed; full noise study blocked')
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Source protocol agreement gate has not passed; full noise study blocked

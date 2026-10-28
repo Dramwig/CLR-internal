@@ -1,0 +1,62 @@
+{
+  "_id": "67f5000f69de7f2b61bd2596",
+  "id": "zen-E/GSM8k-Aug",
+  "author": "zen-E",
+  "sha": "c4972fba71a612e2089d8fb10f78caa01c740083",
+  "lastModified": "2025-04-16T13:06:57.000Z",
+  "private": false,
+  "gated": false,
+  "disabled": false,
+  "tags": [
+    "task_categories:question-answering",
+    "language:en",
+    "license:apache-2.0",
+    "size_categories:100K<n<1M",
+    "format:json",
+    "modality:text",
+    "library:datasets",
+    "library:pandas",
+    "library:mlcroissant",
+    "library:polars",
+    "arxiv:2405.14838",
+    "arxiv:2502.21074",
+    "region:us",
+    "math",
+    "synthetic"
+  ],
+  "description": "This dataset is provided to facilitate access to GSM8k-Aug, originally from https://github.com/da03/Internalize_CoT_Step_by_Step and https://arxiv.org/pdf/2405.14838.\nThis dataset is used to train CODI (https://arxiv.org/abs/2502.21074)\nDescription: \nWe utilize two datasets to train our models--GSM8k-Aug and GSM8k-Aug-NL. (1) We use the GSM8k-Aug dataset, which has proven effective for training implicit CoT methods. This dataset extends the original GSM8k training set to 385k samples by\u2026 See the full description on the dataset page: https://huggingface.co/datasets/zen-E/GSM8k-Aug.",
+  "downloads": 2514,
+  "likes": 5,
+  "cardData": {
+    "license": "apache-2.0",
+    "task_categories": [
+      "question-answering"
+    ],
+    "language": [
+      "en"
+    ],
+    "tags": [
+      "math",
+      "synthetic"
+    ],
+    "size_categories": [
+      "100K<n<1M"
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "gsm8k_aug_train.json"
+    },
+    {
+      "rfilename": "gsm8k_test.json"
+    }
+  ],
+  "createdAt": "2025-04-08T10:53:03.000Z",
+  "usedStorage": 547350374
+}

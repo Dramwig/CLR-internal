@@ -28,6 +28,7 @@ def main(c):
         else:
             proof=json.loads(Path(c['smoke_run'],'metrics.json').read_text())
             if proof['status']!='completed':raise RuntimeError('Successful smoke required')
+            if proof.get('protocol_sha256')!=hashlib.sha256(Path(c['protocol']).read_bytes()).hexdigest():raise RuntimeError('Smoke protocol differs from full protocol')
             rows=all_rows
         write_json(run.path/'contexts.json',[{k:r[k] for k in ['id','pad_to','cohort']} for r in all_rows])
         write_json(run.path/'protocol.json',protocol)

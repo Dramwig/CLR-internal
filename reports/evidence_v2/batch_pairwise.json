@@ -1,0 +1,44 @@
+[
+  {
+    "batch_sizes": [
+      1,
+      4
+    ],
+    "mean": 0.956027293404094,
+    "ci95": [
+      0.9446550416982562,
+      0.9666413949962093
+    ],
+    "n_questions": 1319,
+    "bootstrap_resamples": 10000,
+    "bootstrap_rng_seed": 20261028
+  },
+  {
+    "batch_sizes": [
+      1,
+      16
+    ],
+    "mean": 0.9598180439727066,
+    "ci95": [
+      0.9484457922668689,
+      0.9704321455648218
+    ],
+    "n_questions": 1319,
+    "bootstrap_resamples": 10000,
+    "bootstrap_rng_seed": 20261028
+  },
+  {
+    "batch_sizes": [
+      4,
+      16
+    ],
+    "mean": 0.9567854435178166,
+    "ci95": [
+      0.9454131918119788,
+      0.9673995451099318
+    ],
+    "n_questions": 1319,
+    "bootstrap_resamples": 10000,
+    "bootstrap_rng_seed": 20261028
+  }
+]

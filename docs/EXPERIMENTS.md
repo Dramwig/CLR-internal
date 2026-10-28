@@ -56,3 +56,31 @@ PYTHONPATH=. OMP_NUM_THREADS=2 .venv/bin/python scripts/m0_report.py configs/M0_
 下载、成本探针和失败记录的具体命令/config均保存于对应run。初次未进入Run的动态库失败及OOM成本计数缺口已在BLOCKERS披露。没有正在运行的训练/评估或下载任务。
 
 报告：[M0_env](../reports/M0_env.md)、[M0_repro](../reports/M0_repro.md)。已完成的CODI结果以SHA-256清单固定，后续协议更改应建v2；M0其余部分仍未完成。报告版本存档为 `reports/M0_repro_v1.md`。
+
+## M0.1 v2：协议修补、源训练去重与噪声smoke（2026-10-28，未完成/未验收）
+
+完整可追溯报告：`reports/M0.1_protocol.md`、`reports/M0.1_noise.md`。v1代码与结果保持冻结，所有候选运行另存。
+
+| 实验 | 结果 | 95% CI / 说明 |
+|---|---|---|
+| v1对官方逐题一致率 | 65.580%（454题不同） | 按题bootstrap10k：[63.002%,68.158%] |
+| v2 bf16官方batch128复放 | 99.924%（1题不同） | [99.773%,100%]；不等于fp32数据生成通过 |
+| fp32 batch1 test准确率 | 43.745% | [41.092%,46.399%] |
+| fp32 batch1对官方bf16一致率 | 95.299% | [94.162%,96.437%]，未达到99% |
+| 去重 | 精确0；13-gram旧val/cal/test=3/4/7 | 保守检查全385620条训练发布语料 |
+| v2划分 | val300 / cal193 / test1312 | 原500验证池经用户允许重划分；v1不变 |
+| 噪声smoke | n=1，K16，seed11，18设置，183.706秒 | 无全量结果、无推荐sigma |
+
+确定性指标不再重复三个推理seed制造零CI；使用题目bootstrap。三个随机seed仅用于完整噪声设计（11/22/33），当前完整试验未运行，不能填造“均值±CI”。具体命令与覆盖项见报告及各run/config.yaml。基本命令：
+
+```bash
+PYTHONPATH=. .venv/bin/python scripts/m01_dedup.py configs/M01_dedup.yaml
+PYTHONPATH=. HF_HUB_OFFLINE=1 .venv/bin/python scripts/m01_protocol_eval.py configs/M01_protocol_smoke.yaml
+PYTHONPATH=. HF_HUB_OFFLINE=1 .venv/bin/python scripts/m01_noise.py configs/M01_noise_smoke.yaml
+PYTHONPATH=. .venv/bin/python scripts/m01_report.py configs/M01_report.yaml
+PYTHONPATH=. .venv/bin/python -m pytest tests/test_m01.py -q
+```
+
+负面结果：padding修正并不足以对齐；bf16投影张量布局和物理batch会改变逐题答案；fp32固定batch并未自然满足原官方bf16≥99%的条件。报告保留所有失败候选，不根据准确率挑版本。保守去重可能排除仅共享模板的问题，完整语料检查不能证明实际训练参与情况。协议问题解决前不进入M1。
+
+M0b第三方Coconut仅元数据检索：`runs/20261028T112341606990Z_4b258d612bbb_cd4f89`，GPU=0、source forwards=0，精度为第三方声称，未复现。Huginn官方恢复下载/分片校验进度见 `reports/M0b_huginn.md`，未将下载进度记作复现完成。

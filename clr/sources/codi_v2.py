@@ -11,6 +11,13 @@ from .codi import CODISource
 from .common import RelativeNoise,question
 
 class CODISourceV2(CODISource):
+    """Return the six hidden vectors consumed by continuous inputs, pre-projection.
+
+    t=0 is BOT's final hidden state; t>0 is the preceding continuous pass's
+    hidden state. Perturbations affect feedback, and returned final-layer
+    vectors include the perturbation. Other layers are observations only.
+    Canonical pad_to must be supplied by a frozen context manifest for replay.
+    """
     def __init__(self,config):
         initial={**config,'dtype':'bfloat16'}
         super().__init__(initial)
