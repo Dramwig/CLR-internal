@@ -1,0 +1,6 @@
+milestone: M0.1
+stage: fetch_training_corpus
+seed: 11
+repo: zen-E/GSM8k-Aug
+revision: c4972fba71a612e2089d8fb10f78caa01c740083
+file: gsm8k_aug_train.json

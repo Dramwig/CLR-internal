@@ -1,0 +1,6 @@
+milestone: M0.1
+stage: v1_discrepancy_audit
+seed: 11
+data: data/gsm8k_test.json
+official_log: runs/20261028T094129023827Z_fbf746deb744_12ecd6/official_seed11.log
+clr_log: runs/20261028T092858690199Z_231d82430916_1c95a0/events.jsonl
