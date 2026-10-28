@@ -1,5 +1,5 @@
 data_path: data/gsm8k_val.json
-experiment: noise
+experiment: reproduction
 from_step: 0
 limit: 2
 milestone: M0
@@ -17,7 +17,7 @@ sigma:
 - 0.3
 smoke_run: null
 source:
-  checkpoint: /home/me/models/huggingface/models--tomg-group-umd--huginn-0125/snapshots/bb6621b65e90b6a4b9b29ef88dc83866d450470c
+  checkpoint: /home/me/models/Huginn-3.5B/bb6621b65e90b6a4b9b29ef88dc83866d450470c
   device: cuda:7
   dtype: bfloat16
   eos_token_ids:

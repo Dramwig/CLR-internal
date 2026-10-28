@@ -53,3 +53,23 @@ def test_codi_actual_feedback_and_lower_layer_observation(base):
     assert not torch.equal(a['latent_steps'][1],c['latent_steps'][1])
     source.config['layer']=1
     assert source.run('q')['answer']==a['answer']
+
+def test_huginn_recurrent_positions_noise_and_restore():
+    from reports.evidence.raven_config_minimal import RavenConfig
+    from reports.evidence.raven_modeling_minimal import RavenForCausalLM
+    from clr.sources.huginn import HuginnSource
+    cfg=RavenConfig(n_embd=16,n_heads=2,n_layers=3,block_size=64,vocab_size=24,padding_multiple=1,
+        intermediate_size=32,n_layers_in_recurrent_block=1,n_layers_in_prelude=1,n_layers_in_coda=1,
+        mean_recurrence=2,mean_backprop_depth=1)
+    source=HuginnSource.__new__(HuginnSource);source.model=RavenForCausalLM(cfg).eval()
+    source.tokenizer=Tokenizer();source.device=torch.device('cpu');source.forward_calls=0
+    source.config={'seed':11,'num_steps':2,'max_new_tokens':3,'eos_token_ids':[],'stop_strings':[]}
+    method=source.model.core_block_forward
+    a=source.run('q');b=source.run('q',{'from_step':0,'sigma':0.,'seed':11})
+    assert len(a['latent_steps'])==6
+    assert a['meta']['step_positions']==[[0,0],[0,1],[1,0],[1,1],[2,0],[2,1]]
+    assert max_latent_difference(a['latent_steps'],b['latent_steps'])==0 and a['answer']==b['answer']
+    c=source.run('q',{'from_step':1,'sigma':.3,'seed':11})
+    assert torch.equal(a['latent_steps'][0],c['latent_steps'][0])
+    assert not torch.equal(a['latent_steps'][1],c['latent_steps'][1])
+    assert source.model.core_block_forward==method
