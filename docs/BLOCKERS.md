@@ -78,3 +78,24 @@ RuntimeError: Expected all tensors to be on the same device, but found at least 
 ## 2026-10-28T12:01:32.180691+00:00 — 20261028T120131639183Z_f055d9571168_dba8d7
 RuntimeError: Source protocol agreement gate has not passed; full noise study blocked
 完整 traceback: `/home/me/PaperField/CalReader/runs/20261028T120131639183Z_f055d9571168_dba8d7/traceback.txt`。未回退模型或设置。
+
+## 2026-10-28T12:18:16.820375+00:00 — 20261028T121812416441Z_1b90f6844702_7ba16c
+RuntimeError: Insufficient free VRAM: 6.81 GiB, required 14
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261028T121812416441Z_1b90f6844702_7ba16c/traceback.txt`。未回退模型或设置。
+
+## 2026-10-28T12:24:03.082498+00:00 — 20261028T122358879576Z_1b90f6844702_d86203
+RuntimeError: Insufficient free VRAM: 7.34 GiB, required 14
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261028T122358879576Z_1b90f6844702_d86203/traceback.txt`。未回退模型或设置。
+
+## 2026-10-28T12:26:01.349832+00:00 — 20261028T122556758574Z_ea9f53c485ac_bb82a7
+NotImplementedError: Using RTX 4000 series doesn't support faster communication broadband via P2P or IB. Please set `NCCL_P2P_DISABLE="1"` and `NCCL_IB_DISABLE="1" or use `accelerate launch` which will do this automatically.
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261028T122556758574Z_ea9f53c485ac_bb82a7/traceback.txt`。未回退模型或设置。
+
+## 2026-10-28T12:41:47.989067+00:00 — 20261028T124143649075Z_6dd3a5e7057c_d4515c
+RuntimeError: Insufficient free VRAM: 6.55 GiB, required 18
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261028T124143649075Z_6dd3a5e7057c_d4515c/traceback.txt`。未回退模型或设置。
+
+## 2026-10-28 — 用户审查解除 CODI 完整噪声启动阻塞
+用户明确答复：“接受 bf16 复放验收，继续 fp32 完整噪声实验”。据此只解除完整噪声的启动门槛，保持真实fp32官方一致率95.299%的记录；不把原指标改写为通过≥99%，不视为G-σ或M1获准。固定val300、3seed、K16和全部18设置不变。授权写入 `configs/protocol_codi_v2.yaml` 的review字段；因协议文件hash更新，先重跑同设置smoke再启动完整实验。
+
+Huginn最新独立阻塞：官方下载已完成且4/4 LFS SHA通过，真实bf16/r32加载成功；重复输入smoke发生真实CUDA OOM，完整复现与噪声未启动。运行 `20261028T122800941040Z_0be72c22d642_1ce21f` 原始OOM traceback保留；自动记录又遇到默认编码ASCII的次生错误，不能只引用metrics中的编码异常掩盖OOM。详见 `reports/M0b_huginn.md` 与 `reports/M0b_huginn_blockers.json`。后续预检要求稳定18GiB，未降低模型、精度或递归深度。

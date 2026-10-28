@@ -1,0 +1,5 @@
+full_config: configs/M01_noise_full.yaml
+smoke_run: runs/20261028T131027495042Z_d4e87644eae3_1eef38
+report_config: configs/M01_noise_report.yaml
+log: reports/evidence_v2/noise_full_accepted.log
+status: reports/evidence_v2/noise_full_job.json

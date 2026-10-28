@@ -71,8 +71,9 @@ def main(c):
             subset=[r for r in results if r['setting']==setting]
             candidates.append({**setting,'accuracy_drop':baseline-sum(r['metrics']['accuracy']['mean'] for r in subset)/len(subset),'nondegenerate':sum(r['metrics']['nondegenerate']['mean'] for r in subset)/len(subset)})
             if len(subset)>=3:
-                seed_summary.append({'setting':setting,'statistics':'mean and 95% Student-t CI across stochastic seed means; question bootstrap is separately in summary.json',
-                  'metrics':{key:mean_ci([r['metrics'][key]['mean'] for r in subset]) for key in ['accuracy','nondegenerate','invalid_rate','distinct_answers','distinct_answers_including_invalid']}})
+                deterministic=setting['sigma']==0 and setting['temperature']==0
+                seed_summary.append({'setting':setting,'statistics':'question bootstrap 10000' if deterministic else 'mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json',
+                  'metrics':{key:subset[0]['metrics'][key] if deterministic else mean_ci([r['metrics'][key]['mean'] for r in subset]) for key in ['accuracy','nondegenerate','invalid_rate','distinct_answers','distinct_answers_including_invalid']}})
         write_json(run.path/'seed_summary.json',seed_summary)
         recommendation=recommend(candidates) if c['mode']=='full' else {'selected':None,'reason':'Smoke is not eligible for sigma selection'}
         write_json(run.path/'recommendation.json',recommendation)

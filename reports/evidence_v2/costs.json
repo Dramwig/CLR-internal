@@ -1,10 +1,10 @@
 [
   {
     "run": "20261028T111806531496Z_c0fb096f3f3e_1f3fea",
-    "status": "running",
-    "wall_seconds": null,
-    "gpu_hours": null,
-    "source_forward_calls": null
+    "status": "completed",
+    "wall_seconds": 3580.0685158579145,
+    "gpu_hours": 0,
+    "source_forward_calls": 0
   },
   {
     "run": "20261028T112257909657Z_b586cfa12e6d_c28453",
@@ -152,5 +152,54 @@
     "wall_seconds": 0.16777969198301435,
     "gpu_hours": 0,
     "source_forward_calls": 0
+  },
+  {
+    "run": "20261028T120458140308Z_31e13ac0ebaa_88bcba",
+    "status": "completed",
+    "wall_seconds": null,
+    "gpu_hours": 0,
+    "source_forward_calls": 0
+  },
+  {
+    "run": "20261028T121812416441Z_1b90f6844702_7ba16c",
+    "status": "failed",
+    "wall_seconds": null,
+    "gpu_hours": 0,
+    "source_forward_calls": 0
+  },
+  {
+    "run": "20261028T122358879576Z_1b90f6844702_d86203",
+    "status": "failed",
+    "wall_seconds": null,
+    "gpu_hours": 0,
+    "source_forward_calls": 0
+  },
+  {
+    "run": "20261028T122556758574Z_ea9f53c485ac_bb82a7",
+    "status": "failed",
+    "wall_seconds": null,
+    "gpu_hours": 4.9839728874050906e-05,
+    "source_forward_calls": 0
+  },
+  {
+    "run": "20261028T122800941040Z_0be72c22d642_1ce21f",
+    "status": "failed",
+    "wall_seconds": null,
+    "gpu_hours": 0.07276624005080926,
+    "source_forward_calls": 340
+  },
+  {
+    "run": "20261028T124143649075Z_6dd3a5e7057c_d4515c",
+    "status": "failed",
+    "wall_seconds": null,
+    "gpu_hours": 0,
+    "source_forward_calls": 0
+  },
+  {
+    "run": "20261028T131027495042Z_d4e87644eae3_1eef38",
+    "status": "running",
+    "wall_seconds": 78.49463539686985,
+    "gpu_hours": 0.02179813376834823,
+    "source_forward_calls": 1568
   }
 ]

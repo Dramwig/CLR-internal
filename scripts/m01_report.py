@@ -45,7 +45,7 @@ def main(c):
         x=[r for i,r in rows.items() if i in clean];clean_tab.append(f"| {n} | {len(x)} | {fmt(bootstrap_mean([r['correct'] for r in x]))} |")
  text='''# M0.1 协议与去重（v2，审查稿）
 
-状态：未验收，不能进入 M1。官方 bf16 批处理复放与 fp32 batch=1 数据生成是两个明确记录的运行协议，不把前者的一致率冒充后者。
+状态：2026-10-28 用户明确接受 bf16 复放验收，并授权固定 batch=1、fp32 完整噪声实验。G-σ仍须完成并审查，不能进入M1。官方bf16复放与fp32生成的差异保留，不把99.92%冒充fp32的一致率。
 
 ## 逐题对照
 
@@ -61,7 +61,7 @@ v1与官方预测一致率仅65.580%，454题不同。不能用两者准确率�
 |---|---|---|
 '''+ '\n'.join(tab)+f'''
 
-fp32 batch=1全量运行 `{c['fp32']}` 的官方一致率为95.299%，低于99%门槛。即使bf16官方batch复放达到99%以上，也不能据此宣布fp32生产协议通过原门槛。`configs/protocol_codi_v2.yaml` 已明确固定fp32、物理batch=1及未验收状态；后续dump/rollout/搜索须引用它，不能临时更换batch或精度。原始500验证池重划分获用户明确授权。
+fp32 batch=1全量运行 `{c['fp32']}` 的官方一致率为95.299%，低于99%门槛。即使bf16官方batch复放达到99%以上，也不能据此宣布fp32生产协议通过原门槛。`configs/protocol_codi_v2.yaml` 已明确固定fp32、物理batch=1，并记录用户接受复放验收及授权完整噪声实验的决定；后续dump/rollout/搜索须引用它，不能临时更换batch或精度。原始500验证池重划分获用户明确授权。
 
 ## 剩余1题追踪
 
@@ -125,7 +125,7 @@ v1冻结清单已复核{len(freeze['sha256'])}个文件，变更0。v2尚未完�
  table='\n'.join(f"| {r['setting']['sigma']} | {r['setting']['from_step']} | {r['setting']['temperature']} | {r['metrics']['accuracy']['mean']:.3f} | {r['metrics']['distinct_answers']['mean']:.1f} | {r['metrics']['nondegenerate']['mean']:.3f} | {r['metrics']['invalid_rate']['mean']:.3f} |" for r in noise)
  Path('reports/M0.1_noise.md').write_text(f'''# M0.1 噪声曲线（v2，未完成）
 
-**G-σ未验收。没有推荐sigma，也没有300题完整结果。** 清洁val面板已冻结300题，但fp32生产协议与原官方预测一致率95.299%，低于99%；不把bf16参考复放的高一致率代入生产协议。当前完整实验被显式协议门槛阻止，需先解决或由审查明确变更这一验收条件。
+**G-σ尚未验收，完整结果尚未完成，不推荐sigma。** 用户已于2026-10-28明确接受bf16复放验收，授权固定fp32协议完整噪声实验；原95.299%生成一致率仍如实保留。清洁val面板固定300题。
 
 ## 已完成smoke
 
@@ -147,7 +147,7 @@ V=每题16次正确次数/16。非退化比例按每个seed的0<V<1题目比例�
 
 推荐规则固定为：相对同协议sigma0下降严格<5pp、非退化比例≥30%的高斯设置中，非退化比例最大；并列按更小下降、更小sigma、更早from_step。无设置通过时返回selected=null、等待审查，不能自行挑一个。smoke无论多好都不能推荐。
 
-按smoke实测线性外推约 **{nm['gpu_hours']*300*3:.1f} GPU wall小时**，不是承诺成本；单题长度、共享GPU竞争与高噪声长输出会改变吞吐。未偷偷减题、减K、挑seed或改batch。完整实验命令（当前会因协议门槛失败，不启动源前向）：
+按smoke实测线性外推约 **{nm['gpu_hours']*300*3:.1f} GPU wall小时**，不是承诺成本；单题长度、共享GPU竞争与高噪声长输出会改变吞吐。未偷偷减题、减K、挑seed或改batch。完整实验命令（用户授权已记录；须使用授权后协议快照匹配的smoke_run，下面历史smoke仅作旧运行记录）：
 
 ```bash
 PYTHONPATH=. HF_HUB_OFFLINE=1 .venv/bin/python scripts/m01_noise.py configs/M01_noise_full.yaml smoke_run={c['noise_smoke']}
