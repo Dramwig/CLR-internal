@@ -30,6 +30,7 @@ def main(c):
         write_json(run.path/'selection.json',{'problem_ids':[r['id'] for r in rows],
             'split_sha256':hashlib.sha256(Path(c['split_path']).read_bytes()).hexdigest(),
             'data_sha256':hashlib.sha256(Path(c['data_path']).read_bytes()).hexdigest()})
+        write_json(run.path/'resources.json', {'source':c['source'], 'official_code_commit': __import__('subprocess').check_output(['git','-C',c['source'].get('code_path','third_party/huginn'),'rev-parse','HEAD'],text=True).strip()})
         seed_everything(c['seeds'][0]);source=importlib.import_module('clr.sources.'+c['source_name']).load(c['source'])
         source.model.eval()
         seed_results=[]
