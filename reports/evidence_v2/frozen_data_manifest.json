@@ -1,0 +1,10 @@
+{
+  "status": "completed_data_audit_only; M0.1 remains unapproved",
+  "dedup_run": "20261028T113854046823Z_6b6596ff9777_f8f563",
+  "sha256": {
+    "data/splits/gsm8k_M01_v2.json": "a07cf9bf7116c421548c5364adcde792087f2bdfc666214f18ba38be9a93f2e0",
+    "data/M01_v2/val.json": "6eaf4aa4f0c718759dafe93b87887bea2a062683fb7d4ccd94cf0396a75359d6",
+    "data/M01_v2/cal.json": "9b04b49e13a7fc01f33e077857b3a33c2c0ca0b64e58948052695fb733dd6996",
+    "data/M01_v2/test.json": "dcbc3d7a0288cd35a1ee9d9d3dc678b301b9e8872d2856c7ae4526abfb31c9ee"
+  }
+}

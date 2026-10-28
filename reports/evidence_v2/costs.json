@@ -145,5 +145,12 @@
     "wall_seconds": null,
     "gpu_hours": 0,
     "source_forward_calls": 0
+  },
+  {
+    "run": "20261028T120131639183Z_f055d9571168_dba8d7",
+    "status": "failed",
+    "wall_seconds": 0.16777969198301435,
+    "gpu_hours": 0,
+    "source_forward_calls": 0
   }
 ]
