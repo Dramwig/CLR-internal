@@ -29,7 +29,8 @@ def main(c):
         else:
             proof=json.loads(Path(c['smoke_run'],'metrics.json').read_text())
             if proof.get('status')!='completed' or proof.get('protocol_sha256')!=p_hash:raise RuntimeError('Matching successful smoke required')
-            if not protocol['official_alignment_passed']:raise RuntimeError('Source protocol agreement gate has not passed; full noise study blocked')
+            if not (protocol['official_alignment_passed'] or protocol.get('review',{}).get('fp32_noise_authorized',False)):
+                raise RuntimeError('Source protocol agreement gate has not passed and no explicit review exception authorizes fp32 noise')
         torch.set_num_threads(c['threads']);seed_everything(11);source=load(protocol['source'])
         for start in range(0,len(rows),128):
             group=rows[start:start+128]
@@ -54,6 +55,9 @@ def main(c):
                         ans=numeric_answer(out['answer']);answers.append(ans);correct.append(ans==numeric_answer(row['answer']))
                         run.logger.log('rollout',problem_id=row['id'],setting=setting,seed=seed,k=k,answer=out['answer'],pred=ans,correct=correct[-1],meta=out['meta'])
                     samples.append({'id':row['id'],'answers':answers,'correct':correct})
+                    elapsed=time.perf_counter()-started
+                    run.write_metrics(progress={'setting':setting,'seed':seed,'completed_questions':len(samples),'questions_per_setting':len(rows),'completed_setting_seeds':len(results)},
+                        wall_seconds=elapsed,gpu_hours=elapsed/3600,source_forward_calls=source.forward_calls)
                 result={'setting':setting,'seed':seed,'metrics':summarize(samples,c['K'])}
                 results.append(result);write_json(run.path/f"panel_{len(results):03d}.json",samples)
                 write_json(run.path/'summary.json',results)

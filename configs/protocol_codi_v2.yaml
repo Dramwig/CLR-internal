@@ -16,10 +16,18 @@ source:
   prefill_attention_mask: true
   prj_dim: 768
 statistics: question_bootstrap_10000
-status: awaiting_protocol_review
+status: bf16_replay_accepted_fp32_noise_authorized
 version: v2
 generation_batch_size: 1
 official_alignment_passed: false
 reference_protocol: configs/protocol_codi_v2_candidate_bf16.yaml
 split_path: data/splits/gsm8k_M01_v2.json
 sampling_filter: full_vocab_no_top_k_or_top_p
+review:
+  date: '2026-10-28'
+  decision: 接受 bf16 复放验收，继续 fp32 完整噪声实验
+  fp32_noise_authorized: true
+  reference_agreement: 0.9992418498862775
+  generation_agreement: 0.9529946929492039
+  scope: Accept bf16 replay for alignment; authorize fixed batch=1 fp32 noise. Does
+    not approve G-sigma or M1.
