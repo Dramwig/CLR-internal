@@ -1,32 +1,19 @@
-# CalReader
+# Calibrated Latent Reader (CLR)
 
-**Calibrated Latent Reader**
+`R(z, q, s) → p(a | z, q)`：读取潜在思维/KV消息，输出类型化答案概率，后续实现校准与conformal集合。
 
-通过类型化问题读取潜在推理状态与潜通信消息，输出校准概率和 conformal 预测集，用于过程价值估计与语义审计。
+当前：M0部分完成。CODI-GPT2完成官方脚本复现、统一接口评测、三seed确定性与验证集噪声曲线；LLaMA授权、Coconut训练成本/显存、Huginn权重及真实评测仍待解决。尚未实现/验证Reader校准、搜索、通信审计和理论保证。
 
-当前阶段：构想初始化，仅建立目录与文档，尚未实现模型、配置环境或运行实验。短标题用于项目目录；提案原有名称与缩写保留。
+- [环境与Idea A只读复用](reports/M0_env.md)
+- [M0复现报告与曲线](reports/M0_repro.md)
+- [实验记录](docs/EXPERIMENTS.md) · [阻塞](docs/BLOCKERS.md) · [变更](docs/CHANGELOG.md)
+- [原始提案](docs/proposal.md) · [官方资源锁](configs/resources.lock.json)
 
-- [完整提案](docs/proposal.md)；[附件原文](IdeaB_Calibrated_Latent_Reader.md)。
-- [文档索引](docs/README.md)；[项目约定](AGENTS.md)。
-- 目录布局参照 [LatDefer](../LatDefer/)，按本项目模块调整。
+代码在 `clr/`，配置 `configs/`，入口 `scripts/`，测试 `tests/`。本地环境 `.venv`；共享权重只读引用 `/home/me/models/`。不修改Idea A冻结代码。所有实验入口只接受配置路径与覆盖项。
 
-```text
-calreader/data/  潜对象、类型化问题与标签加载
-calreader/adapters/  不同源模型的潜对象适配
-calreader/reader/  共享读取器与类型化输出头
-calreader/calibration/  概率校准与 conformal 预测集
-calreader/search/  潜空间搜索与过程价值估计
-calreader/audit/  潜通信一致性审计与攻击评测
-calreader/eval/  准确率、校准、覆盖率与成本评测
-calreader/utils/  种子、日志与运行记录
-configs/       实验配置
-data/          项目派生数据；共享数据通过路径复用
-scripts/       训练、缓存与评测入口
-tests/         实现后的验证测试
-docs/          提案与研究记录
-runs/          每次实验的配置、指标、日志与 checkpoint
-outputs/       准备性产物
-third_party/   按需引入的第三方代码
+```bash
+PYTHONPATH=. OMP_NUM_THREADS=2 .venv/bin/python scripts/m0_tests.py configs/M0_tests.yaml
+PYTHONPATH=. .venv/bin/python scripts/m0_inventory.py configs/M0_inventory.yaml
 ```
 
-共享数据使用 `/home/me/datasets`，共享权重使用 `/home/me/models`。具体资源与依赖版本在实际选型后记录。
+源接口：`from clr.sources.codi import load; source = load(config); result = source.run(problem, perturb=None)`。每个源的latent定义、指定层观测和噪声插入点见对应docstring。小型随机模型测试不代表真实源复现。
