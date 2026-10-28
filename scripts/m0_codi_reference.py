@@ -1,8 +1,8 @@
 """Execute the unmodified official CODI test.py; only supply local verified data."""
 import argparse,contextlib,io,json,sys,time
 from pathlib import Path
-from datasets import Dataset
 import torch
+from datasets import Dataset
 from clr.utils.config import load_config
 from clr.utils.records import recorded
 from clr.utils.idea_a import seed_everything
@@ -29,6 +29,17 @@ def main(c):
     train=mod.TrainingArguments(output_dir=str(run.path/'official'),bf16=True,seed=11,model_max_length=512,
         greedy=True,num_latent=6,use_prj=True,prj_dim=768,prj_no_ln=False,prj_dropout=0.,inf_latent_iterations=6,
         inf_num_iterations=1,remove_eos=True,use_lora=True,report_to=[])
+    counts=[0,0]
+    original_class=mod.CODI
+    class CountedCODI(original_class):
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            def count(module,args,kwargs):
+                counts[0]+=1
+                tensor=kwargs.get('input_ids',kwargs.get('inputs_embeds'))
+                counts[1]+=tensor.shape[0]
+            self.codi.register_forward_pre_hook(count,with_kwargs=True)
+    mod.CODI=CountedCODI
     vals=[]
     for seed in c['seeds']:
         seed_everything(seed)
@@ -36,7 +47,7 @@ def main(c):
             value=mod.evaluation(model_args,data_args,train)
         vals.append(value/100);run.write_metrics(seed_accuracies=vals)
     run.write_metrics(status='completed',accuracy=mean_ci(vals),problems=len(rows),wall_seconds=time.perf_counter()-t,gpu_hours=(time.perf_counter()-t)/3600,
-        source_forward_calls=None,cost_note='Upstream script lacks a source forward counter; this diagnostic reports allocated wall time only')
+        source_forward_calls=counts[0],source_forward_sample_evaluations=counts[1],cost_note='Pure pre-forward counter hook; allocated single-device wall hours')
     print(run.path,vals)
 
 if __name__=='__main__':
