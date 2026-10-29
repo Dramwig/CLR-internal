@@ -54,3 +54,15 @@ CODI作者训练后的 `zen-E/CODI-llama3.2-1b-Instruct` revision `b2c88ba224b06
 验证/复现流水线已启动，入口 `configs/M0b_codi_llama_job_v2.yaml`，tmux会话`clr-m0b-codi-llama-v2`，状态在 `reports/evidence/M0b_llama_modelscope/repro_job.json`。顺序为CLR smoke、官方test.py smoke、8题重复输入潜状态差、官方全1319题复现、CLR batch16逐题对照。smoke均只用清洁val的8题（2.67%），有900秒上限。确定性统计按题10k bootstrap；全量报告还按清洁test1312 ID对官方预测作只读子集统计。官方源码未修改，加载时额外强制strict以防遗漏权重。
 
 任一步失败则停止、保留错误，不自动减batch/精度/潜在步数。完成后输出 `reports/M0b_codi_llama_repro_v2.md`；全量复现是否通过以实际结果为准，不以下载成功或单元测试代替。噪声曲线与最终M0b验收不在本流水线完成标志内。
+
+## 当前有效运行：GPU4重试
+初始strict加载拒绝checkpoint额外四个`dynamic_cls`键；新版本按精确allowlist保存为不参与推理的buffer，最终加载仍strict。源码无该头的推理调用；官方脚本原本strict=False忽略该头。增加了未知键/缺失键必须失败、保留张量不改变forward的测试，8项测试通过。checkpoint文件未修改。
+
+GPU5的CLR真实smoke通过，但后续官方入口显存预检失败（7.72GiB<8GiB）；失败状态和日志保留。显式新建GPU4配置、提高预检至14GiB，未改变模型/batch/精度/潜在步数：
+
+- CLR smoke：`runs/20261029T013734197681Z_7bcbbe6fbd3d_77ffd6`，完成。
+- 官方test.py smoke：`runs/20261029T013822186629Z_e9f09c818e4c_64a9d7`，完成。
+- 8题重复输入确定性：`runs/20261029T013901994681Z_66cf21a10c33_09328c`，最大潜状态逐元素差0，答案全部一致。
+- 全量官方复现已启动，随后执行CLR逐题对照；最新状态是 `reports/evidence/M0b_llama_modelscope/repro_gpu4_job.json`，入口 `configs/M0b_codi_llama_job_v2_gpu4.yaml`，tmux `clr-m0b-codi-llama-v2-gpu4`。
+
+上文GPU5流水线地址是已保留的历史尝试，不再代表当前运行。完整准确率、CI及与论文差值将在完成后写入 `reports/M0b_codi_llama_repro_v2.md`，本段不提前填写。

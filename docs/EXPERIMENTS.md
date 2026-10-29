@@ -105,3 +105,6 @@ Huginn支线：4/4官方权重SHA验证通过，真实加载成功，但smoke OO
 
 ### CODI-LLaMA v2权重已校验，验证/复现流程已启动
 下载run `20261029T011806667943Z_8b873a7eb8a6_7735de`：578.473秒、3,408,265,790字节，GPU小时0，源前向0，官方SHA通过。验证/复现由 `scripts/m0b_codi_llama_job.py configs/M0b_codi_llama_job_v2.yaml` 在tmux `clr-m0b-codi-llama-v2`执行，固定GPU5、bf16、6潜在步、官方LoRA/projector设置。完整阶段严格依赖各自smoke通过，未填写未完成的准确率。原GPT2完整噪声任务继续独立运行。
+
+### CODI-LLaMA GPU4验证通过，官方全量已启动
+CLR smoke `20261029T013734197681Z_7bcbbe6fbd3d_77ffd6` 与官方smoke `20261029T013822186629Z_e9f09c818e4c_64a9d7` 均完成；8题确定性run `20261029T013901994681Z_66cf21a10c33_09328c` 最大潜状态差0、答案一致。真实smoke不是全量准确率结论。新pipeline配置 `configs/M0b_codi_llama_job_v2_gpu4.yaml`，GPU4资源调度显式记录，完整1319题官方协议复现随后CLR逐题对照正在推进。早先未知辅助键及GPU5预检失败均保留，无静默降级。
