@@ -1,0 +1,10 @@
+verified config.json True
+verified generation_config.json True
+verified special_tokens_map.json True
+verified tokenizer.json True
+verified tokenizer_config.json True
+verified LICENSE.txt True
+verified USE_POLICY.md True
+verified README.md True
+verified model.safetensors True
+/home/me/PaperField/CalReader/runs/20261029T010824516751Z_89dc7e0b7668_b742ff

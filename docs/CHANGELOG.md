@@ -29,3 +29,8 @@
 - 官方GSM8k-Aug归一化精确/13-gram去重，获准将原500验证池重划为清洁val300/cal193，test移除7题至1312；原v1划分不变。
 - 新增18设置K16噪声与采样对照程序、V直方图和非退化门槛，smoke通过；完整噪声与M1受生成协议一致率门槛阻止。
 - 新增M0b Huginn官方恢复/校验与原生harness入口，Coconut仅第三方元数据报告。
+
+## 2026-10-29 — LLaMA镜像资源 v2
+- 按用户指定使用ModelScope的同一Llama-3.2-1B-Instruct，锁revision并逐文件校验本地SHA与上游Git对象；没有HF模型文件下载。
+- 新增配置驱动下载/离线格式验证入口，保留原M0 v1配置和结果。
+- CODI作者checkpoint的获取渠道仍待范围澄清；GPT2完整噪声作业继续。

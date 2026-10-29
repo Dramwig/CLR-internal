@@ -95,3 +95,7 @@ Huginn支线：4/4官方权重SHA验证通过，真实加载成功，但smoke OO
 - 完整运行：`20261028T131534016226Z_83bfd1aab8dd_d4e55b`；配置入口`configs/M01_noise_job.yaml`，tmux会话`clr-m01-noise-v2`。
 - 固定300题×18设置×16rollout×3seed，fp32 batch1。当前结果未完成，不填造表格；完成后自动追加完整统计与推荐/负面结果。
 - 新smoke线性成本估计54.4 GPU wall小时（此前46小时也是粗估），共享GPU吞吐与生成长度会变化。没有更改规模或模型。
+
+## 2026-10-29 — ModelScope LLaMA底模 v2 获取与校验完成
+下载run `20261029T010824516751Z_89dc7e0b7668_b742ff`：9文件/2,480,842,630字节，218.771秒，GPU小时0、source forward0。全部文件通过ModelScope SHA-256与上游Git对象同一性验证。
+离线格式验证run `20261029T011218552649Z_a2b3255c27bd_7e0397` 通过。命令入口为 `scripts/m0b_modelscope_download.py configs/M0b_llama_modelscope_download_v2.yaml` 与 `scripts/m0b_llama_base_validate.py configs/M0b_llama_base_validate_v2.yaml`。来源、版本、文件哈希、假设和剩余checkpoint阻塞见 `reports/M0b_llama_modelscope_v2.md`。本轮无准确率实验，故无3seed准确率/CI；未把资源校验当作CODI复现。

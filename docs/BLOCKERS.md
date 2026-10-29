@@ -99,3 +99,8 @@ RuntimeError: Insufficient free VRAM: 6.55 GiB, required 18
 用户明确答复：“接受 bf16 复放验收，继续 fp32 完整噪声实验”。据此只解除完整噪声的启动门槛，保持真实fp32官方一致率95.299%的记录；不把原指标改写为通过≥99%，不视为G-σ或M1获准。固定val300、3seed、K16和全部18设置不变。授权写入 `configs/protocol_codi_v2.yaml` 的review字段；因协议文件hash更新，先重跑同设置smoke再启动完整实验。
 
 Huginn最新独立阻塞：官方下载已完成且4/4 LFS SHA通过，真实bf16/r32加载成功；重复输入smoke发生真实CUDA OOM，完整复现与噪声未启动。运行 `20261028T122800941040Z_0be72c22d642_1ce21f` 原始OOM traceback保留；自动记录又遇到默认编码ASCII的次生错误，不能只引用metrics中的编码异常掩盖OOM。详见 `reports/M0b_huginn.md` 与 `reports/M0b_huginn_blockers.json`。后续预检要求稳定18GiB，未降低模型、精度或递归深度。
+
+## 2026-10-29 — LLaMA底模访问阻塞已通过指定镜像解决
+根据用户指示，从ModelScope `LLM-Research/Llama-3.2-1B-Instruct` revision `d3e551343d4d81508a0d226656b826c217e463cd` 下载9文件（2.48GB），本地SHA和上游Git/LFS指针对象全部一致；离线格式验证通过。没有从HF下载底模，也没有更换模型。详见 `reports/M0b_llama_modelscope_v2.md`。
+
+独立剩余项：CODI作者训练后checkpoint不在本地，ModelScope尚未找到已核实镜像。用户“不用HF下载”的范围正在澄清，未擅自从HF取作者权重，亦未以底模冒充CODI。原v1授权失败记录仅为历史，不再代表底模资源现状。
