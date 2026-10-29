@@ -1,0 +1,26 @@
+[
+  {
+    "type": "file",
+    "oid": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+    "size": 1519,
+    "path": ".gitattributes"
+  },
+  {
+    "type": "file",
+    "oid": "0d5c77744d58fd18d43991d50fb87b4e927aa92b",
+    "size": 229,
+    "path": "README.md"
+  },
+  {
+    "type": "file",
+    "oid": "2178dee271e1a0bffe5ed413a054579c45ec4184",
+    "size": 3408265790,
+    "lfs": {
+      "oid": "c6d4b4b096f03fafca18409a4a7535ac9539f558ed741b31878fecadb40ed23b",
+      "size": 3408265790,
+      "pointerSize": 135
+    },
+    "xetHash": "5670f78d7cea0f767c921e96484775c22934cc59460e63bbaf1fe33bf171c783",
+    "path": "pytorch_model.bin"
+  }
+]

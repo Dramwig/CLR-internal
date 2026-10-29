@@ -1,0 +1,12 @@
+milestone: M0b
+stage: codi_llama_checkpoint_download_v2
+repo: zen-E/CODI-llama3.2-1b-Instruct
+revision: b2c88ba224b06b12b52ef39b87f794b98a6eb1c8
+metadata: reports/evidence/M0b_llama_modelscope/codi_checkpoint_tree.json
+cache_dir: /home/me/models/huggingface
+reserve_bytes: 10737418240
+files: [README.md, pytorch_model.bin]
+runtime:
+  HF_HUB_DISABLE_XET: '1'
+  HF_HUB_OFFLINE: '0'
+  HF_HUB_DOWNLOAD_TIMEOUT: '180'
