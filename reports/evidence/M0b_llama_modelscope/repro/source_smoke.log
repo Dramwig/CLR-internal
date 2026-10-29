@@ -1,0 +1,19 @@
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m01_protocol_eval.py", line 65, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m01_protocol_eval.py", line 19, in main
+    protocol=load_config(c['protocol']);source=load(protocol['source'])
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/sources/codi_v2.py", line 98, in load
+    def load(config):return CODISourceV2(config)
+                            ^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/sources/codi_v2.py", line 23, in __init__
+    super().__init__(initial)
+  File "/home/me/PaperField/CalReader/clr/sources/codi.py", line 31, in __init__
+    self.model.load_state_dict(state,strict=True)
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 2584, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for CODI:
+	Unexpected key(s) in state_dict: "dynamic_cls.1.bias", "dynamic_cls.1.weight", "dynamic_cls.3.bias", "dynamic_cls.3.weight". 

@@ -108,3 +108,16 @@ Huginn支线：4/4官方权重SHA验证通过，真实加载成功，但smoke OO
 
 ### CODI-LLaMA GPU4验证通过，官方全量已启动
 CLR smoke `20261029T013734197681Z_7bcbbe6fbd3d_77ffd6` 与官方smoke `20261029T013822186629Z_e9f09c818e4c_64a9d7` 均完成；8题确定性run `20261029T013901994681Z_66cf21a10c33_09328c` 最大潜状态差0、答案一致。真实smoke不是全量准确率结论。新pipeline配置 `configs/M0b_codi_llama_job_v2_gpu4.yaml`，GPU4资源调度显式记录，完整1319题官方协议复现随后CLR逐题对照正在推进。早先未知辅助键及GPU5预检失败均保留，无静默降级。
+
+## CODI-LLaMA v2复现流水线结束
+详见 `reports/M0b_codi_llama_repro_v2.md`；噪声与最终审查待完成。
+
+### CODI-LLaMA v2复现与同batch控制完成（2026-10-29）
+
+| 运行 | test1319准确率（按题bootstrap10k 95% CI） | 与官方逐题一致率 |
+|---|---|---|
+| 官方test.py batch128 | 55.497% [52.843,58.150] | 100%自身 |
+| CLR batch16 | 55.269% [52.616,57.923] | 97.953%，27题不同 |
+| CLR batch128控制 | 55.421% [52.767,58.074] | 98.939%，14题不同 |
+
+clean test1312官方55.335% [52.591,58.003]。同输入8题重复潜状态差0；不是跨batch不变性保证。本轮确定性结果不使用重复seed CI，三个随机seed要求留给噪声实验。详细来源、成本、失败记录、>2pp偏差分析与命令见 `reports/M0b_codi_llama_analysis_v2.md`、`reports/M0b_codi_llama_repro_v2.md`。统计汇总run `20261029T015330021682Z_a261881100a5_29e463`。当前不声称全部复现条件或噪声任务完成。

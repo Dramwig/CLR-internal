@@ -39,3 +39,8 @@
 - 作者公开checkpoint已下载并验证官方LFS SHA；ModelScope底模保持不变。
 - 新建CODI-LLaMA v2协议、官方test.py只读封装和阶段流水线；源加载strict、smoke限时、确定性按题bootstrap。
 - 既有M0 v1与正在运行的GPT2实验设置不改动，复现后仍须完成噪声及审查。
+
+## 2026-10-29 — CODI-LLaMA v2真实复现结果
+- 通过精确allowlist保留不参与官方推理的4个auxiliary张量，其余state_dict仍严格校验；未知键/缺失键测试通过。
+- GPU5预检失败后显式调度GPU4并重跑matching smoke，完成官方1319题、CLR batch16与batch128控制。
+- 保留27/14题不一致与论文参考+3.597pp偏差，未改指标或seed；原M0 v1不改动。噪声与M0b最终审查仍待完成。

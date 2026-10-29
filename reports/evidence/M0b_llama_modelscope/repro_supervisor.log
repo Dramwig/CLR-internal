@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m0b_codi_llama_job.py", line 22, in <module>
+    s=step('source_smoke','scripts/m01_protocol_eval.py',c['source_smoke'])
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m0b_codi_llama_job.py", line 13, in step
+    with log.open('x',encoding='utf-8') as f:subprocess.run([sys.executable,script,config,*overrides],stdout=f,stderr=subprocess.STDOUT,env=env,check=True)
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/me/PaperField/CalReader/.venv/bin/python', 'scripts/m01_protocol_eval.py', 'configs/M0b_codi_llama_smoke_v2.yaml']' returned non-zero exit status 1.

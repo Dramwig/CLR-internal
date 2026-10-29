@@ -1,0 +1,9 @@
+milestone: M0b
+stage: codi_llama_analysis_v2
+official: runs/20261029T013954709535Z_f594d64e7e97_b69ebd
+clr16: runs/20261029T014056589002Z_261f9f964915_639303
+clr128: runs/20261029T014623264447Z_d175afac8920_7b3bf5
+job_status: reports/evidence/M0b_llama_modelscope/repro_gpu4_job.json
+paper_reference_percent: 51.9
+paper_reference_url: https://arxiv.org/html/2502.21074v3#A6.T4
+output: reports/M0b_codi_llama_analysis_v2.md

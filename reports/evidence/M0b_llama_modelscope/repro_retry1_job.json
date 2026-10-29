@@ -1,0 +1,10 @@
+{
+  "started": "2026-10-29T01:33:20.597530+00:00",
+  "pid": 256489,
+  "status": "failed",
+  "runs": {
+    "source_smoke": "/home/me/PaperField/CalReader/runs/20261029T013327437248Z_080db608cb52_ccd688"
+  },
+  "stage": "official_smoke",
+  "error": "Traceback (most recent call last):\n  File \"/home/me/PaperField/CalReader/scripts/m0b_codi_llama_job.py\", line 23, in <module>\n    o=step('official_smoke','scripts/m0b_codi_reference_v2.py',c['official_smoke'])\n      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/me/PaperField/CalReader/scripts/m0b_codi_llama_job.py\", line 13, in step\n    with log.open('x',encoding='utf-8') as f:subprocess.run([sys.executable,script,config,*overrides],stdout=f,stderr=subprocess.STDOUT,env=env,check=True)\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/home/me/PaperField/CalReader/.venv/bin/python', 'scripts/m0b_codi_reference_v2.py', 'configs/M0b_codi_llama_official_smoke_v2.yaml']' returned non-zero exit status 1.\n"
+}

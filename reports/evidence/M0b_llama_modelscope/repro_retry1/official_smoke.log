@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m0b_codi_reference_v2.py", line 64, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m0b_codi_reference_v2.py", line 21, in main
+    protocol=load_config(c['protocol']);source=protocol['source'];check_device(source);torch.set_num_threads(c['threads']);seed_everything(11)
+                                                                  ^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/sources/common.py", line 46, in check_device
+    if free < config['min_free_gib']*1024**3: raise RuntimeError(f'GPU free {free/1024**3:.2f} GiB < required {config["min_free_gib"]} GiB')
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: GPU free 7.72 GiB < required 8 GiB

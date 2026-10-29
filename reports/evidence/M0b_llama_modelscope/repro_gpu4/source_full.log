@@ -1,0 +1,22 @@
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+batch 16 done 64 / 1319
+batch 16 done 128 / 1319
+batch 16 done 192 / 1319
+batch 16 done 256 / 1319
+batch 16 done 320 / 1319
+batch 16 done 384 / 1319
+batch 16 done 448 / 1319
+batch 16 done 512 / 1319
+batch 16 done 576 / 1319
+batch 16 done 640 / 1319
+batch 16 done 704 / 1319
+batch 16 done 768 / 1319
+batch 16 done 832 / 1319
+batch 16 done 896 / 1319
+batch 16 done 960 / 1319
+batch 16 done 1024 / 1319
+batch 16 done 1088 / 1319
+batch 16 done 1152 / 1319
+batch 16 done 1216 / 1319
+batch 16 done 1280 / 1319
+/home/me/PaperField/CalReader/runs/20261029T014056589002Z_261f9f964915_639303 {'16': {'accuracy': {'mean': 0.5526914329037149, 'ci95': [0.5261561789234268, 0.579226686884003], 'n_questions': 1319, 'bootstrap_resamples': 10000, 'bootstrap_rng_seed': 20261028}, 'agreement_first_batch': {'mean': 1.0, 'ci95': [1.0, 1.0], 'n_questions': 1319, 'bootstrap_resamples': 10000, 'bootstrap_rng_seed': 20261028}, 'agreement_official': {'mean': 0.979529946929492, 'ci95': [0.9719294920394239, 0.9871114480667172], 'n_questions': 1319, 'bootstrap_resamples': 10000, 'bootstrap_rng_seed': 20261028}}}

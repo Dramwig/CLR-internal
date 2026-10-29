@@ -1,0 +1,13 @@
+{
+  "started": "2026-10-29T01:37:28.017727+00:00",
+  "pid": 257320,
+  "status": "completed",
+  "runs": {
+    "source_smoke": "/home/me/PaperField/CalReader/runs/20261029T013734197681Z_7bcbbe6fbd3d_77ffd6",
+    "official_smoke": "/home/me/PaperField/CalReader/runs/20261029T013822186629Z_e9f09c818e4c_64a9d7",
+    "determinism": "/home/me/PaperField/CalReader/runs/20261029T013901994681Z_66cf21a10c33_09328c",
+    "official_full": "/home/me/PaperField/CalReader/runs/20261029T013954709535Z_f594d64e7e97_b69ebd",
+    "source_full": "/home/me/PaperField/CalReader/runs/20261029T014056589002Z_261f9f964915_639303"
+  },
+  "stage": "source_full"
+}

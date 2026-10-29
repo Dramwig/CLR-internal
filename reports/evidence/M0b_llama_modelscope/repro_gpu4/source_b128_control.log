@@ -1,0 +1,12 @@
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+batch 128 done 128 / 1319
+batch 128 done 256 / 1319
+batch 128 done 384 / 1319
+batch 128 done 512 / 1319
+batch 128 done 640 / 1319
+batch 128 done 768 / 1319
+batch 128 done 896 / 1319
+batch 128 done 1024 / 1319
+batch 128 done 1152 / 1319
+batch 128 done 1280 / 1319
+/home/me/PaperField/CalReader/runs/20261029T014623264447Z_d175afac8920_7b3bf5 {'128': {'accuracy': {'mean': 0.55420773313116, 'ci95': [0.5276724791508719, 0.5807429871114481], 'n_questions': 1319, 'bootstrap_resamples': 10000, 'bootstrap_rng_seed': 20261028}, 'agreement_first_batch': {'mean': 1.0, 'ci95': [1.0, 1.0], 'n_questions': 1319, 'bootstrap_resamples': 10000, 'bootstrap_rng_seed': 20261028}, 'agreement_official': {'mean': 0.9893858984078847, 'ci95': [0.9833206974981046, 0.9946929492039424], 'n_questions': 1319, 'bootstrap_resamples': 10000, 'bootstrap_rng_seed': 20261028}}}

@@ -157,3 +157,7 @@ subprocess.CalledProcessError: Command '['/home/me/PaperField/CalReader/.venv/bi
 新loader的GPU5 smoke已通过：run `20261029T013327437248Z_080db608cb52_ccd688`，8题、44.655秒、159次forward，真实batch1/4/8在这8题答案相同（不足以宣称全量batch不变）。随后官方smoke进入模型前检测到GPU5仅7.72GiB空闲，低于8GiB阈值，停止并保留失败，未加载模型/产生预测。
 
 CUDA新探针GPU4空闲17.56GiB。新建显式gpu4配置，预检提高到14GiB，重跑匹配smoke；只改变设备调度和更保守的内存门槛，模型/精度/batch/latent全部保持，原GPU5配置和结果保留。新流水线状态 `reports/evidence/M0b_llama_modelscope/repro_gpu4_job.json`。
+
+## 2026-10-29 — CODI-LLaMA完成复现后的未解决项
+真实官方test.py全1319题为55.497%（按题10k bootstrap 95% CI 52.843–58.150%），CLR batch16为55.269%；同batch128对照为55.421%。逐题不一致由27题降到14题，仍不能宣称完全等价，数值执行路径残差尚未定位。
+与固定论文v3 Table A4 β=20参考51.9%相差+3.597pp；clean test1312仍55.335%，排除7题重叠不能解释全部偏差。底模镜像同一性、官方recipe和完整checkpoint校验均通过；发布checkpoint到论文实验条目的训练manifest/代码版本对应关系仍不明。没有为追平改指标、换划分或挑seed。分析与逐题差异位置见 `reports/M0b_codi_llama_analysis_v2.md`。LLaMA噪声曲线尚未执行，M0b整体未验收；不阻塞既定GPT2单源主线。
