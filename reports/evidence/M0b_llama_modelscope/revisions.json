@@ -1,0 +1,19 @@
+{
+  "Code": 200,
+  "Data": {
+    "RevisionMap": {
+      "Branches": [
+        {
+          "ChineseName": "",
+          "CreatedAt": 1740591574,
+          "Revision": "master",
+          "ShowName": ""
+        }
+      ],
+      "Tags": []
+    }
+  },
+  "Message": "success",
+  "RequestId": "33de5ef5-8185-4879-a7f8-67e1849b1759",
+  "Success": true
+}

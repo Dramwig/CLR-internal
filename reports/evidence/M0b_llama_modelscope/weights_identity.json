@@ -1,0 +1,7 @@
+{
+  "method": "Reconstruct standard Git LFS pointer from ModelScope SHA256 and size; compare Git blob SHA1 to public upstream tree metadata. No HF file downloads.",
+  "modelscope_sha256": "1ff795ff6a07e6a68085d206fb84417da2f083f68391c2843cd2b8ac6df8538f",
+  "upstream_pointer_blob_oid": "5daf23edd80cedb879a4a18e6049a19b2417a3f7",
+  "reconstructed_pointer_oid": "5daf23edd80cedb879a4a18e6049a19b2417a3f7",
+  "matches": true
+}

@@ -1,0 +1,25 @@
+milestone: M0b
+stage: llama_modelscope_download_v2
+repo: LLM-Research/Llama-3.2-1B-Instruct
+revision: d3e551343d4d81508a0d226656b826c217e463cd
+manifest: reports/evidence/M0b_llama_modelscope/pinned_files.json
+upstream_metadata: reports/evidence/M0b_llama_modelscope/upstream_metadata.json
+destination: /home/me/models/Llama-3.2-1B-Instruct/modelscope-d3e551343d4d81508a0d226656b826c217e463cd
+reserve_bytes: 10737418240
+files:
+- config.json
+- generation_config.json
+- special_tokens_map.json
+- tokenizer.json
+- tokenizer_config.json
+- LICENSE.txt
+- USE_POLICY.md
+- README.md
+- model.safetensors
+identity_required:
+- config.json
+- generation_config.json
+- special_tokens_map.json
+- tokenizer.json
+- tokenizer_config.json
+- model.safetensors
