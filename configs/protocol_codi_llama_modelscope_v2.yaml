@@ -15,6 +15,12 @@ source:
   position_ids: implicit_absolute
   prefill_attention_mask: true
   prj_dim: 2048
+  preserved_unused_checkpoint_keys:
+  - dynamic_cls.1.bias
+  - dynamic_cls.1.weight
+  - dynamic_cls.3.bias
+  - dynamic_cls.3.weight
 statistics: question_bootstrap_10000
 status: awaiting_smoke
 version: codi-llama-modelscope-v2
+source_module: clr.sources.codi_llama_v2

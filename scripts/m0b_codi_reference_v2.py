@@ -9,6 +9,7 @@ from clr.utils.config import load_config
 from clr.utils.records import recorded
 from clr.utils.idea_a import seed_everything,write_json
 from clr.utils.stats_v2 import bootstrap_mean
+from clr.sources.codi_llama_v2 import load_preserving_auxiliary
 
 def timeout(*a):raise TimeoutError('Official smoke exceeded 900 seconds')
 def main(c):
@@ -35,7 +36,10 @@ def main(c):
      def count(module,args,kwargs):
       counts[0]+=1;counts[1]+=kwargs.get('input_ids',kwargs.get('inputs_embeds')).shape[0]
      self.codi.register_forward_pre_hook(count,with_kwargs=True)
-    def load_state_dict(self,state_dict,strict=True,**kwargs):return super().load_state_dict(state_dict,strict=True,**kwargs)
+    def load_state_dict(self,state_dict,strict=True,**kwargs):
+     # Add inert tensor storage once; final load still checks every key.
+     if not hasattr(self,'dynamic_cls'):return load_preserving_auxiliary(self,state_dict,source['preserved_unused_checkpoint_keys'])
+     return super().load_state_dict(state_dict,strict=True,**kwargs)
    mod.CODI=Counted
    ma=mod.ModelArguments(model_name_or_path=source['base_path'],train=False,lora_init=True,lora_r=128,lora_alpha=32,ckpt_dir=str(Path(source['checkpoint']).parent))
    da=mod.DataArguments(data_name='gsm8k',batch_size=c['batch_size']);mod.data_args=da

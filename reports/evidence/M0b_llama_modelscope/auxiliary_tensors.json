@@ -1,0 +1,32 @@
+{
+  "dynamic_cls.1.bias": {
+    "shape": [
+      2048
+    ],
+    "dtype": "torch.float32",
+    "numel": 2048
+  },
+  "dynamic_cls.1.weight": {
+    "shape": [
+      2048,
+      2048
+    ],
+    "dtype": "torch.float32",
+    "numel": 4194304
+  },
+  "dynamic_cls.3.bias": {
+    "shape": [
+      7
+    ],
+    "dtype": "torch.float32",
+    "numel": 7
+  },
+  "dynamic_cls.3.weight": {
+    "shape": [
+      7,
+      2048
+    ],
+    "dtype": "torch.float32",
+    "numel": 14336
+  }
+}

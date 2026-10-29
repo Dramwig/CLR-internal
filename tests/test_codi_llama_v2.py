@@ -23,3 +23,19 @@ def test_llama_feedback_zero_noise_and_prefix():
  pert=source.run(p,{'from_step':3,'sigma':.1,'seed':33})
  assert max_latent_difference(a['latent_steps'][:3],pert['latent_steps'][:3])==0
  assert max_latent_difference(a['latent_steps'][3:],pert['latent_steps'][3:])>0
+
+def test_auxiliary_checkpoint_keys_are_preserved_and_unknown_keys_rejected():
+ import pytest
+ from clr.sources.codi_llama_v2 import load_preserving_auxiliary,AUXILIARY_KEYS
+ def fixture():
+  model=torch.nn.Linear(2,2);state={k:v.clone() for k,v in model.state_dict().items()}
+  state.update({k:torch.ones(2) for k in AUXILIARY_KEYS});return model,state
+ model,state=fixture();x=torch.ones(1,2);before=model(x).detach().clone()
+ load_preserving_auxiliary(model,state,list(AUXILIARY_KEYS))
+ assert torch.equal(model(x),before)
+ assert set(model.state_dict())==set(state)
+ assert all(torch.equal(model.state_dict()[k],state[k]) for k in state)
+ model,state=fixture();state['unknown_head']=torch.ones(1)
+ with pytest.raises(RuntimeError,match='Unrecognized'):load_preserving_auxiliary(model,state,AUXILIARY_KEYS)
+ model,state=fixture();del state['weight']
+ with pytest.raises(RuntimeError,match='Unrecognized'):load_preserving_auxiliary(model,state,AUXILIARY_KEYS)

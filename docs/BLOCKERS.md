@@ -129,3 +129,8 @@ subprocess.CalledProcessError: Command '['/home/me/PaperField/CalReader/.venv/bi
 
 ## 2026-10-29 — CODI-LLaMA作者checkpoint下载/同一性阻塞解除
 run `20261029T011806667943Z_8b873a7eb8a6_7735de` 完成3.408GB作者权重下载，SHA与官方LFS完全一致。底模ModelScope+作者checkpoint均已就绪，GPU5上的分阶段验证/复现流程已实际启动。当前不能把来源问题解除等同于模型smoke、复现或噪声验收完成；状态见 `reports/evidence/M0b_llama_modelscope/repro_job.json`。
+
+## 2026-10-29 — CODI-LLaMA已定位的checkpoint结构兼容问题
+首次真实source smoke失败：官方checkpoint比当前官方模型类多出 `dynamic_cls.1.{weight,bias}` 与 `dynamic_cls.3.{weight,bias}` 四个键，strict加载正确拒绝；失败run及`repro_job.json`保留。官方仓库当前源码无dynamic_cls引用，test.py原本strict=False会忽略它们。
+
+v2新建 `clr/sources/codi_llama_v2.py`：只有这四个精确键可作为不参与forward的buffer保留，所有缺失键或其他额外键均拒绝，最终load_state_dict仍strict=True。不猜测该头激活/功能、不使用它、不修改checkpoint，也不更换模型。官方对照封装亦按同一方法保留这四键；真正的test.py前向与解码不变。此修复须经新smoke和官方逐题对照验证，不把单元测试当模型复现。
