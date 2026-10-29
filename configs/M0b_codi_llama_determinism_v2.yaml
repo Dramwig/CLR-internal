@@ -1,0 +1,6 @@
+milestone: M0b
+stage: codi_llama_determinism_v2
+protocols:
+- configs/protocol_codi_llama_modelscope_v2.yaml
+data: data/M01_v2/val.json
+limit: 8

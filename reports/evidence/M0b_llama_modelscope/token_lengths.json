@@ -1,0 +1,18 @@
+{
+  "questions": 1319,
+  "max_question_tokens": 184,
+  "canonical_cohort_widths": [
+    123,
+    133,
+    120,
+    137,
+    114,
+    125,
+    119,
+    139,
+    184,
+    161,
+    131
+  ],
+  "max_prefill_logits_GiB": 5.657175779342651
+}

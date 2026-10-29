@@ -99,3 +99,6 @@ Huginn支线：4/4官方权重SHA验证通过，真实加载成功，但smoke OO
 ## 2026-10-29 — ModelScope LLaMA底模 v2 获取与校验完成
 下载run `20261029T010824516751Z_89dc7e0b7668_b742ff`：9文件/2,480,842,630字节，218.771秒，GPU小时0、source forward0。全部文件通过ModelScope SHA-256与上游Git对象同一性验证。
 离线格式验证run `20261029T011218552649Z_a2b3255c27bd_7e0397` 通过。命令入口为 `scripts/m0b_modelscope_download.py configs/M0b_llama_modelscope_download_v2.yaml` 与 `scripts/m0b_llama_base_validate.py configs/M0b_llama_base_validate_v2.yaml`。来源、版本、文件哈希、假设和剩余checkpoint阻塞见 `reports/M0b_llama_modelscope_v2.md`。本轮无准确率实验，故无3seed准确率/CI；未把资源校验当作CODI复现。
+
+## 2026-10-29 — CODI-LLaMA作者checkpoint获取与复现续行
+用户明确授权不限平台获取。使用配置 `configs/M0b_codi_llama_download_v2.yaml`、入口 `scripts/m0b_codi_checkpoint.py` 下载公开作者权重并对官方LFS SHA校验。后续v2 protocol使用ModelScope底模与作者训练checkpoint；源接口和官方test.py分别做smoke，之后才允许全量复现。单元检查 `tests/test_codi_llama_v2.py tests/test_m01.py`：7 passed，随机微型LLaMA只是反馈/扰动机制测试，不是模型复现结果。

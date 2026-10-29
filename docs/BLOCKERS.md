@@ -104,3 +104,6 @@ Huginn最新独立阻塞：官方下载已完成且4/4 LFS SHA通过，真实bf1
 根据用户指示，从ModelScope `LLM-Research/Llama-3.2-1B-Instruct` revision `d3e551343d4d81508a0d226656b826c217e463cd` 下载9文件（2.48GB），本地SHA和上游Git/LFS指针对象全部一致；离线格式验证通过。没有从HF下载底模，也没有更换模型。详见 `reports/M0b_llama_modelscope_v2.md`。
 
 独立剩余项：CODI作者训练后checkpoint不在本地，ModelScope尚未找到已核实镜像。用户“不用HF下载”的范围正在澄清，未擅自从HF取作者权重，亦未以底模冒充CODI。原v1授权失败记录仅为历史，不再代表底模资源现状。
+
+## 2026-10-29 — 作者checkpoint渠道已获明确授权
+用户回复“从什么平台下载都可以只要能下载”。来源范围阻塞解除；现在从作者公开HF仓库下载锁定revision `b2c88ba224b06b12b52ef39b87f794b98a6eb1c8` 的CODI-LLaMA checkpoint，官方大小3,408,265,790字节、LFS SHA-256 `c6d4b4b096f03fafca18409a4a7535ac9539f558ed741b31878fecadb40ed23b`。底模仍是已校验的ModelScope本地版本，未改模型。下载/校验与GPU smoke须实际完成后才宣告相应阻塞解除；GPT2长实验不停止、不改配置。
