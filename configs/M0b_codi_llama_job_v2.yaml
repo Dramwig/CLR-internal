@@ -1,0 +1,10 @@
+download_run: runs/20261029T011806667943Z_8b873a7eb8a6_7735de
+status: reports/evidence/M0b_llama_modelscope/repro_job.json
+log_dir: reports/evidence/M0b_llama_modelscope/repro
+source_smoke: configs/M0b_codi_llama_smoke_v2.yaml
+official_smoke: configs/M0b_codi_llama_official_smoke_v2.yaml
+determinism: configs/M0b_codi_llama_determinism_v2.yaml
+official_full: configs/M0b_codi_llama_official_full_v2.yaml
+source_full: configs/M0b_codi_llama_repro_v2.yaml
+paper_reference_percent: 51.9
+report: reports/M0b_codi_llama_repro_v2.md
