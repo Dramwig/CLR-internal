@@ -34,3 +34,8 @@
 - 按用户指定使用ModelScope的同一Llama-3.2-1B-Instruct，锁revision并逐文件校验本地SHA与上游Git对象；没有HF模型文件下载。
 - 新增配置驱动下载/离线格式验证入口，保留原M0 v1配置和结果。
 - CODI作者checkpoint的获取渠道仍待范围澄清；GPT2完整噪声作业继续。
+
+## 2026-10-29 — CODI作者checkpoint来源已获不限平台授权
+- 作者公开checkpoint已下载并验证官方LFS SHA；ModelScope底模保持不变。
+- 新建CODI-LLaMA v2协议、官方test.py只读封装和阶段流水线；源加载strict、smoke限时、确定性按题bootstrap。
+- 既有M0 v1与正在运行的GPT2实验设置不改动，复现后仍须完成噪声及审查。

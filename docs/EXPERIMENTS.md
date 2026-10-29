@@ -102,3 +102,6 @@ Huginn支线：4/4官方权重SHA验证通过，真实加载成功，但smoke OO
 
 ## 2026-10-29 — CODI-LLaMA作者checkpoint获取与复现续行
 用户明确授权不限平台获取。使用配置 `configs/M0b_codi_llama_download_v2.yaml`、入口 `scripts/m0b_codi_checkpoint.py` 下载公开作者权重并对官方LFS SHA校验。后续v2 protocol使用ModelScope底模与作者训练checkpoint；源接口和官方test.py分别做smoke，之后才允许全量复现。单元检查 `tests/test_codi_llama_v2.py tests/test_m01.py`：7 passed，随机微型LLaMA只是反馈/扰动机制测试，不是模型复现结果。
+
+### CODI-LLaMA v2权重已校验，验证/复现流程已启动
+下载run `20261029T011806667943Z_8b873a7eb8a6_7735de`：578.473秒、3,408,265,790字节，GPU小时0，源前向0，官方SHA通过。验证/复现由 `scripts/m0b_codi_llama_job.py configs/M0b_codi_llama_job_v2.yaml` 在tmux `clr-m0b-codi-llama-v2`执行，固定GPU5、bf16、6潜在步、官方LoRA/projector设置。完整阶段严格依赖各自smoke通过，未填写未完成的准确率。原GPT2完整噪声任务继续独立运行。

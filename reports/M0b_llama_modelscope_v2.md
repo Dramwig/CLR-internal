@@ -40,3 +40,17 @@ PYTHONPATH=. PYTHONUTF8=1 HF_HUB_OFFLINE=1 .venv/bin/python scripts/m0b_llama_ba
 CODI作者训练后的 `zen-E/CODI-llama3.2-1b-Instruct` revision `b2c88ba224b06b12b52ef39b87f794b98a6eb1c8` 是另一份checkpoint，本地指定缓存路径不存在。ModelScope搜索尚未找到已核实的对应镜像，不能宣称镜像绝对不存在，也不能拿原始LLaMA底模代替训练后的CODI。
 
 已向用户澄清“不用HF下载”是否仅针对Meta底模或也包括作者公开checkpoint。底模工作已完成；在该范围明确前未下载作者checkpoint、未启动CODI-LLaMA复现。CODI-GPT2完整噪声运行不受影响。
+
+## 2026-10-29 后续：作者checkpoint已取得
+用户已明确回复“从什么平台下载都可以只要能下载”。独立作者checkpoint现已从公开HF仓库下载并完成校验：
+
+- revision：`b2c88ba224b06b12b52ef39b87f794b98a6eb1c8`
+- 字节数：3,408,265,790
+- SHA-256：`c6d4b4b096f03fafca18409a4a7535ac9539f558ed741b31878fecadb40ed23b`
+- run：`runs/20261029T011806667943Z_8b873a7eb8a6_7735de`，578.473秒、GPU小时0、源前向0。
+
+底模仍使用本报告验证的ModelScope副本。此前“待澄清渠道”的段落为历史状态，当前已解除。
+
+验证/复现流水线已启动，入口 `configs/M0b_codi_llama_job_v2.yaml`，tmux会话`clr-m0b-codi-llama-v2`，状态在 `reports/evidence/M0b_llama_modelscope/repro_job.json`。顺序为CLR smoke、官方test.py smoke、8题重复输入潜状态差、官方全1319题复现、CLR batch16逐题对照。smoke均只用清洁val的8题（2.67%），有900秒上限。确定性统计按题10k bootstrap；全量报告还按清洁test1312 ID对官方预测作只读子集统计。官方源码未修改，加载时额外强制strict以防遗漏权重。
+
+任一步失败则停止、保留错误，不自动减batch/精度/潜在步数。完成后输出 `reports/M0b_codi_llama_repro_v2.md`；全量复现是否通过以实际结果为准，不以下载成功或单元测试代替。噪声曲线与最终M0b验收不在本流水线完成标志内。

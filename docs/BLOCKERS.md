@@ -107,3 +107,25 @@ Huginn最新独立阻塞：官方下载已完成且4/4 LFS SHA通过，真实bf1
 
 ## 2026-10-29 — 作者checkpoint渠道已获明确授权
 用户回复“从什么平台下载都可以只要能下载”。来源范围阻塞解除；现在从作者公开HF仓库下载锁定revision `b2c88ba224b06b12b52ef39b87f794b98a6eb1c8` 的CODI-LLaMA checkpoint，官方大小3,408,265,790字节、LFS SHA-256 `c6d4b4b096f03fafca18409a4a7535ac9539f558ed741b31878fecadb40ed23b`。底模仍是已校验的ModelScope本地版本，未改模型。下载/校验与GPU smoke须实际完成后才宣告相应阻塞解除；GPT2长实验不停止、不改配置。
+
+## 2026-10-29T01:28:32.505068+00:00 — 20261029T012805976560Z_080db608cb52_3cd001
+RuntimeError: Error(s) in loading state_dict for CODI:
+	Unexpected key(s) in state_dict: "dynamic_cls.1.bias", "dynamic_cls.1.weight", "dynamic_cls.3.bias", "dynamic_cls.3.weight". 
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261029T012805976560Z_080db608cb52_3cd001/traceback.txt`。未回退模型或设置。
+
+## CODI-LLaMA v2流水线阻塞
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m0b_codi_llama_job.py", line 22, in <module>
+    s=step('source_smoke','scripts/m01_protocol_eval.py',c['source_smoke'])
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m0b_codi_llama_job.py", line 13, in step
+    with log.open('x',encoding='utf-8') as f:subprocess.run([sys.executable,script,config,*overrides],stdout=f,stderr=subprocess.STDOUT,env=env,check=True)
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/me/PaperField/CalReader/.venv/bin/python', 'scripts/m01_protocol_eval.py', 'configs/M0b_codi_llama_smoke_v2.yaml']' returned non-zero exit status 1.
+
+未降级模型、batch或精度。阶段日志见 reports/evidence/M0b_llama_modelscope/repro。
+
+## 2026-10-29 — CODI-LLaMA作者checkpoint下载/同一性阻塞解除
+run `20261029T011806667943Z_8b873a7eb8a6_7735de` 完成3.408GB作者权重下载，SHA与官方LFS完全一致。底模ModelScope+作者checkpoint均已就绪，GPU5上的分阶段验证/复现流程已实际启动。当前不能把来源问题解除等同于模型smoke、复现或噪声验收完成；状态见 `reports/evidence/M0b_llama_modelscope/repro_job.json`。
