@@ -1,0 +1,10 @@
+milestone: M0b
+stage: llama_modelscope_format_validation
+base_path: /home/me/models/Llama-3.2-1B-Instruct/modelscope-d3e551343d4d81508a0d226656b826c217e463cd
+identity_required:
+- config.json
+- generation_config.json
+- special_tokens_map.json
+- tokenizer.json
+- tokenizer_config.json
+- model.safetensors
