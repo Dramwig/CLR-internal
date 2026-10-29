@@ -1,0 +1,13 @@
+batch_sizes:
+- 16
+data: data/gsm8k_test.json
+limit: null
+milestone: M0b
+mode: full
+padding: official_cohort
+protocol: configs/protocol_codi_llama_modelscope_v2_gpu4.yaml
+reference: null
+smoke_run: null
+split: test
+stage: codi_llama_repro_v2
+threads: 2

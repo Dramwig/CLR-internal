@@ -1,0 +1,14 @@
+milestone: M0b
+stage: codi_llama_official_v2
+mode: smoke
+protocol: configs/protocol_codi_llama_modelscope_v2_gpu4.yaml
+data: data/M01_v2/val.json
+split: val
+splits: data/splits/gsm8k_M01_v2.json
+limit: 8
+batch_size: 128
+threads: 2
+smoke_run: null
+runtime:
+  NCCL_P2P_DISABLE: '1'
+  NCCL_IB_DISABLE: '1'

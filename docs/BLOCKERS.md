@@ -134,3 +134,26 @@ run `20261029T011806667943Z_8b873a7eb8a6_7735de` 完成3.408GB作者权重下载
 首次真实source smoke失败：官方checkpoint比当前官方模型类多出 `dynamic_cls.1.{weight,bias}` 与 `dynamic_cls.3.{weight,bias}` 四个键，strict加载正确拒绝；失败run及`repro_job.json`保留。官方仓库当前源码无dynamic_cls引用，test.py原本strict=False会忽略它们。
 
 v2新建 `clr/sources/codi_llama_v2.py`：只有这四个精确键可作为不参与forward的buffer保留，所有缺失键或其他额外键均拒绝，最终load_state_dict仍strict=True。不猜测该头激活/功能、不使用它、不修改checkpoint，也不更换模型。官方对照封装亦按同一方法保留这四键；真正的test.py前向与解码不变。此修复须经新smoke和官方逐题对照验证，不把单元测试当模型复现。
+
+## 2026-10-29T01:34:21.948145+00:00 — 20261029T013420939329Z_361949d688ff_79c947
+RuntimeError: GPU free 7.72 GiB < required 8 GiB
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261029T013420939329Z_361949d688ff_79c947/traceback.txt`。未回退模型或设置。
+
+## CODI-LLaMA v2流水线阻塞
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m0b_codi_llama_job.py", line 23, in <module>
+    o=step('official_smoke','scripts/m0b_codi_reference_v2.py',c['official_smoke'])
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m0b_codi_llama_job.py", line 13, in step
+    with log.open('x',encoding='utf-8') as f:subprocess.run([sys.executable,script,config,*overrides],stdout=f,stderr=subprocess.STDOUT,env=env,check=True)
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/me/PaperField/CalReader/.venv/bin/python', 'scripts/m0b_codi_reference_v2.py', 'configs/M0b_codi_llama_official_smoke_v2.yaml']' returned non-zero exit status 1.
+
+未降级模型、batch或精度。阶段日志见 reports/evidence/M0b_llama_modelscope/repro_retry1。
+
+## 2026-10-29 — CODI-LLaMA实际source smoke通过，官方入口显存预检失败
+新loader的GPU5 smoke已通过：run `20261029T013327437248Z_080db608cb52_ccd688`，8题、44.655秒、159次forward，真实batch1/4/8在这8题答案相同（不足以宣称全量batch不变）。随后官方smoke进入模型前检测到GPU5仅7.72GiB空闲，低于8GiB阈值，停止并保留失败，未加载模型/产生预测。
+
+CUDA新探针GPU4空闲17.56GiB。新建显式gpu4配置，预检提高到14GiB，重跑匹配smoke；只改变设备调度和更保守的内存门槛，模型/精度/batch/latent全部保持，原GPU5配置和结果保留。新流水线状态 `reports/evidence/M0b_llama_modelscope/repro_gpu4_job.json`。
