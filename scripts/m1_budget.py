@@ -22,7 +22,14 @@ with recorded(c) as run:
     bytes_per_problem=2*sum(x['bytes'] for x in smoke['storage'].values())/n
     fixed_bytes=bytes_per_problem*fixed_n + c['all_layers']*7*12*768*2*2
     # 25% throughput margin, plus completed preflight GPU costs inside60h budget.
-    overhead_hours=smoke['gpu_hours']+gate['gpu_hours']
+    preflight_runs={}
+    for directory in Path('runs').iterdir():
+        if not (directory/'metrics.json').exists() or not (directory/'config.json').exists():continue
+        cfg=__import__('json').loads((directory/'config.json').read_text())
+        metrics=__import__('json').loads((directory/'metrics.json').read_text())
+        if cfg.get('milestone')=='M1' and cfg.get('stage') in ['smoke','smoke_v2','batch_gate']:
+            preflight_runs[str(directory)]=metrics.get('gpu_hours',0)
+    overhead_hours=sum(preflight_runs.values())
     usable_seconds=max(0,(c['max_gpu_hours']-overhead_hours)*3600/1.25-fixed_seconds)
     by_time=math.floor(usable_seconds/per_train_seconds)
     by_disk=math.floor((c['max_disk_gib']*2**30-fixed_bytes)/bytes_per_problem)
@@ -41,6 +48,6 @@ with recorded(c) as run:
     final=Path(c['candidate_path']).parent/'frozen.json'
     if final.exists():raise FileExistsError(final)
     plan['status']='frozen v3';plan['split_sha256']=sha;write_json(final,plan)
-    result={'reader_train':count,'reader_train_requested':c['reader_train'],'reduced':count<c['reader_train'],'estimated_gpu_hours_including_gate_smoke':overhead_hours+1.25*(fixed_seconds+count*per_train_seconds)/3600,'estimated_disk_gib':(fixed_bytes+count*bytes_per_problem)/2**30,'throughput_margin':1.25,'storage_margin':2.,'per_problem_seconds':{'clean_and_early':basic,'K8_trajectory':traj,'two_K16_MC_one_step':mc},'split_sha256':sha,'counts':{k:len(v) for k,v in split.items()}}
+    result={'preflight_gpu_hours':overhead_hours,'preflight_runs':preflight_runs,'reader_train':count,'reader_train_requested':c['reader_train'],'reduced':count<c['reader_train'],'estimated_gpu_hours_including_gate_smoke':overhead_hours+1.25*(fixed_seconds+count*per_train_seconds)/3600,'estimated_disk_gib':(fixed_bytes+count*bytes_per_problem)/2**30,'throughput_margin':1.25,'storage_margin':2.,'per_problem_seconds':{'clean_and_early':basic,'K8_trajectory':traj,'two_K16_MC_one_step':mc},'split_sha256':sha,'counts':{k:len(v) for k,v in split.items()}}
     write_json(run.path/'budget.json',result);run.write_metrics(status='completed',**result,gpu_hours=0,source_forward_calls=0)
     print(run.path)

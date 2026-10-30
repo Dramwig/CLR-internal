@@ -82,7 +82,7 @@ def main(c):
                     write_json(run.path/f'{split}_variance_partial.json',variance_rows)
                 elapsed=time.perf_counter()-start
                 run.write_metrics(completed_questions=done,progress={'split':split,'completed':i+1,'total':len(rows)},gpu_hours=elapsed/3600,source_forward_calls=source.forward_calls)
-                if elapsed/3600+gate['gpu_hours']>c['max_gpu_hours']:raise RuntimeError('M1 GPU hour cap reached; stopped without altering remaining settings')
+                if elapsed/3600+budget['preflight_gpu_hours']>c['max_gpu_hours']:raise RuntimeError('M1 GPU hour cap reached; stopped without altering remaining settings')
                 if shutil.disk_usage(output).free<1*2**30:raise RuntimeError('Disk reserve below1GiB; stopped, no data deletion')
             storages[split]=writer.close();counts[split]=len(rows)
             pq.write_table(pa.Table.from_pylist(early_rows),output/split/'early_exit.parquet')

@@ -32,4 +32,5 @@ def quantization(x):
     original=x.float();back=original.half().float();delta=back-original
     if not torch.isfinite(back).all():raise ValueError('Nonfinite fp16 state')
     return {'max_abs':delta.abs().max().item(),'relative_l2':(delta.norm()/original.norm().clamp_min(1e-30)).item(),
+            'max_vector_relative_l2':(delta.norm(dim=-1)/original.norm(dim=-1).clamp_min(1e-30)).max().item(),
             'squared_error':delta.square().sum().item(),'elements':original.numel()}

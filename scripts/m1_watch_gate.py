@@ -20,5 +20,11 @@ if result.returncode or len(new)!=1:
     write_json(status,{'status':'gate_execution_failed','returncode':result.returncode,'runs':[str(r) for r in new]});sys.exit(1)
 r=new[0];m=json.loads((r/'metrics.json').read_text());write_json(status,{'status':'gate_passed' if m['gate_passed'] else 'blocked_gate_failed','gate_run':str(r),'smoke_run':c['smoke_run']})
 if m['gate_passed']:
+    before_budget=set(Path('runs').iterdir())
     result=subprocess.run([sys.executable,'scripts/m1_budget.py',a.config,*a.overrides,f'gate_run={r}','stage=budget'])
     if result.returncode:write_json(status,{'status':'budget_failed','gate_run':str(r),'smoke_run':c['smoke_run']})
+
+    else:
+        budget_runs=[r for r in set(Path('runs').iterdir())-before_budget if (r/'config.json').exists() and json.loads((r/'config.json').read_text()).get('stage')=='budget']
+        if len(budget_runs)!=1:raise RuntimeError('Cannot identify unique budget run')
+        write_json(status,{'status':'budget_completed','gate_run':str(r),'smoke_run':c['smoke_run'],'budget_run':str(budget_runs[0])})

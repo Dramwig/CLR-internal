@@ -22,7 +22,7 @@ class ShardWriter:
         # states: [step,layer,dim]; all rows carry concrete step/layer indices.
         if states.ndim!=3:raise ValueError('Expected step x layer x dim')
         error=quantization(states);self.quant.append(error)
-        if error['relative_l2']>self.limit:raise ValueError('fp16 relative L2 error exceeds declared threshold')
+        if error['max_vector_relative_l2']>self.limit:raise ValueError('fp16 relative L2 error exceeds declared threshold')
         steps=metadata.pop('steps');layers=metadata.pop('layers')
         if len(steps)!=states.shape[0] or len(layers)!=states.shape[1]:raise ValueError('Axis metadata mismatch')
         for i,t in enumerate(steps):
@@ -40,7 +40,7 @@ class ShardWriter:
     def close(self):
         self.flush();pq.write_table(pa.Table.from_pylist(self.manifests),self.root/'manifest.parquet')
         return {'rows':len(self.manifests),'shards':self.index,'bytes':sum(p.stat().st_size for p in self.root.iterdir()),
-                'fp16_max_abs':max(q['max_abs'] for q in self.quant),'fp16_max_relative_l2':max(q['relative_l2'] for q in self.quant),
+                'fp16_max_abs':max(q['max_abs'] for q in self.quant),'fp16_max_relative_l2':max(q['max_vector_relative_l2'] for q in self.quant),
                 'fp16_rmse':(sum(q['squared_error'] for q in self.quant)/sum(q['elements'] for q in self.quant))**.5}
 
 class LatentDataset:
