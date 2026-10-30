@@ -32,3 +32,4 @@ smoke_run: null
 gate_run: null
 budget_run: null
 resume_run: null
+generation_run: null

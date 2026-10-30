@@ -72,7 +72,9 @@ def main(c):
                                     draws.extend(numeric_answer(o['answer'])==gold for o in o64);answers.extend(o['answer'] for o in o64)
                                 variance_rows.append({'problem_id':row['id'],'split':split,'t':t,'policy':policy,'K':64,'correct':draws,'answers':answers,'blocks16':[sum(draws[b:b+16])/16 for b in range(0,64,16)],'value':sum(draws)/64})
                 done+=1
-                if (i+1)%64==0:writer.flush()
+                if (i+1)%64==0:
+                    writer.flush()
+                    if sum(p.stat().st_size for p in output.rglob('*') if p.is_file())>c['max_disk_gib']*2**30:raise RuntimeError('M1 disk cap reached; no silent data reduction')
                 if (i+1)%20==0:
                     # Durable behavior evidence even if a later GPU failure interrupts the split.
                     write_json(run.path/f'{split}_early_partial.json',early_rows)

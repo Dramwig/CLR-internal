@@ -16,7 +16,7 @@
 
 reader_train/reader_val 属于源模型 GSM8k-Aug 训练分布，不称为源模型未见题。从按 M0.1 清洁 heldout 边界核验的训练ID登记中，再对题目文本归一化去重：91条重复，发现1条答案冲突，固定保留原文件首条并保留冲突证据。随后对problem ID排序、seed11 shuffle抽样。此处题数仍待smoke预算确认，若超60GPU小时或8GiB只缩reader_train。
 
-val300 保留原顺序、ID和cohort上下文，来自官方 Internalize_CoT_Step_by_Step 固定commit的500题valid.txt（M0.1保守13-gram去重后剩493题，分val300/cal193）。v3将cal193与clean test1312合并，以seed11对ID排序后的池shuffle为500/1005；没有任何reader结果参与重分配。gold CoT来自相同commit的valid.txt/test.txt，URL和SHA在候选生成run/resources.json。原v2不修改。reader_val中的固定1000题另存所有层，面板不受reader_train缩减影响。
+val300 保留原顺序、ID和cohort上下文，来自官方 Internalize_CoT_Step_by_Step 固定commit的500题valid.txt（M0.1保守13-gram去重后剩493题，分val300/cal193）。v3将cal193与clean test1312合并，以seed11对ID排序后的池shuffle为500/1005；没有任何reader结果参与重分配。gold CoT来自相同commit的valid.txt/test.txt，URL和SHA在候选生成run/resources.json。原v2不修改。全层面板在预算确认后按固定hash选择至多800个reader_train，其余来自reader_val，合计1000题，以支持后续层探针的训练/验证分离。候选准备中的reader_val-only占位面板不会用于最终冻结；选择不依赖模型结果。
 
 ## 状态和策略语义
 

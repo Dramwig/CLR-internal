@@ -12,7 +12,7 @@ with recorded(c) as run:
     if smoke['candidate_sha256']!=hashlib.sha256(Path(c['candidate_path']).read_bytes()).hexdigest():raise ValueError('Candidate hash mismatch')
     gate=json.loads(Path(c['gate_run'],'metrics.json').read_text())
     if gate.get('status')!='completed' or not gate.get('gate_passed'):raise ValueError('Full generation blocked by continuation/batch gate')
-    n=200;times=smoke['stage_seconds'];basic=(times['prepare']+times['early'])/n;traj=times['traj']/n;mc=times['mc']/n
+    n=200;times=smoke['stage_seconds'];basic=(times['prepare']+times['early'])/n;traj=times['traj']/smoke.get('stage_questions',{}).get('traj',n);mc=times['mc']/smoke.get('stage_questions',{}).get('mc',n)
     # All six MC steps vs one balanced step in smoke; K64 adds both policies.
     held=300+c['cal']+c['test'];fixed_n=c['reader_val']+held
     fixed_seconds=basic*fixed_n+traj*c['reader_val']+mc*6*held+mc*4*c['variance_pairs']
@@ -29,6 +29,14 @@ with recorded(c) as run:
     count=min(c['reader_train'],by_time,by_disk)
     if count<=0:raise RuntimeError('Fixed non-training workload already exhausts budget; cannot shrink other settings')
     plan['splits']['reader_train']=plan['splits']['reader_train'][:count]
+    # Layer probes later need reader_train examples as well as reader_val.
+    n_train_layers=min(800,count)
+    layer_ids=[]
+    for name,n_layer in [('reader_train',n_train_layers),('reader_val',c['all_layers']-n_train_layers)]:
+        layer_ids.extend(sorted([r['id'] for r in plan['splits'][name]],key=lambda pid:hashlib.sha256(f'{c["seed"]}:layers:{pid}'.encode()).hexdigest())[:n_layer])
+    plan['all_layer_ids']=layer_ids
+    plan['all_layer_selection']='Budget-finalized fixed-hash panel: up to800 reader_train; remainder reader_val; no model results used'
+
     split={k:[r['id'] for r in rows] for k,rows in plan['splits'].items()};sha=freeze(c['split_path'],split)
     final=Path(c['candidate_path']).parent/'frozen.json'
     if final.exists():raise FileExistsError(final)
