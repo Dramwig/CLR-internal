@@ -36,6 +36,8 @@ class ShardWriter:
         if not self.rows:return
         name=f'shard_{self.index:05d}.safetensors'
         save_file({'states':torch.stack(self.tensors),'feedback':torch.stack(self.feedback)},str(self.root/name))
+        # Each completed shard has durable indexing even if a later GPU call fails.
+        pq.write_table(pa.Table.from_pylist(self.rows),self.root/f'manifest_part_{self.index:05d}.parquet')
         self.manifests.extend(self.rows);self.rows=[];self.tensors=[];self.feedback=[];self.index+=1
     def close(self):
         self.flush();pq.write_table(pa.Table.from_pylist(self.manifests),self.root/'manifest.parquet')

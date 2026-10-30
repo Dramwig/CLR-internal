@@ -17,6 +17,10 @@ def main(c):
  with recorded(c) as run:
     start=time.perf_counter();source=None
     try:
+        if (c['trajectory_K'],c['mc_K'],c['variance_K'],c['sigma'])!=(8,16,64,1.5):raise ValueError('M1 fixed policy changed; requires a new audited version')
+        resources=json.loads(Path(c['candidate_path']).with_name('resource_hashes.json').read_text())
+        if hashlib.sha256(Path(resources['source_train']['path']).read_bytes()).hexdigest()!=resources['source_train']['sha256']:raise ValueError('Training corpus changed since audit')
+        write_json(run.path/'resources.json',resources)
         gate=json.loads(Path(c['gate_run'],'metrics.json').read_text());budget=json.loads(Path(c['budget_run'],'metrics.json').read_text())
         if not gate.get('gate_passed') or budget['status']!='completed':raise ValueError('Gate and measured budget required')
         plan=json.loads(Path(c['candidate_path']).with_name('frozen.json').read_text());protocol=load_config(c['protocol'])
@@ -90,6 +94,7 @@ def main(c):
             if variance_rows:pq.write_table(pa.Table.from_pylist(variance_rows),output/split/'variance64.parquet')
             write_json(output/split/'completed.json',{'run':str(run.path),'problem_count':len(rows),'storage':storages[split]})
             run.write_metrics(completed_splits=counts,storage=storages)
+        if sum(p.stat().st_size for p in output.rglob('*') if p.is_file())>c['max_disk_gib']*2**30:raise RuntimeError('Final data exceed8GiB cap; retained as failed output for review')
         manifest={str(p.relative_to(output)):hashlib.sha256(p.read_bytes()).hexdigest() for p in output.rglob('*') if p.is_file()}
         write_json(run.path/'artifacts_sha256.json',manifest)
         run.write_metrics(status='completed',counts=counts,storage=storages,all_layers_questions=len(all_layers),variance_pairs=len(pairs),output_bytes=sum(p.stat().st_size for p in output.rglob('*') if p.is_file()))

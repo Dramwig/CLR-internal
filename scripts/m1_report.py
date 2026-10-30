@@ -28,6 +28,14 @@ def main(c):
             early.extend(pq.read_table(root/split/'early_exit.parquet').to_pylist())
             if (root/split/'mc.parquet').exists():rows.extend(pq.read_table(root/split/'mc.parquet').to_pylist())
             if (root/split/'variance64.parquet').exists():variances.extend(pq.read_table(root/split/'variance64.parquet').to_pylist())
+        early_stats=[]
+        for split in ['reader_train','reader_val','val','cal','test']:
+            for t in range(7):
+                values=[r['correct'] for r in early if r['split']==split and r['t']==t]
+                early_stats.append({'split':split,'t':t,'accuracy':bootstrap_mean(values)})
+        write_json(run.path/'early_exit_statistics.json',early_stats)
+        lines.extend(['## 早退标签（按题bootstrap10k）','|split|t|accuracy [95% CI]|','|---|---|---|'])
+        for row in early_stats:lines.append(f"|{row['split']}|{row['t']}|{row['accuracy']['mean']:.4f} {row['accuracy']['ci95']}|")
         stats=[]
         for split in ['val','cal','test']:
             for policy in ['pi','pi_T']:

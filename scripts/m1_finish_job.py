@@ -25,7 +25,12 @@ if job['status']=='budget_completed':
 else:final='blocked_preflight'
 write_json(status,{'status':final,**paths,'preflight_status':job['status']})
 subprocess.run([sys.executable,'scripts/m1_report.py',a.config,*overrides,'stage=report'],check=True)
-with Path('reports/M1_data.md').open('a') as f:
-    f.write('\n## 自动运行最新状态\n\n'+final+'。详见 [实测结果](M1_results.md) 和 `reports/evidence_M1/full_job.json`；全量状态以generation_run/metrics.json为准。\n')
+report_path=Path('reports/M1_data.md')
+history=report_path.read_text()
+report_path.write_text('# M1 数据报告：'+final+'\n\n'+Path('reports/M1_results.md').read_text()+'\n\n# 协议定义和运行历史\n\n'+history)
+if final=='generation_completed':
+    import hashlib
+    files=[Path('reports/M1_data.md'),Path('reports/M1_results.md'),Path(c['split_path']),Path('clr/policy.py'),Path('clr/data/loader.py'),Path('clr/data/m1.py')]
+    write_json(Path('reports/M1_completed_v1_manifest.json'),{'status':'completed_data_generation; awaiting milestone review','runs':paths,'sha256':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files},'data_manifest':str(Path(paths['generation_run'])/'artifacts_sha256.json')})
 for name in ['EXPERIMENTS','BLOCKERS']:
     with Path(f'docs/{name}.md').open('a') as f:f.write(f'\n## M1 pipeline — {final}\n\nRuns: {json.dumps(paths)}. Evidence: `reports/M1_results.md`, `reports/evidence_M1/full_job.json`. No failed gate was bypassed.\n')
