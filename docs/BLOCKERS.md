@@ -210,3 +210,7 @@ TimeoutError: M1 200-question smoke exceeded 900 seconds; full run prohibited
 ## M1 smoke 超时与显式修正（2026-10-30）
 
 首轮GPU2 smoke run `20261030T012126501342Z_c7c7a651e47e_6eef7a` 在900秒完成161/200题，failed，23655次forward、0.2500001GPU小时；未计作通过。按正式split分工修正：同200题clean+7个早退，100train做K8轨迹，100val做两种K16单步MC；完整阶段仍做所有t，配置未降精度/模型。修正版run `20261030T013639323603Z_13ad784ef5d6_518bf2`正在运行。预算按阶段实际题数估计，包含失败尝试成本。详细状态见 `reports/M1_data.md` 与 `reports/evidence_M1/full_job.json`。
+
+## M1 smoke阻塞已解除（2026-10-30）
+
+修正版200题smoke在898.671秒完成，run `20261030T013639323603Z_13ad784ef5d6_518bf2`；此前900秒超时保留为失败。当前阻塞仅为正在执行的val300批处理/续算关卡及之后的最终预算。预计完整20000训练题生成38.408GPU小时（25%余量、另计关卡），6.816GiB（2倍余量），不是已消耗或已完成。原test1312的历史cohort会在v3冻结时恢复，284题候选宽度修正，cal/test尚未推理。
