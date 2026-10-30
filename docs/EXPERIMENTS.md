@@ -175,3 +175,11 @@ clean test1312官方55.335% [52.591,58.003]。同输入8题重复潜状态差0�
 
 
 收尾报告：`reports/M0.1_closure_v2.md`。M1未启动：用户选择另行提供M1任务书，不将数据管线建议视为已确认范围。
+
+## 2026-10-30 — M1 新任务书与实现（未完成）
+
+M0.1审查通过；用户接受CODI-LLaMA现状、噪声延到M6前，Huginn暂停。M1只生成CODI-GPT2数据，不训练reader/probe。新任务书替代原M1，源模型调用标签提前完成。详见 `reports/M1_data.md`。
+
+候选准备：`PYTHONPATH=. PYTHONUTF8=1 OMP_NUM_THREADS=2 HF_HUB_OFFLINE=1 .venv/bin/python scripts/m1_prepare.py configs/M1_data.yaml`，成功run `20261030T011913127306Z_cb2983bfb3ec_109195`，20000/2000/300/500/1005题，尚待smoke预算后冻结v3。5项新增单元测试通过。
+
+200题smoke命令：`PYTHONPATH=. PYTHONUTF8=1 OMP_NUM_THREADS=2 HF_HUB_OFFLINE=1 .venv/bin/python scripts/m1_smoke.py configs/M1_data.yaml stage=smoke device=cuda:2`，run `20261030T012126501342Z_c7c7a651e47e_6eef7a`。900秒截止，代表性工作量定义和不足见M1报告；未完成时不填准确率或成本总数。完整val300批处理验收在smoke成功后自动运行；未通过不会全量生成。

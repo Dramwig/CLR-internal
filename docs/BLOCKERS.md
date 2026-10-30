@@ -192,3 +192,13 @@ For debugging consider passing CUDA_LAUNCH_BLOCKING=1
 Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
 
 完整 traceback: `/home/me/PaperField/CalReader/runs/20261030T012044635539Z_49d2f4edb21f_0553af/traceback.txt`。未回退模型或设置。
+
+## 2026-10-30 — M1 任务书已收到；当前约束
+
+M1任务书缺失的旧阻塞已解除。M0.1审查通过；CODI-LLaMA复现按现状获接受、噪声延至M6前；Huginn按用户指令暂停，Coconut继续暂缓。
+
+用户明确批准保留原cohort左padding。同题K路复制原batch1 KV及上下文，不新增padding；manifest保存cohort_id、left_padding、pad_to、协议hash。**已知限制：z_t依赖cohort组成/padding宽度，不需要消除。**
+
+候选准备首次目录不存在错误已修复并保留失败run。GPU4 smoke在CUDA初始化时OOM，实际源forward=0；已显式选择GPU2重跑，未改变模型/精度/数据。GPU2临时避让窗口已过期。
+
+M1全量仍受200题smoke、val300批处理和续算关卡以及60GPU小时/8GiB预算约束。fp16是有损存储；将单独比较原始fp32和fp16往返状态在原KV上的续算，不将磁盘特征冒充无损源状态。尚无完整标签统计，不宣称M1完成。

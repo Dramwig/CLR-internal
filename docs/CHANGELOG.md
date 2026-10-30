@@ -52,3 +52,7 @@
 ## 2026-10-30 — M0.1 收尾
 
 新增收尾报告，核验71个冻结噪声文件及划分、重跑回归23 passed/1 skipped；更新EXPERIMENTS/BLOCKERS当前状态。M1等待用户任务书。释放磁盘配重10GiB并保持暂停，未改冻结协议或结果。
+
+## 2026-10-30 — M1 数据管线启动
+
+新增共享continuation policy、PrefixStates/KV上下文、候选划分准备、gold中间量解析、safetensors/Parquet writer+loader、200题smoke与val300关卡、预算后冻结脚本。保留M0/M0.1冻结源文件。当前没有reader/probe训练，也没有M1全量完成声明。
