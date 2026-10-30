@@ -5,11 +5,11 @@ The loader returns fp16 observations; source continuation must use the manifest
 context and audit quantization, never pretend these are lossless fp32 KV caches.
 """
 from pathlib import Path
+import torch
 import pyarrow as pa
 import pyarrow.parquet as pq
 from safetensors import safe_open
 from safetensors.torch import save_file
-import torch
 from clr.data.m1 import quantization
 
 class ShardWriter:
