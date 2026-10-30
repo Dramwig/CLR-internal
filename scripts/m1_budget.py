@@ -48,6 +48,11 @@ with recorded(c) as run:
     split={k:[r['id'] for r in rows] for k,rows in plan['splits'].items()};sha=freeze(c['split_path'],split)
     final=Path(c['candidate_path']).parent/'frozen.json'
     if final.exists():raise FileExistsError(final)
+    contexts=json.loads(Path(c['candidate_path']).with_name('contexts.json').read_text())
+    for name in ['cal','test']:
+        for row in plan['splits'][name]:
+            if row['id'] in contexts['updates']:row.update(contexts['updates'][row['id']])
+    plan['context_provenance']={k:v for k,v in contexts.items() if k!='updates'}
     plan['status']='frozen v3';plan['split_sha256']=sha;write_json(final,plan)
     result={'preflight_gpu_hours':overhead_hours,'preflight_runs':preflight_runs,'reader_train':count,'reader_train_requested':c['reader_train'],'reduced':count<c['reader_train'],'estimated_gpu_hours_including_gate_smoke':overhead_hours+1.25*(fixed_seconds+count*per_train_seconds)/3600,'estimated_disk_gib':(fixed_bytes+count*bytes_per_problem)/2**30,'throughput_margin':1.25,'storage_margin':2.,'per_problem_seconds':{'clean_and_early':basic,'K8_trajectory':traj,'two_K16_MC_one_step':mc},'split_sha256':sha,'counts':{k:len(v) for k,v in split.items()}}
     write_json(run.path/'budget.json',result);run.write_metrics(status='completed',**result,gpu_hours=0,source_forward_calls=0)
