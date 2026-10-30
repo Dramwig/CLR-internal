@@ -161,3 +161,34 @@ CUDA新探针GPU4空闲17.56GiB。新建显式gpu4配置，预检提高到14GiB�
 ## 2026-10-29 — CODI-LLaMA完成复现后的未解决项
 真实官方test.py全1319题为55.497%（按题10k bootstrap 95% CI 52.843–58.150%），CLR batch16为55.269%；同batch128对照为55.421%。逐题不一致由27题降到14题，仍不能宣称完全等价，数值执行路径残差尚未定位。
 与固定论文v3 Table A4 β=20参考51.9%相差+3.597pp；clean test1312仍55.335%，排除7题重叠不能解释全部偏差。底模镜像同一性、官方recipe和完整checkpoint校验均通过；发布checkpoint到论文实验条目的训练manifest/代码版本对应关系仍不明。没有为追平改指标、换划分或挑seed。分析与逐题差异位置见 `reports/M0b_codi_llama_analysis_v2.md`。LLaMA噪声曲线尚未执行，M0b整体未验收；不阻塞既定GPT2单源主线。
+
+## 临时资源避让：物理 GPU 2（记录于 2026-10-29T16:10:48.755456+08:00）
+
+收到用户经另一任务转达的资源限制：至北京时间 2026-10-29 18:06，物理 GPU 2 禁止本项目使用，涵盖设备重映射；已写入 AGENTS.md。核查当前噪声进程容器 PID 216252 / 宿主 PID 3253918，nvidia-smi 对应物理 GPU 3（UUID GPU-ef23fa9f-5ab6-08fc-1fca-aef1b2b787cc）；其环境无 CUDA_VISIBLE_DEVICES 重映射，协议指定 cuda:3。未发现运行中的本项目 Huginn / CODI-LLaMA 评测；未停止或修改其他用户进程。现有 GPT2 任务继续，无协议变更。
+
+
+## M0.1 完整噪声运行结束
+运行 `/home/me/PaperField/CalReader/runs/20261028T131534016226Z_83bfd1aab8dd_d4e55b` 完成；G-σ结果见完整报告，M0.1审查及M1仍未授权。推荐输出：{"selected": {"sigma": 1.5, "from_step": 3, "temperature": 0, "accuracy_drop": 0.04944444444444446, "nondegenerate": 0.3288888888888889}, "tie_break": "nondegenerate descending, drop ascending, sigma ascending, from_step ascending"}
+
+## 2026-10-30 — 当前状态（补充历史阻塞）
+
+- M0.1第1–4项实验/工程交付及收尾核验完成；完整噪声71文件哈希一致，23测试通过、1跳过。旧记录中“等待完整噪声”已解除。G-σ按均值通过，sigma1.5/from_step3下降4.944pp、非退化32.889%；仅距5pp门槛0.056pp，统计稳健性未得到证明。
+- bf16复放验收与fp32生产协议差异已获用户明确接受；仍保留fp3295.299%一致率、跨batch差异、单题投影数值dispatch未完全归因的限制，不改写原指标。
+- M1未完成/未启动：用户明确选择“我提供M1任务书”，等待具体交付及规模；不能用自行缩小的范围宣称完成。
+- M0b未整体完成：Huginn实际smoke OOM、CODI-LLaMA14题同batch残差及论文偏差/噪声曲线仍待处理；Coconut继续暂缓。这些与GPT2单源M1分开记录。
+- 磁盘空间不足已临时解除：按用户授权 `reserve.sh release 10` 释放10GiB，可用约12.65GiB，自动填充保持暂停；M1容量仍待任务书后估算。未删除任何实验或权重。
+- 原提案路径 `docs/IdeaB_Calibrated_Latent_Reader.md` 不存在；本次通读项目指定的 `docs/proposal.md`，其中没有M1编号任务书。
+
+详见 `reports/M0.1_closure_v2.md`。
+
+## 2026-10-30T01:18:56.175118+00:00 — 20261030T011828343325Z_cb2983bfb3ec_8032be
+FileNotFoundError: [Errno 2] No such file or directory: 'data/M1_v3/candidates.json.tmp'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261030T011828343325Z_cb2983bfb3ec_8032be/traceback.txt`。未回退模型或设置。
+
+## 2026-10-30T01:20:46.022550+00:00 — 20261030T012044635539Z_49d2f4edb21f_0553af
+RuntimeError: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261030T012044635539Z_49d2f4edb21f_0553af/traceback.txt`。未回退模型或设置。
