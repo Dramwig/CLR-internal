@@ -17,10 +17,11 @@ with recorded(c) as run:
     held=300+c['cal']+c['test'];fixed_n=c['reader_val']+held
     fixed_seconds=basic*fixed_n+traj*c['reader_val']+mc*6*held+mc*4*c['variance_pairs']
     per_train_seconds=basic+traj
-    # Smoke storage contains both clean+traj for all200, with10 all-layer cases.
-    # Conservatively charge those bytes to every problem, plus 2x metadata/log margin.
-    bytes_per_problem=2*sum(x['bytes'] for x in smoke['storage'].values())/n
-    fixed_bytes=bytes_per_problem*fixed_n + c['all_layers']*7*12*768*2*2
+    # Charge each production role its corresponding measured bytes, then 2x margin.
+    # First10 smoke train problems include all layers, so this is conservative.
+    bytes_per_problem=2*smoke['storage']['reader_train']['bytes']/100
+    held_bytes_per_problem=2*smoke['storage']['val']['bytes']/100
+    fixed_bytes=bytes_per_problem*c['reader_val']+held_bytes_per_problem*held+c['all_layers']*7*12*768*2*2
     # 25% throughput margin, plus completed preflight GPU costs inside60h budget.
     preflight_runs={}
     for directory in Path('runs').iterdir():
