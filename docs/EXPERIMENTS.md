@@ -183,3 +183,7 @@ M0.1审查通过；用户接受CODI-LLaMA现状、噪声延到M6前，Huginn暂�
 候选准备：`PYTHONPATH=. PYTHONUTF8=1 OMP_NUM_THREADS=2 HF_HUB_OFFLINE=1 .venv/bin/python scripts/m1_prepare.py configs/M1_data.yaml`，成功run `20261030T011913127306Z_cb2983bfb3ec_109195`，20000/2000/300/500/1005题，尚待smoke预算后冻结v3。5项新增单元测试通过。
 
 200题smoke命令：`PYTHONPATH=. PYTHONUTF8=1 OMP_NUM_THREADS=2 HF_HUB_OFFLINE=1 .venv/bin/python scripts/m1_smoke.py configs/M1_data.yaml stage=smoke device=cuda:2`，run `20261030T012126501342Z_c7c7a651e47e_6eef7a`。900秒截止，代表性工作量定义和不足见M1报告；未完成时不填准确率或成本总数。完整val300批处理验收在smoke成功后自动运行；未通过不会全量生成。
+
+## M1 smoke 超时与显式修正（2026-10-30）
+
+首轮GPU2 smoke run `20261030T012126501342Z_c7c7a651e47e_6eef7a` 在900秒完成161/200题，failed，23655次forward、0.2500001GPU小时；未计作通过。按正式split分工修正：同200题clean+7个早退，100train做K8轨迹，100val做两种K16单步MC；完整阶段仍做所有t，配置未降精度/模型。修正版run `20261030T013639323603Z_13ad784ef5d6_518bf2`正在运行。预算按阶段实际题数估计，包含失败尝试成本。详细状态见 `reports/M1_data.md` 与 `reports/evidence_M1/full_job.json`。
