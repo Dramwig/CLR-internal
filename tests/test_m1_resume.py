@@ -23,3 +23,15 @@ def test_recovery_keeps_complete_prefix_and_appends(tmp_path):
     assert not (source/'manifest.parquet').exists()
     with pytest.raises(ValueError,match='frozen prefix'):
         recover(source,tmp_path/'invalid',[{'id':'wrong'}],old)
+
+def test_reserve_release_uses_integer_gib(monkeypatch, tmp_path):
+    from types import SimpleNamespace
+    from clr.data import resume
+    calls=[]
+    monkeypatch.setattr(resume.shutil,'disk_usage',lambda p: SimpleNamespace(free=19.25*2**30))
+    def run(args, **kwargs):
+        calls.append(args)
+        return SimpleNamespace(returncode=0,stdout='released',stderr='')
+    monkeypatch.setattr(resume.subprocess,'run',run)
+    resume.ensure_space(tmp_path)
+    assert calls[0][-1]=='6'
