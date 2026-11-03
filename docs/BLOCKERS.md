@@ -356,3 +356,7 @@ B3 test Q3准确率58.59% ± 0.19pp，Q4 68.26% ± 1.09pp（三seed95% t区间�
 ## 2026-11-03 M4资源现状
 
 配重已耗尽（0块），本次申请40GiB未释放新增空间，当前约15.6GiB可用；不因此停止。所有GPU共享繁忙，最大空闲显存约6GiB。将按val smoke实测配置与预算，禁止隐式降级；详见docs/M4_TASK.md。
+
+## 2026-11-03 M4未见池重叠与方程解析
+
+按任务要求冻结的各池对半划分中，172条unseen_eval与unseen_train有13-gram重叠（SVAMP164、ASDiv8），精确重复0；不擅自重划分，最终另报825条无重叠子集诊断。方程可解析SVAMP990/993、ASDiv744/1000，其余题仅跳过Q4、保留行为标签；见data/M4_v0/equation_failures.json与unseen_train_eval_overlap.json。
