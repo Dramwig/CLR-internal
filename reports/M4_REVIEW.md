@@ -4,7 +4,7 @@ M4未完成：D数据补齐已完成，CLR的k=4/8验证试验正在运行，尚
 
 ## (b) 关卡
 
-- 通过：val-only源/reader/校准评估smoke；12项单元测试，含选项隔离/置换、观测前缀拼接和Bernoulli conformal覆盖率。
+- 通过：val-only源/reader/校准评估smoke；13项单元测试，含选项隔离/置换、观测前缀拼接和Bernoulli conformal覆盖率。
 - 通过：D生成1993题，996训练题K8轨迹、997评估题每t K16 MC；完整生产0.419 GPUh、117130次forward；含源smoke约0.423 GPUh，低于6小时。冻结ID与标签审计通过。
 - 未通过（运行中）：k选择、主模型/B3-multi/留一类型迁移/补充训练的三seed实验。
 - 未通过（未执行）：最终cal_A温度/仿射、cal_B Mondrian与test/unseen_eval评估。正式评估须先通过全部训练锁。
