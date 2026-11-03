@@ -20,12 +20,14 @@ def forward(model,kind,rows,bank,serializer,templates,norm,device):
     inputs=probe_inputs(rows,prefix,mask,templates,*norm)
     return (model(*inputs,rows[0]['qtype']) if kind=='b3_multi' else model(*inputs)).float()
 
-def evaluate(model,kind,groups,bank,serializer,templates,norm,device,batch):
+def evaluate(model,kind,groups,bank,serializer,templates,norm,device,batch,budget=None):
     model.eval();out={}
     with torch.no_grad(),torch.autocast('cuda',dtype=torch.bfloat16,enabled=kind=='clr'):
         for q,rows in groups.items():
             loss=0.
             for i in range(0,len(rows),batch):
+                if budget is not None and (i//batch)%100==0:
+                    budget.check();write_json(budget.path/'validation_progress.json',{'qtype':q,'processed':i,'total':len(rows),'gpu_hours':(time.monotonic()-budget.start)/3600})
                 rs=rows[i:i+batch];logits=forward(model,kind,rs,bank,serializer,templates,norm,device)
                 loss+=float(-(targets(rs,device)*logits.log_softmax(-1)).sum())
             out[q]=loss/len(rows)
@@ -100,7 +102,7 @@ def main(c):
                     if (time.monotonic()-start)/3600>c['run_budget_hours']:raise TimeoutError('Configured per-run GPU budget exhausted')
             row={'epoch':epoch,'train_nll':loss_sum/steps,'examples':examples,'gpu_hours':(time.monotonic()-start)/3600}
             if epoch in valepochs:
-                val=evaluate(model,kind,vg,vb,serializer,templates,norm,device,c['eval_batch']);score=float(np.mean(list(val.values())));row.update(val_nll=val,selection_nll=score)
+                val=evaluate(model,kind,vg,vb,serializer,templates,norm,device,c['eval_batch'],budget);score=float(np.mean(list(val.values())));row.update(val_nll=val,selection_nll=score)
                 if score<best:
                     best=score;bad=0;state=model.trainable_state() if kind=='clr' else {k:v.cpu() for k,v in model.state_dict().items()}
                     temp=run.path/'best.tmp';torch.save(state,temp);temp.replace(run.path/'best.pt');write_json(run.path/'best.json',{'epoch':epoch,'selection_nll':score,'val_nll':val})
