@@ -212,9 +212,9 @@ def main(c):
     f'通过：val-only smoke、块隔离/置换与输入约束测试；三seed必做模型/迁移/增强训练已完成并在最终评估前锁定；温度/仿射及Mondrian均已执行。总成本{cost:.3g} GPUh，D {dmetrics.get("gpu_hours",float("nan")):.3g} GPUh。G1优势结论按下列差值区间审查，尚未标为通过。',g1,
     '## (c) 核心主表','均值±95% seed-t CI；clean/seen，逐t等权。表2为α=.1的三seed均值；详细CI见M4_conformal_aggregate.csv，其他α见CSV。',tab1,tab2,tab3,
     'ECE（CLR−B3，test纯温度）：'+'；'.join(q+' '+fmt(vals('main','test',q,'ece15')-vals('B3','test',q,'ece15')) for q in METRICS)+'。', '仿射−温度的改善（正为更好）：'+afftext+'。','加入未见训练后：'+gaptext+'。','GSM cal_B阈值下unseen_eval覆盖率（α=.1）：'+'；'.join(unseen)+'。',
-    '## (d) 新增偏离与阻塞','预算固定4epoch、每qtype每epoch10000采样，仅第2/4epoch验证；可能欠训练。可选消融未做。Q3共享仿射偏置抵消。未见池259题方程解析失败、2题负例配对失败跳过Q4；172条eval与新train存在13-gram重叠、精确0，另报825无重叠子集。调试出现控制器状态/无限阈值JSON/严格YAML键错误，k8预检查显式由4降到3.5GiB（模型设置不变），均在val修复，失败记录保留。',
+    '## (d) 新增偏离与阻塞','预算固定正式训练前按完整val实测速率把4epoch上限改为10，每qtype每epoch10000采样、每2epoch验证、patience2；仍可能欠训练。可选消融未做。Q3共享仿射偏置抵消。未见池259题方程解析失败、2题负例配对失败跳过Q4；172条eval与新train存在13-gram重叠、精确0，另报825无重叠子集。调试出现控制器状态/无限阈值JSON/严格YAML键错误，k8预检查显式由4降到3.5GiB（模型设置不变），均在val修复，失败记录保留。',
     '## (e) 需要审查者决定','根据G1差值及覆盖率判断是否通过进入M5；是否另建按题族分组的未见池版本（当前冻结划分不改）。',
-    '## (f) 证据路径','详细：reports/M4_clr_v0.md、reports/M4_budget.md；CSV：reports/M4_metrics.csv、M4_conformal.csv、M4_paired_bootstrap.csv、M4_affine_gains.csv、M4_shift_gaps.csv；run索引：data/M4_v0/training_suite.json、evaluation_suite.json；数据与代码冻结：data/M4_v0/freeze.json。']
+    '## (f) 证据路径','详细：reports/M4_clr_v0.md、reports/M4_budget_v2.md；CSV：reports/M4_metrics.csv、M4_conformal.csv、M4_paired_bootstrap.csv、M4_affine_gains.csv、M4_shift_gaps.csv；run索引：data/M4_v0/training_suite.json、evaluation_suite.json；数据与代码冻结：data/M4_v0/freeze.json。']
     text='\n\n'.join(review)+'\n'
     if len(text.encode())>8000:raise ValueError(f'Review exceeds8KB: {len(text.encode())}; shorten without dropping required evidence')
     Path('reports/M4_REVIEW.md').write_text(text)

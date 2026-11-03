@@ -382,3 +382,6 @@ RuntimeError: Insufficient GPU memory; no fallback
 
 ## M4 配置语法修复（2026-11-03）
 新增pilot映射误用整数YAML键，被共享严格配置加载器拒绝（训练前，无GPU计算）；改为字符串键并对全部M4配置预加载验证。保留 `reports/M4_pilot_k8_v2.log`；研究参数不变。
+
+## M4 正式训练前预算修订
+原4epoch计划有欠训练且仅两次验证的限制；完整val实测更快，改用新配置v1的10epoch上限/每2epoch验证/patience2，预算v2含裕量约76GPUh≤80。模型、数据、指标、seed与few-shot设置不变；原pilot/预算保留。此为显式协议修订，非test驱动选择，详见 `reports/M4_budget_v2.md`。

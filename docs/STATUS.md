@@ -178,3 +178,5 @@ M4待完成审查摘要已写 `reports/M4_REVIEW.md`（明确未完成、不填�
 M4：k4/k8均完成40000样本训练、现完整reader_val评估中；共享MLP置换测试另通过，总13项。当前待完成审查摘要已同步测试数；实际最终结果尚未产生。
 
 M4 k4 pilot完成：reader_val宏qtype原始NLL0.769895，Q1/Q2/Q3/Q4=0.421176/0.559212/1.363840/0.735353。Q3接近均匀四选一NLL1.386，Q4差于常数0.5的0.693；保留负面结果，尚非最终校准比较，不改变已冻结训练预算。k8验证中。
+
+M4预算v2（正式训练尚未启动/test未打开）：完整k4验证0.246GPUh显著快于smoke估计，采用 `configs/M4_train_v1.yaml`，10epoch/每2epoch验证/patience2，保留旧4epoch方案；约76GPUh含20%裕量，优先必做四项。控制器新日志 `reports/M4_training_suite_v8.log`。
