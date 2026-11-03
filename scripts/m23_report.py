@@ -49,7 +49,7 @@ def main(c):
     qlines=['# M2 类型化问题库',preamble,
       '输入严格限定观测状态、类型化模板和选项。训练模板0–3，评估保留模板4–5；每个评估实例同时评估一个已见模板及两个保留模板。原题文本、gold CoT不传入模型。',
       'Q1：每条轨迹起点对应clean状态，逐条保留Bernoulli标签；t>t0读取实际观测，不读取feedback；不标t<t0的clean前缀。clean终点用sigma=0正误，traj终点用自身最终正误。cal/test用K16的逐次结果；计算Bernoulli NLL/Brier，MAE对MC均值。',
-      'Q2仅clean早退。Q3四个数值归一化选项，含真实模型最终答案，干扰项来自同题行为、gold及固定训练集其他答案；无效输出表示为<invalid>，不丢题。Q4在clean状态上以显式方程RHS为中间量（包括最终计算结果），跨题互换配对保证正负数值边际完全相同，排除本题真值；未匹配实例显式计数。',
+      'Q2仅clean早退。Q3四个数值归一化选项，含真实模型最终答案，干扰项来自同题行为、gold及固定训练集其他答案；无效输出表示为<invalid>，不丢题。Q4在clean状态上以显式方程RHS为中间量（包括最终计算结果），跨题互换配对在reader_train/reader_val/val/cal/test各原始split内保证正负数值边际完全相同，排除本题真值；未匹配实例显式计数。cal_A/cal_B是cal内按题抽样，未分别重新配对，不保证每个半集的数值边际精确相同。',
       'cal_A250 / cal_B250按问题ID冻结；Mondrian按(qtype,t)分层、每题固定哈希抽一个实例。Q1集合预测未来Bernoulli正误，不是V的置信区间。',
       '## 样本与模板规模',table(['split','problems','QA rows','Q4解析失败题','Q4未匹配题'],[(s,v['problems'],v['rows'],v['q4_parse_failed'],len(v['q4_unpaired'])) for s,v in summary.items()]),
       '## Q1各步覆盖',table(['split','t','clean样本','traj样本','缺clean标签比例'],[(s,t,next((r['n'] for r in v['by_qtype_step_kind'] if r['qtype']=='Q1' and r['t']==t and r['kind']=='clean'),0),next((r['n'] for r in v['by_qtype_step_kind'] if r['qtype']=='Q1' and r['t']==t and r['kind']=='traj'),0),f"{v['q1_missing_clean_fraction'][str(t)]:.4f}") for s,v in summary.items() for t in range(7)])]
