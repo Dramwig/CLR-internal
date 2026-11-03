@@ -40,3 +40,4 @@ svamp_run: null
 asdiv_run: null
 require_complete: true
 source_batch_size: 64
+batch_gate_run: runs/20261103T053137666964Z_b807ffac4af3_0d5c8e
