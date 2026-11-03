@@ -108,7 +108,7 @@ def main(c):
             history.append(row);write_json(run.path/'history.json',history);print(json.dumps(row),flush=True)
             if bad>=c['patience']:break
         status='completed';write_json(run.path/'training_manifest.json',{'train_counts':{q:len(rs) for q,rs in groups.items()},'val_counts':{q:len(rs) for q,rs in vg.items()},'test_opened':False,'model_kind':kind,'case':c['case'],'cross_every':c['cross_every']})
-        run.write_metrics(status=status,gpu_hours=(time.monotonic()-start)/3600,source_forward_calls=0,best_val_nll=best,examples=examples,epochs=len(history),peak_allocated_gib=torch.cuda.max_memory_allocated(device)/1024**3)
+        run.write_metrics(status=status,gpu_hours=(time.monotonic()-start)/3600,source_forward_calls=0,best_val_nll=best,examples=examples,epochs=len(history),peak_allocated_gib=torch.cuda.max_memory_allocated(device)/1024**3,parameters=sum(p.numel() for p in model.parameters()),trainable_parameters=sum(p.numel() for p in model.parameters() if p.requires_grad))
         print(str(run.path),flush=True)
     finally:
         if status!='completed':run.write_metrics(status=status,gpu_hours=(time.monotonic()-start)/3600,source_forward_calls=0)
