@@ -10,8 +10,9 @@
 |M1 CODI-GPT2数据|全量生成及报告完成，用户已审查通过|
 |CODI-LLaMA|复现按现状获接受；噪声留至M6前|
 |Huginn / Coconut|按用户指令暂停；Coconut不训练、不使用第三方checkpoint|
-|M2–M3|全部必需实验与报告完成，待用户审查；冻结索引data/M23_v1a/freeze.json|
-|M4–M9|尚未执行；总体规划见docs/CLR_Codex_Plan.md|
+|M2–M3|用户已通过G0；冻结索引data/M23_v1a/freeze.json|
+|M4|已授权，准备模型与未见数据；当前任务书M4_TASK.md|
+|M5–M9|尚未执行|
 
 ## M1完成产物
 
@@ -148,3 +149,7 @@ B3 test Q3准确率58.59% ± 0.19pp，Q4 68.26% ± 1.09pp（三seed95% t区间�
 从 M4 起唯一审查文件 ≤ 8KB、固定六段、≤ 3 张主表、3 位有效数字；实验/阻塞新条目每条 ≤ 10 行。
 smoke/调试仅用 val 代理，不触碰 test；旧 AGENTS 原样归档，提案指定路径链接到现有 proposal.md。
 本次仅修改文档与索引，未启动实验，未修改冻结代码/结果；M2–M3 仍待审查。
+
+## 2026-11-03 M4启动
+
+用户通过G0并授权M4，当前协议见[M4_TASK.md](M4_TASK.md)。encoder选择官方ModernBERT-base；只在val做smoke/调试。GPU全部共享繁忙，源计划cuda:2、reader计划cuda:3，加载前再检查。已按授权释放40GiB配重，保持自动补足暂停。M4尚无结果。

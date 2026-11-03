@@ -28,12 +28,16 @@
 
 ## 当前状态（2026-11-03，北京时间）
 
-- M0.1、M1 v3 已获用户审查通过；M2–M3 实现、必需实验和报告已完成，**待用户审查**。M4–M9 尚未执行，本次仅固化全局规则。
+- M0.1、M1 v3 已获用户审查通过；M2–M3/G0 已获用户审查通过；M4 已授权并开始，任务书见 [docs/M4_TASK.md](docs/M4_TASK.md)。M5–M9 尚未执行。
 - M1 数据：`data/dumps/codi_gpt2_v3`；冻结清单 `reports/M1_completed_v3_manifest.json`。保留原 cohort 左 padding 与协议上下文，状态受 cohort 影响。
-- M2–M3：`data/M23_v1a/freeze.json`（635 个文件）；核验 `data/M23_v1a/verification.json`。早期 smoke/test 暴露偏离仍待审查，不得声称已获接受；后续严格执行 val 代理。
+- M2–M3：`data/M23_v1a/freeze.json`（635 个文件）；核验 `data/M23_v1a/verification.json`。历史 smoke/test 暴露如实保留；用户已通过 G0，不抹去历史偏离；M4 严格使用 val 代理。
 - Q1 已确认规则：每条轨迹最终正误只监督干净起点 z_t0 和其后观测状态；不监督更早干净前缀，独立 Bernoulli 样本不预先平均；终点分别使用 clean/traj 自身正误。
 - M2–M3 校准划分：`data/splits/gsm8k_M23_cal_v1.json`，cal_A250 / cal_B250。后续使用冻结版本，变更须按版本管理与任务授权执行。
 - CODI-LLaMA 复现已按现状接受，噪声留至 M6 前；Huginn/Coconut 暂停，B5b 延至 M6。M2–M3“不训练 CLR”的任务范围不是 M4 的永久禁令。
 - 2026-10-29 临时 GPU 2 禁用已到期；新任务仍须实时检查资源，不能依据过期快照分配 GPU。
 
 历史逐次进度原样归档于 [旧 AGENTS 快照](docs/history/AGENTS_20261103_before_global_rules.md)，完整状态历史见 [STATUS.md](docs/STATUS.md)。这些历史材料不覆盖本页与全局约定。
+
+<!-- M4_LIVE -->
+M4：核实ModernBERT-base、块掩码与资源；D数据补齐及读取器实现准备中，尚无M4实验结论。总预算80GPU小时，D上限6GPU小时。
+<!-- /M4_LIVE -->
