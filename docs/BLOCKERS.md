@@ -389,3 +389,7 @@ RuntimeError: Insufficient GPU memory; no fallback
 ## 2026-11-03T07:39:08.116396+00:00 — 20261103T073907340169Z_79952377610a_41e040
 RuntimeError: Insufficient GPU memory; no fallback
 完整 traceback: `/home/me/PaperField/CalReader/runs/20261103T073907340169Z_79952377610a_41e040/traceback.txt`。未回退模型或设置。
+
+## M4 GPU1预检查恢复（2026-11-03）
+main seed11在GPU1加载模型前因3.5GiB门槛退出，未训练；seed22/33未中断。GPU1相同模型/batch/精度val smoke通过：`runs/20261103T074503297668Z_47e3387fa005_ea103e`，峰值2.41778GiB、置换差0。
+新配置 `M4_train_v2.yaml` 明确将预检查余量设3.0GiB，研究设置保持10epoch等不变；失败run保留。新控制器用独立manifest接续，避免终止已有训练，完成后恢复规范索引。没有降低模型或batch。

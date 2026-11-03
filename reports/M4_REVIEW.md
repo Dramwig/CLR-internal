@@ -18,7 +18,7 @@ M4未完成：D数据补齐已完成，CLR的k=4/8验证试验正在运行，尚
 
 正式训练前依据完整val吞吐把最大4epoch显式修订为10、每2epoch验证、patience2；每qtype每epoch10000采样不变。估算含20%裕量约76 GPUh≤80，保留旧方案与pilot；可选消融暂未运行。
 未见池259题公式解析失败、2题负例匹配失败跳过Q4；172条eval与新增train有13-gram重叠、精确0，保留规定划分并预先声明825题无重叠诊断子集。
-控制器running识别、无限阈值JSON、严格YAML键错误均已修复并留存失败记录；k8显存预检查由4显式改为3.5GiB，依据smoke峰值2.42GiB，模型/batch/精度未变。没有静默回退。
+控制器running识别、无限阈值JSON、严格YAML键错误均已修复并留存失败记录；k8预检查由4改为3.5GiB；GPU1另做同设置val smoke确认峰值2.42GiB后，将新run门槛显式设3.0GiB。模型/batch/精度未变。没有静默回退。
 
 ## (e) 需要审查者决定的问题
 
@@ -28,5 +28,5 @@ M4未完成：D数据补齐已完成，CLR的k=4/8验证试验正在运行，尚
 
 任务与预算：docs/M4_TASK.md、reports/M4_budget_v2.md。D详细报告：reports/M4_data.md。当前状态：docs/M4_LIVE.json、docs/STATUS.md。
 D run：runs/20261103T063500842769Z_924ffcfc4ca2_e9f41f；QA与审计见M4_data.md。
-控制器日志：reports/M4_training_suite_v8.log、reports/M4_pipeline.log；运行中试验：runs/20261103T065137301904Z_23bf54104797_6e243a、runs/20261103T070515702150Z_e258073e121b_22aa90。
+控制器日志：reports/M4_training_suite_v9.log、reports/M4_pipeline.log；运行中试验：runs/20261103T065137301904Z_23bf54104797_6e243a、runs/20261103T070515702150Z_e258073e121b_22aa90。
 后续run索引将保存于data/M4_v0/training_suite.json、evaluation_suite.json；最终详细指标与报告尚未生成。
