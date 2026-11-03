@@ -26,3 +26,10 @@ def test_prefix_observations_and_no_source_text():
     x=model_input(r,s,{'Q1':['Probability?']})
     assert x['states'][:,0].tolist()==[0,1,2,103,104,105]
     assert 'SECRET' not in str(x)
+
+def test_patchscope_prompt_excludes_source_problem_text():
+    from scripts.m23_patchscope import prompt
+    row={'qtype':'Q3','template_id':0,'options':['1','2','3','4'],'question':'SECRET SOURCE QUESTION','gold_cot':'SECRET SOLUTION'}
+    value=prompt(row,{'Q3':['Which final answer?']})
+    assert 'SECRET' not in value
+    assert all(f'{letter}: {v}' in value for letter,v in zip('ABCD',row['options']))

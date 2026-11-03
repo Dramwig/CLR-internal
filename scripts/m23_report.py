@@ -51,7 +51,7 @@ def main(c):
       'Q1：每条轨迹起点对应clean状态，逐条保留Bernoulli标签；t>t0读取实际观测，不读取feedback；不标t<t0的clean前缀。clean终点用sigma=0正误，traj终点用自身最终正误。cal/test用K16的逐次结果；计算Bernoulli NLL/Brier，MAE对MC均值。',
       'Q2仅clean早退。Q3四个数值归一化选项，含真实模型最终答案，干扰项来自同题行为、gold及固定训练集其他答案；无效输出表示为<invalid>，不丢题。Q4在clean状态上以显式方程RHS为中间量（包括最终计算结果），跨题互换配对保证正负数值边际完全相同，排除本题真值；未匹配实例显式计数。',
       'cal_A250 / cal_B250按问题ID冻结；Mondrian按(qtype,t)分层、每题固定哈希抽一个实例。Q1集合预测未来Bernoulli正误，不是V的置信区间。',
-      '## 样本与模板规模',table(['split','problems','QA rows','Q4未匹配题'],[(s,v['problems'],v['rows'],len(v['q4_unpaired'])) for s,v in summary.items()]),
+      '## 样本与模板规模',table(['split','problems','QA rows','Q4解析失败题','Q4未匹配题'],[(s,v['problems'],v['rows'],v['q4_parse_failed'],len(v['q4_unpaired'])) for s,v in summary.items()]),
       '## Q1各步覆盖',table(['split','t','clean样本','traj样本','缺clean标签比例'],[(s,t,next((r['n'] for r in v['by_qtype_step_kind'] if r['qtype']=='Q1' and r['t']==t and r['kind']=='clean'),0),next((r['n'] for r in v['by_qtype_step_kind'] if r['qtype']=='Q1' and r['t']==t and r['kind']=='traj'),0),f"{v['q1_missing_clean_fraction'][str(t)]:.4f}") for s,v in summary.items() for t in range(7)])]
     dist=[];position=[]
     for split in summary:
@@ -95,7 +95,7 @@ def main(c):
                 mainrows.append([b,q,s]+[ci(values(b,q,s,False,m)) if values(b,q,s,False,m) else 'NA' for m in ['accuracy','auroc','nll','brier','mae','ece15']])
     blines=['# M3 基线读取器',preamble,
       'B0/B1使用两层MLP骨架，分别置零z/同一步跨题打乱z；B2线性且Q3使用状态与选项数值特征的双线性打分；B3对状态、模板和选项联合做两层MLP，Q3逐选项共享评分器，保证选项置换等变。问题模板用确定性字节频率特征；不输入原题。B4仅用z训练Q1最终正误标量，原样用于Q2并单独校准。B5a冻结CODI-GPT2，在占位token的输入embedding处注入原始观测z，随后仅输入类型化prompt/选项，取单token Yes/No或A–D logits；无映射训练，尺度/表示空间不匹配可能导致负面结果。B5b明确推迟至M6。',
-      '训练超参仅在reader_val选择；cal_A按qtype、各状态等权的平均Bernoulli NLL温度缩放，cal_B仅conformal。训练seed11/22/33；表中均值±95% CI为三个seed的t区间（df=2），先对t等权平均。原始与校准、逐qtype×t×split×clean/traj×模板结果见[M3_metrics.csv](M3_metrics.csv)。B5a确定性，不制造三份重复seed的零方差区间；按题bootstrap补充于本报告run。',
+      '训练超参仅在reader_val选择；cal_A按qtype、各状态等权的平均Bernoulli NLL温度缩放，cal_B仅conformal；温度搜索范围为exp([-4,4])，不拟合偏置。训练seed11/22/33；表中均值±95% CI为三个seed的t区间（df=2），先对t等权平均。原始与校准、逐qtype×t×split×clean/traj×模板结果见[M3_metrics.csv](M3_metrics.csv)。B5a确定性，不制造三份重复seed的零方差区间；按题bootstrap补充于本报告run。',
       '二分类Brier为E[(p-y)^2]，Q1对每个Bernoulli结果平均（不是对MC均值做平方误差）；Q3为多类Brier之和。ECE15定义为top-confidence对预测正确率的15个等宽箱差。单步score MAE对MC均值；reader_val的Bernoulli标签与test K16均值精度不同，MAE不可直接视为纯域偏移。',
       '## 已见模板、干净状态主表',table(['baseline','qtype','split','accuracy','AUROC','NLL','Brier','MAE','ECE'],mainrows),
       '## 保留模板',table(['baseline','qtype','split','NLL','accuracy','ECE'],[[b,q,s]+[ci(values(b,q,s,True,m)) for m in ['nll','accuracy','ece15']] for b in ['B0','B1','B2','B3','B4','B5a'] for q in ['Q1','Q2','Q3','Q4'] for s in ['reader_val','test'] if values(b,q,s,True,'nll')])]
@@ -155,7 +155,8 @@ def main(c):
         layers=load(Path(c['layers_run'])/'layers.json');fig,axes=plt.subplots(1,4,figsize=(15,3))
         for q,ax in zip(['Q1','Q2','Q3','Q4'],axes):
             means=[np.mean([r['accuracy'] for r in layers if r['qtype']==q and r['layer']==l]) for l in range(13)]
-            ax.plot(range(13),means,marker='o');ax.set_title(q);ax.set_xlabel('layer');ax.set_ylabel('accuracy')
+            errors=[4.3026527299*np.std([r['accuracy'] for r in layers if r['qtype']==q and r['layer']==l],ddof=1)/np.sqrt(3) for l in range(13)]
+            ax.errorbar(range(13),means,yerr=errors,marker='o',capsize=2);ax.set_title(q);ax.set_xlabel('layer');ax.set_ylabel('accuracy')
         fig.tight_layout();fig.savefig(figs/'layers.png');plt.close(fig)
         blines+=['## 层分析','![B2 layers](M3_figures/layers.png)','仅1000题源训练分布面板，800 reader_train / 200 reader_val，不是未见test上的层选择结论。所有层同一训练设置，不据test挑层。']
     shift=['# M3 分布偏移诊断',preamble]
@@ -227,9 +228,12 @@ def main(c):
     unseen+=['## M1固定参考与早退曲线',table(['split','t','accuracy','95% CI'],[[r['split'],r['t'],r['mean'],r['ci95']] for r in reference])]
     fig,ax=plt.subplots(figsize=(7,4))
     for split in ['reader_train','reader_val','test']:
-        ax.plot(range(7),[r['mean'] for r in reference if r['split']==split],marker='o',label=split)
+        rr=[r for r in reference if r['split']==split];line=ax.plot(range(7),[r['mean'] for r in rr],marker='o',label=split)[0]
+        ax.fill_between(range(7),[r['ci95'][0] for r in rr],[r['ci95'][1] for r in rr],color=line.get_color(),alpha=.12)
     for key in ['svamp_run','asdiv_run']:
-        if key in records:ax.plot(range(7),[records[key]['accuracy_by_step'][str(t)]['mean'] for t in range(7)],marker='o',label=key.replace('_run',''))
+        if key in records:
+            rr=[records[key]['accuracy_by_step'][str(t)] for t in range(7)];line=ax.plot(range(7),[r['mean'] for r in rr],marker='o',label=key.replace('_run',''))[0]
+            ax.fill_between(range(7),[r['ci95'][0] for r in rr],[r['ci95'][1] for r in rr],color=line.get_color(),alpha=.12)
     ax.set_xlabel('early-exit step');ax.set_ylabel('accuracy');ax.legend();fig.tight_layout();fig.savefig(figs/'unseen_early_exit.png');plt.close(fig)
     unseen.append('![early exit](M3_figures/unseen_early_exit.png)')
     (reports/'M3_unseen_pools.md').write_text('\n\n'.join(unseen)+'\n')

@@ -29,3 +29,12 @@ def test_mlp_value_effect_depends_on_state():
     a=torch.autograd.grad(m(torch.zeros(1,768),q,options)[0,1],options)[0]
     b=torch.autograd.grad(m(torch.randn(1,768)*3,q,options)[0,1],options)[0]
     assert not torch.allclose(a,b)
+
+def test_mc_metrics_equal_individual_bernoulli_samples():
+    logits=np.array([[.2,1.1],[-.5,.3],[.7,-.8]])
+    outcomes=np.array([[0]*4+[1]*12,[0]*9+[1]*7,[0]*16])
+    means=outcomes.mean(1)
+    aggregated=metrics(logits,np.stack([1-means,means],1))
+    expanded=metrics(np.repeat(logits,16,axis=0),np.eye(2)[outcomes.reshape(-1)])
+    for name in ['nll','brier','ece15','accuracy']:
+        np.testing.assert_allclose(aggregated[name],expanded[name],atol=1e-12)
