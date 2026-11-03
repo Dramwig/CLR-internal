@@ -12,10 +12,10 @@ from clr.utils.idea_a import seed_everything,write_json
 from clr.models.clr_v0 import CLR,Serializer
 from clr.baselines.b3_multi_v0 import B3Multi,B3PerType
 from clr.baselines.probes import Probe
-from clr.data.m4.reader import PrefixBank,rows_for,targets,probe_inputs
+from clr.data.m4.reader import PrefixBank,rows_for,targets,probe_inputs,mixed_prefix_batch
 
 def forward(model,kind,rows,bank,serializer,templates,norm,device):
-    prefix,mask=bank.batch(rows,device)
+    prefix,mask=mixed_prefix_batch(rows,bank,device) if isinstance(bank,dict) else bank.batch(rows,device)
     if kind=='clr':return model(serializer.batch(rows,device),prefix,mask,rows[0]['qtype']).float()
     inputs=probe_inputs(rows,prefix,mask,templates,*norm)
     return (model(*inputs,rows[0]['qtype']) if kind in ['b3_multi','b3_matched'] else model(*inputs)).float()
@@ -83,14 +83,10 @@ def main(c):
                 for i in range(0,len(ids),batch):batches.append((q,ids[i:i+batch]))
             rng.shuffle(batches)
             for bi,(q,ids) in enumerate(batches):
-                rows=[groups[q][i] for i in ids];total=len(rows);parts=defaultdict(list)
-                for r in rows:parts[r['_split']].append(r)
-                # Each augmented microbatch shares one gradient over its original rows.
-                loss=0.
+                rows=[groups[q][i] for i in ids];total=len(rows)
                 with torch.autocast('cuda',dtype=torch.bfloat16,enabled=kind=='clr'):
-                    for split,rs in parts.items():
-                        logits=forward(model,kind,rs,banks[split],serializer,templates,norm,device)
-                        loss=loss-(targets(rs,device)*logits.log_softmax(-1)).sum()/total
+                    logits=forward(model,kind,rows,banks,serializer,templates,norm,device)
+                    loss=-(targets(rows,device)*logits.log_softmax(-1)).sum()/total
                 if not torch.isfinite(loss):raise ValueError('Nonfinite training loss')
                 window=min(accum,len(batches)-(bi//accum)*accum)
                 (loss/window).backward();loss_sum+=float(loss)*total;examples+=total;steps+=total

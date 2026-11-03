@@ -49,3 +49,18 @@ def probe_inputs(rows,prefix,mask,templates,mean,scale):
     q=torch.from_numpy(np.stack([template_features(templates[r['qtype']][r['template_id']]) for r in rows])).to(z.device)
     options=torch.from_numpy(np.stack([numeric_features(r['options'] or ['0']) for r in rows])).to(z.device)
     return z,q,options
+
+def mixed_prefix_batch(rows,banks,device):
+    """Mix observed prefixes without exposing split identity to the reader.
+
+Split is internal storage dispatch only. Rows retain their original order and
+labels; source-model cohort contexts have already been frozen in each dump.
+"""
+    groups={}
+    for i,r in enumerate(rows):groups.setdefault(r['_split'],[]).append(i)
+    if len(groups)==1:return banks[next(iter(groups))].batch(rows,device)
+    prefix=torch.empty(len(rows),7,768,device=device);mask=torch.empty(len(rows),7,dtype=torch.bool,device=device)
+    for split,indices in groups.items():
+        z,m=banks[split].batch([rows[i] for i in indices],device);index=torch.tensor(indices,device=device)
+        prefix.index_copy_(0,index,z);mask.index_copy_(0,index,m)
+    return prefix,mask

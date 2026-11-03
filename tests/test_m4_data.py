@@ -33,3 +33,16 @@ def test_observed_trajectory_prefix_splices_clean_history(tmp_path):
     z,mask=bank.batch([{'problem_id':'p','state_ref':{'traj_id':0,'t':5}}],'cpu')
     assert z[0,:6,0].tolist()==[0,1,2,103,104,105]
     assert mask.tolist()==[[True,True,True,True,True,True,False]]
+
+def test_mixed_bank_dispatch_preserves_row_label_alignment():
+    import torch
+    from clr.data.m4.reader import mixed_prefix_batch
+    class Bank:
+        def __init__(self,offset):self.offset=offset
+        def batch(self,rows,device):
+            z=torch.tensor([r['id']+self.offset for r in rows],device=device).float()[:,None,None].expand(-1,7,768)
+            return z,torch.ones(len(rows),7,dtype=torch.bool,device=device)
+    rows=[{'id':1,'_split':'a'},{'id':2,'_split':'b'},{'id':3,'_split':'a'}]
+    z,mask=mixed_prefix_batch(rows,{'a':Bank(0),'b':Bank(100)},'cpu')
+    assert z[:,0,0].tolist()==[1,102,3]
+    assert mask.all()
