@@ -17,7 +17,7 @@ def main(c):
  with recorded(c) as run:
     root=Path(c['output']);out=root/'freeze.json'
     if out.exists():raise ValueError('M4 freeze already exists; do not overwrite completed version')
-    tests=['tests/test_m4_data.py','tests/test_m4_model.py','tests/test_m4_calibration.py','tests/test_m4_evaluation.py','tests/test_m4_statistics.py']
+    tests=sorted(str(p) for p in Path('tests').glob('test_m4*.py'))
     with (run.path/'tests.log').open('w') as f:subprocess.run(['.venv/bin/python','-m','pytest',*tests,'-q'],check=True,stdout=f,stderr=subprocess.STDOUT)
     for frozen in ['data/M23_v1a/freeze.json','reports/M1_completed_v3_manifest.json']:
         for p,expected in json.loads(Path(frozen).read_text())['sha256'].items():
@@ -41,7 +41,7 @@ def main(c):
         cfg=json.loads(p.read_text())
         if cfg.get('milestone')=='M4' and p.parent!=run.path and json.loads((p.parent/'metrics.json').read_text()).get('status')!='running':files.update(x for x in p.parent.rglob('*') if x.is_file())
     write_json(out,{'status':'completed_pending_G1_review','version':'v0','sha256':{str(p):digest(p) for p in sorted(files)},'review':'reports/M4_REVIEW.md','training_runs':training['runs'],'evaluation_runs':complete['runs'],'input_freezes':['data/M23_v1a/freeze.json','reports/M1_completed_v3_manifest.json']})
-    p=Path('AGENTS.md');text=p.read_text();text=re.sub(r'<!-- M4_LIVE -->.*?<!-- /M4_LIVE -->','<!-- M4_LIVE -->\nM4 v0实验完成，待G1审查；唯一审查文件 reports/M4_REVIEW.md。代码/数据/结果冻结于 data/M4_v0/freeze.json；未经用户G1审查不启动M5。\n<!-- /M4_LIVE -->',text,flags=re.S);text=re.sub(r'^M4当前：.*\n?','',text,flags=re.M);text=text.replace('M4 已授权并开始','M4 实验完成待 G1 审查');p.write_text(text)
+    p=Path('AGENTS.md');text=p.read_text();text=re.sub(r'<!-- M4_LIVE -->.*?<!-- /M4_LIVE -->','<!-- M4_LIVE -->\nM4 v0实验完成，待G1审查；唯一审查文件 reports/M4_REVIEW.md。代码/数据/结果冻结于 data/M4_v0/freeze.json；未经用户G1审查不启动M5。\n<!-- /M4_LIVE -->',text,flags=re.S);text=re.sub(r'^M4当前(?:：|待完成摘要).*\n?','',text,flags=re.M);text=text.replace('M4 已授权并开始','M4 实验完成待 G1 审查');p.write_text(text)
     p=Path('docs/STATUS.md');p.write_text(p.read_text()+'\nM4 v0实验完成，待G1审查。唯一审查文件 `reports/M4_REVIEW.md`；完整报告 `reports/M4_clr_v0.md`；冻结 `data/M4_v0/freeze.json`。M1/M23冻结哈希复核无变化，测试通过；不自动启动M5。\n')
     p=Path('docs/EXPERIMENTS.md');p.write_text(p.read_text()+'''\n## M4 v0 — 完整实验完成，待G1审查
 执行：`scripts/m4_train_suite.py configs/M4_train_v0.yaml`，`scripts/m4_pipeline.py configs/M4_pipeline.yaml`（均使用项目Python与PYTHONPATH=.）。
