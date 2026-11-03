@@ -25,7 +25,7 @@ def used_hours():
     return total
 
 def main(base):
-    out=Path(base['output']);directory=out/'train_configs';directory.mkdir(exist_ok=True);manifest=out/'training_suite.json';results=json.loads(manifest.read_text()) if manifest.exists() else {};manifest_lock=Lock()
+    out=Path(base['output']);directory=out/'train_configs';directory.mkdir(exist_ok=True);manifest=out/base.get('suite_manifest','training_suite.json');results=json.loads(manifest.read_text()) if manifest.exists() else {};manifest_lock=Lock()
     # Nested, paired Q4 labels: no test/cal accesses and no choice of panels by outcome.
     panel=out/'fewshot_panels.json'
     if not panel.exists():
@@ -56,7 +56,7 @@ def main(base):
                 subprocess.run(['.venv/bin/python','scripts/m4_train.py',str(path)],check=True,stdout=log,stderr=subprocess.STDOUT,env={**os.environ,'PYTHONPATH':'.','OMP_NUM_THREADS':'2','HF_HUB_OFFLINE':'1'})
             p=runs_matching(case,s)[-1]
         with manifest_lock:
-            results[key]=str(p);write_json(manifest,results);update('training',len(results),32,p)
+            results[key]=str(p);write_json(manifest,results);update('training',len(results),32,p,training_manifest=str(manifest))
         print(key,str(p),flush=True);return p
     pilots={k:train(base.get('pilot_cases',{}).get(str(k),f'pilot_k{k}'),11,trial=True,cross_every=k) for k in base['cross_grid']}
     selected=min(pilots,key=lambda k:json.loads((pilots[k]/'metrics.json').read_text())['best_val_nll'])
@@ -82,6 +82,7 @@ def main(base):
     for name,p in results.items():
         if name.startswith('pilot'):continue
         hashes[name]=hashlib.sha256((Path(p)/'best.pt').read_bytes()).hexdigest()
+    if manifest.name!='training_suite.json':write_json(out/'training_suite.json',results)
     write_json(out/'training_complete.json',{'runs':results,'checkpoint_sha256':hashes,'gpu_hours_to_date':used_hours(),'all_training_locked':True,'test_opened':False})
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))

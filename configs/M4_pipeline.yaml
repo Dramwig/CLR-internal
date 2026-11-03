@@ -1,7 +1,7 @@
 milestone: M4
 stage: pipeline
 output: data/M4_v0
-training_session: clr-m4-suite
+training_session: clr-m4-suite-v2
 eval_config: configs/M4_eval_v0.yaml
 report_config: configs/M4_report_v0.yaml
-matched_config: configs/M4_train_v1.yaml
+matched_config: configs/M4_train_v2.yaml

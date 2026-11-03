@@ -44,7 +44,7 @@ def main(c):
     p=Path('AGENTS.md');text=p.read_text();text=re.sub(r'<!-- M4_LIVE -->.*?<!-- /M4_LIVE -->','<!-- M4_LIVE -->\nM4 v0实验完成，待G1审查；唯一审查文件 reports/M4_REVIEW.md。代码/数据/结果冻结于 data/M4_v0/freeze.json；未经用户G1审查不启动M5。\n<!-- /M4_LIVE -->',text,flags=re.S);text=re.sub(r'^M4当前(?:：|待完成摘要).*\n?','',text,flags=re.M);text=text.replace('M4 已授权并开始','M4 实验完成待 G1 审查');p.write_text(text)
     p=Path('docs/STATUS.md');p.write_text(p.read_text()+'\nM4 v0实验完成，待G1审查。唯一审查文件 `reports/M4_REVIEW.md`；完整报告 `reports/M4_clr_v0.md`；冻结 `data/M4_v0/freeze.json`。M1/M23冻结哈希复核无变化，测试通过；不自动启动M5。\n')
     p=Path('docs/EXPERIMENTS.md');p.write_text(p.read_text()+'''\n## M4 v0 — 完整实验完成，待G1审查
-执行：`scripts/m4_train_suite.py configs/M4_train_v1.yaml`，`scripts/m4_pipeline.py configs/M4_pipeline.yaml`（均使用项目Python与PYTHONPATH=.）。
+执行：`scripts/m4_train_suite.py configs/M4_train_v2.yaml`，`scripts/m4_pipeline.py configs/M4_pipeline.yaml`（均使用项目Python与PYTHONPATH=.）。
 三seed11/22/33全部纳入；均值±95%CI、按题10000次配对bootstrap、核心结果表见 [唯一审查文件](../reports/M4_REVIEW.md)。
 完整指标与负面结果见 [完整报告](../reports/M4_clr_v0.md)，所有t/模板/clean-traj结果在 `reports/M4_metrics.csv`。
 预算与实际成本见报告；可选消融未执行、未见池重叠/解析失败及修复记录如实保留。完成不等于G1通过。
