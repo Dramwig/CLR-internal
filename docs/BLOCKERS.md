@@ -214,3 +214,141 @@ TimeoutError: M1 200-question smoke exceeded 900 seconds; full run prohibited
 ## M1 smoke阻塞已解除（2026-10-30）
 
 修正版200题smoke在898.671秒完成，run `20261030T013639323603Z_13ad784ef5d6_518bf2`；此前900秒超时保留为失败。当前阻塞仅为正在执行的val300批处理/续算关卡及之后的最终预算。预计完整20000训练题生成38.408GPU小时（25%余量、另计关卡），6.816GiB（2倍余量），不是已消耗或已完成。原test1312的历史cohort会在v3冻结时恢复，284题候选宽度修正，cal/test尚未推理。
+
+## 2026-10-30T02:25:19.458017+00:00 — 20261030T022518234836Z_39c11741d8fb_f9026e
+RuntimeError: Insufficient disk for measured budget plus 2GiB reserve
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261030T022518234836Z_39c11741d8fb_f9026e/traceback.txt`。未回退模型或设置。
+
+## M1 pipeline — generation_failed
+
+Runs: {"smoke_run": "runs/20261030T013639323603Z_13ad784ef5d6_518bf2", "gate_run": "runs/20261030T015147548907Z_f9aeb43dc9b2_daa0ae", "budget_run": "runs/20261030T022507631329Z_ae2889e005b8_1fe957", "generation_run": "runs/20261030T022518234836Z_39c11741d8fb_f9026e"}. Evidence: `reports/M1_results.md`, `reports/evidence_M1/full_job.json`. No failed gate was bypassed.
+
+## 2026-11-01 — M1 状态核查与恢复
+
+val300验收已通过，run `20261030T015147548907Z_f9aeb43dc9b2_daa0ae`：早退T一致率100%，原fp32与fp16往返状态的零噪声批处理续算均无答案不一致；三seed噪声比较通过。v3已冻结：reader_train20000 / reader_val2000 / val300 / cal500 / test1005，预算39.462GPU小时（含预检）、6.816GiB，没有缩减规模。
+
+此前全量run `20261030T022518234836Z_39c11741d8fb_f9026e` 在磁盘预检退出（0次源forward、0GPU小时），不是持续运行或数据生成完成。2026-11-01复查磁盘配重自动填充已恢复开启（谁恢复未核实），当前free18.628GiB。按用户已有授权release10GiB并持久暂停自动填充，恢复空间约28.6GiB；GPU2实测空闲14.35GiB。
+
+原输出目录只有空目录，使用rmdir移除（非空会拒绝），未删除任何数据。旧失败状态和log复制为 `reports/evidence_M1/full_job_disk_failure_20261030.*`。使用相同已冻结配置显式重启，tmux `clr-m1-full-restart`，日志 `reports/evidence_M1/full_job_restart_20261101.log`。M1仍未完成，成功与否以新run/metrics.json为准。
+
+确认重启已进入真实源模型计算：新run `20261031T170800331382Z_39c11741d8fb_ec36b0`（北京时间2026-11-01），config SHA与旧失败尝试完全一致。检查时已完成4题、417次forward；当前磁盘约29GiB，物理GPU2。此前失败run与所有验收结果均保留。
+
+## 2026-11-01T02:25:31.028174+00:00 — 20261031T170800331382Z_39c11741d8fb_ec36b0
+RuntimeError: Disk reserve below1GiB; stopped, no data deletion
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261031T170800331382Z_39c11741d8fb_ec36b0/traceback.txt`。未回退模型或设置。
+
+## M1 pipeline — generation_failed
+
+Runs: {"smoke_run": "runs/20261030T013639323603Z_13ad784ef5d6_518bf2", "gate_run": "runs/20261030T015147548907Z_f9aeb43dc9b2_daa0ae", "budget_run": "runs/20261030T022507631329Z_ae2889e005b8_1fe957", "generation_run": "runs/20261031T170800331382Z_39c11741d8fb_ec36b0"}. Evidence: `reports/M1_results.md`, `reports/evidence_M1/full_job.json`. No failed gate was bypassed.
+
+
+## 2026-11-01 — 全量中断后状态核验
+
+全量 run `20261031T170800331382Z_39c11741d8fb_ec36b0` 于北京时间11月1日10:25因磁盘余量低于1GiB保护退出；当前无生成进程。计算进度 reader_train 10147/20000，耗时9.291732 GPU小时，1105526次源forward。持久化manifest含10112题，早退日志含10140题；内存中的末尾不能视为已落盘。现有文件保留，其他split尚未完成。当前磁盘恢复约27.9GiB、配重自动填充仍暂停；运行期间空间骤降原因尚未核实。原生成器禁止覆盖已有输出且不支持恢复，需要验证分片与行为日志边界后实现显式续跑，不能直接原命令重跑或宣称M1完成。
+
+
+## 2026-11-01 — M1 v2 显式断点恢复
+
+用户要求继续且不因磁盘余量停止。新增 `scripts/m1_generate_v2.py`、`clr/data/resume.py` 和 `configs/M1_data_v2.yaml`：在新目录 `data/dumps/codi_gpt2_v2` 复用完整分片，原结果不覆盖。核验连续分片、张量索引、冻结ID前缀、生产cohort上下文、7步clean、每题8条完整轨迹及早退日志后才续跑。未落盘尾部重新按原种子计算；重复计算成本保留。
+
+取消低余量主动退出，改为低于20GiB时调用配重release补至约25GiB；已提前释放30GiB并保持自动填充暂停。实际I/O失败仍如实报错；60GPU小时（包含前次9.291732小时和预检）及8GiB产物预算保持。恢复逻辑及原policy/data测试6项通过，首次测试发现可变列表共享已修复。
+
+已知统计限制：原中断运行没有持久保存fp32→fp16误差聚合，不能从fp16文件反推；原分片写入时已执行误差阈值检查，恢复后误差汇总仅涵盖新生成状态，报告必须标明，不冒充全量误差统计。尚未完成M1，不训练reader/probe。
+
+
+2026-11-01 北京时间21:54启动v2续跑，run `20261101T135435455123Z_ed305481698c_e92e9a`，物理GPU2；命令 `PYTHONPATH=. PYTHONUTF8=1 OMP_NUM_THREADS=2 HF_HUB_OFFLINE=1 .venv/bin/python scripts/m1_finish_job_v2.py configs/M1_data_v2.yaml device=cuda:2`。恢复核验316个文件/469806行/10112题通过，审计见 `reports/evidence_M1/recovery_audit_v2.json`。自动完成链将继续生成剩余split，计算标签统计和图，更新报告及冻结清单。当前仍在运行，不是完成结果。
+
+
+## 2026-11-02 — M1续跑进度与空间管理修正
+
+当前v2运行仍在执行。reader_train20000、reader_val2000、val300、cal500已完成；检查时test492/1005，总23292/23805题。续跑耗时11.702GPU小时，含此前中断生成累计20.994GPU小时（另计预检），尚未进入最终报告生成。
+
+发现reserve自动释放参数为小数，CLI只接受整数，历次调用返回2；生成未因该错误停止。已修正为向上取整，并新增回归测试，两项恢复测试通过。当前在途进程仍使用内存中的旧函数，未声称热更新；已显式release30GiB成功，余量约52GiB，自动填充保持暂停，以保障本次剩余生成。研究协议、结果和种子未改变。
+
+
+## 2026-11-02 — 服务器重启后 v3 恢复
+
+用户确认服务器重启并要求续跑。原v2进程已消失，metrics残留running是重启前快照，不代表仍在执行。重启前test798/1005、v2成本12.800449GPU小时/1606828次forward；原失败生成9.291732GPU小时也计入预算。四个已完成split复用，不重跑。test已持久化768题/5376状态行、9216条MC记录和44条K64记录，通过冻结前缀、cohort、完整步骤和行为日志核验；第769题起重算，共剩237题。
+
+新代码与配置v3、新输出 `data/dumps/codi_gpt2_v3`，原v1/v2不覆盖。已完成文件用硬链接复用，生成器不修改复用文件；本次记录SHA和祖先run成本。重启恢复与policy/data测试8项通过。物理GPU2当前空闲，显式继续使用；release20GiB成功且自动填充保持暂停。自动配重调用已使用整数参数。
+
+命令：`PYTHONPATH=. PYTHONUTF8=1 OMP_NUM_THREADS=2 HF_HUB_OFFLINE=1 .venv/bin/python scripts/m1_finish_job_v3.py configs/M1_data_v3.yaml device=cuda:2`。tmux `clr-m1-reboot-v3`，状态 `reports/evidence_M1/full_job_v3.json`。保持原协议、划分、seed及全部实验设置；中断test段的量化误差聚合未持久化，恢复后的test误差统计仅覆盖新生成部分，限制与reader_train一致，不能称为全量统计。
+
+## M1 pipeline — generation_completed
+
+Runs: {"smoke_run": "runs/20261030T013639323603Z_13ad784ef5d6_518bf2", "gate_run": "runs/20261030T015147548907Z_f9aeb43dc9b2_daa0ae", "budget_run": "runs/20261030T022507631329Z_ae2889e005b8_1fe957", "generation_run": "runs/20261102T031137055963Z_24b03138a255_a2c9f2"}. Evidence: `reports/M1_results.md`, `reports/evidence_M1/full_job_v3.json`. No failed gate was bypassed.
+
+
+## 2026-11-03 — 完成状态与文档同步
+
+M1 v3数据及报告均已完成，待用户审查。共23,805题，产物约3.03GiB，生成累计22.615373GPU小时（另计预检），770个数据文件及6个冻结文件SHA复核通过。当前接续索引为 `docs/STATUS.md`，`AGENTS.md` 已同步，后续状态变化必须同时持久化。保留reader_train/test中断部分量化误差聚合缺失、cohort依赖等限制；无新训练任务启动，原冻结结果未改动。
+
+## 2026-11-03T04:20:46.595165+00:00 — 20261103T042018075557Z_ac120dca4c9d_1a691c
+ValueError: Insufficient distinct observed distractors
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261103T042018075557Z_ac120dca4c9d_1a691c/traceback.txt`。未回退模型或设置。
+
+## 2026-11-03T04:23:23.487758+00:00 — 20261103T042241754493Z_7e9a24cdc0bd_be4495
+ValueError: Out of range float values are not JSON compliant: inf
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261103T042241754493Z_7e9a24cdc0bd_be4495/traceback.txt`。未回退模型或设置。
+
+
+## 2026-11-03 — M1审查通过，M2–M3启动
+
+用户授权合并里程碑，当前不训练CLR。输入隔离源题目文本，状态只用模型实际输出。Q1规则经用户明确：clean仅轨迹起点独立Bernoulli标签及clean终点，traj起点之后用自身观测及终点；不监督更早clean前缀。reader_val报告clean/traj分别指标和各t样本覆盖。cal_A/cal_B250/250已固定。
+
+QA首轮smoke因少量题不足4种答案失败，未覆盖；固定训练集数值池补足后run `20261103T042122100178Z_172c4808908a_81b8b5`通过，输出 `data/M23_v1a/smoke`。全量QA任务tmux `clr-m23-questions`。Q4成对交换正值作为对方负值，保证保留问题上数值边际精确一致；未匹配/解析失败单独统计。全量不得使用失败smoke。
+
+源调用范围冲突按具体要求解释为B5a/C/D/E例外，其他仅读M1；不新增轨迹。GPU当前均忙，显式使用cuda3训练轻量probe、cuda1量化复算，负载与实际OOM如实记录；没有替换模型或降精度。D候选许可和谱系正在核实；尚无完整基线结论或M2–M3完成声明。
+
+## 2026-11-03T04:24:37.710723+00:00 — 20261103T042428840243Z_bccfc4a75de4_c06200
+AttributeError: 'dict' object has no attribute 'extend'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261103T042428840243Z_bccfc4a75de4_c06200/traceback.txt`。未回退模型或设置。
+
+## 2026-11-03T04:28:26.722826+00:00 — 20261103T042816573221Z_29ba5c5a548e_585cc7
+ValueError: At least three seeds required
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261103T042816573221Z_29ba5c5a548e_585cc7/traceback.txt`。未回退模型或设置。
+
+## 2026-11-03T04:30:01.789103+00:00 — 20261103T043001120742Z_f85b0e85ce68_67c15c
+RuntimeError: GPU free 2.98 GiB < required 3 GiB
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261103T043001120742Z_f85b0e85ce68_67c15c/traceback.txt`。未回退模型或设置。
+
+
+M23吞吐修正：原layer smoke与首次基线全量在未完成时显式中止，run 20261103T042746003860Z_a5cdd8ef1442_572a81 / 20261103T042831267322Z_43c2e73af758_02fee8 保留，非通过。重复模板/数值编码加入纯函数缓存；layer smoke仅测试0/12层，全量仍13层。未更改模型/标签/训练超参。中止前GPU时间上界分别3.5/2.7分钟，源forward=0。
+
+M23全量训练第二次在预处理显式中止（run20261103T043232575827Z_1cc0d3967c95_84dbc6，无normalization/checkpoint、未测试）。实测单shard numpy复制约0.5–0.9秒，torch转换0.0055秒；改用torch向量化CPU bank/总体标准差，不改变来源状态/标签/超参。py-spy0.4.1已安装用于定位，但ptrace被系统拒绝，未提升权限；用独立只读微基准定位。
+
+M23结构审查修正：中止基线run20261103T044101470059Z_19e9238e5441_14ac1a（先前已保存尝试保留不纳入最终）。B0/B1/B3改为对z+模板特征+选项数值特征联合两层MLP，Q3共享逐选项打分；避免旧加法结构无法表达Q4状态×数值交互。新增交互测试，7项测试通过。此为实现修正，未按test结果选择模型或seed；超参网格/样本量保持。
+
+
+## M2–M3已知限制（2026-11-03；与运行错误分开）
+
+- B5b为可选项，按任务许可推迟到M6。B5a采用原始z注入CODI输入embedding的Patchscope式代理，表示空间不匹配可能导致负面结果，不声称严格复现外部Patchscope论文。
+- Q4当前只生成clean状态问题；仅从可解析方程中间量构造。失败题不出Q4，其计数见M2报告。正负数值通过跨题配对匹配边际，因此样本并非完全独立。
+- Q3干扰项使用同题行为及训练/当前split答案池，存在可被B0利用的先验及跨题依赖。conformal报告经验覆盖率；不能无条件宣称层内可交换性成立。
+- Q1 reader_val保留轨迹Bernoulli样本，test使用K16均值；NLL/Brier/ECE按Bernoulli定义一致，MAE的标签抽样精度不同。clean/traj指标分开，不补齐缺失clean起点标签。
+- 域分类器也可能识别cohort/padding、题长、难度等差异，不能单独证明记忆化。层分析面板只有源训练分布，不作test最优层选择。
+- Orca-Math的GSM8K原始test派生谱系与单值gold尚未核实；MAWPS精确数据文件许可/原始下载未核实，均未加入候选生成。入选SVAMP/ASDiv的13-gram去重不能排除语义改写或基础模型预训练接触。
+- 部分早期失败/主动中断run没有最终GPU小时或前向计数；成本台账明确缺失，已记录总和仅为下界，不能写成精确总成本。早期未提交脚本仅有事后源码存档；QA经提交代码完整重建逐字节一致，最终基线使用已提交v2。
+
+B5a v2预检首次入口在创建run前触发libLerc/GLIBCXX_3.4.29动态库错误，尚未加载源模型或前向。原因是新增入口先导入pyarrow，修正为与现有已运行入口相同的torch-before-pyarrow导入顺序；无依赖/模型回退。首次日志reports/M23_patchscope_batch_gate.log保留，重试使用独立日志。
+
+B5a v2 smoke首次配置覆盖被严格schema拒绝：batch_gate_run未预先声明（KeyError，加载模型前）。已把已通过gate的run路径写入v2配置，保留原失败日志；无源前向。
+
+2026-11-03 B5a Q3 reader_val已完成（source_forward_calls累计69253）；batch64 smoke完成但耗时78.75秒，原batch8为55.72秒，未见吞吐收益（不同共享GPU，不能归因为batch本身），因此不采用v2替换完整run。保留gate及smoke结果、额外成本；最终协议仍fp32/batch8。
+
+
+## M23测试集访问协议偏离（审计发现，2026-11-03）
+
+早期smoke使用了固定test的10题子集并计算指标；被中止的早期完整基线尝试也已产生部分test预测。这不满足“test仅最终评估”的严格要求。未使用这些指标选择超参、模型结构、seed或划分；Q4修正源于代码交互结构检查，batch优化只用reader_val数值门槛与运行耗时。保留所有记录，不删除曝光历史，不更换测试集掩盖此问题。最终结果须带此限制交审查；后续milestone smoke一律使用val代理最终评估路径。
+
+
+M2–M3问题库、B0–B5a、层/域诊断、官方500题、两候选未见池与量化抽查均完成，待用户审查。B5b推迟M6，未训练CLR。报告：reports/M2_questions.md、M3_baselines.md、M3_shift.md、M3_unseen_pools.md；冻结索引 data/M23_v1a/freeze.json。
+
+
+## M2–M3最终核验（2026-11-03）
+
+实现、全部必需实验、四份报告及图已完成，待用户审查；未训练CLR，B5b按任务许可推迟M6。Q1按用户确认的起点/后续观测状态Bernoulli规则执行。
+冻结清单 `data/M23_v1a/freeze.json` 的635个文件SHA全部一致；核验记录 `data/M23_v1a/verification.json`。51个基线checkpoint、216份基线预测、16份B5a预测齐全。测试40 passed；1个已暂停Huginn模块因可选lm_eval缺失跳过。最终报告run `runs/20261103T055223163924Z_faee26776ad3_cea0d0`。
+已记录成本下界2.6075 GPU小时、202641次源前向，历史中断缺失成本未记成零。D两池含smoke合计0.417348 GPU小时，低于5小时。
+必须随结果保留的审查限制：早期smoke触及10题test，旧中止run保存过部分test预测，未用于调参但不符合严格test-only-final约定；不得声称该偏离已获接受。Q4边际匹配在原split保证，cal_A/B半集没有独立重配。conformal依赖假设、来源未核实候选池及成本缺口见BLOCKERS；不更换划分/seed掩盖问题。
+B3 test Q3准确率58.59% ± 0.19pp，Q4 68.26% ± 1.09pp（三seed95% t区间、clean/seen/t等权）；B5a Q3约24.55%、Q4约50.37%，如实保留负面结果。M3_baselines.md末尾已逐项回答三项审查问题。

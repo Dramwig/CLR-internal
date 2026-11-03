@@ -1,0 +1,3 @@
+/home/me/PaperField/CalReader/scripts/m23_report.py:193: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.set_title(split);ax.set_xlabel('predicted probability');ax.set_ylabel('observed correct');ax.legend()
+/home/me/PaperField/CalReader/runs/20261103T051328880380Z_1dab4bbeb533_eff0ec
