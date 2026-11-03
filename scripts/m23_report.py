@@ -51,7 +51,7 @@ def main(c):
         for key,v in bins.items():dist.append(dict(zip(['split','qtype','t','kind'],key),n=len(v),label_mean=float(np.mean(v))))
         for t,v in pos.items():position.append({'split':split,'t':t,'counts':v.tolist(),'fractions':(v/v.sum()).tolist(),'max_deviation_from_uniform':float(np.max(abs(v/v.sum()-.25)))})
     write_json(run.path/'question_distributions.json',dist);write_json(run.path/'option_positions.json',position)
-    qlines+=['## 标签/位置分布',f'逐split×qtype×t×kind完整分布：`{run.path}/question_distributions.json`；choice的label_mean是索引均值，不解释为正例率。',table(['split','t','correct-position fractions','max deviation'],[(r['split'],r['t'],[round(x,4) for x in r['fractions']],round(r['max_deviation_from_uniform'],4)) for r in position]),f'选项数值频次按qtype×t×split保存在 `{run.path}/<split>_option_values.json`。', '选项顺序由固定seed独立置换，有限样本不要求恰好25%；未因位置偏差重抽seed。']
+    qlines+=['覆盖表的评估split样本数包含模板复制，训练split每条Bernoulli样本仅一个模板；缺clean标签比例按唯一(problem,t)计。8条轨迹随机落到6个起点导致部分干净状态无Q1标签，未补齐；traj后期状态较多，因此训练状态分布偏向扰动和较晚步。', '## 标签/位置分布',f'逐split×qtype×t×kind完整分布：`{run.path}/question_distributions.json`；choice的label_mean是索引均值，不解释为正例率。',table(['split','t','correct-position fractions','max deviation'],[(r['split'],r['t'],[round(x,4) for x in r['fractions']],round(r['max_deviation_from_uniform'],4)) for r in position]),f'选项数值频次按qtype×t×split保存在 `{run.path}/<split>_option_values.json`。', '选项顺序由固定seed独立置换，有限样本不要求恰好25%；未因位置偏差重抽seed。']
     if 'quant_run' in records:
         m=records['quant_run'];qlines+=['## M1量化缺口补查',f"中断片段reader_train/test各100题：fp16逐元素一致={m['fp16_exact_all']}；最大绝对误差={m['max_abs']:.8f}；最大相对L2={m['max_relative_l2']:.8g}。这是随机抽查，不是恢复丢失的全量聚合。fp32与fp16并不逐元素相等；比较的是重算fp32转fp16与已存fp16。",f"证据：`{c['quant_run']}`。"]
     (reports/'M2_questions.md').write_text('\n\n'.join(qlines)+'\n')
@@ -79,11 +79,33 @@ def main(c):
                 if not values(b,q,s,False,'nll'):continue
                 mainrows.append([b,q,s]+[ci(values(b,q,s,False,m)) if values(b,q,s,False,m) else 'NA' for m in ['accuracy','auroc','nll','brier','mae','ece15']])
     blines=['# M3 基线读取器',preamble,
-      'B0/B1使用两层MLP骨架，分别置零z/同一步跨题打乱z；B2线性，B3两层MLP，Q3共享选项数值特征双线性打分，保证选项置换等变。问题模板用确定性字节频率特征；不输入原题。B4仅用z训练Q1最终正误标量，原样用于Q2并单独校准。B5a冻结CODI-GPT2，在占位token的输入embedding处注入原始观测z，随后仅输入类型化prompt/选项，取单token Yes/No或A–D logits；无映射训练，尺度/表示空间不匹配可能导致负面结果。B5b明确推迟至M6。',
-      '训练超参仅在reader_val选择；cal_A按qtype温度缩放，cal_B仅conformal。训练seed11/22/33；表中均值±95% CI为三个seed的t区间（df=2），先对t等权平均。原始与校准、逐qtype×t×split×clean/traj×模板结果见[M3_metrics.csv](M3_metrics.csv)。B5a确定性，不制造三份重复seed的零方差区间；按题bootstrap补充于本报告run。',
+      'B0/B1使用两层MLP骨架，分别置零z/同一步跨题打乱z；B2线性且Q3使用状态与选项数值特征的双线性打分；B3对状态、模板和选项联合做两层MLP，Q3逐选项共享评分器，保证选项置换等变。问题模板用确定性字节频率特征；不输入原题。B4仅用z训练Q1最终正误标量，原样用于Q2并单独校准。B5a冻结CODI-GPT2，在占位token的输入embedding处注入原始观测z，随后仅输入类型化prompt/选项，取单token Yes/No或A–D logits；无映射训练，尺度/表示空间不匹配可能导致负面结果。B5b明确推迟至M6。',
+      '训练超参仅在reader_val选择；cal_A按qtype、各状态等权的平均Bernoulli NLL温度缩放，cal_B仅conformal。训练seed11/22/33；表中均值±95% CI为三个seed的t区间（df=2），先对t等权平均。原始与校准、逐qtype×t×split×clean/traj×模板结果见[M3_metrics.csv](M3_metrics.csv)。B5a确定性，不制造三份重复seed的零方差区间；按题bootstrap补充于本报告run。',
       '二分类Brier为E[(p-y)^2]，Q1对每个Bernoulli结果平均（不是对MC均值做平方误差）；Q3为多类Brier之和。ECE15定义为top-confidence对预测正确率的15个等宽箱差。单步score MAE对MC均值；reader_val的Bernoulli标签与test K16均值精度不同，MAE不可直接视为纯域偏移。',
       '## 已见模板、干净状态主表',table(['baseline','qtype','split','accuracy','AUROC','NLL','Brier','MAE','ECE'],mainrows),
       '## 保留模板',table(['baseline','qtype','split','NLL','accuracy','ECE'],[[b,q,s]+[ci(values(b,q,s,True,m)) for m in ['nll','accuracy','ece15']] for b in ['B0','B1','B2','B3','B4','B5a'] for q in ['Q1','Q2','Q3','Q4'] for s in ['reader_val','test'] if values(b,q,s,True,'nll')])]
+    clean_traj=[]
+    for b in ['B0','B1','B2','B3','B4','B5a']:
+        for t in range(7):
+            for kind in ['clean','traj']:
+                rr=[r for r in stats if r['baseline']==b and r['qtype']=='Q1' and r['split']=='reader_val' and not r['heldout'] and r['kind']==kind and r['t']==t]
+                if rr:clean_traj.append([b,t,kind]+[ci([r['calibrated'][m] for r in rr]) for m in ['nll','brier','mae','ece15']])
+    blines+=['## Q1 reader_val干净与扰动状态', '逐步分开报告；同一clean起点的多条轨迹保留独立Bernoulli标签。test仅使用clean状态，不把traj指标混入域偏移主表。',table(['baseline','t','kind','NLL','Brier','MAE','ECE'],clean_traj)]
+    ledger=[]
+    for path in sorted(Path('runs').glob('*/config.json')):
+        cfg=load(path)
+        if cfg.get('milestone')!='M2-M3':continue
+        met=load(path.parent/'metrics.json')
+        ledger.append({'run':str(path.parent),'stage':cfg.get('stage','official_reference'),'mode':cfg.get('mode'),'status':met.get('status'),'gpu_hours':met.get('gpu_hours'),'source_forward_calls':met.get('source_forward_calls')})
+    write_json(run.path/'cost_ledger.json',ledger)
+    known_gpu=sum(r['gpu_hours'] or 0 for r in ledger)
+    known_calls=sum(r['source_forward_calls'] or 0 for r in ledger)
+    costrows=[[k,c[k],m.get('gpu_hours','未记录'),m.get('source_forward_calls','未记录')] for k,m in records.items()]
+    blines+=['## 运行与成本',table(['stage','run','GPU hours','source forwards'],costrows),
+      f'所有M2–M3已记录运行（含smoke、重复运行）的成本下界：{known_gpu:.4f} GPU小时、{known_calls}次源前向；逐run记录及缺失项：`{run.path}/cost_ledger.json`。缺失计数的失败/中断run意味着这不是精确总成本。',
+      'GPU为NVIDIA GeForce RTX 4090，设备及环境快照见各run；GPU小时按设备占用墙钟计，包含CPU预处理等待。上表为选用的完整run，不能当作包含所有smoke/失败/被替代运行的总成本。部分早期中断未写出最终计数，成本缺口保留，不按零处理。',
+      'QA在提交代码后完整重建，五个split parquet逐字节SHA一致，见data/M23_v1a/qa_reproduction.json。初期未提交脚本的运行另有明确标注为事后保存的m23_source_audit；不冒充启动时快照。基线首版的Q4加性结构不能表达状态与数值交互，已在完整评估前中止，改用联合两层MLP v2并重新smoke；没有据test结果选模型。',
+      '命令：`PYTHONPATH=. OMP_NUM_THREADS=2 .venv/bin/python scripts/m23_baselines.py configs/M23_baseline_v2.yaml mode=full smoke_run=runs/20261103T045443038876Z_eb5c2140141e_437383`；其余入口及配置快照见本表各run。测试记录：reports/M23_tests.log。']
     if 'baseline_run' in records:
         cp=load(Path(c['baseline_run'])/'conformal.json')
         for r in cp:r['split']='test'
@@ -133,7 +155,7 @@ def main(c):
                 if a and z:gaprows.append([b,q,m,float(np.mean(a)),float(np.mean(z)),float(np.mean(z)-np.mean(a))])
     shift+=['## reader_val → test', '表为已见模板clean、各t等权平均；差值定义test−reader_val。NLL/Brier越低越好，accuracy越高越好；MAE标签噪声差异见基线报告。',table(['baseline','qtype','metric','reader_val','test','delta'],gaprows)]
     if 'layers_run' in records:
-        dom=load(Path(c['layers_run'])/'domain.json');shift+=['## 潜状态域分类器',table(['t','held-out domain AUROC'],[[t,ci([r['auroc'] for r in dom if r['t']==t])] for t in range(7)]),'域诊断独立按problem ID做60/20/20划分；每域最多1005题，训练/验证/评估问题不交叉。这里test题只用于用户指定的域识别诊断；域分类器或其参数不反馈给基线选择。']
+        dom=load(Path(c['layers_run'])/'domain.json');shift+=['## 潜状态域分类器',table(['t','held-out domain AUROC'],[[t,ci([r['auroc'] for r in dom if r['t']==t])] for t in range(7)]),'域诊断独立按problem ID做60/20/20划分；每域最多1005题，训练/验证/评估问题不交叉。这里test题只用于用户指定的域识别诊断；域分类器或其参数不反馈给基线选择。AUROC可包含题长、cohort/padding、题目难度等混杂因素，不能单独解释为记忆化证据。']
     # Reliability curves, separate distributions, no change to baseline settings.
     for q in ['Q1','Q2']:
         fig,axes=plt.subplots(1,2,figsize=(10,4))
@@ -180,16 +202,13 @@ def main(c):
       '这些是固定M1数据上的诊断，不代表CLR改善已获证明；未训练CLR。']
     (reports/'M3_baselines.md').write_text('\n\n'.join(blines)+'\n');(reports/'M3_shift.md').write_text('\n\n'.join(shift)+'\n')
     unseen=['# M3 未见题池侦察',preamble,
-      '|候选|官方许可/格式|处理|\n|---|---|---|\n|[SVAMP](https://github.com/arkilpatel/SVAMP)|MIT；Body/Question/Answer JSON|去重后993题，clean+早退|\n|[ASDiv](https://github.com/chaochun/nlu-asdiv-dataset)|README声明CC BY-NC4.0；XML，答案含单位|仅单个数值答案子集，去重后固定抽≤1000题|\n|[Orca-Math](https://huggingface.co/datasets/microsoft/orca-math-word-problems-200k)|MIT；question/answer两列，答案是生成的长解答|暂不作为已核实未见池：种子经Lila重划分，GSM8K原始test谱系尚未逐题排除；单一数值gold还需核验|\n|[MAWPS](https://github.com/sroy9/mawps)|作者仓库主要是服务器代码，未核实所选数据文件的许可|未调用源模型，不冒用第三方许可声明|',
+      '|候选|官方许可/格式|处理|\n|---|---|---|\n|[SVAMP](https://github.com/arkilpatel/SVAMP)|MIT；Body/Question/Answer JSON|去重后993题，clean+早退|\n|[ASDiv](https://github.com/chaochun/nlu-asdiv-dataset)|README声明CC BY-NC4.0；XML，答案含单位|严格数值+可选括号单位正则；221条格式未匹配（不一概断言均非标量），12条重叠，剩余2071题中固定抽1000题|\n|[Orca-Math](https://huggingface.co/datasets/microsoft/orca-math-word-problems-200k)|MIT；question/answer两列，答案是生成的长解答|暂不作为已核实未见池：种子经Lila重划分，GSM8K原始test谱系尚未逐题排除；单一数值gold还需核验|\n|[MAWPS](https://github.com/sroy9/mawps)|作者仓库主要是服务器代码，未核实所选数据文件的许可，原数据站本次不可访问|未调用源模型，不冒用第三方许可声明|',
       'Orca-Math论文描述从Lila train/validation取包含GSM8K的种子再扩写，不能把Lila split名称当作原始GSM8K split证明。[作者论文](https://arxiv.org/html/2402.14830v1)。ASDiv仅按README允许的非商业研究使用。GSM-Plus/GSM-Hard/GSM-Symbolic全部排除。',
       '对入选池以同一13-gram规则与完整GSM8K train/test及GSM8k-Aug检查；任何重叠剔除，记录逐题证据。此规则不能证明基础GPT2预训练从未见过，也不能排除不共享13-gram的语义改写。每池GPU预算2.5小时，合计≤5小时；只clean dump和7步早退，不生成轨迹。']
     for key in ['svamp_run','asdiv_run']:
         if key in records:
             m=records[key];unseen+=[f'## {key}',f"运行 `{c[key]}`；GPU小时={m['gpu_hours']:.4f}，源前向={m['source_forward_calls']}。",table(['t','accuracy','95% CI'],[[t,v['mean'],v['ci95']] for t,v in m['accuracy_by_step'].items()])]
-    reference=[]
-    for split in ['reader_train','reader_val','test']:
-        rr=pq.read_table(Path(c['root'])/split/'early_exit.parquet',columns=['t','correct']).to_pylist()
-        reference.extend({'split':split,'t':t,**bootstrap_mean([int(r['correct']) for r in rr if r['t']==t])} for t in range(7))
+    reference=[{'split':r['split'],'t':r['t'],**r['accuracy']} for r in load(Path(c.get('m1_report_run','runs/20261102T034305056543Z_f31fce96a804_d66753'))/'early_exit_statistics.json') if r['split'] in ['reader_train','reader_val','test']]
     unseen+=['## M1固定参考与早退曲线',table(['split','t','accuracy','95% CI'],[[r['split'],r['t'],r['mean'],r['ci95']] for r in reference])]
     fig,ax=plt.subplots(figsize=(7,4))
     for split in ['reader_train','reader_val','test']:

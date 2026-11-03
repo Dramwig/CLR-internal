@@ -34,6 +34,17 @@ def main(c,config):
     result=subprocess.run([sys.executable,'scripts/m23_report.py',config],check=True)
     files=[Path('reports')/f for f in ['M2_questions.md','M3_baselines.md','M3_shift.md','M3_unseen_pools.md','M3_metrics.csv']]
     files+=list(Path('clr/data/questions').glob('*.py'))+list(Path('clr/baselines').glob('*.py'))+[Path('clr/calib/m23.py'),Path(c['cal_split']),Path(config)]
+    files+=list(Path('scripts').glob('m23_*.py'))+list(Path('configs').glob('M23*.yaml'))+list(Path('tests').glob('test_m23*.py'))
+    files+=list(Path('reports/M3_figures').glob('*.png'))+[Path('reports/M23_tests.log'),Path(c['templates'])]
+    files+=list((output/'full').glob('*'))+[output/'qa_reproduction.json']
+    for key in keys:
+        files+=list(Path(c[key]).glob('*.json'))+list(Path(c[key]).glob('*.parquet'))+list(Path(c[key]).glob('*.pt'))+list(Path(c[key]).glob('*.npz'))
+    files=[p for p in files if p.is_file()]
+    report=Path('reports/M3_baselines.md').read_text()
+    summary=report.split('## 已见模板、干净状态主表',1)[1].split('## 保留模板',1)[0]
+    cost=report.split('## 运行与成本',1)[1].split('## Mondrian conformal',1)[0]
+    with Path('docs/EXPERIMENTS.md').open('a') as f:
+        f.write('\n\n## M2–M3最终完整运行（2026-11-03）\n\n完成类型化问题库、B0–B5a、Mondrian、域/层诊断、未见池和M1量化补查。未训练CLR。完整命令以各run配置快照为准；报告入口 `.venv/bin/python scripts/m23_report.py configs/M23_report.yaml`。\n\n三seed主表（均值±95% CI，B5a另按题bootstrap）：\n'+summary+'\n成本与偏离：\n'+cost+'\n负面结果与三项审查问题见 reports/M3_baselines.md 末尾；不能将这些基线结果作为CLR有效性结论。\n')
     write_json(output/'freeze.json',{'status':'completed; awaiting user review','runs':{k:c[k] for k in keys},'sha256':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}})
     write_json(statuspath,{'status':'completed; awaiting user review','runs':{k:c[k] for k in keys},'freeze':str(output/'freeze.json')})
     capsule('M2–M3已完成，待用户审查；未训练CLR。冻结索引 '+str(output/'freeze.json')+'。')
