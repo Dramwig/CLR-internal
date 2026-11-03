@@ -95,6 +95,7 @@ def main(c):
                 mainrows.append([b,q,s]+[ci(values(b,q,s,False,m)) if values(b,q,s,False,m) else 'NA' for m in ['accuracy','auroc','nll','brier','mae','ece15']])
     blines=['# M3 基线读取器',preamble,
       'B0/B1使用两层MLP骨架，分别置零z/同一步跨题打乱z；B2线性且Q3使用状态与选项数值特征的双线性打分；B3对状态、模板和选项联合做两层MLP，Q3逐选项共享评分器，保证选项置换等变。问题模板用确定性字节频率特征；不输入原题。B4仅用z训练Q1最终正误标量，原样用于Q2并单独校准。B5a使用fp32/batch8冻结CODI-GPT2，在占位token的输入embedding处注入原始观测z，随后仅输入类型化prompt/选项，取单token Yes/No或A–D logits；无映射训练，尺度/表示空间不匹配可能导致负面结果。B5b明确推迟至M6。',
+      '协议偏离：早期smoke入口对固定test子集也计算过指标，旧的未完成基线尝试也保存了部分test预测；这不符合test仅在最终评估使用的严格约定。没有据这些test指标选超参、修正模型结构、挑seed或改划分；结构修正依据Q4交互能力的代码检查，batch检查依据reader_val数值一致性与耗时。仍须将此前测试暴露作为审查限制，不能删除记录后声称从未触及。后续smoke须用val代理最终评估流程。',
       '训练超参仅在reader_val选择；cal_A按qtype、各状态等权的平均Bernoulli NLL温度缩放，cal_B仅conformal；温度搜索范围为exp([-4,4])，不拟合偏置。训练seed11/22/33；表中均值±95% CI为三个seed的t区间（df=2），先对t等权平均。原始与校准、逐qtype×t×split×clean/traj×模板结果见[M3_metrics.csv](M3_metrics.csv)。B5a确定性，不制造三份重复seed的零方差区间；按题bootstrap补充于本报告run。',
       '二分类Brier为E[(p-y)^2]，Q1对每个Bernoulli结果平均（不是对MC均值做平方误差）；Q3为多类Brier之和。ECE15定义为top-confidence对预测正确率的15个等宽箱差。单步score MAE对MC均值；reader_val的Bernoulli标签与test K16均值精度不同，MAE不可直接视为纯域偏移。',
       '## 已见模板、干净状态主表',table(['baseline','qtype','split','accuracy','AUROC','NLL','Brier','MAE','ECE'],mainrows),
@@ -120,7 +121,7 @@ def main(c):
       f'所有M2–M3已记录运行（含smoke、重复运行）的成本下界：{known_gpu:.4f} GPU小时、{known_calls}次源前向；逐run记录及缺失项：`{run.path}/cost_ledger.json`。缺失计数的失败/中断run意味着这不是精确总成本。',
       'B5a额外检查batch64：固定reader_val50题、四类各128实例，答案一致100%，max概率差2.27094e-5，低于预设1e-4；但smoke为78.7秒，原batch8为55.7秒。不同共享GPU上的时间受资源竞争影响，未观察到加速，因此完整结果保留原batch8，不采用v2。额外gate/smoke及启动前两次入口错误均留存，未据test指标选择batch。',
       'GPU为NVIDIA GeForce RTX 4090，设备及环境快照见各run；GPU小时按设备占用墙钟计，包含CPU预处理等待。上表为选用的完整run，不能当作包含所有smoke/失败/被替代运行的总成本。部分早期中断未写出最终计数，成本缺口保留，不按零处理。',
-      'QA在提交代码后完整重建，五个split parquet逐字节SHA一致，见data/M23_v1a/qa_reproduction.json。初期未提交脚本的运行另有明确标注为事后保存的m23_source_audit；不冒充启动时快照。基线首版的Q4加性结构不能表达状态与数值交互，已在完整评估前中止，改用联合两层MLP v2并重新smoke；没有据test结果选模型。',
+      'QA在提交代码后完整重建，五个split parquet逐字节SHA一致，见data/M23_v1a/qa_reproduction.json。初期未提交脚本的运行另有明确标注为事后保存的m23_source_audit；不冒充启动时快照。基线首版的Q4加性结构不能表达状态与数值交互，已在完整评估完成前中止，旧运行已写出部分测试预测但未据此选择结构；按结构检查改用联合两层MLP v2并重新smoke；没有据test结果选模型。',
       '命令：`PYTHONPATH=. OMP_NUM_THREADS=2 .venv/bin/python scripts/m23_baselines.py configs/M23_baseline_v2.yaml mode=full smoke_run=runs/20261103T045443038876Z_eb5c2140141e_437383`；其余入口及配置快照见本表各run。测试记录：reports/M23_tests.log。']
     if 'baseline_run' in records:
         cp=load(Path(c['baseline_run'])/'conformal.json')
