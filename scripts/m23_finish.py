@@ -45,6 +45,7 @@ def main(c,config):
         files+=list(Path(c[key]).glob('*.json'))+list(Path(c[key]).glob('*.parquet'))+list(Path(c[key]).glob('*.pt'))+list(Path(c[key]).glob('*.npz'))
     for key in keys:files+=list(Path(c[key]).rglob('*'))
     files+=list(report_run.rglob('*'))
+    for extra in c.get('supplementary_runs',[]):files+=list(Path(extra).rglob('*'))
     files+=list((output/'unseen_v2').rglob('*'))+list((output/'asdiv').rglob('*'))
     files=[p for p in files if p.is_file()]
     report=Path('reports/M3_baselines.md').read_text()
