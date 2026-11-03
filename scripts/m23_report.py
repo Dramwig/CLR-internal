@@ -209,6 +209,10 @@ def main(c):
                 deterministic_ci.append({'qtype':q,'split':split,'aggregation':'mean within problem over observed clean instances, then across problems',**{m:bootstrap_mean(by_problem[:,j]) for j,m in enumerate(['accuracy','nll','brier'])}})
         write_json(run.path/'B5a_question_bootstrap.json',deterministic_ci)
         blines+=['## B5a确定性按题bootstrap补充', '以下先在题内平均clean实例，再按题bootstrap10k，区别于主表各t等权平均；不把同题模板/rollout当独立问题。ECE/AUROC在逐层表给点估计，不提供伪造的seed区间。',table(['qtype','split','accuracy [95% CI]','NLL [95% CI]','Brier [95% CI]'],[[r['qtype'],r['split']]+[str(r[m]['mean'])+' '+str(r[m]['ci95']) for m in ['accuracy','nll','brier']] for r in deterministic_ci])]
+    if 'baseline_run' in records:
+        blines+=['## 负面结果与解释边界',
+          f"B0在test的Q3准确率为{np.mean(values('B0','Q3','test',False,'accuracy')):.4f}，因此Q3收益必须相对question-only先验评估。B2的Q4准确率为{np.mean(values('B2','Q4','test',False,'accuracy')):.4f}，接近随机；该线性结构不包含z与数值的非线性交互，不能据此断言状态完全不含中间量信息。B3的对应准确率为{np.mean(values('B3','Q4','test',False,'accuracy')):.4f}。",
+          'reader_val采用源训练分布，test采用未见分布；Q1还存在Bernoulli与K16目标精度差异。报告保留全部seed与固定划分，不选择性展示较好的步或模板。温度缩放只能调整置信度，不能保证消除分布偏移或改善排序。']
     # Required final three answers.
     blines+=['## (1) B0 比随机猜测高多少？',table(['qtype','split','accuracy minus uniform guess','NLL reduction vs uniform'],[[q,s,float(np.mean(values('B0',q,s,False,'accuracy')))-(.25 if q=='Q3' else .5),np.log(4 if q=='Q3' else 2)-float(np.mean(values('B0',q,s,False,'nll')))] for q in ['Q1','Q2','Q3','Q4'] for s in ['reader_val','test'] if values('B0',q,s,False,'nll')]),
       'Q1随机基准为p=0.5（NLL=ln2、Brier=.25）；其accuracy仅为附加二元判别统计。B0偏离随机反映标签/选项先验，不自动证明源状态有信息。',
