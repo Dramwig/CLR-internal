@@ -9,3 +9,10 @@ def test_numeric_equations_and_intermediates():
     for formula in ['x+2=3','__import__("os")','2+3=6','1/0','1/3']:
         with pytest.raises((ValueError,ZeroDivisionError)):equation_values(formula)
     with pytest.raises(ValueError):equation_values('2+3=5','6')
+
+def test_phase_guard_rejects_test_and_unseen_eval_in_debug():
+    from clr.data.m4.reader import require_split
+    for phase in ['train','validate','calibrate']:
+        for split in ['test','unseen_eval']:
+            with pytest.raises(ValueError):require_split(split,phase)
+    require_split('reader_val','validate');require_split('test','final')

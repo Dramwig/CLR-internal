@@ -3,7 +3,10 @@ version: v0
 stage: resources
 mode: smoke
 seed: 11
-seeds: [11, 22, 33]
+seeds:
+- 11
+- 22
+- 33
 output: data/M4_v0
 root: data/dumps/codi_gpt2_v3
 qa_root: data/M23_v1a/full
@@ -28,3 +31,18 @@ mc_k: 16
 svamp_run: runs/20261103T043414920503Z_0ffa8eb65906_5d11c6
 asdiv_run: runs/20261103T043815088245Z_a0358d220af9_70e23b
 m3_baseline_run: runs/20261103T045628621237Z_2964c31f2153_11a348
+reader_min_free_gib: 4
+micro_batch: 8
+max_length: 192
+cross_every: 4
+cross_grid:
+- 4
+- 8
+encoder_lr: 2.0e-05
+head_lr: 0.001
+smoke_steps: 32
+gradient_accumulation: 4
+epochs: 8
+samples_per_type: 20000
+patience: 2
+weight_decay: 0.01
