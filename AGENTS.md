@@ -45,3 +45,5 @@ M4：12项单元测试及两项val smoke通过；D的1993题生成与标签审�
 M4当前：源val smoke12题通过，完整D估算0.451 GPUh并已启动；CLR smoke通过（26.6训练样本/s、93.8评估样本/s、2.42GiB峰值、置换差0）。训练预算据此设4epoch、每qtype每epoch10000样本，优先四项必做，详见M4_TASK.md及后续预算报告。未见池172条13-gram跨划分重叠另作无重叠子集诊断，不改冻结划分。
 
 M4控制器实时状态索引：[docs/M4_LIVE.json](docs/M4_LIVE.json)，每次任务完成自动持久化；详细进度从该文件指向的run/progress.json核实，不能把启动状态当完成。
+
+M4当前待完成摘要：[reports/M4_REVIEW.md](reports/M4_REVIEW.md)，明确区分已完成D与运行中训练；不能视为G1已通过。
