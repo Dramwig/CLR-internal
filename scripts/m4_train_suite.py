@@ -57,7 +57,7 @@ def main(base):
         with manifest_lock:
             results[key]=str(p);write_json(manifest,results)
         print(key,str(p),flush=True);return p
-    pilots={k:train(f'pilot_k{k}',11,trial=True,cross_every=k) for k in base['cross_grid']}
+    pilots={k:train(base.get('pilot_cases',{}).get(k,f'pilot_k{k}'),11,trial=True,cross_every=k) for k in base['cross_grid']}
     selected=min(pilots,key=lambda k:json.loads((pilots[k]/'metrics.json').read_text())['best_val_nll'])
     write_json(out/'hyperparameters_lock.json',{'cross_every':selected,'criterion':'reader_val macro-qtype NLL','pilot_runs':{str(k):str(v) for k,v in pilots.items()},'test_opened':False})
     workers=list(zip(base['seeds'],base['reader_devices']))

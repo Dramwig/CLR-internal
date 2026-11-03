@@ -31,7 +31,7 @@ mc_k: 16
 svamp_run: runs/20261103T043414920503Z_0ffa8eb65906_5d11c6
 asdiv_run: runs/20261103T043815088245Z_a0358d220af9_70e23b
 m3_baseline_run: runs/20261103T045628621237Z_2964c31f2153_11a348
-reader_min_free_gib: 4
+reader_min_free_gib: 3.5
 micro_batch: 8
 max_length: 192
 cross_every: 4
@@ -68,4 +68,10 @@ trial_samples_per_type: 10000
 budget_safety_factor: 1.2
 eval_lock: null
 run_budget_hours: 8
-reader_devices: [cuda:1, cuda:2, cuda:3]
+reader_devices:
+- cuda:1
+- cuda:2
+- cuda:3
+pilot_cases:
+  4: pilot_k4
+  8: pilot_k8_preflight_v2

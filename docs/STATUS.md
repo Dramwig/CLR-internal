@@ -166,3 +166,5 @@ M4：9项测试通过，val代理校准评估smoke v2通过 `runs/20261103T06554
 
 M4 D完成：`runs/20261103T063500842769Z_924ffcfc4ca2_e9f41f`，1993题、0.419145GPUh、117130前向；QA `runs/20261103T070034793210Z_f4a64da4e26f_7aefa4`，审计 `runs/20261103T070131960428Z_158d311376b0_8ad0ee`。训练996题98964行QA，评估997题99603行（含heldout）；Q4解析失败259题、额外负例匹配失败2题。Q1标注/选项去重/Q4边际完全相同/cohort协议审计通过。
 D结束后物理GPU2用于k8；k4继续物理3，均原模型未降级。后续seed11/22/33固定GPU1/2/3并行，合计GPU小时仍按作业求和。控制器 `clr-m4-suite` 日志 `reports/M4_training_suite_v4.log`，试验 `clr-m4-reader`/`clr-m4-pilot8`。尚未打开M4最终test。
+
+M4 k8首次预检查退出（非模型OOM）；新case pilot_k8_preflight_v2门槛3.5GiB，模型/batch等保持，旧run不覆盖。控制器改读显式pilot case映射。

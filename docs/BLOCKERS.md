@@ -375,3 +375,7 @@ RuntimeError: Insufficient GPU memory; no fallback
 ## M4 D已确认数据限制（2026-11-03）
 公式解析失败259/1993（train139、eval120），逐题跳过Q4；另有2题无法找到保持数值边际的负例，跳过Q4且不丢弃其他类型。
 172个eval题与新train有13-gram交集、精确0；原要求ID二分保持冻结，另报825无重叠eval题，不声称题族完全独立。证据：`data/M4_v0/qa/summary.json`、`data_audit.json`、`unseen_train_eval_overlap.json`。
+
+## M4 k8显存预检查门槛（2026-11-03）
+首次k8在加载模型前因可用显存小于原4GiB门槛退出；CUDA上下文建立后的余量低于nvidia-smi启动前快照。未发生模型OOM，未改模型/batch/精度/数据。
+根据已测2.42GiB峰值，将新run门槛显式设3.5GiB；使用新case `pilot_k8_preflight_v2` 保留失败run。若仍不足直接失败，不自动换卡。训练主协议未降级。
