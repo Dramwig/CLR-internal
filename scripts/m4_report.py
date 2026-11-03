@@ -69,21 +69,22 @@ def main(c):
             pred=prob.argmax(1);r['value']=(pred==r.label).astype(float) if q=='Q3' else np.where(pred==1,r.label_soft,1-r.label_soft)
         elif metric=='nll':r['value']=-(r.label_soft*np.log(np.maximum(prob[:,1],1e-12))+(1-r.label_soft)*np.log(np.maximum(prob[:,0],1e-12)))
         else:raise ValueError(metric)
-        return r.groupby(['problem_id','t']).value.mean()
+        group=r.groupby(['problem_id','t']).value
+        return group.mean(),group.size()
     comparisons=[('main','b3_multi','Q1','nll'),('main','B3','Q3','accuracy'),('main','B3','Q4','accuracy'),('main','B3','Q1','nll'),('main','b3_multi','Q3','accuracy'),('main','b3_multi','Q4','accuracy')]
     comparisons += [(f'transfer_{n}',f'scratch_b3_{n}','Q4','accuracy') for n in [100,1000,10000]]
     for split in ['reader_val','test']:
         for a,b,q,metric in comparisons:
             diffs=[]
             for s in c['seeds']:
-                x=per_problem(a,s,split,q,metric);y=per_problem(b,s,split,q,metric)
-                if not x.index.equals(y.index):raise ValueError('Paired evaluation keys differ')
+                x,counts=per_problem(a,s,split,q,metric);y,other_counts=per_problem(b,s,split,q,metric)
+                if not x.index.equals(y.index) or not counts.equals(other_counts):raise ValueError('Paired evaluation keys differ')
                 diffs.append(x-y)
-            delta=pd.concat(diffs,axis=1).mean(axis=1).unstack('t');matrix=delta.to_numpy();n=len(matrix);boot=[]
+            delta=pd.concat(diffs,axis=1).mean(axis=1).unstack('t');matrix=delta.fillna(0).to_numpy();weights=counts.unstack('t').reindex_like(delta).fillna(0).to_numpy();n=len(matrix);boot=[]
             for start in range(0,10000,100):
-                ii=rng.integers(n,size=(min(100,10000-start),n));sample=matrix[ii]
-                boot.extend(np.nanmean(np.nanmean(sample,axis=1),axis=1).tolist())
-            lo,hi=np.quantile(boot,[.025,.975]);paired.append({'split':split,'a':a,'b':b,'qtype':q,'metric':metric,'delta':float(np.nanmean(np.nanmean(matrix,axis=0))),'ci_low':float(lo),'ci_high':float(hi),'bootstrap':10000,'unit':'problem cluster; all steps together; mean of three seeds'})
+                ii=rng.integers(n,size=(min(100,10000-start),n));sample=matrix[ii];w=weights[ii]
+                boot.extend(np.nanmean((sample*w).sum(1)/w.sum(1),axis=1).tolist())
+            lo,hi=np.quantile(boot,[.025,.975]);paired.append({'split':split,'a':a,'b':b,'qtype':q,'metric':metric,'delta':float(np.nanmean((matrix*weights).sum(0)/weights.sum(0))),'ci_low':float(lo),'ci_high':float(hi),'bootstrap':10000,'unit':'problem cluster; all steps together; mean of three seeds'})
     # AUROC is nonlinear: resample complete problems, preserving all seven steps,
     # compute weighted AUROC separately at each t and average t and training seeds.
     from sklearn.metrics import roc_auc_score
@@ -211,7 +212,7 @@ def main(c):
     f'通过：val-only smoke、块隔离/置换与输入约束测试；三seed必做模型/迁移/增强训练已完成并在最终评估前锁定；温度/仿射及Mondrian均已执行。总成本{cost:.3g} GPUh，D {dmetrics.get("gpu_hours",float("nan")):.3g} GPUh。G1优势结论按下列差值区间审查，尚未标为通过。',g1,
     '## (c) 核心主表','均值±95% seed-t CI；clean/seen，逐t等权。表2为α=.1的三seed均值；详细CI见M4_conformal_aggregate.csv，其他α见CSV。',tab1,tab2,tab3,
     'ECE（CLR−B3，test纯温度）：'+'；'.join(q+' '+fmt(vals('main','test',q,'ece15')-vals('B3','test',q,'ece15')) for q in METRICS)+'。', '仿射−温度的改善（正为更好）：'+afftext+'。','加入未见训练后：'+gaptext+'。','GSM cal_B阈值下unseen_eval覆盖率（α=.1）：'+'；'.join(unseen)+'。',
-    '## (d) 新增偏离与阻塞','预算固定4epoch、每qtype每epoch10000采样，仅第2/4epoch验证；可能欠训练。可选消融未做。Q3共享仿射偏置抵消。未见池259题方程解析失败跳过Q4；172条eval与新train存在13-gram重叠、精确0，另报825无重叠子集。调试出现控制器状态/无限阈值JSON/严格YAML键错误，k8预检查显式由4降到3.5GiB（模型设置不变），均在val修复，失败记录保留。',
+    '## (d) 新增偏离与阻塞','预算固定4epoch、每qtype每epoch10000采样，仅第2/4epoch验证；可能欠训练。可选消融未做。Q3共享仿射偏置抵消。未见池259题方程解析失败、2题负例配对失败跳过Q4；172条eval与新train存在13-gram重叠、精确0，另报825无重叠子集。调试出现控制器状态/无限阈值JSON/严格YAML键错误，k8预检查显式由4降到3.5GiB（模型设置不变），均在val修复，失败记录保留。',
     '## (e) 需要审查者决定','根据G1差值及覆盖率判断是否通过进入M5；是否另建按题族分组的未见池版本（当前冻结划分不改）。',
     '## (f) 证据路径','详细：reports/M4_clr_v0.md、reports/M4_budget.md；CSV：reports/M4_metrics.csv、M4_conformal.csv、M4_paired_bootstrap.csv、M4_affine_gains.csv、M4_shift_gaps.csv；run索引：data/M4_v0/training_suite.json、evaluation_suite.json；数据与代码冻结：data/M4_v0/freeze.json。']
     text='\n\n'.join(review)+'\n'

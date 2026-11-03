@@ -36,6 +36,9 @@ def main(c):
         report[split]={'problems':len(ids[split]),'states':len(rows),'question_rows':len(qa),'qtype_rows':dict(counts),'choice_positions':dict(positions),'q4_numeric_marginals_exact':True,'q1_label_policy_passed':True,'cohort_protocol_consistent':True}
     assert not ids['unseen_train']&ids['unseen_eval']
     frozen=json.loads(Path(c['unseen_split']).read_text())
+    for split in ids:
+        expected=set().union(*(set(pool[split]) for pool in frozen['pools'].values()))
+        assert ids[split]==expected, 'Dump IDs differ from frozen unseen split'
     write_json(root/'data_audit.json',report);run.write_metrics(status='completed',gpu_hours=0,source_forward_calls=0,report=report);print(run.path)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
