@@ -22,3 +22,10 @@ def test_exchangeable_conformal_empirical_coverage():
         scores=rng.random(101);q=conformal_threshold(scores[:100],.1)
         coverage.append(scores[-1]<=q)
     assert .87<np.mean(coverage)<.94
+
+def test_mlp_value_effect_depends_on_state():
+    torch.manual_seed(11);m=Probe('B3','Q4');q=torch.zeros(1,64)
+    options=torch.randn(1,1,8,requires_grad=True)
+    a=torch.autograd.grad(m(torch.zeros(1,768),q,options)[0,1],options)[0]
+    b=torch.autograd.grad(m(torch.randn(1,768)*3,q,options)[0,1],options)[0]
+    assert not torch.allclose(a,b)

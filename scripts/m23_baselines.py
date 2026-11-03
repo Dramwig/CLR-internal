@@ -18,9 +18,12 @@ from clr.data.questions.core import seed
 def batches(ds,bank,device,batch_size,indices=None,shuffle=None):
     if indices is None:indices=np.arange(len(ds.rows))
     state=ds.state if shuffle is None else shuffle
+    if not hasattr(ds,'_device_cache'):
+        ds._device_cache=[torch.as_tensor(x,device=device) for x in [ds.q,ds.options,ds.y]]
     for start in range(0,len(indices),batch_size):
-        i=indices[start:start+batch_size]
-        yield i,[torch.as_tensor(x,device=device) for x in [bank.z[state[i]],ds.q[i],ds.options[i],ds.y[i]]]
+        i=indices[start:start+batch_size];ii=torch.as_tensor(i,device=device)
+        z=bank.z[torch.as_tensor(state[i],device=bank.z.device)].to(device)
+        yield i,[z]+[x[ii] for x in ds._device_cache]
 
 def predict(model,ds,bank,c,shuffle=None):
     model.eval();out=[]
@@ -41,6 +44,10 @@ def main(c):
     trainbank=bank_for('reader_train');mean,scale=trainbank.standardize()
     valbank=bank_for('reader_val');valbank.standardize(mean,scale)
     np.savez(run.path/'normalization.npz',mean=mean,scale=scale)
+    if c.get('gpu_state_cache',False):
+        free,_=torch.cuda.mem_get_info(c['baseline_device']);required=(trainbank.z.numel()+valbank.z.numel())*4+1024**3
+        if free<required:raise RuntimeError('Insufficient free GPU memory for explicit state cache')
+        trainbank.z=trainbank.z.to(c['baseline_device']);valbank.z=valbank.z.to(c['baseline_device'])
     allstats=[];allcp=[];selection=[]
     for name in ['B0','B1','B2','B3','B4']:
       qtypes=['Q1'] if name=='B4' else ['Q1','Q2','Q3','Q4']

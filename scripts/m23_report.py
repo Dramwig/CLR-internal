@@ -13,6 +13,7 @@ from clr.utils.config import load_config
 from clr.utils.records import recorded
 from clr.utils.idea_a import write_json
 from clr.utils.stats_v2 import bootstrap_mean
+from clr.data.questions.core import seed
 
 def ci(values):
     a=np.asarray(values,dtype=float)
@@ -84,10 +85,35 @@ def main(c):
       '## 已见模板、干净状态主表',table(['baseline','qtype','split','accuracy','AUROC','NLL','Brier','MAE','ECE'],mainrows),
       '## 保留模板',table(['baseline','qtype','split','NLL','accuracy','ECE'],[[b,q,s]+[ci(values(b,q,s,True,m)) for m in ['nll','accuracy','ece15']] for b in ['B0','B1','B2','B3','B4','B5a'] for q in ['Q1','Q2','Q3','Q4'] for s in ['reader_val','test'] if values(b,q,s,True,'nll')])]
     if 'baseline_run' in records:
-        cp=load(Path(c['baseline_run'])/'conformal.json');write_json(run.path/'conformal.json',cp)
+        cp=load(Path(c['baseline_run'])/'conformal.json')
+        for r in cp:r['split']='test'
+        extra=[]
+        for b in ['B2','B3']:
+            for q in ['Q1','Q2','Q3','Q4']:
+                for rs in [11,22,33]:
+                    for held in [False,True]:
+                        rows=pq.read_table(Path(c['output'])/'full/reader_val.parquet',filters=[('qtype','=',q),('is_heldout_template','=',held)]).to_pylist()
+                        preds=pq.read_table(Path(c['baseline_run'])/f'{b}_{q}_{rs}_reader_val_{held}.parquet').to_pylist()
+                        assert len(rows)==len(preds)
+                        p=softmax(np.array([r['logits'] for r in preds])/preds[0]['temperature'],axis=1)
+                        for t in range(7):
+                            unique={}
+                            for i,r in enumerate(rows):
+                                if r['state_ref']['kind']!='clean' or r['state_ref']['t']!=t:continue
+                                pid=r['problem_id'];rank=lambda j:seed(rs,pid,q,t,tuple(rows[j]['options']),rows[j]['template_id'])
+                                if pid not in unique or rank(i)<rank(unique[pid]):unique[pid]=i
+                            ii=list(unique.values())
+                            if not ii:continue
+                            yy=np.eye(4)[[rows[i]['label'] for i in ii]] if q=='Q3' else np.array([[1-rows[i]['label_soft'],rows[i]['label_soft']] for i in ii])
+                            for alpha in [.05,.1,.2]:
+                                ref=next(r for r in cp if r['baseline']==b and r['qtype']==q and r['seed']==rs and r['t']==t and r['heldout']==held and r['alpha']==alpha)
+                                threshold=float('inf') if ref.get('threshold_is_infinite') else ref['threshold']
+                                sets=1-p[ii]<=threshold
+                                extra.append({**ref,'split':'reader_val','n':len(ii),'coverage':float((sets*yy).sum(1).mean()),'size':float(sets.sum(1).mean())})
+        cp+=extra;write_json(run.path/'conformal.json',cp)
         cpgroup=defaultdict(list)
-        for r in cp:cpgroup[r['baseline'],r['qtype'],r['t'],r['heldout'],r['alpha']].append(r)
-        blines+=['## Mondrian conformal', '在每个(qtype,t)层按题独立取一个实例。Q1校准每题固定随机选一个MC Bernoulli结果；test覆盖率对该题K16结果平均。阈值使用ceil((n+1)(1−α))；极小层返回全集合。有限样本保证依赖层内可交换性。cal_B/test问题来自同一原池，但原cohort上下文、Q3各split的其他题干扰池引入依赖，不能据此宣称无条件有限样本保证；held-out模板还改变模板分布。这里报告经验覆盖率。reader_val源训练分布不享有跨域保证。',table(['baseline','qtype','t','heldout','alpha','coverage','set size'],[[*k,ci([x['coverage'] for x in v]),ci([x['size'] for x in v])] for k,v in sorted(cpgroup.items())])]
+        for r in cp:cpgroup[r['baseline'],r['qtype'],r['split'],r['t'],r['heldout'],r['alpha']].append(r)
+        blines+=['## Mondrian conformal', '在每个(qtype,t)层按题独立取一个实例。Q1校准每题固定随机选一个MC Bernoulli结果；test覆盖率对该题K16结果平均。阈值使用ceil((n+1)(1−α))；极小层返回全集合。有限样本保证依赖层内可交换性。cal_B/test问题来自同一原池，但原cohort上下文、Q3各split的其他题干扰池、Q4跨题数值配对引入依赖，不能据此宣称无条件有限样本保证；held-out模板还改变模板分布。这里报告经验覆盖率。reader_val源训练分布不享有跨域保证。',table(['baseline','qtype','split','t','heldout','alpha','coverage','set size'],[[*k,ci([x['coverage'] for x in v]),ci([x['size'] for x in v])] for k,v in sorted(cpgroup.items())])]
     if 'layers_run' in records:
         layers=load(Path(c['layers_run'])/'layers.json');fig,axes=plt.subplots(1,4,figsize=(15,3))
         for q,ax in zip(['Q1','Q2','Q3','Q4'],axes):
@@ -130,6 +156,21 @@ def main(c):
             ax.set_title(split);ax.set_xlabel('predicted probability');ax.set_ylabel('observed correct');ax.legend()
         fig.tight_layout();fig.savefig(figs/f'{q}_reliability.png');plt.close(fig)
         shift.append(f'![{q} reliability](M3_figures/{q}_reliability.png)')
+    if 'patchscope_run' in records:
+        deterministic_ci=[]
+        for q in ['Q1','Q2','Q3','Q4']:
+            for split in ['reader_val','test']:
+                path=Path(c['patchscope_run'])/f'B5a_{q}_0_{split}_False.parquet'
+                rr=pq.read_table(path,filters=[('kind','=','clean')]).to_pylist()
+                pp=softmax(np.array([r['logits'] for r in rr])/rr[0]['temperature'],axis=1)
+                yy=np.eye(4)[[r['label'] for r in rr]] if q=='Q3' else np.array([[1-r['label_soft'],r['label_soft']] for r in rr])
+                contribution=defaultdict(list)
+                for i,r in enumerate(rr):
+                    contribution[r['problem_id']].append([yy[i,pp[i].argmax()],-(yy[i]*np.log(np.maximum(pp[i],1e-12))).sum(),(1-2*(yy[i]*pp[i]).sum()+(pp[i]**2).sum())/(1 if q=='Q3' else 2)])
+                by_problem=np.array([np.mean(v,axis=0) for v in contribution.values()])
+                deterministic_ci.append({'qtype':q,'split':split,'aggregation':'mean within problem over observed clean instances, then across problems',**{m:bootstrap_mean(by_problem[:,j]) for j,m in enumerate(['accuracy','nll','brier'])}})
+        write_json(run.path/'B5a_question_bootstrap.json',deterministic_ci)
+        blines+=['## B5a确定性按题bootstrap补充', '以下先在题内平均clean实例，再按题bootstrap10k，区别于主表各t等权平均；不把同题模板/rollout当独立问题。ECE/AUROC在逐层表给点估计，不提供伪造的seed区间。',table(['qtype','split','accuracy [95% CI]','NLL [95% CI]','Brier [95% CI]'],[[r['qtype'],r['split']]+[str(r[m]['mean'])+' '+str(r[m]['ci95']) for m in ['accuracy','nll','brier']] for r in deterministic_ci])]
     # Required final three answers.
     blines+=['## (1) B0 比随机猜测高多少？',table(['qtype','split','accuracy minus uniform guess','NLL reduction vs uniform'],[[q,s,float(np.mean(values('B0',q,s,False,'accuracy')))-(.25 if q=='Q3' else .5),np.log(4 if q=='Q3' else 2)-float(np.mean(values('B0',q,s,False,'nll')))] for q in ['Q1','Q2','Q3','Q4'] for s in ['reader_val','test'] if values('B0',q,s,False,'nll')]),
       'Q1随机基准为p=0.5（NLL=ln2、Brier=.25）；其accuracy仅为附加二元判别统计。B0偏离随机反映标签/选项先验，不自动证明源状态有信息。',
@@ -145,6 +186,18 @@ def main(c):
     for key in ['svamp_run','asdiv_run']:
         if key in records:
             m=records[key];unseen+=[f'## {key}',f"运行 `{c[key]}`；GPU小时={m['gpu_hours']:.4f}，源前向={m['source_forward_calls']}。",table(['t','accuracy','95% CI'],[[t,v['mean'],v['ci95']] for t,v in m['accuracy_by_step'].items()])]
+    reference=[]
+    for split in ['reader_train','reader_val','test']:
+        rr=pq.read_table(Path(c['root'])/split/'early_exit.parquet',columns=['t','correct']).to_pylist()
+        reference.extend({'split':split,'t':t,**bootstrap_mean([int(r['correct']) for r in rr if r['t']==t])} for t in range(7))
+    unseen+=['## M1固定参考与早退曲线',table(['split','t','accuracy','95% CI'],[[r['split'],r['t'],r['mean'],r['ci95']] for r in reference])]
+    fig,ax=plt.subplots(figsize=(7,4))
+    for split in ['reader_train','reader_val','test']:
+        ax.plot(range(7),[r['mean'] for r in reference if r['split']==split],marker='o',label=split)
+    for key in ['svamp_run','asdiv_run']:
+        if key in records:ax.plot(range(7),[records[key]['accuracy_by_step'][str(t)]['mean'] for t in range(7)],marker='o',label=key.replace('_run',''))
+    ax.set_xlabel('early-exit step');ax.set_ylabel('accuracy');ax.legend();fig.tight_layout();fig.savefig(figs/'unseen_early_exit.png');plt.close(fig)
+    unseen.append('![early exit](M3_figures/unseen_early_exit.png)')
     (reports/'M3_unseen_pools.md').write_text('\n\n'.join(unseen)+'\n')
     write_json(run.path/'inputs.json',{k:c[k] for k in records})
     run.write_metrics(status='completed',milestone_complete=not missing,source_forward_calls=0,gpu_hours=0,reports=['M2_questions.md','M3_baselines.md','M3_shift.md','M3_unseen_pools.md'])
