@@ -400,3 +400,11 @@ M2–M3问题库、B0–B5a、层/域诊断、官方500题、两候选未见池�
 已记录成本下界2.6075 GPU小时、202641次源前向，历史中断缺失成本未记成零。D两池含smoke合计0.417348 GPU小时，低于5小时。
 必须随结果保留的审查限制：早期smoke触及10题test，旧中止run保存过部分test预测，未用于调参但不符合严格test-only-final约定；不得声称该偏离已获接受。Q4边际匹配在原split保证，cal_A/B半集没有独立重配。conformal依赖假设、来源未核实候选池及成本缺口见BLOCKERS；不更换划分/seed掩盖问题。
 B3 test Q3准确率58.59% ± 0.19pp，Q4 68.26% ± 1.09pp（三seed95% t区间、clean/seen/t等权）；B5a Q3约24.55%、Q4约50.37%，如实保留负面结果。M3_baselines.md末尾已逐项回答三项审查问题。
+
+## M4 v0 — smoke与正式训练启动（2026-11-03，未完成）
+模型采用官方固定revision的ModernBERT-base；val-only源/reader/校准评估smoke通过，单元测试9通过；尚无最终test结论。
+命令：`PYTHONPATH=. .venv/bin/python scripts/m4_train_suite.py configs/M4_train_v0.yaml`；D与QA由 `scripts/m4_data_followup.py configs/M4_data_followup.yaml` 接续。
+吞吐26.6训练样本/s、93.8评估样本/s、峰值2.42GiB，smoke置换差0；这些是工程验收数，不是三seed科研结果。
+完整估算66.6 GPUh（含20%裕量），上限80；D估算0.451，上限6。详见 [预算](../reports/M4_budget.md) 与 [任务](M4_TASK.md)。
+负面/限制：172条未见eval与新train存在13-gram重叠；259题公式解析失败；均保留记录，不改划分。控制器状态与阈值JSON边界错误已修复，失败run留存。
+最终三seed指标、按题bootstrap与G1结论尚待完成，不能以本记录代替里程碑验收。
