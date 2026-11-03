@@ -14,3 +14,12 @@ def test_affine_float32_has_nonzero_gradient():
     x=np.zeros((100,2),np.float32);y=np.tile([.2,.8],(100,1)).astype(np.float32)
     cal=fit(x,y,'affine')
     assert abs(cal['bias']-np.log(4))<1e-3
+
+
+def test_small_stratum_infinite_threshold_is_json_safe():
+    import json
+    rows=[{'problem_id':str(i),'state_ref':{'t':0,'kind':'clean'},'options':[],'template_id':0,'label':0,'label_soft':0.,'bernoulli_outcomes':[0],'is_heldout_template':False} for i in range(3)]
+    x=np.zeros((3,2));cal={'temperature':1.,'bias':0.};th=thresholds(rows,x,cal,'Q1',11)
+    _,cp=summarize(rows,x,'Q1',{'temperature':cal},{'temperature':th},11)
+    assert all(r['threshold'] is None and r['threshold_is_infinite'] for r in cp)
+    json.dumps(cp,allow_nan=False)

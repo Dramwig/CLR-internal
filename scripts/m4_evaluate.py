@@ -66,7 +66,7 @@ def main(c):
             a=predict(model,kind,ca,calbank,serializer,templates,norm,device,c['eval_batch']);b=predict(model,kind,cb,calbank,serializer,templates,norm,device,c['eval_batch'])
             calibrations[q]={m:fit(a,target_array(ca,q),m) for m in ['temperature','affine']}
             threshold_map[q]={m:thresholds(cb,b,calibrations[q][m],q,c['seed']) for m in calibrations[q]}
-        write_json(run.path/'calibration.json',calibrations);write_json(run.path/'thresholds.json',threshold_map)
+        write_json(run.path/'calibration.json',calibrations);write_json(run.path/'thresholds.json',{q:{m:{k:(v if np.isfinite(v) else None) for k,v in ts.items()} for m,ts in methods.items()} for q,methods in threshold_map.items()})
         del calbank,calrows
         for split in (['reader_val'] if smoke else c['eval_splits']):
             phase='validate' if smoke else 'final';bank=PrefixBank(c,split,phase,proxyids if smoke else None)

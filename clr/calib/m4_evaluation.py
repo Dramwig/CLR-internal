@@ -42,5 +42,5 @@ def summarize(rows,logits,q,calibrations,threshold_map,random_seed):
                 key=f'{t}:{alpha}'
                 if key not in threshold_map[method]:continue
                 threshold=threshold_map[method][key];sets=1-p[jj]<=threshold
-                cp.append({'qtype':q,'t':t,'heldout':held,'calibration':method,'alpha':alpha,'n':len(jj),'coverage':float((sets*y[jj]).sum(1).mean()),'size':float(sets.sum(1).mean()),'threshold':float(threshold)})
+                cp.append({'qtype':q,'t':t,'heldout':held,'calibration':method,'alpha':alpha,'n':len(jj),'coverage':float((sets*y[jj]).sum(1).mean()),'size':float(sets.sum(1).mean()),'threshold':float(threshold) if np.isfinite(threshold) else None,'threshold_is_infinite':not np.isfinite(threshold)})
     return stats,cp

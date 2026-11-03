@@ -159,3 +159,5 @@ M4当前：源val smoke12题通过，完整D估算0.451 GPUh并已启动；CLR s
 M4接续：reader模型/训练/仿射校准最小测试6通过；k4试验tmux `clr-m4-reader`，D `clr-m4-unseen`。预算冻结 `reports/M4_budget.md`；训练控制器将仅用reader_val选k，所有训练完成后再解锁最终评估。
 
 M4更新：校准/阈值测试共8通过；控制器running状态误判已修复，原训练未中断。D完成1625/1993（当时快照）。最终评估入口要求训练checkpoint hash锁及val-only校准评估smoke；尚未运行test。
+
+M4评估smoke发现极小val代理层的conformal无限阈值不能写严格JSON；修复为null+infinite标志（内部保持∞/全集合），新增边界测试，原失败run保留。此修复未读取test。

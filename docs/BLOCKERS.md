@@ -363,3 +363,7 @@ B3 test Q3准确率58.59% ± 0.19pp，Q4 68.26% ± 1.09pp（三seed95% t区间�
 
 ## M4 控制器状态识别修复（2026-11-03）
 控制器首次把已存在的 `metrics.json: running` 误判成失败；实际k4训练一直在运行，未重启/修改模型。已改为等待终态，保留 `reports/M4_training_suite.log`，修复后日志另存v2。无test访问。
+
+## 2026-11-03T06:54:44.111516+00:00 — 20261103T065436633657Z_e4d19c76ca4d_787eb3
+ValueError: Out of range float values are not JSON compliant: inf
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261103T065436633657Z_e4d19c76ca4d_787eb3/traceback.txt`。未回退模型或设置。
