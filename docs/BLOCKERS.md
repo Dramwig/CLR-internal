@@ -360,3 +360,6 @@ B3 test Q3准确率58.59% ± 0.19pp，Q4 68.26% ± 1.09pp（三seed95% t区间�
 ## 2026-11-03 M4未见池重叠与方程解析
 
 按任务要求冻结的各池对半划分中，172条unseen_eval与unseen_train有13-gram重叠（SVAMP164、ASDiv8），精确重复0；不擅自重划分，最终另报825条无重叠子集诊断。方程可解析SVAMP990/993、ASDiv744/1000，其余题仅跳过Q4、保留行为标签；见data/M4_v0/equation_failures.json与unseen_train_eval_overlap.json。
+
+## M4 控制器状态识别修复（2026-11-03）
+控制器首次把已存在的 `metrics.json: running` 误判成失败；实际k4训练一直在运行，未重启/修改模型。已改为等待终态，保留 `reports/M4_training_suite.log`，修复后日志另存v2。无test访问。

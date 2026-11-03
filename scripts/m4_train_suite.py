@@ -40,7 +40,7 @@ def main(base):
         existing=runs_matching(case,s)
         if existing:
             p=existing[-1];m=p/'metrics.json'
-            while not m.exists():
+            while not m.exists() or json.loads(m.read_text()).get('status')=='running':
                 print(f'Waiting for active {p}',flush=True);time.sleep(30)
             data=json.loads(m.read_text())
             if data.get('status')!='completed':raise RuntimeError(f'Prior run failed; explicit repair required: {p}')
