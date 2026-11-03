@@ -168,3 +168,5 @@ M4 D完成：`runs/20261103T063500842769Z_924ffcfc4ca2_e9f41f`，1993题、0.419
 D结束后物理GPU2用于k8；k4继续物理3，均原模型未降级。后续seed11/22/33固定GPU1/2/3并行，合计GPU小时仍按作业求和。控制器 `clr-m4-suite` 日志 `reports/M4_training_suite_v4.log`，试验 `clr-m4-reader`/`clr-m4-pilot8`。尚未打开M4最终test。
 
 M4 k8首次预检查退出（非模型OOM）；新case pilot_k8_preflight_v2门槛3.5GiB，模型/batch等保持，旧run不覆盖。控制器改读显式pilot case映射。
+
+M4接续：测试10通过；k4约33600/40000、k8约10400/40000（当时快照）。自动接续已部署：训练锁→最终评估→报告→测试/冻结；每个完成事件写 `docs/M4_LIVE.json`，AGENTS已有索引。未见池D已完成；正式test仍未打开。

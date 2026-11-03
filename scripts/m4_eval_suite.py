@@ -6,6 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 from threading import Lock
 from clr.utils.config import load_config
 from clr.utils.idea_a import write_json
+from clr.utils.m4_status import update
 
 def main(c):
     root=Path(c['output']);lock=json.loads(Path(c['eval_lock']).read_text())
@@ -41,7 +42,7 @@ def main(c):
                 if r.get('stage')=='evaluate' and r.get('case')==config['case'] and r.get('seed')==config['seed'] and r.get('mode')=='full':candidates.append(p.parent)
             run=sorted(candidates)[-1]
         with manifest_lock:
-            results[key]=str(run);write_json(path,results)
+            results[key]=str(run);write_json(path,results);update('evaluation',len(results),len(jobs),run)
         print(key,run,flush=True)
     def worker(s,device):
         for config in jobs:

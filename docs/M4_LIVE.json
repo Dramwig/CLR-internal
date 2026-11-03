@@ -1,0 +1,11 @@
+{
+  "updated_utc": "2026-11-03T07:14:36.844333+00:00",
+  "stage": "pilot_training",
+  "completed_jobs": 0,
+  "planned_jobs": 32,
+  "last_completed_run": "none; two active pilots",
+  "training_manifest": "data/M4_v0/training_suite.json",
+  "evaluation_manifest": "data/M4_v0/evaluation_suite.json",
+  "final_review": "reports/M4_REVIEW.md",
+  "g1_approved": false
+}

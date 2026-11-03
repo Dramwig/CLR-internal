@@ -5,6 +5,7 @@ from clr.utils.config import load_config
 from clr.utils.records import recorded
 from clr.utils.idea_a import write_json
 from clr.utils.m4_budget import hours_used
+from clr.utils.m4_status import update
 
 def digest(p):
     h=hashlib.sha256()
@@ -32,7 +33,7 @@ def main(c):
         if f'## ({letter})' not in review:raise ValueError('Missing required review section')
     if hours_used()>c['total_budget_hours']:raise ValueError('Budget exceeded; record deviation before freeze')
     files=set()
-    for glob in ['clr/models/clr_v0.py','clr/data/m4/*.py','clr/baselines/b3_multi_v0.py','clr/calib/m4*.py','clr/utils/m4_budget.py','scripts/m4*.py','configs/M4*.yaml','tests/test_m4*.py','reports/M4*.md','reports/M4*.csv','reports/M4_figures/*']:
+    for glob in ['clr/models/clr_v0.py','clr/data/m4/*.py','clr/baselines/b3_multi_v0.py','clr/calib/m4*.py','clr/utils/m4*.py','scripts/m4*.py','configs/M4*.yaml','tests/test_m4*.py','reports/M4*.md','reports/M4*.csv','reports/M4_figures/*']:
         files.update(p for p in Path('.').glob(glob) if p.is_file())
     files.update(p for p in root.rglob('*') if p.is_file() and p!=out)
     files.add(Path(c['unseen_split']))
@@ -51,6 +52,7 @@ def main(c):
 ''')
     p=Path('docs/BLOCKERS.md');p.write_text(p.read_text()+'\n## M4 v0 收尾\n必做实验完成，G1待审查；未见题族重叠、Q4缺失及有限训练预算的影响未被消除，详见 `reports/M4_REVIEW.md` 的(d)/(e)，不以工程完成替代研究结论。\n')
     run.write_metrics(status='completed',gpu_hours=0,source_forward_calls=0,frozen_files=len(files),review_bytes=len(review.encode()),g1_approved=False)
+    update('completed_pending_G1_review',len(complete['runs']),len(complete['runs']),run.path)
     print(run.path)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))

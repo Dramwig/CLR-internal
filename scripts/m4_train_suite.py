@@ -9,6 +9,7 @@ from clr.data.m4.reader import rows_for
 from clr.data.questions.core import seed
 from clr.utils.config import load_config
 from clr.utils.idea_a import write_json
+from clr.utils.m4_status import update
 
 def runs_matching(case,s):
     result=[]
@@ -55,7 +56,7 @@ def main(base):
                 subprocess.run(['.venv/bin/python','scripts/m4_train.py',str(path)],check=True,stdout=log,stderr=subprocess.STDOUT,env={**os.environ,'PYTHONPATH':'.','OMP_NUM_THREADS':'2','HF_HUB_OFFLINE':'1'})
             p=runs_matching(case,s)[-1]
         with manifest_lock:
-            results[key]=str(p);write_json(manifest,results)
+            results[key]=str(p);write_json(manifest,results);update('training',len(results),32,p)
         print(key,str(p),flush=True);return p
     pilots={k:train(base.get('pilot_cases',{}).get(str(k),f'pilot_k{k}'),11,trial=True,cross_every=k) for k in base['cross_grid']}
     selected=min(pilots,key=lambda k:json.loads((pilots[k]/'metrics.json').read_text())['best_val_nll'])

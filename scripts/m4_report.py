@@ -37,6 +37,20 @@ def main(c):
             if m.get('status')!='completed':raise ValueError(f'Final evaluation incomplete: {p}')
             stats+=json.loads((p/'statistics.json').read_text());cp+=json.loads((p/'conformal.json').read_text())
     df=pd.DataFrame(stats);cf=pd.DataFrame(cp);df.to_csv('reports/M4_metrics.csv',index=False);cf.to_csv('reports/M4_conformal.csv',index=False)
+    aggregates=[]
+    for keys,group in df.groupby(['case','split','qtype','kind','heldout','calibration','subset']):
+        seed_means=group.groupby('seed')[['nll','brier','mae','accuracy','auroc','ece15']].mean()
+        for metric in seed_means:
+            values=seed_means[metric].dropna().to_numpy()
+            if len(values)!=3:continue
+            mean,half=interval(values);aggregates.append({**dict(zip(['case','split','qtype','kind','heldout','calibration','subset'],keys)),'metric':metric,'mean':mean,'ci95_low':mean-half,'ci95_high':mean+half,'seeds':3,'aggregation':'equal t within seed; seed-t interval'})
+    pd.DataFrame(aggregates).to_csv('reports/M4_aggregate.csv',index=False)
+    aggregates=[]
+    for keys,group in cf.groupby(['case','split','qtype','heldout','calibration','subset','alpha']):
+        seed_means=group.groupby('seed')[['coverage','size']].mean()
+        for metric in seed_means:
+            values=seed_means[metric].to_numpy();mean,half=interval(values);aggregates.append({**dict(zip(['case','split','qtype','heldout','calibration','subset','alpha'],keys)),'metric':metric,'mean':mean,'ci95_low':mean-half,'ci95_high':mean+half,'seeds':len(values)})
+    pd.DataFrame(aggregates).to_csv('reports/M4_conformal_aggregate.csv',index=False)
     primary=df[(df.kind=='clean')&(~df.heldout)&(df.subset=='all')]
     primarycp=cf[(~cf.heldout)&(cf.subset=='all')]
     def vals(case,split,q,metric,cal='temperature'):
@@ -184,7 +198,8 @@ def main(c):
     cptext='；'.join(q+' Δcov/size '+ '/'.join(f"{next(x['delta'] for x in cp_pairs if x['split']=='test' and x['qtype']==q and x['metric']==m):.3g}" for m in ['coverage','size']) for q in METRICS)
     dominance=any(next(x['ci_low'] for x in cp_pairs if x['split']=='test' and x['qtype']==q and x['metric']=='coverage')>=0 and next(x['ci_high'] for x in cp_pairs if x['split']=='test' and x['qtype']==q and x['metric']=='size')<0 for q in METRICS)
     g1+='(2) '+('通过（至少一类型覆盖率不低且集合更小的配对CI支持）' if dominance else '未通过（同覆盖率效率优势未证实）')+'；'+cptext+'。CI见M4_cp_paired_bootstrap.csv。\n'
-    g1+='(3) 未通过（未预设非劣界）；CLR−B3 Q1 NLL '+difftext('main','B3','Q1')+'；Q2 AUROC '+difftext('main','B3','Q2')+'；CLR−B3-multi Q3 '+difftext('main','b3_multi','Q3')+'、Q4 '+difftext('main','b3_multi','Q4')+'；未预设非劣界，不能据不显著声称不劣。\n'
+    joint_dominance=all((x['ci_high']<=0 if x['metric']=='nll' else x['ci_low']>=0) for x in paired if x['split']=='test' and x['a']=='main' and x['b'] in ['B3','b3_multi'])
+    g1+='(3) '+('通过（四类型差异CI均支持不低于两种B3）' if joint_dominance else '未通过（未建立四类型一致优势，且未预设非劣界）')+'；CLR−B3 Q1 NLL '+difftext('main','B3','Q1')+'；Q2 AUROC '+difftext('main','B3','Q2')+'；CLR−B3-multi Q3 '+difftext('main','b3_multi','Q3')+'、Q4 '+difftext('main','b3_multi','Q4')+'；未预设非劣界，不能据不显著声称不劣。\n'
     small_gain=all(x['ci_low']>0 for x in paired if x['split']=='test' and x['a'] in ['transfer_100','transfer_1000'])
     g1+='(4) '+('通过' if small_gain else '未通过')+'（小N差异95%CI是否均大于0）；迁移−scratch Q4：N100 '+difftext('transfer_100','scratch_b3_100','Q4')+'；N1k '+difftext('transfer_1000','scratch_b3_1000','Q4')+'；N10k '+difftext('transfer_10000','scratch_b3_10000','Q4')+'。'
     afftext='；'.join(f"{case} test平均NLL/ECE改善 {np.mean([x['nll'] for x in affine if x['case']==case and x['split']=='test']):.3g}/{np.mean([x['ece15'] for x in affine if x['case']==case and x['split']=='test']):.3g}" for case in ['main','B3'])
@@ -194,8 +209,8 @@ def main(c):
         for q in METRICS:unseen.append(f"{case}/{q} {np.mean(cpvals(case,'unseen_eval',q,'coverage')):.3g}")
     review=['## (a) 状态','M4实验完成，待G1审查；不能把完成等同优势关卡通过。','## (b) 关卡',
     f'通过：val-only smoke、块隔离/置换与输入约束测试；三seed必做模型/迁移/增强训练已完成并在最终评估前锁定；温度/仿射及Mondrian均已执行。总成本{cost:.3g} GPUh，D {dmetrics.get("gpu_hours",float("nan")):.3g} GPUh。G1优势结论按下列差值区间审查，尚未标为通过。',g1,
-    '## (c) 核心主表','均值±95% seed-t CI；clean/seen，逐t等权。表2为α=.1的三seed均值；详细CI与其他α见CSV。',tab1,tab2,tab3,
-    '仿射−温度的改善（正为更好）：'+afftext+'。','加入未见训练后：'+gaptext+'。','GSM cal_B阈值下unseen_eval覆盖率（α=.1）：'+'；'.join(unseen)+'。',
+    '## (c) 核心主表','均值±95% seed-t CI；clean/seen，逐t等权。表2为α=.1的三seed均值；详细CI见M4_conformal_aggregate.csv，其他α见CSV。',tab1,tab2,tab3,
+    'ECE（CLR−B3，test纯温度）：'+'；'.join(q+' '+fmt(vals('main','test',q,'ece15')-vals('B3','test',q,'ece15')) for q in METRICS)+'。', '仿射−温度的改善（正为更好）：'+afftext+'。','加入未见训练后：'+gaptext+'。','GSM cal_B阈值下unseen_eval覆盖率（α=.1）：'+'；'.join(unseen)+'。',
     '## (d) 新增偏离与阻塞','预算固定4epoch、每qtype每epoch10000采样，仅第2/4epoch验证；可能欠训练。可选消融未做。Q3共享仿射偏置抵消。未见池259题方程解析失败跳过Q4；172条eval与新train存在13-gram重叠、精确0，另报825无重叠子集。调试出现控制器状态/无限阈值JSON/严格YAML键错误，k8预检查显式由4降到3.5GiB（模型设置不变），均在val修复，失败记录保留。',
     '## (e) 需要审查者决定','根据G1差值及覆盖率判断是否通过进入M5；是否另建按题族分组的未见池版本（当前冻结划分不改）。',
     '## (f) 证据路径','详细：reports/M4_clr_v0.md、reports/M4_budget.md；CSV：reports/M4_metrics.csv、M4_conformal.csv、M4_paired_bootstrap.csv、M4_affine_gains.csv、M4_shift_gaps.csv；run索引：data/M4_v0/training_suite.json、evaluation_suite.json；数据与代码冻结：data/M4_v0/freeze.json。']
