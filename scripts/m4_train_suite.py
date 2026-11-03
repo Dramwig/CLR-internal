@@ -2,6 +2,8 @@
 import argparse,json,subprocess,time,hashlib,os
 from pathlib import Path
 import yaml
+from concurrent.futures import ThreadPoolExecutor
+from threading import Lock
 import torch
 from clr.data.m4.reader import rows_for
 from clr.data.questions.core import seed
@@ -22,7 +24,7 @@ def used_hours():
     return total
 
 def main(base):
-    out=Path(base['output']);directory=out/'train_configs';directory.mkdir(exist_ok=True);manifest=out/'training_suite.json';results=json.loads(manifest.read_text()) if manifest.exists() else {}
+    out=Path(base['output']);directory=out/'train_configs';directory.mkdir(exist_ok=True);manifest=out/'training_suite.json';results=json.loads(manifest.read_text()) if manifest.exists() else {};manifest_lock=Lock()
     # Nested, paired Q4 labels: no test/cal accesses and no choice of panels by outcome.
     panel=out/'fewshot_panels.json'
     if not panel.exists():
@@ -52,21 +54,29 @@ def main(base):
             with (Path('reports')/f'M4_{key}.log').open('w') as log:
                 subprocess.run(['.venv/bin/python','scripts/m4_train.py',str(path)],check=True,stdout=log,stderr=subprocess.STDOUT,env={**os.environ,'PYTHONPATH':'.','OMP_NUM_THREADS':'2','HF_HUB_OFFLINE':'1'})
             p=runs_matching(case,s)[-1]
-        results[key]=str(p);write_json(manifest,results);print(key,str(p),flush=True);return p
+        with manifest_lock:
+            results[key]=str(p);write_json(manifest,results)
+        print(key,str(p),flush=True);return p
     pilots={k:train(f'pilot_k{k}',11,trial=True,cross_every=k) for k in base['cross_grid']}
     selected=min(pilots,key=lambda k:json.loads((pilots[k]/'metrics.json').read_text())['best_val_nll'])
     write_json(out/'hyperparameters_lock.json',{'cross_every':selected,'criterion':'reader_val macro-qtype NLL','pilot_runs':{str(k):str(v) for k,v in pilots.items()},'test_opened':False})
-    for s in base['seeds']:train('main',s,cross_every=selected)
-    for s in base['seeds']:train('b3_multi',s,model_kind='b3_multi',micro_batch=32,gradient_accumulation=1,eval_batch=1024)
-    for s in base['seeds']:
-        pre=train('leave_q4_out',s,cross_every=selected,qtypes=['Q1','Q2','Q3'])
+    workers=list(zip(base['seeds'],base['reader_devices']))
+    if len(workers)!=len(base['seeds']) or len(set(base['reader_devices']))!=len(workers):raise ValueError('One explicit distinct device per seed required')
+    def parallel(fn):
+        with ThreadPoolExecutor(max_workers=len(workers)) as pool:
+            futures=[pool.submit(fn,s,device) for s,device in workers]
+            for future in futures:future.result()
+    parallel(lambda s,device:train('main',s,cross_every=selected,reader_device=device))
+    parallel(lambda s,device:train('b3_multi',s,model_kind='b3_multi',micro_batch=32,gradient_accumulation=1,eval_batch=1024,reader_device=device))
+    def transfer(s,device):
+        pre=train('leave_q4_out',s,cross_every=selected,qtypes=['Q1','Q2','Q3'],reader_device=device)
         for n in [100,1000,10000]:
-            settings={'qtypes':['Q4'],'fewshot_n':n,'fewshot_manifest':str(panel),'epochs':20,'validation_epochs':[2,5,10,20]}
+            settings={'qtypes':['Q4'],'fewshot_n':n,'fewshot_manifest':str(panel),'epochs':20,'validation_epochs':[2,5,10,20],'reader_device':device}
             train(f'transfer_{n}',s,cross_every=selected,initial_checkpoint=str(pre/'best.pt'),**settings)
             train(f'scratch_b3_{n}',s,model_kind='b3',micro_batch=32,gradient_accumulation=1,eval_batch=1024,**settings)
-    # Data generation can run in parallel; a failed source job must be surfaced, not ignored.
+    parallel(transfer)
     if not (out/'qa/unseen_train.parquet').exists():raise RuntimeError('Unseen QA not complete; rerun controller after source/QA completion')
-    for s in base['seeds']:train('augmented',s,cross_every=selected,augmentation=True)
+    parallel(lambda s,device:train('augmented',s,cross_every=selected,augmentation=True,reader_device=device))
     hashes={}
     for name,p in results.items():
         if name.startswith('pilot'):continue

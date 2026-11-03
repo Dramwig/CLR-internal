@@ -68,3 +68,4 @@ trial_samples_per_type: 10000
 budget_safety_factor: 1.2
 eval_lock: null
 run_budget_hours: 8
+reader_devices: [cuda:1, cuda:2, cuda:3]
