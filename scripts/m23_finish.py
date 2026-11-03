@@ -39,6 +39,7 @@ def main(c,config):
     files=[Path('reports')/f for f in ['M2_questions.md','M3_baselines.md','M3_shift.md','M3_unseen_pools.md','M3_metrics.csv']]
     files+=list(Path('clr/data/questions').glob('*.py'))+list(Path('clr/baselines').glob('*.py'))+[Path('clr/calib/m23.py'),Path(c['cal_split']),Path(config)]
     files+=list(Path('scripts').glob('m23_*.py'))+list(Path('configs').glob('M23*.yaml'))+list(Path('tests').glob('test_m23*.py'))
+    files+=[p for p in Path('reports').glob('M23*.log') if p.name!='M23_finish.log']
     files+=list(Path('reports/M3_figures').glob('*.png'))+[Path('reports/M23_tests.log'),Path(c['templates'])]
     files+=list((output/'full').glob('*'))+[output/'qa_reproduction.json']
     for key in keys:
