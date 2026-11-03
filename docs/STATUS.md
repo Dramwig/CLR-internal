@@ -157,3 +157,5 @@ smoke/调试仅用 val 代理，不触碰 test；旧 AGENTS 原样归档，提�
 M4当前：源val smoke12题通过，完整D估算0.451 GPUh并已启动；CLR smoke通过（26.6训练样本/s、93.8评估样本/s、2.42GiB峰值、置换差0）。训练预算据此设4epoch、每qtype每epoch10000样本，优先四项必做，详见M4_TASK.md及后续预算报告。未见池172条13-gram跨划分重叠另作无重叠子集诊断，不改冻结划分。
 
 M4接续：reader模型/训练/仿射校准最小测试6通过；k4试验tmux `clr-m4-reader`，D `clr-m4-unseen`。预算冻结 `reports/M4_budget.md`；训练控制器将仅用reader_val选k，所有训练完成后再解锁最终评估。
+
+M4更新：校准/阈值测试共8通过；控制器running状态误判已修复，原训练未中断。D完成1625/1993（当时快照）。最终评估入口要求训练checkpoint hash锁及val-only校准评估smoke；尚未运行test。

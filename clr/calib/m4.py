@@ -6,6 +6,7 @@ from clr.calib.m23 import temperature
 
 def fit(logits,targets,method='temperature'):
     if method not in ['temperature','affine']:raise ValueError(method)
+    logits=np.asarray(logits,dtype=np.float64);targets=np.asarray(targets,dtype=np.float64)
     t=temperature(logits,targets)
     # Positional class biases are forbidden for unordered choice options.
     if method=='temperature' or logits.shape[1]!=2:return {'temperature':t,'bias':0.,'method':method,'shared_choice_bias':logits.shape[1]!=2}
