@@ -1,0 +1,45 @@
+"""Wait for explicitly configured M23 runs, manage disk reserve, then report/freeze."""
+import argparse,json,subprocess,sys,time,hashlib,re
+from pathlib import Path
+from clr.utils.config import load_config
+from clr.data.resume import ensure_space
+from clr.utils.idea_a import write_json
+
+def capsule(text):
+    for file in ['AGENTS.md','docs/STATUS.md']:
+        p=Path(file);s=p.read_text();block='<!-- M23_LIVE -->\n'+text+'\n<!-- /M23_LIVE -->'
+        if '<!-- M23_LIVE -->' in s:s=re.sub(r'<!-- M23_LIVE -->.*?<!-- /M23_LIVE -->',lambda m:block,s,flags=re.S)
+        else:s+='\n\n'+block+'\n'
+        p.write_text(s)
+
+def main(c,config):
+    output=Path(c['output']);statuspath=output/'pipeline_status.json';previous=None
+    keys=['question_run','baseline_run','patchscope_run','layers_run','quant_run','official_run','svamp_run','asdiv_run','audit_run']
+    while True:
+        ensure_space(output)
+        status={k:json.loads(Path(c[k],'metrics.json').read_text()).get('status') for k in keys}
+        if status!=previous:
+            capsule('M2–M3当前运行：'+json.dumps(status)+'；索引 '+str(statuspath)+'。未完成项不得宣称完成。')
+            write_json(statuspath,{'status':'running','runs':{k:c[k] for k in keys},'run_status':status})
+            with Path('docs/EXPERIMENTS.md').open('a') as f:f.write('\nM23自动状态更新：`'+json.dumps(status)+'`。运行索引 `'+str(statuspath)+'`。\n')
+            with Path('docs/STATUS.md').open('a') as f:f.write('\nM23运行状态：`'+json.dumps(status)+'`；详见 `'+str(statuspath)+'`。\n')
+            previous=status
+        failed=[k for k,v in status.items() if v not in ['running','completed']]
+        if failed:
+            write_json(statuspath,{'status':'blocked_failed_run','failed':failed,'runs':{k:c[k] for k in keys}})
+            with Path('docs/BLOCKERS.md').open('a') as f:f.write('\nM23必需run未通过：'+str(failed)+'；未生成完成报告，未自动更改模型/设置。\n')
+            return 1
+        if all(v=='completed' for v in status.values()):break
+        time.sleep(30)
+    result=subprocess.run([sys.executable,'scripts/m23_report.py',config],check=True)
+    files=[Path('reports')/f for f in ['M2_questions.md','M3_baselines.md','M3_shift.md','M3_unseen_pools.md','M3_metrics.csv']]
+    files+=list(Path('clr/data/questions').glob('*.py'))+list(Path('clr/baselines').glob('*.py'))+[Path('clr/calib/m23.py'),Path(c['cal_split']),Path(config)]
+    write_json(output/'freeze.json',{'status':'completed; awaiting user review','runs':{k:c[k] for k in keys},'sha256':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}})
+    write_json(statuspath,{'status':'completed; awaiting user review','runs':{k:c[k] for k in keys},'freeze':str(output/'freeze.json')})
+    capsule('M2–M3已完成，待用户审查；未训练CLR。冻结索引 '+str(output/'freeze.json')+'。')
+    note='\n\nM2–M3问题库、B0–B5a、层/域诊断、官方500题、两候选未见池与量化抽查均完成，待用户审查。B5b推迟M6，未训练CLR。报告：reports/M2_questions.md、M3_baselines.md、M3_shift.md、M3_unseen_pools.md；冻结索引 '+str(output/'freeze.json')+'。\n'
+    for file in ['AGENTS.md','docs/STATUS.md','docs/EXPERIMENTS.md','docs/BLOCKERS.md','docs/CHANGELOG.md']:
+        with Path(file).open('a') as f:f.write(note)
+    return 0
+if __name__=='__main__':
+ p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();sys.exit(main(load_config(a.config,a.overrides),a.config))

@@ -1,0 +1,28 @@
+Q1:
+  - 'What is the probability that continuing from this state ends with a correct answer?'
+  - 'Estimate the chance of a correct final answer from this state.'
+  - 'How likely is the final answer to be correct after continuation?'
+  - 'Predict the success probability of continuing this reasoning.'
+  - 'If reasoning continues from here, what is its chance of success?'
+  - 'Assign a probability to the eventual answer being correct.'
+Q2:
+  - 'Would an answer forced at this state be correct?'
+  - 'If reasoning stops now, will the answer be correct?'
+  - 'Is immediate answer decoding correct at this point?'
+  - 'Would answering now give the right result?'
+  - 'Does an early exit here produce a correct answer?'
+  - 'Is the answer correct when continuation is stopped here?'
+Q3:
+  - 'Which option is the final answer the model will produce?'
+  - 'Select the answer that this reasoning will end with.'
+  - 'Which listed answer will the model output in the end?'
+  - 'Predict the eventual model answer among these options.'
+  - 'Choose the option matching the eventual output.'
+  - 'Where will the model finish: which of these answers?'
+Q4:
+  - 'Is {v} a quantity appearing in the standard equation solution?'
+  - 'Does the standard solution contain the computed value {v}?'
+  - 'Is {v} among the intermediate values of the reference solution?'
+  - 'Would {v} occur as a calculated quantity in the gold solution?'
+  - 'Does a reference equation yield the value {v}?'
+  - 'Is the number {v} a computed result in the standard derivation?'
