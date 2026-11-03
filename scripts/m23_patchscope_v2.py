@@ -2,6 +2,7 @@
 import argparse, functools, json, time
 from pathlib import Path
 import numpy as np
+import torch
 import pyarrow.parquet as pq
 from scipy.special import softmax
 from clr.utils.config import load_config
