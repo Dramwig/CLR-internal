@@ -39,7 +39,7 @@
 历史逐次进度原样归档于 [旧 AGENTS 快照](docs/history/AGENTS_20261103_before_global_rules.md)，完整状态历史见 [STATUS.md](docs/STATUS.md)。这些历史材料不覆盖本页与全局约定。
 
 <!-- M4_LIVE -->
-M4：14项单元测试及两项val smoke通过；D的1993题生成与标签审计完成（0.419 GPUh、117130前向）；k4 pilot完成（val原始宏NLL0.770，Q3/Q4暂弱）；k8验证完成并锁定k4；正式seed22/33运行，seed11的GPU1同设置smoke已通过，按3.0GiB预检查显式恢复；新控制器接续，不中断22/33，尚无最终test结论。首次正式训练前依据完整val吞吐修订最大10epoch，预算含裕量约76 GPUh（上限80），见 reports/M4_budget_v2.md。
+M4：15项单元测试及两项val smoke通过；D的1993题生成与标签审计完成（0.419 GPUh、117130前向）；k4 pilot完成（val原始宏NLL0.770，Q3/Q4暂弱）；k8验证完成并锁定k4；正式seed22/33运行，seed11的GPU1同设置smoke已通过，按3.0GiB预检查显式恢复；新控制器接续，不中断22/33，尚无最终test结论。首次正式训练前依据完整val吞吐修订最大10epoch，预算含裕量约76 GPUh（上限80），见 reports/M4_budget_v2.md。
 <!-- /M4_LIVE -->
 
 

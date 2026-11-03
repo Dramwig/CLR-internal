@@ -186,3 +186,5 @@ M4：k锁定4（val0.769895 vs k8的0.795120）；seed22/33已正式训练，see
 GPU1同设置smoke通过（0.01956GPUh，峰值2.41778GiB）；以M4_train_v2配置min_free3.0显式重启main seed11。新控制器session `clr-m4-suite-v2`，manifest `data/M4_v0/training_suite_v2.json`；旧控制器仍等待其seed22/33子进程完成，禁止kill旧session以免中断训练。旧controller因首次seed11失败最终会退出，属已知已恢复事件；新controller从现存run接续不重跑22/33。pipeline改监视新session，并在最终评估前补B3_matched锁。
 
 M4：14项单元测试通过（reports/M4_tests_v6.log）。三个main seed现均实际训练中；11恢复run `runs/20261103T074705242247Z_5aff9999085b_a3ec49`，22 `runs/20261103T073907451420Z_899a42fad462_cc925a`，33 `runs/20261103T073906424755Z_51393c3ef0a3_649863`。新pipeline日志 `reports/M4_pipeline_v2.log`；旧controller不杀，其失败退出已由新controller接管。匹配曝光B3按CLR最佳epoch、相同采样顺序训练，保留原始B3作为主参考。
+
+M4最新核实：main seed11/22/33都在运行，分别已训练24800/40800/37600个样本（22进入epoch2，其他epoch1）；无M4 test访问。新增混合来源reader前缀批处理只合并已保存观测状态，维持行/标签顺序，减少增强训练的双forward开销；测试总15项。源模型cohort/rollout协议未改。后台接续覆盖原始B3、匹配曝光B3、B3-multi、迁移、增强、校准、最终评估、报告与冻结。
