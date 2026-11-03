@@ -30,6 +30,21 @@ def main(c):
         if m['status']!='completed':missing.append(k)
         else:records[k]=m
     if c['require_complete'] and missing:raise ValueError('Incomplete required runs: '+str(missing))
+    if c['require_complete']:
+        expected={(b,q,rs) for b in ['B0','B1','B2','B3'] for q in ['Q1','Q2','Q3','Q4'] for rs in c['seeds']}
+        expected|={('B4','Q1',rs) for rs in c['seeds']}
+        for b,q,rs in expected:
+            assert Path(c['baseline_run'],f'{b}_{q}_{rs}.pt').is_file(),(b,q,rs,'checkpoint missing')
+            for eq in (['Q1','Q2'] if b=='B4' else [q]):
+                for split in ['reader_val','test']:
+                    for held in [False,True]:
+                        assert Path(c['baseline_run'],f'{b}_{eq}_{rs}_{split}_{held}.parquet').is_file()
+        for q in ['Q1','Q2','Q3','Q4']:
+            for split in ['reader_val','test']:
+                for held in [False,True]:assert Path(c['patchscope_run'],f'B5a_{q}_0_{split}_{held}.parquet').is_file()
+        for file,evidence in load(Path(c['output'])/'qa_reproduction.json').items():
+            assert hashlib.sha256(Path(c['output'],'full',file).read_bytes()).hexdigest()==evidence['sha256']
+        write_json(run.path/'artifact_checks.json',{'checkpoints':len(expected),'baseline_prediction_files':216,'patchscope_prediction_files':16,'question_sha256_verified':True})
     summary=load(Path(c['output'])/'full/summary.json');preamble='已完成。' if not missing else '进行中，缺少完整结果：'+', '.join(missing)
     qlines=['# M2 类型化问题库',preamble,
       '输入严格限定观测状态、类型化模板和选项。训练模板0–3，评估保留模板4–5；每个评估实例同时评估一个已见模板及两个保留模板。原题文本、gold CoT不传入模型。',
