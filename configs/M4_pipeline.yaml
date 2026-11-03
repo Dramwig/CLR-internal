@@ -1,0 +1,6 @@
+milestone: M4
+stage: pipeline
+output: data/M4_v0
+training_session: clr-m4-suite
+eval_config: configs/M4_eval_v0.yaml
+report_config: configs/M4_report_v0.yaml
