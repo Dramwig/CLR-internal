@@ -367,3 +367,11 @@ B3 test Q3准确率58.59% ± 0.19pp，Q4 68.26% ± 1.09pp（三seed95% t区间�
 ## 2026-11-03T06:54:44.111516+00:00 — 20261103T065436633657Z_e4d19c76ca4d_787eb3
 ValueError: Out of range float values are not JSON compliant: inf
 完整 traceback: `/home/me/PaperField/CalReader/runs/20261103T065436633657Z_e4d19c76ca4d_787eb3/traceback.txt`。未回退模型或设置。
+
+## 2026-11-03T07:03:05.340402+00:00 — 20261103T070304641918Z_4a6694f5b53e_31f5fc
+RuntimeError: Insufficient GPU memory; no fallback
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261103T070304641918Z_4a6694f5b53e_31f5fc/traceback.txt`。未回退模型或设置。
+
+## M4 D已确认数据限制（2026-11-03）
+公式解析失败259/1993（train139、eval120），逐题跳过Q4；另有2题无法找到保持数值边际的负例，跳过Q4且不丢弃其他类型。
+172个eval题与新train有13-gram交集、精确0；原要求ID二分保持冻结，另报825无重叠eval题，不声称题族完全独立。证据：`data/M4_v0/qa/summary.json`、`data_audit.json`、`unseen_train_eval_overlap.json`。

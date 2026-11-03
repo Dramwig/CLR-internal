@@ -10,9 +10,9 @@ def hours_used(exclude=None):
         config=json.loads(p.read_text())
         if config.get('milestone')!='M4':continue
         values=[]
-        for name in ['metrics.json','progress.json']:
+        for name in ['metrics.json','progress.json','budget.json']:
             path=p.parent/name
-            if path.exists():values.append(json.loads(path.read_text()).get('gpu_hours',0.))
+            if path.exists():values.append(json.loads(path.read_text()).get('own_gpu_hours',0.) if name=='budget.json' else json.loads(path.read_text()).get('gpu_hours',0.))
         total+=max(values,default=0.)
     return total
 

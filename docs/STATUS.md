@@ -163,3 +163,6 @@ M4更新：校准/阈值测试共8通过；控制器running状态误判已修复
 M4评估smoke发现极小val代理层的conformal无限阈值不能写严格JSON；修复为null+infinite标志（内部保持∞/全集合），新增边界测试，原失败run保留。此修复未读取test。
 
 M4：9项测试通过，val代理校准评估smoke v2通过 `runs/20261103T065541614647Z_cf0498aecef6_cfafa6`；无限阈值以null+标志落盘，内部全集合不变。B3对照有效batch32与CLR一致，此调整在相关训练启动前冻结；控制器重载，正在运行的pilot未改。
+
+M4 D完成：`runs/20261103T063500842769Z_924ffcfc4ca2_e9f41f`，1993题、0.419145GPUh、117130前向；QA `runs/20261103T070034793210Z_f4a64da4e26f_7aefa4`，审计 `runs/20261103T070131960428Z_158d311376b0_8ad0ee`。训练996题98964行QA，评估997题99603行（含heldout）；Q4解析失败259题、额外负例匹配失败2题。Q1标注/选项去重/Q4边际完全相同/cohort协议审计通过。
+D结束后物理GPU2用于k8；k4继续物理3，均原模型未降级。后续seed11/22/33固定GPU1/2/3并行，合计GPU小时仍按作业求和。控制器 `clr-m4-suite` 日志 `reports/M4_training_suite_v4.log`，试验 `clr-m4-reader`/`clr-m4-pilot8`。尚未打开M4最终test。
