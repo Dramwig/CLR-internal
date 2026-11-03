@@ -6,6 +6,7 @@ import numpy as np
 import torch
 from transformers import AutoTokenizer
 from clr.utils.config import load_config
+from clr.utils.m4_budget import Budget
 from clr.utils.records import recorded
 from clr.utils.idea_a import seed_everything,write_json
 from clr.models.clr_v0 import CLR,Serializer
@@ -33,7 +34,9 @@ def evaluate(model,kind,groups,bank,serializer,templates,norm,device,batch):
 def main(c):
  with recorded(c) as run:
     start=time.monotonic();status='failed';torch.set_num_threads(2);seed_everything(c['seed']);device=c['reader_device'];kind=c['model_kind']
+    budget=Budget(run,c,start)
     try:
+        budget.check()
         smoke=json.loads((Path(c['smoke_run'])/'metrics.json').read_text())
         if smoke.get('status')!='completed':raise ValueError('Passed reader smoke required')
         if torch.cuda.mem_get_info(device)[0]/1024**3<c['reader_min_free_gib']:raise RuntimeError('Insufficient GPU memory; no fallback')
@@ -92,6 +95,7 @@ def main(c):
                 if (bi+1)%accum==0 or bi+1==len(batches):
                     torch.nn.utils.clip_grad_norm_(model.parameters(),1.);opt.step();opt.zero_grad(set_to_none=True)
                 if (bi+1)%100==0:
+                    budget.check()
                     write_json(run.path/'progress.json',{'epoch':epoch,'batch':bi+1,'batches':len(batches),'examples':examples,'gpu_hours':(time.monotonic()-start)/3600})
                     if (time.monotonic()-start)/3600>c['run_budget_hours']:raise TimeoutError('Configured per-run GPU budget exhausted')
             row={'epoch':epoch,'train_nll':loss_sum/steps,'examples':examples,'gpu_hours':(time.monotonic()-start)/3600}

@@ -161,3 +161,5 @@ M4接续：reader模型/训练/仿射校准最小测试6通过；k4试验tmux `c
 M4更新：校准/阈值测试共8通过；控制器running状态误判已修复，原训练未中断。D完成1625/1993（当时快照）。最终评估入口要求训练checkpoint hash锁及val-only校准评估smoke；尚未运行test。
 
 M4评估smoke发现极小val代理层的conformal无限阈值不能写严格JSON；修复为null+infinite标志（内部保持∞/全集合），新增边界测试，原失败run保留。此修复未读取test。
+
+M4：9项测试通过，val代理校准评估smoke v2通过 `runs/20261103T065541614647Z_cf0498aecef6_cfafa6`；无限阈值以null+标志落盘，内部全集合不变。B3对照有效batch32与CLR一致，此调整在相关训练启动前冻结；控制器重载，正在运行的pilot未改。

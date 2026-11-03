@@ -7,6 +7,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 from transformers import AutoTokenizer
 from clr.utils.config import load_config
+from clr.utils.m4_budget import Budget
 from clr.utils.records import recorded
 from clr.utils.idea_a import seed_everything,write_json
 from clr.models.clr_v0 import CLR,Serializer
@@ -17,10 +18,11 @@ from clr.calib.m4 import fit
 from clr.calib.m4_evaluation import target_array,thresholds,summarize
 
 @torch.no_grad()
-def predict(model,kind,rows,bank,serializer,templates,norm,device,batch):
+def predict(model,kind,rows,bank,serializer,templates,norm,device,batch,budget=None):
     result=[];model.eval()
     with torch.autocast('cuda',dtype=torch.bfloat16,enabled=kind=='clr'):
         for i in range(0,len(rows),batch):
+            if budget is not None and (i//batch)%100==0:budget.check()
             rs=rows[i:i+batch];prefix,mask=bank.batch(rs,device);q=rs[0]['qtype']
             if kind=='clr':logits=model(serializer.batch(rs,device),prefix,mask,q)
             else:
@@ -32,7 +34,9 @@ def predict(model,kind,rows,bank,serializer,templates,norm,device,batch):
 def main(c):
  with recorded(c) as run:
     start=time.monotonic();status='failed';torch.set_num_threads(2);seed_everything(c['seed']);device=c['reader_device'];kind=c['model_kind'];smoke=c['mode']=='smoke'
+    budget=Budget(run,c,start)
     try:
+        budget.check()
         if not smoke:
             lock=json.loads(Path(c['eval_lock']).read_text())
             if not lock.get('all_training_locked'):raise ValueError('All mandatory training must be locked before final evaluation')
@@ -63,7 +67,7 @@ def main(c):
                 path=Path(c['m3_baseline_run'])/f'{name}_{trainedq}_{c["seed"]}.pt';model.load_state_dict(torch.load(path,map_location=device,weights_only=True))
             ca=[r for r in calrows if (r['problem_id'] in caids if smoke else r['cal_part']=='cal_A') and r['qtype']==q]
             cb=[r for r in calrows if (r['problem_id'] in cbids if smoke else r['cal_part']=='cal_B') and r['qtype']==q]
-            a=predict(model,kind,ca,calbank,serializer,templates,norm,device,c['eval_batch']);b=predict(model,kind,cb,calbank,serializer,templates,norm,device,c['eval_batch'])
+            a=predict(model,kind,ca,calbank,serializer,templates,norm,device,c['eval_batch'],budget);b=predict(model,kind,cb,calbank,serializer,templates,norm,device,c['eval_batch'],budget)
             calibrations[q]={m:fit(a,target_array(ca,q),m) for m in ['temperature','affine']}
             threshold_map[q]={m:thresholds(cb,b,calibrations[q][m],q,c['seed']) for m in calibrations[q]}
         write_json(run.path/'calibration.json',calibrations);write_json(run.path/'thresholds.json',{q:{m:{k:(v if np.isfinite(v) else None) for k,v in ts.items()} for m,ts in methods.items()} for q,methods in threshold_map.items()})
@@ -75,7 +79,7 @@ def main(c):
                     name=c['reference_name'];trainedq='Q1' if name=='B4' else q;model=Probe(name,trainedq).to(device)
                     model.load_state_dict(torch.load(Path(c['m3_baseline_run'])/f'{name}_{trainedq}_{c["seed"]}.pt',map_location=device,weights_only=True))
                 for held in [False,True]:
-                    rows=rows_for(c,split,phase,heldout=held,ids=evalids if smoke else None,qtypes=[q]);logits=predict(model,kind,rows,bank,serializer,templates,norm,device,c['eval_batch'])
+                    rows=rows_for(c,split,phase,heldout=held,ids=evalids if smoke else None,qtypes=[q]);logits=predict(model,kind,rows,bank,serializer,templates,norm,device,c['eval_batch'],budget)
                     pred=[]
                     for r,x in zip(rows,logits):
                         pred.append({'problem_id':r['problem_id'],'t':r['state_ref']['t'],'traj_id':r['state_ref']['traj_id'],'kind':r['state_ref']['kind'],'template_id':r['template_id'],'heldout':held,'replicate':r['replicate'],'label':r['label'],'label_soft':r['label_soft'],'logits':x.tolist()})
