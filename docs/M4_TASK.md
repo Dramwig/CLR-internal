@@ -34,3 +34,5 @@ reports/M4_REVIEW.md：≤8000 UTF-8字节，固定(a)状态、(b)关卡通过/�
 ## 首次正式训练前的预算修订（2026-11-03）
 k4完整pilot：40000样本训练（含加载）0.3921446GPUh，202068行reader_val验证与保存另0.2463656GPUh，总0.6385102。比val smoke评估吞吐估计更快；尚未启动任何正式三seed训练、未查看test。
 为提高四项必做的训练充分性并使早停真正生效，新 `configs/M4_train_v1.yaml` 取最大10epoch、每2epoch验证、patience2；每qtype每epoch10000样本及所有数据/指标/seeds/模型不变。CLR主模型、B3-multi、Q1–Q3预训练和增强训练都遵循该上限；few-shot仍20次小样本遍历。保留原4epoch配置/预算和两次pilot，不覆盖旧结果。重新估算含20%裕量约76GPUh，上限80；详见reports/M4_budget_v2.md。此修订只依据val吞吐与pilot学习不足，不依据test结果。
+
+补充B3_matched曝光诊断：四个不共享参数的M3 B3架构，按同seed CLR最佳epoch匹配训练样本曝光；不替换M3原始强B3参考。匹配模型末轮输出、校准/最终评估与其他模型同协议，预计增加≤1GPUh，预算仍≤80。

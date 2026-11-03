@@ -11,7 +11,7 @@ from clr.utils.m4_budget import Budget
 from clr.utils.records import recorded
 from clr.utils.idea_a import seed_everything,write_json
 from clr.models.clr_v0 import CLR,Serializer
-from clr.baselines.b3_multi_v0 import B3Multi
+from clr.baselines.b3_multi_v0 import B3Multi,B3PerType
 from clr.baselines.probes import Probe
 from clr.data.m4.reader import PrefixBank,rows_for,probe_inputs
 from clr.calib.m4 import fit
@@ -27,7 +27,7 @@ def predict(model,kind,rows,bank,serializer,templates,norm,device,batch,budget=N
             if kind=='clr':logits=model(serializer.batch(rs,device),prefix,mask,q)
             else:
                 inputs=probe_inputs(rs,prefix,mask,templates,*norm)
-                logits=model(*inputs,q) if kind=='b3_multi' else model(*inputs)
+                logits=model(*inputs,q) if kind in ['b3_multi','b3_matched'] else model(*inputs)
             result.append(logits.float().cpu().numpy())
     return np.concatenate(result)
 
@@ -49,8 +49,8 @@ def main(c):
         if kind=='clr':
             model=CLR.pretrained(c['model_path'],k=c['cross_every'],gradient_checkpointing=False).to(device)
             model.restore_trainable(torch.load(c['checkpoint'],map_location='cpu',weights_only=True))
-        elif kind=='b3_multi':
-            model=B3Multi().to(device);model.load_state_dict(torch.load(c['checkpoint'],map_location=device,weights_only=True))
+        elif kind in ['b3_multi','b3_matched']:
+            model=(B3Multi() if kind=='b3_multi' else B3PerType()).to(device);model.load_state_dict(torch.load(c['checkpoint'],map_location=device,weights_only=True))
         elif kind=='b3':
             model=Probe('B3','Q4').to(device);model.load_state_dict(torch.load(c['checkpoint'],map_location=device,weights_only=True))
         # Smoke uses disjoint reader_val IDs for proxy cal_A/cal_B/evaluation, never cal/test.

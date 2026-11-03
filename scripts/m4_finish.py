@@ -22,7 +22,7 @@ def main(c):
     for frozen in ['data/M23_v1a/freeze.json','reports/M1_completed_v3_manifest.json']:
         for p,expected in json.loads(Path(frozen).read_text())['sha256'].items():
             if digest(p)!=expected:raise ValueError(f'Frozen input changed: {p}')
-    complete=json.loads((root/'evaluation_complete.json').read_text());training=json.loads((root/'training_complete.json').read_text())
+    complete=json.loads((root/'evaluation_complete.json').read_text());training=json.loads(Path(c['eval_lock']).read_text())
     if not training['all_training_locked']:raise ValueError('Missing training lock')
     for p in complete['runs'].values():
         if json.loads(Path(p,'metrics.json').read_text()).get('status')!='completed':raise ValueError(f'Incomplete evaluation: {p}')

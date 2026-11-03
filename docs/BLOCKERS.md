@@ -385,3 +385,7 @@ RuntimeError: Insufficient GPU memory; no fallback
 
 ## M4 正式训练前预算修订
 原4epoch计划有欠训练且仅两次验证的限制；完整val实测更快，改用新配置v1的10epoch上限/每2epoch验证/patience2，预算v2含裕量约76GPUh≤80。模型、数据、指标、seed与few-shot设置不变；原pilot/预算保留。此为显式协议修订，非test驱动选择，详见 `reports/M4_budget_v2.md`。
+
+## 2026-11-03T07:39:08.116396+00:00 — 20261103T073907340169Z_79952377610a_41e040
+RuntimeError: Insufficient GPU memory; no fallback
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261103T073907340169Z_79952377610a_41e040/traceback.txt`。未回退模型或设置。

@@ -14,6 +14,7 @@ def main(c):
         if not alive:raise RuntimeError('Training controller exited before lock; inspect its log and failed run')
         time.sleep(30)
     env={**os.environ,'PYTHONPATH':'.','OMP_NUM_THREADS':'2','HF_HUB_OFFLINE':'1'}
+    subprocess.run(['.venv/bin/python','scripts/m4_matched_reference.py',c['matched_config']],check=True,env=env)
     subprocess.run(['.venv/bin/python','scripts/m4_eval_suite.py',c['eval_config']],check=True,env=env)
     subprocess.run(['.venv/bin/python','scripts/m4_report.py',c['report_config']],check=True,env=env)
     subprocess.run(['.venv/bin/python','scripts/m4_finish.py',c['report_config']],check=True,env=env)

@@ -18,7 +18,7 @@ def main(c):
     for key,directory in lock['runs'].items():
         tr=json.loads(Path(directory,'config.json').read_text());case=tr['case']
         if case.startswith('pilot') or case=='leave_q4_out':continue
-        jobs.append({**c,'case':case,'seed':tr['seed'],'model_kind':tr['model_kind'],'qtypes':tr['qtypes'],'checkpoint':str(Path(directory)/'best.pt'),'cross_every':tr['cross_every'],'eval_batch':16 if tr['model_kind']=='clr' else 1024,'eval_splits':['reader_val','test','unseen_eval'] if case in ['main','augmented','b3_multi'] else ['reader_val','test']})
+        jobs.append({**c,'case':case,'seed':tr['seed'],'model_kind':tr['model_kind'],'qtypes':tr['qtypes'],'checkpoint':str(Path(directory)/'best.pt'),'cross_every':tr['cross_every'],'eval_batch':16 if tr['model_kind']=='clr' else 1024,'eval_splits':['reader_val','test','unseen_eval'] if case in ['main','augmented','b3_multi','B3_matched'] else ['reader_val','test']})
     for name in ['B0','B3','B4']:
         for s in c['seeds']:jobs.append({**c,'case':name,'seed':s,'model_kind':'reference','reference_name':name,'qtypes':['Q1','Q2'] if name=='B4' else ['Q1','Q2','Q3','Q4'],'eval_batch':1024,'eval_splits':['reader_val','test','unseen_eval'] if name=='B3' else ['reader_val','test']})
     def evaluate_job(config):

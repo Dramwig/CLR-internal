@@ -30,7 +30,7 @@ def table(headers,rows):return '\n'.join(['|'+'|'.join(headers)+'|','|'+'|'.join
 def main(c):
  with recorded(c) as run:
     root=Path(c['output']);suite=json.loads((root/'evaluation_complete.json').read_text())['runs'];stats=[];cp=[]
-    cases=['main','augmented','b3_multi','B0','B3','B4']+[f'{case}_{n}' for case in ['transfer','scratch_b3'] for n in [100,1000,10000]]
+    cases=['main','augmented','b3_multi','B0','B3','B4','B3_matched']+[f'{case}_{n}' for case in ['transfer','scratch_b3'] for n in [100,1000,10000]]
     for case in cases:
         for s in c['seeds']:
             p=Path(suite[f'{case}_{s}']);m=json.loads((p/'metrics.json').read_text())
@@ -72,6 +72,7 @@ def main(c):
         group=r.groupby(['problem_id','t']).value
         return group.mean(),group.size()
     comparisons=[('main','b3_multi','Q1','nll'),('main','B3','Q3','accuracy'),('main','B3','Q4','accuracy'),('main','B3','Q1','nll'),('main','b3_multi','Q3','accuracy'),('main','b3_multi','Q4','accuracy')]
+    comparisons += [('main','B3_matched',q,m) for q,m in [('Q1','nll'),('Q3','accuracy'),('Q4','accuracy')]]
     comparisons += [(f'transfer_{n}',f'scratch_b3_{n}','Q4','accuracy') for n in [100,1000,10000]]
     for split in ['reader_val','test']:
         for a,b,q,metric in comparisons:
@@ -89,7 +90,7 @@ def main(c):
     # compute weighted AUROC separately at each t and average t and training seeds.
     from sklearn.metrics import roc_auc_score
     for split in ['reader_val','test']:
-        for comparator in ['B3','b3_multi']:
+        for comparator in ['B3','b3_multi','B3_matched']:
             arrays=[];pids=None
             for random_seed in c['seeds']:
                 seed_arrays=[]
@@ -153,7 +154,7 @@ def main(c):
     axes[0].legend();fig.tight_layout();fig.savefig(figs/'conformal_efficiency.png',dpi=180);plt.close(fig)
     # Aggregate reports retain all per-t / heldout / state-kind rows in CSV.
     rows=[]
-    for case in ['B0','B4','B3','b3_multi','main']:
+    for case in ['B0','B4','B3','B3_matched','b3_multi','main']:
         for split in ['reader_val','test']:
             metrics=[fmt(vals(case,split,q,METRICS[q])) if not(case=='B4' and q in ['Q3','Q4']) else '—' for q in METRICS]
             gain='—' if case=='B4' else fmt(vals(case,split,'Q3','accuracy')-vals('B0',split,'Q3','accuracy'))
@@ -176,7 +177,7 @@ def main(c):
     pd.DataFrame(gaps).to_csv('reports/M4_shift_gaps.csv',index=False)
     cost=hours_used();dmetrics=json.loads(Path(c['source_run'],'metrics.json').read_text());qsummary=json.loads((root/'qa/summary.json').read_text())
     fullrows=[]
-    for case in ['B0','B4','B3','b3_multi','main','augmented']:
+    for case in ['B0','B4','B3','B3_matched','b3_multi','main','augmented']:
         for split in ['reader_val','test']:
             for q in METRICS:
                 if case=='B4' and q in ['Q3','Q4']:continue
@@ -186,7 +187,7 @@ def main(c):
     '## 主结果',tab1,fulltable,'## Mondrian α=0.1',tab2,'所有α=.05/.1/.2及两种校准见M4_conformal.csv。Q1的reader_val MAE参照单条Bernoulli标签，test MAE参照K16均值，二者目标噪声不同；NLL/Brier均按Bernoulli样本定义。Q1预测未来Bernoulli正误而非V本身；校准每题固定抽一个MC结果，评估覆盖率对K16结果平均。每(qtype,t)每题仅一实例。依赖层内可交换性；cohort padding、Q4跨题匹配、选项干扰池造成依赖，报告经验覆盖率而非无条件理论保证。未见池有分布偏移，不主张GSM阈值保覆盖。',
     '## 小样本Q4迁移',tab3,'![Q4 transfer](M4_figures/q4_transfer.png)','![CP](M4_figures/conformal_efficiency.png)',
     '## 架构与协议','官方ModernBERT-base固定revision8949b909ec900327062f0ebf497f51aef5e6f0c8，LFS SHA-256核验。22层双向encoder，冻结词嵌入、训练其余主体，2层768维adapter+步位置+source token；隔k层cross-attention读观测前缀。模板和选项只见祖先与自身，父块不读子块，兄弟共享逻辑位置；8维数值特征与B3相同。公开接口先规范排序再恢复选项顺序，另有不依赖排序的mask隔离测试。Q4从值选项标记读yes-no，Q1/Q2从CLS读；不输入原题、不读feedback噪声向量。',
-    '来源：[ModernBERT官方](https://huggingface.co/answerdotai/ModernBERT-base)、[NDM原文](https://arxiv.org/html/2610.25553)。采用ModernBERT是因本地Transformers支持自定义双向SDPA和逻辑RoPE位置，适合上述块掩码；没有更换到小模型。训练设置、吞吐与预算见M4_budget.md；k选择和完整检查点锁见data/M4_v0/hyperparameters_lock.json及training_complete.json。',
+    '来源：[ModernBERT官方](https://huggingface.co/answerdotai/ModernBERT-base)、[NDM原文](https://arxiv.org/html/2610.25553)。采用ModernBERT是因本地Transformers支持自定义双向SDPA和逻辑RoPE位置，适合上述块掩码；没有更换到小模型。训练设置、吞吐与预算见M4_budget_v2.md；B3_matched为四个独立MLP，训练到同seed CLR最佳epoch，qtype采样/有效batch/样本数匹配，末轮检查点不另调参；原M3全池B3仍作为主参考；k选择和完整检查点锁见data/M4_v0/hyperparameters_lock.json及training_complete.json。',
     '## 校准','按qtype在cal_A拟合温度，以及温度+二分类log-odds偏置。Q3共享选项偏置被softmax抵消，仿射等价温度；不引入位置偏置。B3完全相同校准流程。改善量见M4_affine_gains.csv；纯温度为主方案，未据test选择校准。',
     '## D数据与限制',json.dumps(qsummary,ensure_ascii=False),
     'SVAMP993按ID496/497、ASDiv1000按ID500/500冻结。复用M3干净/早退，train K8轨迹、eval每t K16π；原生产fp32/batch1/cohort上下文保持。原始方程式259题解析失败，仅跳过这些题Q4，其他类型保留；有解析成功题的池保留Q4。两个新半池之间172题13-gram重叠（精确0），保留用户指定划分并另报825无重叠eval子集；不把这172题称独立题族泛化证据。与GSM训练/测试/Aug去重复用M3证据。',
@@ -199,7 +200,7 @@ def main(c):
     cptext='；'.join(q+' Δcov/size '+ '/'.join(f"{next(x['delta'] for x in cp_pairs if x['split']=='test' and x['qtype']==q and x['metric']==m):.3g}" for m in ['coverage','size']) for q in METRICS)
     dominance=any(next(x['ci_low'] for x in cp_pairs if x['split']=='test' and x['qtype']==q and x['metric']=='coverage')>=0 and next(x['ci_high'] for x in cp_pairs if x['split']=='test' and x['qtype']==q and x['metric']=='size')<0 for q in METRICS)
     g1+='(2) '+('通过（至少一类型覆盖率不低且集合更小的配对CI支持）' if dominance else '未通过（同覆盖率效率优势未证实）')+'；'+cptext+'。CI见M4_cp_paired_bootstrap.csv。\n'
-    joint_dominance=all((x['ci_high']<=0 if x['metric']=='nll' else x['ci_low']>=0) for x in paired if x['split']=='test' and x['a']=='main' and x['b'] in ['B3','b3_multi'])
+    joint_dominance=all((x['ci_high']<=0 if x['metric']=='nll' else x['ci_low']>=0) for x in paired if x['split']=='test' and x['a']=='main' and x['b'] in ['B3','b3_multi','B3_matched'])
     g1+='(3) '+('通过（四类型差异CI均支持不低于两种B3）' if joint_dominance else '未通过（未建立四类型一致优势，且未预设非劣界）')+'；CLR−B3 Q1 NLL '+difftext('main','B3','Q1')+'；Q2 AUROC '+difftext('main','B3','Q2')+'；CLR−B3-multi Q3 '+difftext('main','b3_multi','Q3')+'、Q4 '+difftext('main','b3_multi','Q4')+'；未预设非劣界，不能据不显著声称不劣。\n'
     small_gain=all(x['ci_low']>0 for x in paired if x['split']=='test' and x['a'] in ['transfer_100','transfer_1000'])
     g1+='(4) '+('通过' if small_gain else '未通过')+'（小N差异95%CI是否均大于0）；迁移−scratch Q4：N100 '+difftext('transfer_100','scratch_b3_100','Q4')+'；N1k '+difftext('transfer_1000','scratch_b3_1000','Q4')+'；N10k '+difftext('transfer_10000','scratch_b3_10000','Q4')+'。'
@@ -212,7 +213,7 @@ def main(c):
     f'通过：val-only smoke、块隔离/置换与输入约束测试；三seed必做模型/迁移/增强训练已完成并在最终评估前锁定；温度/仿射及Mondrian均已执行。总成本{cost:.3g} GPUh，D {dmetrics.get("gpu_hours",float("nan")):.3g} GPUh。G1优势结论按下列差值区间审查，尚未标为通过。',g1,
     '## (c) 核心主表','均值±95% seed-t CI；clean/seen，逐t等权。表2为α=.1的三seed均值；详细CI见M4_conformal_aggregate.csv，其他α见CSV。',tab1,tab2,tab3,
     'ECE（CLR−B3，test纯温度）：'+'；'.join(q+' '+fmt(vals('main','test',q,'ece15')-vals('B3','test',q,'ece15')) for q in METRICS)+'。', '仿射−温度的改善（正为更好）：'+afftext+'。','加入未见训练后：'+gaptext+'。','GSM cal_B阈值下unseen_eval覆盖率（α=.1）：'+'；'.join(unseen)+'。',
-    '## (d) 新增偏离与阻塞','预算固定正式训练前按完整val实测速率把4epoch上限改为10，每qtype每epoch10000采样、每2epoch验证、patience2；仍可能欠训练。可选消融未做。Q3共享仿射偏置抵消。未见池259题方程解析失败、2题负例配对失败跳过Q4；172条eval与新train存在13-gram重叠、精确0，另报825无重叠子集。调试出现控制器状态/无限阈值JSON/严格YAML键错误，k8预检查显式由4降到3.5GiB（模型设置不变），均在val修复，失败记录保留。',
+    '## (d) 新增偏离与阻塞','正式训练前按完整val实测速率把4epoch上限改为10，每qtype每epoch10000采样、每2epoch验证、patience2；仍可能欠训练。可选消融未做。Q3共享仿射偏置抵消。未见池259题方程解析失败、2题负例配对失败跳过Q4；172条eval与新train存在13-gram重叠、精确0，另报825无重叠子集。调试出现控制器状态/无限阈值JSON/严格YAML键错误，k8预检查显式由4降到3.5GiB（模型设置不变），均在val修复，失败记录保留。',
     '## (e) 需要审查者决定','根据G1差值及覆盖率判断是否通过进入M5；是否另建按题族分组的未见池版本（当前冻结划分不改）。',
     '## (f) 证据路径','详细：reports/M4_clr_v0.md、reports/M4_budget_v2.md；CSV：reports/M4_metrics.csv、M4_conformal.csv、M4_paired_bootstrap.csv、M4_affine_gains.csv、M4_shift_gaps.csv；run索引：data/M4_v0/training_suite.json、evaluation_suite.json；数据与代码冻结：data/M4_v0/freeze.json。']
     text='\n\n'.join(review)+'\n'

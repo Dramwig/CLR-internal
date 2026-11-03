@@ -180,3 +180,5 @@ M4：k4/k8均完成40000样本训练、现完整reader_val评估中；共享MLP�
 M4 k4 pilot完成：reader_val宏qtype原始NLL0.769895，Q1/Q2/Q3/Q4=0.421176/0.559212/1.363840/0.735353。Q3接近均匀四选一NLL1.386，Q4差于常数0.5的0.693；保留负面结果，尚非最终校准比较，不改变已冻结训练预算。k8验证中。
 
 M4预算v2（正式训练尚未启动/test未打开）：完整k4验证0.246GPUh显著快于smoke估计，采用 `configs/M4_train_v1.yaml`，10epoch/每2epoch验证/patience2，保留旧4epoch方案；约76GPUh含20%裕量，优先必做四项。控制器新日志 `reports/M4_training_suite_v8.log`。
+
+M4：k锁定4（val0.769895 vs k8的0.795120）；seed22/33已正式训练，seed11 GPU1预检查失败（未训练）。先在GPU1以相同模型/batch/精度、显式3.0GiB预检查重做val smoke验证实际容纳能力；不静默换卡或缩模型。新增低成本B3_matched诊断在test之前锁定。

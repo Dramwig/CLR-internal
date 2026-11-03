@@ -10,7 +10,7 @@ from clr.utils.m4_budget import Budget
 from clr.utils.records import recorded
 from clr.utils.idea_a import seed_everything,write_json
 from clr.models.clr_v0 import CLR,Serializer
-from clr.baselines.b3_multi_v0 import B3Multi
+from clr.baselines.b3_multi_v0 import B3Multi,B3PerType
 from clr.baselines.probes import Probe
 from clr.data.m4.reader import PrefixBank,rows_for,targets,probe_inputs
 
@@ -18,7 +18,7 @@ def forward(model,kind,rows,bank,serializer,templates,norm,device):
     prefix,mask=bank.batch(rows,device)
     if kind=='clr':return model(serializer.batch(rows,device),prefix,mask,rows[0]['qtype']).float()
     inputs=probe_inputs(rows,prefix,mask,templates,*norm)
-    return (model(*inputs,rows[0]['qtype']) if kind=='b3_multi' else model(*inputs)).float()
+    return (model(*inputs,rows[0]['qtype']) if kind in ['b3_multi','b3_matched'] else model(*inputs)).float()
 
 def evaluate(model,kind,groups,bank,serializer,templates,norm,device,batch,budget=None):
     model.eval();out={}
@@ -68,7 +68,7 @@ def main(c):
             head=[p for name,p in model.named_parameters() if p.requires_grad and not name.startswith('backbone.')]
             opt=torch.optim.AdamW([{'params':enc,'lr':c['encoder_lr']},{'params':head,'lr':c['head_lr']}],weight_decay=c['weight_decay'],foreach=False)
         else:
-            model=(B3Multi() if kind=='b3_multi' else Probe('B3','Q4')).to(device)
+            model=(B3Multi() if kind=='b3_multi' else B3PerType() if kind=='b3_matched' else Probe('B3','Q4')).to(device)
             opt=torch.optim.AdamW(model.parameters(),lr=c['head_lr'],weight_decay=c['weight_decay'],foreach=False)
         rng=np.random.default_rng(c['seed']);best=float('inf');bad=0;history=[];examples=0
         epochs=c['trial_epochs'] if c['trial'] else c['epochs'];pertype=c['trial_samples_per_type'] if c['trial'] else c['samples_per_type']

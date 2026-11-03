@@ -66,7 +66,7 @@ trial: false
 trial_epochs: 1
 trial_samples_per_type: 10000
 budget_safety_factor: 1.2
-eval_lock: data/M4_v0/training_complete.json
+eval_lock: data/M4_v0/training_complete_with_matched.json
 run_budget_hours: 8
 checkpoint: null
 reference_name: null

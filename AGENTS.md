@@ -39,7 +39,7 @@
 历史逐次进度原样归档于 [旧 AGENTS 快照](docs/history/AGENTS_20261103_before_global_rules.md)，完整状态历史见 [STATUS.md](docs/STATUS.md)。这些历史材料不覆盖本页与全局约定。
 
 <!-- M4_LIVE -->
-M4：13项单元测试及两项val smoke通过；D的1993题生成与标签审计完成（0.419 GPUh、117130前向）；k4 pilot完成（val原始宏NLL0.770，Q3/Q4暂弱）；k8验证中，后续三seed实验按冻结预算继续，尚无最终test结论。首次正式训练前依据完整val吞吐修订最大10epoch，预算含裕量约76 GPUh（上限80），见 reports/M4_budget_v2.md。
+M4：13项单元测试及两项val smoke通过；D的1993题生成与标签审计完成（0.419 GPUh、117130前向）；k4 pilot完成（val原始宏NLL0.770，Q3/Q4暂弱）；k8验证完成并锁定k4；正式seed22/33运行，seed11因GPU1预检查失败待同设置val smoke验证后恢复，尚无最终test结论。首次正式训练前依据完整val吞吐修订最大10epoch，预算含裕量约76 GPUh（上限80），见 reports/M4_budget_v2.md。
 <!-- /M4_LIVE -->
 
 M4当前：源val smoke12题通过，完整D估算0.451 GPUh并已启动；CLR smoke通过（26.6训练样本/s、93.8评估样本/s、2.42GiB峰值、置换差0）。训练预算据此设4epoch、每qtype每epoch10000样本，优先四项必做，详见M4_TASK.md及后续预算报告。未见池172条13-gram跨划分重叠另作无重叠子集诊断，不改冻结划分。
