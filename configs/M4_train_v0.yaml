@@ -73,5 +73,5 @@ reader_devices:
 - cuda:2
 - cuda:3
 pilot_cases:
-  4: pilot_k4
-  8: pilot_k8_preflight_v2
+  '4': pilot_k4
+  '8': pilot_k8_preflight_v2

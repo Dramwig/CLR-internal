@@ -379,3 +379,6 @@ RuntimeError: Insufficient GPU memory; no fallback
 ## M4 k8显存预检查门槛（2026-11-03）
 首次k8在加载模型前因可用显存小于原4GiB门槛退出；CUDA上下文建立后的余量低于nvidia-smi启动前快照。未发生模型OOM，未改模型/batch/精度/数据。
 根据已测2.42GiB峰值，将新run门槛显式设3.5GiB；使用新case `pilot_k8_preflight_v2` 保留失败run。若仍不足直接失败，不自动换卡。训练主协议未降级。
+
+## M4 配置语法修复（2026-11-03）
+新增pilot映射误用整数YAML键，被共享严格配置加载器拒绝（训练前，无GPU计算）；改为字符串键并对全部M4配置预加载验证。保留 `reports/M4_pilot_k8_v2.log`；研究参数不变。
