@@ -191,7 +191,7 @@ def main(c):
     '## 校准','按qtype在cal_A拟合温度，以及温度+二分类log-odds偏置。Q3共享选项偏置被softmax抵消，仿射等价温度；不引入位置偏置。B3完全相同校准流程。改善量见M4_affine_gains.csv；纯温度为主方案，未据test选择校准。',
     '## D数据与限制',json.dumps(qsummary,ensure_ascii=False),
     'SVAMP993按ID496/497、ASDiv1000按ID500/500冻结。复用M3干净/早退，train K8轨迹、eval每t K16π；原生产fp32/batch1/cohort上下文保持。原始方程式259题解析失败，仅跳过这些题Q4，其他类型保留；有解析成功题的池保留Q4。两个新半池之间172题13-gram重叠（精确0），保留用户指定划分并另报825无重叠eval子集；不把这172题称独立题族泛化证据。与GSM训练/测试/Aug去重复用M3证据。',
-    '源成本：'+json.dumps(dmetrics,ensure_ascii=False),'总M4 GPU作业墙钟小时（含加载/失败/smoke）='+str(cost)+'；GPU RTX4090，训练评估新source forward=0，D调用单列。CPU报告不记GPU。预算内优先四项必做；可选无cross、单步、无块、随机初始化实验未做，不以未执行消融支撑结论。',
+    '源成本：'+json.dumps(dmetrics,ensure_ascii=False),'总M4 GPU作业墙钟小时（含加载/失败/smoke）='+str(cost)+'；GPU RTX4090，训练评估新source forward=0，D调用单列。CPU报告不记GPU。预算内优先四项必做；可选无cross、单步、无块、随机初始化实验未做；不能将任何整体优势单独归因于cross-attention、前缀、预训练或参数容量。',
     '## 证据索引','runs见data/M4_v0/evaluation_suite.json、training_suite.json；逐实例预测在各评估run；M4_paired_bootstrap.csv、M4_shift_gaps.csv、M4_cp_paired_bootstrap.csv；冻结清单data/M4_v0/freeze.json。']
     Path('reports/M4_clr_v0.md').write_text('\n\n'.join(details))
     # G1 statements are estimates with uncertainty; no automatic claim of noninferiority.
