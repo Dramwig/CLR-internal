@@ -1,0 +1,6 @@
+milestone: M4
+stage: data_followup
+output: data/M4_v0
+source_config: configs/M4.yaml
+source_run: runs/20261103T063500842769Z_924ffcfc4ca2_e9f41f
+qa_smoke_run: runs/20261103T065046633062Z_9c0991045b5a_97e078

@@ -17,4 +17,4 @@ val-only reader smoke `runs/20261103T063720891097Z_fbf05aa49145_149c78`：训练
 
 原始草案8epoch/每类型20000仅为smoke前估算参数，未运行完整训练。现依据实测吞吐在最终评估前固定4epoch/10000，覆盖四项必做。验证频次第2/4epoch，patience2；这至多两次选择检查，可能欠训练，必须报告，不声称收敛。微调第2/5/10/20epoch验证。可选消融暂不预留；只有必做实际完成且预算仍允许才追加，且不据test表现选择消融。
 
-附：B3-multi采用每epoch同样10000/类型，但较大microbatch256，优化器LR0.001；CLR microbatch8×累积4，encoder LR2e-5/new modules1e-3；均固定而不以test调参。Q4从零B3与CLR使用完全相同嵌套标签面板及验证集。每个N包含N/2独立题，每题同一步一正一负；额外验证/校准标签不计入N且双方相同。
+附：B3-multi采用每epoch同样10000/类型，但microbatch32（与CLR累积后的有效batch相同），优化器LR0.001；CLR microbatch8×累积4，encoder LR2e-5/new modules1e-3；均固定而不以test调参。Q4从零B3与CLR使用完全相同嵌套标签面板及验证集。每个N包含N/2独立题，每题同一步一正一负；额外验证/校准标签不计入N且双方相同。

@@ -57,13 +57,13 @@ def main(base):
     selected=min(pilots,key=lambda k:json.loads((pilots[k]/'metrics.json').read_text())['best_val_nll'])
     write_json(out/'hyperparameters_lock.json',{'cross_every':selected,'criterion':'reader_val macro-qtype NLL','pilot_runs':{str(k):str(v) for k,v in pilots.items()},'test_opened':False})
     for s in base['seeds']:train('main',s,cross_every=selected)
-    for s in base['seeds']:train('b3_multi',s,model_kind='b3_multi',micro_batch=256,gradient_accumulation=1,eval_batch=1024)
+    for s in base['seeds']:train('b3_multi',s,model_kind='b3_multi',micro_batch=32,gradient_accumulation=1,eval_batch=1024)
     for s in base['seeds']:
         pre=train('leave_q4_out',s,cross_every=selected,qtypes=['Q1','Q2','Q3'])
         for n in [100,1000,10000]:
             settings={'qtypes':['Q4'],'fewshot_n':n,'fewshot_manifest':str(panel),'epochs':20,'validation_epochs':[2,5,10,20]}
             train(f'transfer_{n}',s,cross_every=selected,initial_checkpoint=str(pre/'best.pt'),**settings)
-            train(f'scratch_b3_{n}',s,model_kind='b3',micro_batch=256,gradient_accumulation=1,eval_batch=1024,**settings)
+            train(f'scratch_b3_{n}',s,model_kind='b3',micro_batch=32,gradient_accumulation=1,eval_batch=1024,**settings)
     # Data generation can run in parallel; a failed source job must be surfaced, not ignored.
     if not (out/'qa/unseen_train.parquet').exists():raise RuntimeError('Unseen QA not complete; rerun controller after source/QA completion')
     for s in base['seeds']:train('augmented',s,cross_every=selected,augmentation=True)
