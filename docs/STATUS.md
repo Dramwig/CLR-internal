@@ -152,4 +152,4 @@ smoke/调试仅用 val 代理，不触碰 test；旧 AGENTS 原样归档，提�
 
 ## 2026-11-03 M4启动
 
-用户通过G0并授权M4，当前协议见[M4_TASK.md](M4_TASK.md)。encoder选择官方ModernBERT-base；只在val做smoke/调试。GPU全部共享繁忙，源计划cuda:2、reader计划cuda:3，加载前再检查。已按授权释放40GiB配重，保持自动补足暂停。M4尚无结果。
+用户通过G0并授权M4，当前协议见[M4_TASK.md](M4_TASK.md)。encoder选择官方ModernBERT-base；只在val做smoke/调试。GPU全部共享繁忙，源计划cuda:2、reader计划cuda:3，加载前再检查。已申请释放40GiB，但实测配重已为0，本次未获得新增空间；当前约15.6GiB可用，保持自动补足暂停并继续工作。M4尚无结果。
