@@ -68,6 +68,13 @@ def main(c):
             ca=[r for r in calrows if (r['problem_id'] in caids if smoke else r['cal_part']=='cal_A') and r['qtype']==q]
             cb=[r for r in calrows if (r['problem_id'] in cbids if smoke else r['cal_part']=='cal_B') and r['qtype']==q]
             a=predict(model,kind,ca,calbank,serializer,templates,norm,device,c['eval_batch'],budget);b=predict(model,kind,cb,calbank,serializer,templates,norm,device,c['eval_batch'],budget)
+            if q=='Q3' and kind=='clr':
+                sample=ca[:c['eval_batch']];perm=[2,0,3,1];permuted=[{**r,'options':[r['options'][i] for i in perm]} for r in sample]
+                original=predict(model,kind,sample,calbank,serializer,templates,norm,device,c['eval_batch'],budget)
+                changed=predict(model,kind,permuted,calbank,serializer,templates,norm,device,c['eval_batch'],budget)
+                delta=float(np.max(np.abs(original[:,perm]-changed)))
+                write_json(run.path/'option_invariance.json',{'max_abs_logit_difference':delta,'panel':'cal_A' if not smoke else 'reader_val_proxy','problems':len(sample)})
+                if delta!=0:raise ValueError('Trained CLR option permutation not exactly invariant')
             calibrations[q]={m:fit(a,target_array(ca,q),m) for m in ['temperature','affine']}
             threshold_map[q]={m:thresholds(cb,b,calibrations[q][m],q,c['seed']) for m in calibrations[q]}
         write_json(run.path/'calibration.json',calibrations);write_json(run.path/'thresholds.json',{q:{m:{k:(v if np.isfinite(v) else None) for k,v in ts.items()} for m,ts in methods.items()} for q,methods in threshold_map.items()})

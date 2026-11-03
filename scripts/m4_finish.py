@@ -16,7 +16,7 @@ def main(c):
  with recorded(c) as run:
     root=Path(c['output']);out=root/'freeze.json'
     if out.exists():raise ValueError('M4 freeze already exists; do not overwrite completed version')
-    tests=['tests/test_m4_data.py','tests/test_m4_model.py','tests/test_m4_calibration.py','tests/test_m4_evaluation.py']
+    tests=['tests/test_m4_data.py','tests/test_m4_model.py','tests/test_m4_calibration.py','tests/test_m4_evaluation.py','tests/test_m4_statistics.py']
     with (run.path/'tests.log').open('w') as f:subprocess.run(['.venv/bin/python','-m','pytest',*tests,'-q'],check=True,stdout=f,stderr=subprocess.STDOUT)
     for frozen in ['data/M23_v1a/freeze.json','reports/M1_completed_v3_manifest.json']:
         for p,expected in json.loads(Path(frozen).read_text())['sha256'].items():
