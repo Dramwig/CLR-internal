@@ -22,6 +22,9 @@ def module_stats(model):
         if name.endswith("logit_scale"):out[name]={"gate_value":float(p.detach().sigmoid()),"gradient_norm":float(p.grad.norm()) if p.grad is not None else 0.}
     return out
 
+def invoke(model,text,z,mask,q,amp=False):
+    with torch.autocast('cuda',dtype=torch.bfloat16,enabled=amp):return model(text,z,mask,q).float()
+
 def main(c):
  with recorded(c) as run:
     start=time.monotonic();budget=Budget(run,c,start);torch.set_num_threads(2);seed_everything(c['seed']);device=c['reader_device']
@@ -44,13 +47,13 @@ def main(c):
                 for j in range(c['diagnostic_batches']):
                     budget.check();rows=rs[j*c['diagnostic_batch']:(j+1)*c['diagnostic_batch']];z,mask=bank.batch(rows,device);z=z.float().detach().requires_grad_(True);text=s.batch(rows,device)
                     # FP32 diagnostic resolves small derivatives, not bf16 rounded changes.
-                    m.zero_grad(set_to_none=True);logits=m(text,z,mask,q)
+                    m.zero_grad(set_to_none=True);logits=invoke(m,text,z,mask,q,c.get('diagnostic_amp',False))
                     decision=logits-logits.mean(-1,keepdim=True)
                     grad=torch.autograd.grad(decision[:,0].sum(),z,retain_graph=True)[0]
                     rawgrad=torch.autograd.grad(logits[:,-1].sum(),z,retain_graph=True)[0]
                     option_grads=[float(torch.autograd.grad(logits[:,i].sum(),z,retain_graph=True)[0].norm()) for i in range(logits.shape[1])];loss=-(targets(rows,device)*logits.log_softmax(-1)).sum(-1).mean();loss.backward()
                     with torch.no_grad():
-                        zero=m(text,torch.zeros_like(z),mask,q);shuffle=m(text,z.roll(1,0),mask.roll(1,0),q)
+                        zero=invoke(m,text,torch.zeros_like(z),mask,q,c.get('diagnostic_amp',False));shuffle=invoke(m,text,z.roll(1,0),mask.roll(1,0),q,c.get('diagnostic_amp',False))
                     results.append({'case':case,'qtype':q,'batch':j,'loss':float(loss),'z_gradient_norm':float(rawgrad.norm()),'contrast_gradient_norm':float(grad.norm()),'zero_logit_delta':float((zero-logits).abs().max()),'shuffle_logit_delta':float((shuffle-logits).abs().max()),'zero_contrast_delta':float(((zero-zero.mean(-1,keepdim=True))-decision).abs().max()),'shuffle_contrast_delta':float(((shuffle-shuffle.mean(-1,keepdim=True))-decision).abs().max()),'modules':module_stats(m),'parameters':{name:{'norm':float(p.detach().norm()),'gradient_norm':float(p.grad.norm()) if p.grad is not None else 0.} for name,p in m.named_parameters() if not name.startswith('backbone.')},'option_gradient_norms':option_grads})
                     write_json(run.path/'path_diagnostics.json',results)
             del m;gc.collect();torch.cuda.empty_cache()
@@ -60,9 +63,9 @@ def main(c):
         traces=[]
         for step in range(c['diagnostic_steps']):
             budget.check();q=['Q1','Q2','Q3','Q4'][step%4];rs=groups[q][:c['diagnostic_batch']];z,mask=bank.batch(rs,device);opt.zero_grad(set_to_none=True)
-            logits=m(s.batch(rs,device),z.float(),mask,q);loss=-(targets(rs,device)*logits.log_softmax(-1)).sum(-1).mean();loss.backward()
+            logits=invoke(m,s.batch(rs,device),z.float(),mask,q,c.get('diagnostic_amp',False));loss=-(targets(rs,device)*logits.log_softmax(-1)).sum(-1).mean();loss.backward()
             traces.append({'step':step,'qtype':q,'loss':float(loss),'modules':module_stats(m),'gate':'none in CLR v0'});torch.nn.utils.clip_grad_norm_(m.parameters(),1.);opt.step();write_json(run.path/'module_trace.json',traces)
-        run.write_metrics(status='completed',gpu_hours=(time.monotonic()-start)/3600,source_forward_calls=0,test_opened=False,diagnostic_batches=len(results),gate='none')
+        run.write_metrics(status='completed',gpu_hours=(time.monotonic()-start)/3600,source_forward_calls=0,test_opened=False,diagnostic_batches=len(results),gate='none',diagnostic_precision='bf16 AMP' if c.get('diagnostic_amp',False) else 'fp32')
         write_json(Path(c['output'])/'path_diagnostics_run.json',{'run':str(run.path)})
     except Exception:
         run.write_metrics(status='failed',gpu_hours=(time.monotonic()-start)/3600,source_forward_calls=0);raise
