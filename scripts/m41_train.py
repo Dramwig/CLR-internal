@@ -44,7 +44,17 @@ def main(c):
         opt=torch.optim.AdamW([{'params':[p for n,p in model.named_parameters() if p.requires_grad and n.startswith('backbone.')],'lr':c['encoder_lr']},{'params':[p for n,p in model.named_parameters() if p.requires_grad and not n.startswith('backbone.')],'lr':c['head_lr']}],weight_decay=c['weight_decay'])
         total=sum(map(len,groups.values()));weights={q:total/(len(qtypes)*len(rs)) for q,rs in groups.items()};rng=np.random.default_rng(c['seed']);history=[];best=float('inf');bad=0;examples={q:0 for q in qtypes};steps=0
         write_json(run.path/'training_manifest.json',{'train_counts':{q:len(rs) for q,rs in groups.items()},'objective_weights':weights,'all_instances_per_epoch':True,'checkpoint_min_epoch':c['min_epochs'],'test_opened':False})
-        for epoch in range(1,c['epochs']+1):
+        first_epoch=1
+        if c.get('resume_run'):
+            saved=torch.load(Path(c['resume_run'])/'last.pt',map_location=device,weights_only=False)
+            if kind=='clr':model.restore_trainable(saved['model'])
+            else:model.load_state_dict(saved['model'])
+            opt.load_state_dict(saved['optimizer']);rng.bit_generator.state=saved['numpy_rng'];torch.set_rng_state(saved['torch_rng'].cpu());torch.cuda.set_rng_state(saved['cuda_rng'].cpu(),device)
+            history=saved['history'];best=saved['best'];bad=saved['bad'];examples=saved['examples'];steps=saved['steps'];first_epoch=saved['epoch']+1
+            if Path(c['resume_run'],'best.pt').exists():
+                import shutil
+                shutil.copy2(Path(c['resume_run'])/'best.pt',run.path/'best.pt');shutil.copy2(Path(c['resume_run'])/'best.json',run.path/'best.json')
+        for epoch in range(first_epoch,c['epochs']+1):
             model.train();batches=[]
             for q,rows in groups.items():
                 order=rng.permutation(len(rows));batches.extend((q,order[i:i+c['batch_size']]) for i in range(0,len(rows),c['batch_size']))
@@ -54,7 +64,11 @@ def main(c):
                 with torch.autocast('cuda',dtype=torch.bfloat16,enabled=kind=='clr'):
                     logits=forward(model,kind,rs,bank,s,templates,norm,device);loss=-(targets(rs,device)*logits.log_softmax(-1)).sum(-1).mean()
                 if not torch.isfinite(loss):raise RuntimeError('Nonfinite M4.1 training loss')
-                (loss*weights[q]).backward();torch.nn.utils.clip_grad_norm_(model.parameters(),1.);opt.step();steps+=1;examples[q]+=len(rs);loss_sum[q]+=float(loss)*len(rs)
+                (loss*weights[q]).backward()
+                if steps%1000==0 and kind=='clr':
+                    from scripts.m41_diagnose import module_stats
+                    with (run.path/'module_trace.jsonl').open('a') as trace:trace.write(json.dumps({'step':steps,'qtype':q,'modules':module_stats(model)})+'\n')
+                torch.nn.utils.clip_grad_norm_(model.parameters(),1.);opt.step();steps+=1;examples[q]+=len(rs);loss_sum[q]+=float(loss)*len(rs)
                 if bi%100==0:
                     budget.check();write_json(run.path/'progress.json',{'epoch':epoch,'batch':bi,'batches':len(batches),'examples':examples,'optimizer_steps':steps,'gpu_hours':(time.monotonic()-start)/3600})
             val=evaluate(model,kind,vg,vb,s,templates,norm,device,c['eval_batch'],budget);score=float(np.mean(list(val.values())));row={'epoch':epoch,'train_nll':{q:loss_sum[q]/len(groups[q]) for q in qtypes},'val_nll':val,'selection_nll':score,'examples':dict(examples),'steps':steps,'gpu_hours':(time.monotonic()-start)/3600}
@@ -62,7 +76,8 @@ def main(c):
                 if score<best:
                     best=score;bad=0;torch.save(model.trainable_state() if kind=='clr' else {k:v.detach().cpu() for k,v in model.state_dict().items()},run.path/'best.tmp');(run.path/'best.tmp').replace(run.path/'best.pt');write_json(run.path/'best.json',row)
                 else:bad+=1
-            history.append(row);write_json(run.path/'history.json',history);print(json.dumps(row),flush=True)
+            history.append(row);write_json(run.path/'history.json',history)
+            torch.save({'epoch':epoch,'model':model.trainable_state() if kind=='clr' else model.state_dict(),'optimizer':opt.state_dict(),'numpy_rng':rng.bit_generator.state,'torch_rng':torch.get_rng_state(),'cuda_rng':torch.cuda.get_rng_state(device),'history':history,'best':best,'bad':bad,'examples':dict(examples),'steps':steps},run.path/'last.tmp');(run.path/'last.tmp').replace(run.path/'last.pt');print(json.dumps(row),flush=True)
             if epoch>=c['min_epochs'] and bad>=c['patience']:break
         run.write_metrics(status='completed',gpu_hours=(time.monotonic()-start)/3600,source_forward_calls=0,test_opened=False,best_val_nll=best,epochs=epoch,examples=examples,optimizer_steps=steps)
         write_json(Path(c['output'])/f"trained_{c['case']}_{c['variant']}_{c['seed']}.json",{'run':str(run.path)})
