@@ -15,3 +15,13 @@ def test_candidates_permutation_padding_and_z_grad(kind):
  grad=torch.autograd.grad((a[:,0]-a[:,1]).sum(),z)[0];assert grad[:,:3].norm()>0;assert grad[:,3:].norm()==0
  s.canonical=False;changed={**row,'options':['1','2','3','5']}
  a=m(s.batch([row]),z,valid,'Q3');b=m(s.batch([changed]),z,valid,'Q3');torch.testing.assert_close(a[:,:3],b[:,:3],atol=1e-6,rtol=1e-6)
+
+def test_v1_activation_checkpointing_preserves_forward_and_gradients():
+ torch.manual_seed(22)
+ cfg=ModernBertConfig(vocab_size=40,pad_token_id=0,cls_token_id=1,sep_token_id=2,hidden_size=32,intermediate_size=64,num_hidden_layers=2,num_attention_heads=4,local_attention=64,reference_compile=False);cfg._attn_implementation='sdpa'
+ a=CLRv1(ModernBertModel(cfg),k=1,gradient_checkpointing=False).train();b=CLRv1(ModernBertModel(cfg),k=1,gradient_checkpointing=True).train();b.load_state_dict(a.state_dict())
+ s=Serializer(Tokens(),{'Q3':['Choose']});text=s.batch([{'qtype':'Q3','template_id':0,'options':['1','2','3','4']}]);z=torch.randn(1,7,768);mask=torch.tensor([[1,1,1,0,0,0,0]],dtype=torch.bool)
+ aa=a(text,z,mask,'Q3');bb=b(text,z,mask,'Q3');torch.testing.assert_close(aa,bb,atol=0,rtol=0);aa.sum().backward();bb.sum().backward()
+ for (name,p),(other,q) in zip(a.named_parameters(),b.named_parameters()):
+  assert name==other
+  if p.grad is not None:torch.testing.assert_close(p.grad,q.grad,atol=1e-6,rtol=1e-6)

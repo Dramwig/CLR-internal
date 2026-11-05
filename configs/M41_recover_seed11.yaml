@@ -1,0 +1,5 @@
+output: data/M41_v1
+memory_smoke_receipt: data/M41_v1/checkpointing_smoke/throughput_v1.json
+retry_config: configs/M41_main_v1_11_checkpointing_retry.yaml
+old_pipeline_pid: 1083163
+continuation_config: configs/M41_pipeline_v2.yaml

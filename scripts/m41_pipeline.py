@@ -21,7 +21,12 @@ def main(c):
   time.sleep(10)
  if not json.loads(gate.read_text()).get('both_variants_passed'):raise ValueError('Candidate learnability failed; C remains blocked')
  configs=root/'pipeline_configs';configs.mkdir(exist_ok=True);tr=load_config(c['training_config']);ev=load_config(c['evaluation_config']);smokes={}
- for v in ['v1','lite','b3_multi']:
+ if c.get('resume_smokes'):
+  smokes=json.loads(Path(c['resume_smokes']).read_text())
+  for directory in smokes.values():
+   m=json.loads(Path(directory,'metrics.json').read_text())
+   if m['status']!='completed' or m.get('test_opened'):raise ValueError('Invalid resumed val smoke')
+ for v in ([] if c.get('resume_smokes') else ['v1','lite','b3_multi']):
   tc={**tr,'variant':v,'mode':'smoke','case':'C_smoke','reader_device':'cuda:1','batch_size':256 if v=='v1' else 1024,'eval_batch':256 if v=='v1' else 1024,'epochs':1,'min_epochs':1,'run_budget_hours':.25};p=configs/f'train_smoke_{v}.yaml';p.write_text(yaml.safe_dump(tc,sort_keys=False));execute('scripts/m41_train.py',p)
   trainrun=json.loads((root/f'trained_C_smoke_{v}_11.json').read_text())['run']
   if v=='b3_multi':continue

@@ -25,7 +25,13 @@ def main(c):
         opt=torch.optim.AdamW([{'params':[p for n,p in m.named_parameters() if p.requires_grad and n.startswith('backbone.')],'lr':c['encoder_lr']},{'params':[p for n,p in m.named_parameters() if p.requires_grad and not n.startswith('backbone.')],'lr':c['head_lr']}],weight_decay=.01)
         out={}
         for q,rows in groups.items():
-            text=s.batch(rows,device);z,mask=bank.batch(rows,device);y=targets(rows,device);times=[]
+            text=s.batch(rows,device)
+            if c.get('stress_pad_to'):
+                extra=c['stress_pad_to']-text['input_ids'].shape[1]
+                if extra<0:raise ValueError('Stress padding length too small')
+                for name,value in [('input_ids',s.tokenizer.pad_token_id),('blocks',-1),('position_ids',0)]:text[name]=torch.nn.functional.pad(text[name],(0,extra),value=value)
+                text['numeric']=torch.nn.functional.pad(text['numeric'],(0,0,0,extra))
+            z,mask=bank.batch(rows,device);y=targets(rows,device);times=[]
             for step in range(c['benchmark_steps']):
                 budget.check();torch.cuda.synchronize(device);t=time.monotonic();opt.zero_grad(set_to_none=True)
                 with torch.autocast('cuda',dtype=torch.bfloat16):logits=m(text,z,mask,q);loss=-(y*logits.float().log_softmax(-1)).sum(-1).mean()

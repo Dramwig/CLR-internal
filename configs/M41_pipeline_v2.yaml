@@ -1,0 +1,6 @@
+output: data/M41_v1
+wait_seconds: 18000
+training_config: configs/M41_train_v2.yaml
+evaluation_config: configs/M41_evaluate.yaml
+report_config: configs/M41_report.yaml
+resume_smokes: data/M41_v1/pipeline_smokes.json
