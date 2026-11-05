@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 import numpy as np
+import torch  # Load the project C++ runtime before pyarrow/Pillow.
 import pandas as pd
 from scipy.special import softmax
 from clr.calib.m4 import apply

@@ -1,5 +1,6 @@
 """Val/synthetic-only verification of bootstrap pairing and perturbation gates."""
 import numpy as np
+import torch  # Load the project C++ runtime before pyarrow/Pillow.
 import pandas as pd
 from clr.calib import m41_statistics as mod
 
