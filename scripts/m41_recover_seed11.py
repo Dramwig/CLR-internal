@@ -12,7 +12,7 @@ def main(c):
         time.sleep(5)
     sm=json.loads(smoke.read_text());metrics=json.loads(Path(sm['run'],'metrics.json').read_text())
     if metrics['status']!='completed' or metrics.get('test_opened'):raise ValueError('Memory smoke failed')
-    update('training_recovery','seed11启用activation checkpointing，等价性及192-token压力smoke通过；seed22/33原训练继续，模型/batch/精度/曝光不变',test_opened=False)
+    update('training_recovery','seed11启用activation checkpointing，等价性及全量长度审计对应的48-token压力smoke通过；seed22/33原训练继续，模型/batch/精度/曝光不变',test_opened=False)
     with Path('reports/M41_main_v1_11_checkpointing_retry.log').open('w') as log:subprocess.run(['.venv/bin/python','scripts/m41_train.py',c['retry_config']],check=True,stdout=log,stderr=subprocess.STDOUT)
     # Old controller must finish its remaining owned children before takeover.
     while Path(f"/proc/{c['old_pipeline_pid']}").exists():time.sleep(20)
