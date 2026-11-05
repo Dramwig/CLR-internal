@@ -1,0 +1,7 @@
+milestone: M4.1
+stage: exposure
+seed: 11
+seeds: [11, 22, 33]
+m4_suite: data/M4_v0/training_suite.json
+m3_baseline_run: runs/20261103T045628621237Z_2964c31f2153_11a348
+output: data/M41_v1

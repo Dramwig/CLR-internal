@@ -1,0 +1,13 @@
+output: data/M41_v1
+diagnostic_config: configs/M41_diagnostic_report.yaml
+wait_seconds: 10800
+candidate_configs:
+  v1:
+  - configs/M41_gate_v1_overfit_Q4_retry_v2.yaml
+  - configs/M41_gate_v1_synthetic_Q3_retry_v2.yaml
+  - configs/M41_gate_v1_synthetic_Q4_retry_v2.yaml
+  lite:
+  - configs/M41_gate_lite_overfit_Q4_retry_v2.yaml
+  - configs/M41_gate_lite_synthetic_Q3_retry_v2.yaml
+  - configs/M41_gate_lite_synthetic_Q4_retry_v2.yaml
+log_suffix: retry_v2

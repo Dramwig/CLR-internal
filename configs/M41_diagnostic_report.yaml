@@ -1,0 +1,9 @@
+output: data/M41_v1
+diagnostic_gates:
+  B3_overfit: data/M41_v1/gate_B3_overfit_Q4_11.json
+  v0_overfit: data/M41_v1/gate_v0_overfit_Q4_11.json
+  v0_lower_lr: data/M41_v1/overfit_v0_lower_lr/gate_v0_overfit_Q4_11.json
+  B3_Q3: data/M41_v1/synthetic_unit/gate_B3_synthetic_Q3_11.json
+  B3_Q4: data/M41_v1/synthetic_unit/gate_B3_synthetic_Q4_11.json
+  v0_Q3: data/M41_v1/synthetic_unit/gate_v0_synthetic_Q3_11.json
+  v0_Q4: data/M41_v1/synthetic_unit/gate_v0_synthetic_Q4_11.json
