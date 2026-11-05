@@ -1,0 +1,8 @@
+output: data/M41_v1
+wait_pids: [1092750, 1083163]
+recover_runs:
+  - runs/20261105T032051954084Z_b7a23d2a9613_46bc9e
+total_budget_hours: 50
+run_budget_hours: 14
+authorization: User authorized raising M4.1 budget on 2026-11-05; scientific settings unchanged
+pipeline: configs/M41_pipeline_budget50_v3.yaml

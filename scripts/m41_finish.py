@@ -16,7 +16,7 @@ def sha(path):
 def main(c):
  with recorded(c) as run:
     root=Path(c['output']);report=json.loads((root/'report_complete.json').read_text());metrics=json.loads(Path(report['run'],'metrics.json').read_text())
-    if metrics['status']!='completed' or hours_used()>35:raise ValueError('Completion/budget gate failed')
+    if metrics['status']!='completed' or hours_used()>c['total_budget_hours']:raise ValueError('Completion/budget gate failed')
     text=Path('reports/M4.1_REVIEW.md').read_text()
     if len(text.encode())>8000 or any(f'## ({x})' not in text for x in 'abcdef'):raise ValueError('Review format')
     tests=sorted(str(p) for p in Path('tests').glob('test_m41*.py'))

@@ -1,6 +1,6 @@
 output: data/M41_v1
 wait_seconds: 18000
-training_config: configs/M41_train_v2.yaml
-evaluation_config: configs/M41_evaluate.yaml
-report_config: configs/M41_report.yaml
+training_config: configs/M41_train_budget50_v3.yaml
+evaluation_config: configs/M41_evaluate_budget50_v2.yaml
+report_config: configs/M41_report_budget50_v2.yaml
 resume_smokes: data/M41_v1/pipeline_smokes.json

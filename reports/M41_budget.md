@@ -9,3 +9,6 @@
 - 按实测纯计算速率：v1主训练8–10epoch三seed约16.3–20.4 GPUh；lite约0.62–0.77。另保留数据加载、验证、B3-multi及评估约4–5小时；A/B诊断约2–3小时。
 - 两者较好者由三seed reader_val NLL选择。留Q4预训练全量Q1–Q3，最多2epoch、patience1；N100/1k/10k仅Q4全量小面板最多20epoch、patience4；独立三seed。该预训练预算不同于主比较8epoch曝光下限，不声称迁移预训练也匹配逐类型B3曝光。预计额外≤4–5 GPUh。
 - 合计计划约29–35 GPUh；全局35硬限制，含失败、smoke和诊断。真实吞吐偏慢或门槛不通过直接记录，不静默缩样本/降模型/改seed。主训练进入前必须两个候选全部通过A4/A5及真实训练入口smoke。
+
+
+2026-11-05 预算修订：用户明确允许提高上限，采用总50 GPUh（原35），含全部既有失败/smoke成本；新主训练单run时限14h。模型、数据、三seed、曝光下限与评估协议不变。旧进程保留启动时预算快照，不篡改运行记录；若seed11触发旧9h时限，则在原控制器全部退出后从last.pt显式恢复，新run记录50h授权。接续configs/M41_budget50_resume.yaml；新pipeline为configs/M41_pipeline_budget50_v3.yaml。

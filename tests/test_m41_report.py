@@ -34,7 +34,7 @@ def test_review_generation_on_synthetic_fixture(tmp_path,monkeypatch):
     def paired(suite,a,b,seeds,split,q,metric,rng):return dict(a=a,b=b,split=split,qtype=q,metric=metric,delta=0.,ci_low=-.01,ci_high=.01)
     def cp(c,suite,a,b,split,q,rng):return [dict(a=a,b=b,split=split,qtype=q,metric=m,delta=0.,ci_low=-.01,ci_high=.01) for m in ['coverage','size']]
     monkeypatch.setattr(report,'paired',paired);monkeypatch.setattr(report,'cp_paired',cp)
-    report.main({'output':str(root),'seeds':[11,22,33]})
+    report.main({'output':str(root),'seeds':[11,22,33],'total_budget_hours':50})
     text=Path('reports/M4.1_REVIEW.md').read_text();assert len(text.encode())<=8000
     assert all(f'## ({x})' in text for x in 'abcdef')
     assert Path('reports/M41_figures/transfer.png').exists()

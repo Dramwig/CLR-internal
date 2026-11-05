@@ -1,0 +1,83 @@
+milestone: M4.1
+version: v0
+stage: evaluate
+mode: full
+seed: 11
+seeds:
+- 11
+- 22
+- 33
+output: data/M41_v1
+root: data/dumps/codi_gpt2_v3
+qa_root: data/M23_v1a/full
+protocol: configs/protocol_codi_v2.yaml
+templates: clr/data/questions/templates.yaml
+cal_split: data/splits/gsm8k_M23_cal_v1.json
+unseen_split: data/splits/M4_unseen_v0.json
+model_id: answerdotai/ModernBERT-base
+revision: 8949b909ec900327062f0ebf497f51aef5e6f0c8
+model_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+source_device: cuda:2
+reader_device: cuda:3
+source_min_free_gib: 3
+source_budget_hours: 6
+total_budget_hours: 50
+smoke_seconds: 900
+smoke_problems: 12
+smoke_run: runs/20261103T063720891097Z_fbf05aa49145_149c78
+source_sigma: 1.5
+trajectory_k: 8
+mc_k: 16
+svamp_run: runs/20261103T043414920503Z_0ffa8eb65906_5d11c6
+asdiv_run: runs/20261103T043815088245Z_a0358d220af9_70e23b
+m3_baseline_run: runs/20261103T045628621237Z_2964c31f2153_11a348
+reader_min_free_gib: 4
+micro_batch: 8
+max_length: 192
+cross_every: 4
+cross_grid:
+- 4
+- 8
+encoder_lr: 2.0e-05
+head_lr: 0.001
+smoke_steps: 32
+gradient_accumulation: 4
+epochs: 4
+samples_per_type: 10000
+patience: 2
+weight_decay: 0.01
+validation_epochs:
+- 2
+- 4
+model_kind: clr
+case: main
+qtypes:
+- Q1
+- Q2
+- Q3
+- Q4
+augmentation: false
+initial_checkpoint: null
+fewshot_n: null
+fewshot_manifest: null
+validation_limit: null
+eval_batch: 16
+trial: false
+trial_epochs: 1
+trial_samples_per_type: 10000
+budget_safety_factor: 1.2
+eval_lock: data/M41_v1/training_complete.json
+run_budget_hours: 2
+checkpoint: null
+reference_name: null
+eval_splits:
+- reader_val
+- test
+evaluation_smoke_run: runs/20261103T065541614647Z_cf0498aecef6_cfafa6
+reader_devices:
+- cuda:0
+- cuda:1
+- cuda:5
+variant: v1
+budget_authorization: User authorized increased upper limit on 2026-11-05; total50
+  GPUh, no scientific setting changes
