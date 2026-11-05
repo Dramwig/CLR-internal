@@ -6,6 +6,7 @@ from threading import Lock
 import yaml
 from clr.utils.config import load_config
 from clr.utils.idea_a import write_json
+from clr.utils.m41_status import update
 
 def main(c):
  root=Path(c['output']);lock=json.loads(Path(c['eval_lock']).read_text())
@@ -37,7 +38,7 @@ def main(c):
             if old.get('milestone')=='M4.1' and old.get('stage')=='evaluate' and old.get('mode')=='full' and old.get('case')==cfg['case'] and old.get('seed')==seed:found.append(p.parent)
         if len(found)!=1:raise ValueError('Ambiguous evaluation run')
         with mutex:
-            results[key]=str(found[0]);write_json(path,results);write_json(Path('docs/M41_LIVE.json'),{'stage':'evaluation','completed_jobs':len(results),'planned_jobs':len(jobs),'test_opened':True})
+            results[key]=str(found[0]);write_json(path,results);update('evaluation',f'最终评估完成{len(results)}/{len(jobs)}项，训练已锁定',completed_jobs=len(results),planned_jobs=len(jobs),test_opened=True)
  with ThreadPoolExecutor(max_workers=3) as pool:
     fs=[pool.submit(worker,s,d) for s,d in zip(c['seeds'],c['reader_devices'])]
     for f in fs:f.result()

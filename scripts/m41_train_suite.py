@@ -6,6 +6,7 @@ from threading import Lock
 import yaml
 from clr.utils.config import load_config
 from clr.utils.idea_a import write_json
+from clr.utils.m41_status import update
 
 def main(c):
  root=Path(c['output']);manifest=root/'training_suite.json';results=json.loads(manifest.read_text()) if manifest.exists() else {};mutex=Lock();cfgdir=root/'train_configs';cfgdir.mkdir(exist_ok=True)
@@ -19,7 +20,7 @@ def main(c):
         with Path(f'reports/M41_train_{key}.log').open('w') as log:subprocess.run(['.venv/bin/python','scripts/m41_train.py',str(p)],check=True,stdout=log,stderr=subprocess.STDOUT)
         directory=json.loads(receipt.read_text())['run']
     with mutex:
-        results[key]=directory;write_json(manifest,results);write_json(Path('docs/M41_LIVE.json'),{'stage':'training','completed_jobs':len(results),'last_run':directory,'test_opened':False})
+        results[key]=directory;write_json(manifest,results);update('training',f'C训练完成{len(results)}项，最终test尚未打开',completed_jobs=len(results),last_run=directory,test_opened=False)
     return directory
  def mainworker(seed,device):
     for v in ['v1','lite','b3_multi']:run({**c,'seed':seed,'variant':v,'reader_device':device,'batch_size':256 if v=='v1' else 1024,'eval_batch':256 if v=='v1' else 1024,'head_lr':.001 if v=='b3_multi' else c['head_lr']})

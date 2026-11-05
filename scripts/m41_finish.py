@@ -5,6 +5,7 @@ from clr.utils.config import load_config
 from clr.utils.records import recorded
 from clr.utils.idea_a import write_json
 from clr.utils.m41_budget import hours_used
+from clr.utils.m41_status import update as persist_status
 
 def sha(path):
  h=hashlib.sha256()
@@ -34,6 +35,6 @@ def main(c):
     Path('AGENTS.md').open('a').write('\n'+update+'\n');Path('docs/STATUS.md').open('a').write('\n'+update+'\n')
     Path('docs/EXPERIMENTS.md').open('a').write('\n## M4.1 完整实验完成，待审查\n诊断→学习能力门槛→全曝光三seed主比较→val选型迁移→最终校准与Mondrian完成。\n命令：`scripts/m41_pipeline.py configs/M41_pipeline.yaml`；三seed均值±95%CI及10k按题bootstrap见[审查报告](../reports/M4.1_REVIEW.md)。\n全部结果、成本、负面结论与协议偏离见[详细报告](../reports/M4.1_details.md)；冻结data/M41_v1/freeze.json，M4不改。\n')
     Path('docs/BLOCKERS.md').open('a').write('\n## M4.1 收尾\n工程完成不等于G1通过；根因边界、初版合成控制失败、曝光/预算协议与剩余限制见[审查报告](../reports/M4.1_REVIEW.md)。\n')
-    write_json(Path('docs/M41_LIVE.json'),{'stage':'completed_pending_G1_review','review':'reports/M4.1_REVIEW.md','g1_approved':False});run.write_metrics(status='completed',gpu_hours=0.,source_forward_calls=0,frozen_files=len(set(files)),g1_approved=False)
+    persist_status('completed_pending_G1_review',update,review='reports/M4.1_REVIEW.md',g1_approved=False);run.write_metrics(status='completed',gpu_hours=0.,source_forward_calls=0,frozen_files=len(set(files)),g1_approved=False)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
