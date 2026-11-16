@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m41_learnability.py", line 86, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m41_learnability.py", line 74, in main
+    traces.append({'step':steps,'modules':module_stats(model)});write_json(run.path/'module_trace.json',traces)
+                                          ^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m41_diagnose.py", line 20, in module_stats
+    out['source_token']={'param_norm':float(model.source_token.norm()),'grad_norm':float(model.source_token.grad.norm()) if model.source_token.grad is not None else 0.}
+                                            ^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1931, in __getattr__
+    raise AttributeError(
+AttributeError: 'Lite' object has no attribute 'source_token'

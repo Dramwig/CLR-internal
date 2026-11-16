@@ -1,0 +1,35 @@
+milestone: M6
+version: v1
+section: CD
+stage: train
+mode: smoke
+kind: lite
+case: smoke_lite_batch1024
+seed: 11
+panel_seed: 11
+source: llama
+sources:
+  llama:
+    root: runs/20261106T072708384215Z_1dec084d5a18_da3e8a/dumps
+    qa: data/M6_v1/qa_cost_smoke
+    dim: 2048
+    normalization: data/M6_v1/cost_smoke_normalization.npz
+validation_split: val
+smoke_problems: 40
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+templates: clr/data/questions/templates.yaml
+device: cuda:0
+n_labels: null
+epochs: 2
+min_epochs: 1
+patience: 1
+batch: 1024
+b3_batch: 4096
+eval_batch: 1024
+learning_rate: 0.0003
+b3_lrs:
+- 0.001
+- 0.0003
+weight_decay: 0.0001
+output: data/M6_v1
+smoke_run: null

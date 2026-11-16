@@ -1,0 +1,14 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.01it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.57it/s]
+reader_val 1 12 11.96
+reader_val 2 12 12.27
+reader_val 3 12 12.6
+reader_val 4 12 12.81
+reader_val 5 12 13.42
+reader_val 6 12 13.97
+reader_val 7 12 14.62
+reader_val 8 12 15.22
+reader_val 9 12 16.66
+reader_val 10 12 18.32
+reader_val 11 12 20.06
+reader_val 12 12 21.53
+{"run": "/home/me/PaperField/CalReader/runs/20261107T053735008989Z_fe4ddb3d3c22_a41ccd", "groups": 12, "seconds": 21.53136614500545, "mean_bytes_per_clean_CF_pair": 614034.0, "features_projected_GiB": 10.150581132620573, "sender_prefill_estimated_GPUh": 6.230141071463786, "smoke_passed": true, "test_opened": false, "counts": {"reader_train": 8000, "reader_val": 1000, "cal_A": 500, "cal_B": 1000, "test": 2000}, "layers": [0, 9, 18, 27]}

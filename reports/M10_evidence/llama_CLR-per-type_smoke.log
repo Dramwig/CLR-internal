@@ -1,0 +1,5 @@
+/home/me/PaperField/CalReader/runs/20261110T093850934828Z_8c54c19ab1d9_70eb23
+{"task": "Q1", "epoch": 1, "lr": 0.0003, "val_nll": {"Q1": 0.42933980896479224}, "selection_nll": 0.42933980896479224, "exposure": {"Q1": 733}, "training_seconds": 1.054305664030835, "validation_seconds": 0.08908392698504031, "gpu_hours": 0.007182058799468601}
+{"task": "Q2", "epoch": 1, "lr": 0.0003, "val_nll": {"Q2": 0.5710153852190291}, "selection_nll": 0.5710153852190291, "exposure": {"Q2": 140}, "training_seconds": 0.07601148600224406, "validation_seconds": 0.05129946500528604, "gpu_hours": 0.0073471616061417284}
+{"task": "Q3", "epoch": 1, "lr": 0.0003, "val_nll": {"Q3": 1.3932513191379556}, "selection_nll": 1.3932513191379556, "exposure": {"Q3": 853}, "training_seconds": 0.2728293789550662, "validation_seconds": 0.10040072607807815, "gpu_hours": 0.007582996146973326}
+{"task": "Q4", "epoch": 1, "lr": 0.0003, "val_nll": {"Q4": 0.6996355329241072}, "selection_nll": 0.6996355329241072, "exposure": {"Q4": 280}, "training_seconds": 0.110477538080886, "validation_seconds": 0.060351133928634226, "gpu_hours": 0.007758572095578226}

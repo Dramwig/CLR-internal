@@ -1,0 +1,9 @@
+/home/me/PaperField/CalReader/runs/20261110T094306989690Z_51597aba0830_afdb77
+{"task": "A1", "epoch": 1, "lr": 0.001, "exposure": 320, "val_nll": 1.8714721202850342, "val_accuracy": 0.5, "training_seconds": 1.3446728780400008}
+{"task": "A1", "epoch": 1, "lr": 0.0003, "exposure": 320, "val_nll": 0.7260829210281372, "val_accuracy": 0.5, "training_seconds": 0.302967662923038}
+{"task": "A2", "epoch": 1, "lr": 0.001, "exposure": 320, "val_nll": 1.9487766027450562, "val_accuracy": 0.5, "training_seconds": 0.2801127709681168}
+{"task": "A2", "epoch": 1, "lr": 0.0003, "exposure": 320, "val_nll": 0.7234909534454346, "val_accuracy": 0.5, "training_seconds": 0.2720116820419207}
+{"task": "A3", "epoch": 1, "lr": 0.001, "exposure": 160, "val_nll": 0.979056179523468, "val_accuracy": 0.5, "training_seconds": 0.15666918095666915}
+{"task": "A3", "epoch": 1, "lr": 0.0003, "exposure": 160, "val_nll": 1.7350645065307617, "val_accuracy": 0.5, "training_seconds": 0.18495148501824588}
+{"task": "A4", "epoch": 1, "lr": 0.001, "exposure": 160, "val_nll": 3.335034132003784, "val_accuracy": 0.20000000298023224, "training_seconds": 0.15309649496339262}
+{"task": "A4", "epoch": 1, "lr": 0.0003, "exposure": 160, "val_nll": 1.3869432210922241, "val_accuracy": 0.20000000298023224, "training_seconds": 0.15804894105531275}

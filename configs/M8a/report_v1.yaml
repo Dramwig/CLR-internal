@@ -1,0 +1,9 @@
+milestone: M8a
+mode: report
+seed: 20261108
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8a_v1
+budget_gpu_hours: 25
+max_seconds: 1800
+bootstrap_repeats: 10000
+parts: 4

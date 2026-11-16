@@ -1,0 +1,58 @@
+{"epoch": 1, "train_nll": {"Q1": 0.5907060347754379, "Q2": 0.7691259980201721, "Q3": 1.281033826438633, "Q4": 0.7230662703514099}, "val_nll": {"Q1": 0.5916991982684039, "Q2": 0.6590426853724889, "Q3": 1.3936609168962246, "Q4": 0.7737232548849923}, "selection_nll": 0.8545315138555274, "examples": {"Q1": 725, "Q2": 140, "Q3": 845, "Q4": 280}, "steps": 10, "gpu_hours": 0.02184423521388251}
+reader_val Q1 False 766
+reader_val Q1 True 1532
+reader_val Q2 False 140
+reader_val Q2 True 280
+reader_val Q3 False 886
+reader_val Q3 True 1772
+reader_val Q4 False 280
+reader_val Q4 True 560
+/home/me/PaperField/CalReader/runs/20261105T030141728288Z_de3098cd9d7a_b1acfa
+{"epoch": 1, "train_nll": {"Q1": 0.7036553025245667, "Q2": 0.7212479710578918, "Q3": 1.3880829811096191, "Q4": 0.705211877822876}, "val_nll": {"Q1": 0.6238668352165478, "Q2": 0.6653400421142578, "Q3": 1.3850286759393065, "Q4": 0.7086522238595145}, "selection_nll": 0.8457219442824067, "examples": {"Q1": 725, "Q2": 140, "Q3": 845, "Q4": 280}, "steps": 4, "gpu_hours": 0.022116975831110417}
+reader_val Q1 False 766
+reader_val Q1 True 1532
+reader_val Q2 False 140
+reader_val Q2 True 280
+reader_val Q3 False 886
+reader_val Q3 True 1772
+reader_val Q4 False 280
+reader_val Q4 True 560
+/home/me/PaperField/CalReader/runs/20261105T030342157986Z_cdcdab7fe563_01b036
+{"epoch": 1, "train_nll": {"Q1": 0.6552035212516785, "Q2": 0.6254326701164246, "Q3": 1.3863061666488647, "Q4": 0.7119110226631165}, "val_nll": {"Q1": 0.6414205871172399, "Q2": 0.6587105887276786, "Q3": 1.3855358675036127, "Q4": 0.7039091382707868}, "selection_nll": 0.8473940454048295, "examples": {"Q1": 725, "Q2": 140, "Q3": 845, "Q4": 280}, "steps": 4, "gpu_hours": 0.020099685260558747}
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m41_train_suite.py", line 42, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m41_train_suite.py", line 29, in main
+    for f in fs:f.result()
+                ^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m41_train_suite.py", line 26, in mainworker
+    for v in ['v1','lite','b3_multi']:run({**c,'seed':seed,'variant':v,'reader_device':device,'batch_size':256 if v=='v1' else 1024,'eval_batch':256 if v=='v1' else 1024,'head_lr':.001 if v=='b3_multi' else c['head_lr'],**c.get('per_seed_overrides',{}).get(str(seed),{})})
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m41_train_suite.py", line 20, in run
+    with Path(f'reports/M41_train_{key}.log').open('w') as log:subprocess.run(['.venv/bin/python','scripts/m41_train.py',str(p)],check=True,stdout=log,stderr=subprocess.STDOUT)
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['.venv/bin/python', 'scripts/m41_train.py', 'data/M41_v1/train_configs/main_v1_11.yaml']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m41_pipeline.py", line 34, in <module>
+    write_json(root/'pipeline_smokes.json',smokes);execute('scripts/m41_train_suite.py',c['training_config'])
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m41_pipeline.py", line 29, in main
+    for v in ([] if c.get('resume_smokes') else ['v1','lite','b3_multi']):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m41_pipeline.py", line 8, in execute
+    def execute(script,config):subprocess.run(['.venv/bin/python',script,str(config)],check=True)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['.venv/bin/python', 'scripts/m41_train_suite.py', 'configs/M41_train.yaml']' returned non-zero exit status 1.

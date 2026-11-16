@@ -1,0 +1,25 @@
+milestone: M10e
+version: v1
+stage: smoke
+seed: 11
+seeds: [11, 22, 33]
+source: gpt2
+method: HSRM
+sources:
+  gpt2:
+    root: data/dumps/codi_gpt2_v3
+    qa: data/M23_v1a/full
+  llama:
+    root: data/dumps/codi_llama_M6_v1
+    qa: data/M6_v1/qa
+output: data/M10e_v1
+templates: clr/data/questions/templates.yaml
+baseline_device: cuda:3
+smoke_problems: 20
+batch_size: 512
+probe_batch_size: 4096
+epochs: 8
+learning_rates: [0.0001, 0.0003]
+probe_learning_rates: [0.001, 0.0003]
+weight_decay: 0.0001
+gpu_budget_hours: 10.0

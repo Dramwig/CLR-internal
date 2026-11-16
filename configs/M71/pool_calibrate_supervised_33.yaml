@@ -1,0 +1,16 @@
+milestone: M7.1
+mode: calibrate
+output: data/M71_v1
+representation: pool
+kind: supervised
+seed: 33
+device: cuda:4
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+batch_size: 128
+lr: 0.0003
+epochs: 40
+min_epochs: 4
+patience: 3
+min_free_GiB: 8
+max_seconds: 14400
+budget_gpu_hours: 30

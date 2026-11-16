@@ -1,0 +1,18 @@
+{
+  "status": "completed_data_generation; awaiting milestone review",
+  "runs": {
+    "smoke_run": "runs/20261030T013639323603Z_13ad784ef5d6_518bf2",
+    "gate_run": "runs/20261030T015147548907Z_f9aeb43dc9b2_daa0ae",
+    "budget_run": "runs/20261030T022507631329Z_ae2889e005b8_1fe957",
+    "generation_run": "runs/20261102T031137055963Z_24b03138a255_a2c9f2"
+  },
+  "sha256": {
+    "reports/M1_data.md": "2c34e276e905d28bda5235915ab7fadb26f58c06e3af96b4e08d0dd9c8f6b1b6",
+    "reports/M1_results.md": "96c252766028a3a343802a1605246d0fe8337d354096365ccf1c4553d62b2eca",
+    "data/splits/gsm8k_M1_v3.json": "8bcc4b136015177c7a35f392d6b0207412d2597d55f2aeaa4f7d9686106e8115",
+    "clr/policy.py": "db8a16b302cd0cc114426ae3320c1c5c36d5f01b80445461ec8b7a946bb7afd7",
+    "clr/data/loader.py": "ac0c8a5ff34b6d41187f3949cec82f4f1024df15b542c472d0b16874b9e3643a",
+    "clr/data/m1.py": "67ae0cf49a98531ae4f827c1c39f5d513c05997b9ea59079280dcf2454534361"
+  },
+  "data_manifest": "runs/20261102T031137055963Z_24b03138a255_a2c9f2/artifacts_sha256.json"
+}

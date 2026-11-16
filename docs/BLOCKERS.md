@@ -393,3 +393,627 @@ RuntimeError: Insufficient GPU memory; no fallback
 ## M4 GPU1预检查恢复（2026-11-03）
 main seed11在GPU1加载模型前因3.5GiB门槛退出，未训练；seed22/33未中断。GPU1相同模型/batch/精度val smoke通过：`runs/20261103T074503297668Z_47e3387fa005_ea103e`，峰值2.41778GiB、置换差0。
 新配置 `M4_train_v2.yaml` 明确将预检查余量设3.0GiB，研究设置保持10epoch等不变；失败run保留。新控制器用独立manifest接续，避免终止已有训练，完成后恢复规范索引。没有降低模型或batch。
+
+## M4 v0 收尾
+必做实验完成，G1待审查；未见题族重叠、Q4缺失及有限训练预算的影响未被消除，详见 `reports/M4_REVIEW.md` 的(d)/(e)，不以工程完成替代研究结论。
+
+## M4.1 合成诊断对照未达门槛
+原合成任务使用2000训练实例、768维独立噪声std=0.08，B3虽可拟合训练集，但Q3独立验证未达预设98%，Q4也出现泛化差距。不能据该任务CLR失败单独判架构失效。
+保留原配置/run；新增显式低噪声对照std=0.001、batch256、最多1000epoch，所有候选使用同一生成协议，先核实B3可解性。未修改真实数据/指标/test。
+
+## 2026-11-05T02:33:37.009975+00:00 — 20261105T023326708562Z_1af7d4fa8662_4d1285
+OutOfMemoryError: CUDA out of memory. Tried to allocate 64.00 MiB. GPU 5 has a total capacity of 47.51 GiB of which 61.38 MiB is free. Process 17303 has 1.52 GiB memory in use. Process 1969816 has 17.32 GiB memory in use. Process 1995467 has 20.27 GiB memory in use. Process 2006931 has 8.32 GiB memory in use. Of the allocated memory 7.34 GiB is allocated by PyTorch, and 516.83 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261105T023326708562Z_1af7d4fa8662_4d1285/traceback.txt`。未回退模型或设置。
+
+## 2026-11-05 — M5a初始工程预检
+val-only batch128首轮因共享GPU显存突增OOM，run `20261105T023326708562Z_1af7d4fa8662_4d1285`，模型/N/b/K/精度未回退；traceback保留。
+batch16首轮exec返回143，终止原因未观测，末尾成本缺失；按0.080GPUh保守预留，不能将running快照当完成。
+显式LoRA合并推理smoke数值差max=0.000175、16轨迹答案一致；全量采用前仍须完整预算外推及批处理核对。
+成本证据：`data/M5a_v3/cost_ledger_initial.json`；新版本与旧失败run分别保留，不覆盖冻结M1/M23/M4。
+
+## 2026-11-05T02:44:38.652345+00:00 — 20261105T024438093439Z_8694173da1ce_466a25
+UnboundLocalError: cannot access local variable 'torch' where it is not associated with a value
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261105T024438093439Z_8694173da1ce_466a25/traceback.txt`。未回退模型或设置。
+
+## 2026-11-05T02:52:12.661532+00:00 — 20261105T025211583852Z_8694173da1ce_9dcb5c
+RuntimeError: GPU free 8.55 GiB < required 20.0 GiB
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261105T025211583852Z_8694173da1ce_9dcb5c/traceback.txt`。未回退模型或设置。
+
+## 2026-11-05T02:53:48.080836+00:00 — 20261105T025345383130Z_b2b4dc01fa85_04f91c
+AttributeError: 'Lite' object has no attribute 'source_token'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261105T025345383130Z_b2b4dc01fa85_04f91c/traceback.txt`。未回退模型或设置。
+
+## 2026-11-05T02:53:49.251502+00:00 — 20261105T025345947641Z_ae4c70b9aa47_e65717
+OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 2 has a total capacity of 47.51 GiB of which 2.81 MiB is free. Process 1250670 has 10.92 GiB memory in use. Process 1951826 has 11.08 GiB memory in use. Process 2048953 has 494.00 MiB memory in use. Process 2051667 has 2.05 GiB memory in use. Process 2109596 has 18.88 GiB memory in use. Process 2124607 has 4.06 GiB memory in use. Of the allocated memory 3.30 GiB is allocated by PyTorch, and 269.53 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261105T025345947641Z_ae4c70b9aa47_e65717/traceback.txt`。未回退模型或设置。
+
+## M4.1 诊断接续错误
+CalledProcessError: Command '['.venv/bin/python', 'scripts/m41_learnability.py', 'configs/M41_gate_v1_overfit_Q4.yaml']' returned non-zero exit status 1.；不自动进入C，检查reports/M41_gate_controller.log。
+
+## 2026-11-05T02:53:58.112899+00:00 — 20261105T025357012986Z_8694173da1ce_bc9f46
+RuntimeError: GPU free 19.48 GiB < required 20.0 GiB
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261105T025357012986Z_8694173da1ce_bc9f46/traceback.txt`。未回退模型或设置。
+
+## M4.1 B门槛显式恢复
+首次v1遇共享GPU2实际OOM，lite遇诊断记录器假设source_token存在的AttributeError（首次优化前）。保留两个失败run；修复日志器为可选参数，并记录新gate sigmoid值。
+新配置M41_gate_controller_retry_v2将v1明确放GPU1、lite仍GPU5，模型/batch/精度不变；后续三seed固定GPU0/1/5，避开当前波动明显的GPU2。原错误不删除，计入35GPUh。
+
+## M4.1 初诊代码快照限制
+初诊运行使用共享Run记录了config/git/env/结果，但新M41脚本当时尚未加入git，启动时working-tree.patch不包含未跟踪文件；不能把后续提交冒充启动快照。
+新增实现已提交066ba79，B门槛重试及C均从已跟踪代码运行。初诊来源/当前重现代码与早期合成生成器变化保留在M4.1详细报告；原M4模型与数据仍由冻结SHA约束。
+
+## 2026-11-05T03:02:07.956143+00:00 — 20261105T030206990105Z_e2d0f808c121_78903a
+RuntimeError: GPU free 8.88 GiB < required 14.0 GiB
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261105T030206990105Z_e2d0f808c121_78903a/traceback.txt`。未回退模型或设置。
+
+## 2026-11-05T03:07:10.132769+00:00 — 20261105T030532326046Z_183ecaa7d8c3_f0579b
+OutOfMemoryError: CUDA out of memory. Tried to allocate 18.00 MiB. GPU 0 has a total capacity of 47.51 GiB of which 11.88 MiB is free. Process 3594061 has 17.06 GiB memory in use. Process 1251372 has 10.90 GiB memory in use. Process 1353931 has 7.69 GiB memory in use. Process 1749002 has 1.40 GiB memory in use. Process 2196729 has 9.89 GiB memory in use. Of the allocated memory 9.08 GiB is allocated by PyTorch, and 308.60 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261105T030532326046Z_183ecaa7d8c3_f0579b/traceback.txt`。未回退模型或设置。
+
+## 2026-11-05T03:08:01.071130+00:00 — 20261105T030800205767Z_737802093d4b_c03853
+RuntimeError: GPU free 13.73 GiB < required 14.0 GiB
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261105T030800205767Z_737802093d4b_c03853/traceback.txt`。未回退模型或设置。
+
+## M4.1 报告合成夹具导入顺序修复
+独立报告单测先导入pandas，加载了系统旧libstdc++，随后Pillow报GLIBCXX_3.4.29缺失。测试及统计模块明确先导入torch，与现有项目运行时约定一致；未换模型/环境，未访问真实test数据。
+
+## 2026-11-05T03:16:36.397279+00:00 — 20261105T031624056867Z_f9c337740d00_f35c59
+OutOfMemoryError: CUDA out of memory. Tried to allocate 108.00 MiB. GPU 0 has a total capacity of 47.51 GiB of which 56.06 MiB is free. Process 3594061 has 17.06 GiB memory in use. Process 1251372 has 10.90 GiB memory in use. Process 1353931 has 7.69 GiB memory in use. Process 1749002 has 1.40 GiB memory in use. Process 2265456 has 9.85 GiB memory in use. Of the allocated memory 8.85 GiB is allocated by PyTorch, and 502.34 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261105T031624056867Z_f9c337740d00_f35c59/traceback.txt`。未回退模型或设置。
+
+## M4.1 C seed11显存恢复
+正式batch256在GPU0发生OOM，原run `20261105T030532326046Z_183ecaa7d8c3_f0579b`保留；22/33不中断。明确仅对11启用activation checkpointing，模型/batch/精度/曝光不变，重算成本计入35GPUh。
+前向逐元素一致、梯度1e-6容差单测通过；先做256×192 token压力smoke，再新run重试。旧controller会在22/33工作完成后因11旧失败退出；新恢复器等待其退出后读取现有receipt接续，不杀运行中的子进程。
+
+## M4.1 显存压力边界核实
+activation checkpointing下人为补到192 token的压力测试仍OOM，失败保留；这不是生产数据长度。随后仅对train/reader_val全量序列化长度审计（2,019,896训练行），最大实际长度48。
+新压力测试明确使用batch256×48（全部实际训练输入的上界），生产max_length=192及样本/模型/精度不变，不截断数据。审计data/M41_v1/length_audit.json；未访问test。
+
+## 2026-11-05 — M5a完整网格预算冲突
+5题代表性smoke通过，但原网格估算15.5GPUh（含裕量/已有成本）超过用户10GPUh上限，完整val300未启动。
+已准备两条可执行路径：原网格16GPUh；或10GPUh下仅S3 oracle做N16/b4全步（其余原设置不变，估算6.88GPUh）。均待用户预算/范围决定。
+本次Q1 dummy特征错误已修复并回归核对；合并推理数值差、批量iid seed协议、失败/中断成本限制详见[审查](../reports/M5a_REVIEW.md)。
+证据与接续：`data/M5a_preflight_v0/`、`docs/M5a_LIVE.json`；两项研究问题及最终统计缺失，不作收益结论。
+
+## 2026-11-05T06:10:13.700829+00:00 — 20261105T061013264903Z_bc637722f6bc_7437ab
+ValueError: Input changed since search startup: docs/M5a_TASK.md
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261105T061013264903Z_bc637722f6bc_7437ab/traceback.txt`。未回退模型或设置。
+
+## 2026-11-05T11:31:57.603133+00:00 — M5a投票覆盖补长
+全量300题/44400结果完成，greedy冻结核对全部一致；vote_289_11的4096条轨迹成本52937<oracle目标53493，故原gate=false。
+明确将该独立S1池上限扩至8192，沿相同batch128随机地址继续，单独run保留原证据，不改搜索设置/结果。
+实时GPU6空闲9997MiB，补长仅pad102，显式min_free9GiB、原fp32/batch128；预算现5.81GPUh<10。
+恢复证据与结果见data/M5a_v13/final_gate_diagnosis.json及configs/M5a_extend_votes_v13.yaml。
+
+## 2026-11-05T11:34:44.657867+00:00 — M5a v13完成待审查
+M5a继续授权后仅S3 oracle限N16/b4全步，其他网格/题/seed/K不缩小；10GPUh内完成。
+统计入口首次误用当前任务文档hash核对旧smoke，已改核对其启动时源码快照；保留失败日志，无新增GPU成本。
+离散投票存在不足一条轨迹余额，允许预算曲线可欠花且不外推缺失点；oracle MC/终点gold特权不构成严格数学上界。
+比例使用固定N16/b4三者实际费用最大值的共同预算；全计费时probe未花满，分母CI含零不解释比例。
+本次新增及预检限制见reports/M5a_search.md；旧预检失败/成本缺口原样保留，未作为零成本。
+
+## M4.1 自动接续暂停
+CalledProcessError: Command '['.venv/bin/python', 'scripts/m41_train_suite.py', 'configs/M41_train.yaml']' returned non-zero exit status 1.；详细日志reports/M41_pipeline.log。未静默更改预算或跳过关卡。
+
+## M4.1 收尾
+工程完成不等于G1通过；根因边界、初版合成控制失败、曝光/预算协议与剩余限制见[审查报告](../reports/M4.1_REVIEW.md)。
+
+## 2026-11-06T01:17:24.648282+00:00 — 20261106T011723751024Z_489485e78f12_fc2fec
+KeyError: 'root'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T011723751024Z_489485e78f12_fc2fec/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06T01:27:58.711671+00:00 — 20261106T012748428869Z_3ae3ced99718_ce42fb
+AttributeError: 'list' object has no attribute 'transpose'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T012748428869Z_3ae3ced99718_ce42fb/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06T01:28:44.399567+00:00 — 20261106T012836873883Z_3ae3ced99718_4baa53
+AttributeError: 'Branch' object has no attribute 'z'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T012836873883Z_3ae3ced99718_4baa53/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06T01:29:30.970652+00:00 — 20261106T012920375285Z_3ae3ced99718_af1855
+TypeError: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T012920375285Z_3ae3ced99718_af1855/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06T01:36:31.169923+00:00 — 20261106T013622023628Z_dba13f08b164_945646
+RuntimeError: Missing value-model FLOP profile
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T013622023628Z_dba13f08b164_945646/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06T01:38:37.734746+00:00 — 20261106T013716476785Z_a7f761ff5492_d6f6e8
+OutOfMemoryError: CUDA out of memory. Tried to allocate 84.00 MiB. GPU 0 has a total capacity of 47.51 GiB of which 73.75 MiB is free. Process 17376 has 1.52 GiB memory in use. Process 3576943 has 15.54 GiB memory in use. Process 3586263 has 7.55 GiB memory in use. Process 3778541 has 7.69 GiB memory in use. Process 3835359 has 4.63 GiB memory in use. Process 3894383 has 9.94 GiB memory in use. Of the allocated memory 8.96 GiB is allocated by PyTorch, and 561.74 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T013716476785Z_a7f761ff5492_d6f6e8/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06 — M5b A实现复核与历史test暴露
+早期A冻结输入干预混合raw均值与normalized当前状态，run `20261106T011905193452Z_6be830dc977b_a69c5e` 已读取test；全量结果排除，不作为调参/结论。正式按原任务实施从头重训、concat标准化前缀均值/当前及lite-single；设置在正式训练前锁定，不能宣称本里程碑test从未暴露。B3状态缓存OOM保留，显式改CPU缓存，模型/batch/精度/曝光不变；详见docs/M5b_TASK.md与data/M5b_v1/invalid_development_runs.json。
+
+## 2026-11-06T02:01:06.463319+00:00 — 20261106T020105753343Z_cecea963673f_9f4aa8
+FileNotFoundError: [Errno 2] No such file or directory: 'data/M5b_analysis_smoke/analysis'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T020105753343Z_cecea963673f_9f4aa8/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06T02:06:01.147061+00:00 — 20261106T020550829072Z_c8c264c55f6d_e4852e
+FileNotFoundError: [Errno 2] No such file or directory: 'data/M5b_eval_smoke_v1/evaluated_B3-prefix_11_smoke.json.tmp'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T020550829072Z_c8c264c55f6d_e4852e/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06T02:06:22.472011+00:00 — 20261106T020609343310Z_68b855ca28b4_7431f9
+FileNotFoundError: [Errno 2] No such file or directory: 'data/M5b_eval_smoke_v1/evaluated_CLR-lite-single_11_smoke.json.tmp'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T020609343310Z_68b855ca28b4_7431f9/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06T05:13:28.693528+00:00 — M5b收尾边界
+实验/统计完成；搜索收益关卡未通过，组内排序改善未转化为显著搜索收益。
+同覆盖率集合比较是使用评估标签的描述性诊断；计算匹配是平均前向预算上限，非严格等FLOPs/延迟。
+A早期无效test暴露仍构成隔离偏离；其处置与全部局限见[唯一审查](../reports/M5b_REVIEW.md)，不重复历史失败。
+
+## 2026-11-06T05:16:33.248867+00:00 — M5b收尾边界
+实验/统计完成；搜索收益关卡未通过，组内排序改善未转化为显著搜索收益。
+同覆盖率集合比较是使用评估标签的描述性诊断；计算匹配是平均前向预算上限，非严格等FLOPs/延迟。
+A早期无效test暴露仍构成隔离偏离；其处置与全部局限见[唯一审查](../reports/M5b_REVIEW.md)，不重复历史失败。
+
+## 2026-11-06T06:38:10.054908+00:00 — 20261106T063809562300Z_4807a4b10761_3ee448
+FileNotFoundError: [Errno 2] No such file or directory: 'data/M6_v1/runs/20261106T063809562300Z_4807a4b10761_3ee448.json.tmp'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T063809562300Z_4807a4b10761_3ee448/traceback.txt`。未回退模型或设置。
+
+## M6 可选Huginn与启动状态（2026-11-06）
+实时8卡均被占用，无整张空闲≥24GB GPU；按任务许可暂缓Huginn，不阻塞CODI双源。
+首次smoke在模型加载前因台账父目录缺失退出（GPU0h/源前向0）；新增mkdir后独立重启，旧run保留。
+证据：reports/M6_source_smoke.log；当前reports/M6_source_smoke_v2.log；后续新增错误由recorded逐项记录。
+
+## 2026-11-06T06:39:18.778439+00:00 — 20261106T063842269771Z_4807a4b10761_a8f3d7
+ValueError: The `past_key_values` should be either a `Cache` object or `None`.
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T063842269771Z_4807a4b10761_a8f3d7/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06T07:09:57.303989+00:00 — 20261106T070035210710Z_f14e9fb1123a_81badd
+RecursionError: maximum recursion depth exceeded in __instancecheck__
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T070035210710Z_f14e9fb1123a_81badd/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06T07:29:37.210051+00:00 — 20261106T072936670814Z_71708f35daaa_8a3278
+ValueError: Missing RQ4 domain calibration data: source_gpt2_to_llama
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T072936670814Z_71708f35daaa_8a3278/traceback.txt`。未回退模型或设置。
+
+## M6 RQ1图表入口环境（2026-11-06）
+首次CPU报告在导入Pillow时缺GLIBCXX_3.4.29，尚未创建run、GPU0h；证据reports/M6_rq1_report.log。
+仅提前导入torch仍失败；显式LD_LIBRARY_PATH=/home/me/anaconda3/envs/latdefer/lib后成功，记录于控制器runtime_env及启动环境。未换模型/数据。
+
+## M6控制器日志命名（2026-11-06）
+控制器首次rq1_report复用了独立运行同名log，覆盖了首次CPU导入失败日志；首条原日志不可恢复，同错误第二次日志reports/M6_rq1_report_v2.log保留。
+无GPU/预测结果丢失；后续碰到既存log自动使用_controller序号，失败重启用_attempt序号，保留全部后续记录。
+
+## M6 A配置记录偏离（2026-11-06）
+A启动YAML继承未使用的M5b网格/v1字段，实际按M6固定小sigma/N8/b4/6步/lite+B3在启动源码实现；未加载/训练v1。协议正确但未全部YAML显式化，属新增配置偏离。
+原config/启动代码/逐题输出不改；事后审计data/M6_v1/rq1/configuration_audit.json明确非启动快照。未来入口改读configs/M6_rq1_explicit_protocol_v2.yaml，本次未补造旧元数据或新增GPU实验。
+
+## 2026-11-06T08:18:28.869442+00:00 — 20261106T064505704384Z_46346b5277a6_2acd02
+RuntimeError: No LLaMA sigma passes M0.1 drop/nondegeneracy gates
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T064505704384Z_46346b5277a6_2acd02/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06T08:18:35.761680+00:00 — 20261106T075705261265Z_0a05b2e7b9b2_2e99df
+RuntimeError: Required prior M6 run failed: runs/20261106T064505704384Z_46346b5277a6_2acd02
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T075705261265Z_0a05b2e7b9b2_2e99df/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06T08:25:12.380211+00:00 — 20261106T082511435547Z_62ca2bc6d9da_4da347
+RuntimeError: GPU free 1.58 GiB < required 14 GiB
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T082511435547Z_62ca2bc6d9da_4da347/traceback.txt`。未回退模型或设置。
+
+## 2026-11-06 — M7 新增协议与资源限制
+sender direct 33.8%（固定val80）/cot512 50.0%（val8 smoke），两者样本量不同；用户指定主协议统一程序化 commitment。
+部署时承诺来自模型，程序化与真实部署有差距；natural_commitment 仅作附加分析、不进主指标/调参/阈值。
+历史M3保留seeded消息+adapter+receiver logits，未保存raw relay KV；历史复放与新raw比对分开报告。
+完整val估算目标规模1层约179GiB；按15GiB授权减为1层/基础episode464+58+29+29+116，目标规模未达到。
+cal_B只有29独立组，α=.01阈值必为∞，不以经验FPR或问题重复数代替独立校准样本量。
+反事实只干预语义变量e，可能改变多条支持记录的团队字段；不声称单原始事件编辑。详见docs/M7_TASK.md、data/M7_v1/plan.json。
+
+## 2026-11-06 — M7 评估smoke启动兼容性
+评估入口在创建run前因Pillow/libLerc找不到GLIBCXX_3.4.29退出；日志reports/M7_evidence/calibration_smoke.log。
+与Idea A相同需Conda libstdc++，新增scripts/m7_env.sh固定LD_LIBRARY_PATH，并明确评估导入顺序；未换模型/精度/数据。
+首次失败未执行模型/CUDA调用，只有启动错误日志；重试另存日志和run。不把缺失启动run冒充已记录。
+
+## 2026-11-06 — M7 错配KV位置修正（test前）
+原错配receiver单条重编码供体，审计却读原/CF双条批次保存的供体；580个开发基础组中118个供体有1–4个左pad，post-RoPE物理位置因而不同。
+保留旧mismatch.jsonl；v2按供体原/CF批次重算、选取第一条并保留完整mask/位置，逐张量和metadata核对保存值后重算receiver。
+正式校准/检测改为显式读取mismatch_v2.jsonl，不回退旧版；reader主QA训练只用clean/CF，无须重训。
+修正smoke用reader_val2组，之后重算全部train/val/cal错配输出；test尚未生成，正式test直接生成v2。
+证据：configs/M7/mismatch_*_v2.yaml、reports/M7_evidence/mismatch_*_v2.log、data/M7_v1/mismatch_v2_complete.json。
+
+## M6 B1门槛未达，按用户预登记降级使用
+全部8点无drop<5pp且nondeg≥30%的设置；按已授权规则选sigma=2.0，drop=0.019895833333333335、nondeg=0.14777777777777779。
+LLaMA Q1标“标签退化程度高”，源内π分别定义；不把两源Q1视为相同V。证据data/M6_v1/noise_selection_v2.json；原4点失败保持不改。
+
+## M6 Q4前缀子集与CPU审计入口（2026-11-06）
+任务要求截ID前缀并复用GPT2原配对；子集不保证原完整split的正负数值边际精确相等，不重新配对；完整data_audit将报告TVD/计数。
+独立CPU审计首次缺PYTHONPATH，创建run前失败，GPU0h；日志reports/M6_audit_marginals_smoke_v2.log保留。
+按控制器环境重启通过：runs/20261106T122304750730Z_ae564d11b4f6_2cfc7c，仅train/val代理，无reader test；审计补充不改变标签或训练。
+
+## M6 迁移标签预算与跨步支持（2026-11-06）
+C3的N只计目标训练QA标签；固定reader_val用于选模，cal_A250题用于所有模型校准，均不计入N，不能将N称为全部监督预算。
+跨步cal t≤2、eval t≥4的支持集分离，不满足真实重要性加权的重叠前提；estimated/clipped weighted仅经验诊断，须并列集合大小，不能以全集覆盖宣称有效保证。
+方法/标签/划分不改；详细报告显式说明，最终统计仍未完成。
+
+## M6 — Q4 ID前缀的数值边际不平衡
+完整审计：reader_train6817题TVD=0.1298147604，reader_val1000题TVD=0.1981981982；cal/test均为0（seen模板、正负数值分布）。
+ID前缀不构成原配对闭集；保持用户指定ID前缀与GPT2原配对，不重新配对。不能把训练/reader_val写为数值边际精确平衡；两模型同面板，限制须随Q4结果报告。
+证据：runs/20261106T185147038791Z_b8b05e845c1b_9144da/audit.json。
+
+## M6 — 可选D数据的队列优先级修正
+原控制器缺少C2/C4前的LLaMA unseen准入判断；在C1进行中修复为C3→D→C2→C4，并继续预留所有已承诺推断。
+仅向旧控制器PID发送SIGINT，使线程池等待C1既有队列完成后交接；不向GPU子进程发送信号，不改训练设置。新控制器复用原配置、已完成run与checkpoint。
+证据：data/M6_v1/controller_handover_20261107.json、configs/M6_priority_resume.yaml、reports/M6_tests_priority_v2.log（18 passed）；接续tmux clr-m6-priority。
+
+## 2026-11-06T19:45:45.644148+00:00 — 20261106T082813762598Z_ad8b9322f77d_4cb371
+RuntimeError: M6 child failed: production_noise_v2; reports/M6_production_noise_v2.log
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T082813762598Z_ad8b9322f77d_4cb371/traceback.txt`。未回退模型或设置。
+
+## M6 — 可选 Huginn 资源复核与预算
+接续时GPU0出现整张空闲；初始“无空闲卡”快照不代表全程资源状态。
+历史2题计时外推完整复现约26.0GPUh（不确定性高），已超过B剩余2.10GPUh，且尚不含要求的数据生成；不准入，不追加GPU实验。
+资源快照/成本依据data/M6_v1/huginn_admission.json；历史复现未完成，不以CODI结果代替。
+
+## M6 — 最终推断调度交接
+串行最终推断预计延长等待，改为三GPU独立队列；回归测试验证索引完整及shift/report等待屏障。
+CPU控制器SIGINT等待现有C3全量队列结束后交接；GPU作业不被中断，旧父控制器退出失败按原样保留。无模型/训练/校准设置变化，成本继续累计。
+证据data/M6_v1/controller_handover_parallel_eval.json、reports/M6_tests_parallel_eval_v6.log（20 passed）；接续tmux clr-m6-parallel。
+
+## 2026-11-06T22:15:37.228609+00:00 — 20261106T192534243350Z_180e2864dfe1_80d0d0
+RuntimeError: Resumed M6 controller failed; reports/M6_priority_pipeline.log
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261106T192534243350Z_180e2864dfe1_80d0d0/traceback.txt`。未回退模型或设置。
+
+## M6 — C2/C4最终预算省略（test前锁定）
+C2估计训练7.96GPUh+推断预留6.26GPUh，连同已用15.8GPUh超CD27，未执行。
+C4仅N100两源/三seed完成；完整族实测0.0210训练秒/QA、0.00811推断秒/QA后，N300/1k/3k/full训练估计1.84/2.72/5.24/171GPUh，含新增族推断预留12.8GPUh，均未准入。
+96个checkpoint及省略范围已在最终reader test前锁定；不能声称有完整多源结果或N≥300的B5b比较。
+证据data/M6_v1/training_lock.json、pipeline_noise_v2.json的cost_admissions；无基于test的准入选择。
+
+## 2026-11-07T05:31:28.358961+00:00 — 20261107T053104602592Z_8b16775e11a4_66c9ad
+RuntimeError: cumsum_cuda_kernel does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True)'. You can turn off determinism just for this operation, or you can use the 'warn_only=True' option, if that's acceptable for your application. You can also file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation.
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261107T053104602592Z_8b16775e11a4_66c9ad/traceback.txt`。未回退模型或设置。
+
+## 2026-11-07 — M7.1 层扫描探针优化修订
+初版scan训练损失在高维标准化输入上明显振荡（lr=.01），暂停未启动源数据的控制器，保留全部扫描run。
+仅据训练内loss预先设v2 lr=.0003/1000steps；选层规则/800–200组划分不变，尚无C1或test反馈。
+证据configs/M71/scan_v2.yaml、reports/M71_evidence/layer_scan.log；两版成本均计入30GPUh。
+
+## 2026-11-07 — M7.1 source扩展入口缩进修复
+扩展raw controls后GPU2资源smoke入口在Python解析阶段IndentationError，尚未创建run或加载CUDA模型。
+修复缩进并全入口py_compile通过；原日志reports/M71_evidence/source_smoke_gpu2.log保留，重试另存。
+
+## 2026-11-07 — M7.1 controls smoke配置入口
+首次启动在load_config拒绝YAML未声明的新覆盖键include_controls，未创建run或调用模型。
+显式新增configs/M71/controls_smoke.yaml承载两个控制开关；旧日志controls_smoke.log保留，重试另存v2。
+
+## 2026-11-07T06:07:21.706837+00:00 — 20261107T060721353754Z_d709b25b9104_d97209
+RuntimeError: Source GPU free 11GiB below configured requirement
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261107T060721353754Z_d709b25b9104_d97209/traceback.txt`。未回退模型或设置。
+
+## 2026-11-07 — M7.1 CPU统计布局入口记录
+首次人工12组统计布局诊断通过，但以临时Python入口执行，启动源码未纳入run快照；不冒充完整可复现的启动记录，排除正式指标。
+新增scripts/m71_statistics_smoke.py与configs/M71/qa_analysis_smoke.yaml后按正式YAML入口重跑；仅人工val代理，无源模型调用、无test访问、0GPUh。
+保留两版日志reports/M71_evidence/statistics_val_proxy_smoke{,_v2}.log及对应run；不改任何科学协议或冻结结果。
+
+## 2026-11-07 — M7.1 natural收尾控制器入口修复
+调度器v2 YAML的seed映射用了整数键，被严格配置loader拒绝；尚无模型调用或test读取。改用新config natural_finish_v3.yaml的字符串键，原配置/错误日志保留；模型、子集、批次、阈值未改。
+证据：reports/M71_evidence/natural_finish_v2.log；新控制器同源码、新配置。
+
+## 2026-11-07T12:43:28.672711+00:00 — 20261107T120616525909Z_944261a2f7c0_691d01
+FileExistsError: data/M71_v1/pool/source/test/natural_commitment.jsonl
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261107T120616525909Z_944261a2f7c0_691d01/traceback.txt`。未回退模型或设置。
+
+## 2026-11-07T12:58:37.045186+00:00 — 20261107T121722207176Z_7dd6f8e381b6_5e441d
+ValueError: M7.1 run still open: runs/20261107T121722207176Z_7dd6f8e381b6_5e441d
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261107T121722207176Z_7dd6f8e381b6_5e441d/traceback.txt`。未回退模型或设置。
+
+## 2026-11-07 — M7.1完成待审查
+投影准确率只过点门槛，A4损失区间较宽；程序化承诺部署差距与历史raw缺证据保留；text仅test300，不能当作全test2000。
+A2/A3近随机；A1 held-out从99.5%降至88.4%，natural未检出诚实推理错误；监督参照未学会，不能充当oracle上界。
+收尾路径闭合bug用新版本修复，原统计/失败run保留；三seed CF=97.9/99.9/81.6%，组CI不包含重训seed方差。
+唯一审查reports/M7.1_REVIEW.md；完整证据reports/M7.1_details.md、data/M71_v1/analysis_v3/。
+
+## 2026-11-07T20:23:44.608873+00:00 — 20261107T202336020393Z_a73a1f74e407_c7c887
+ValueError: Nonintegral public arithmetic
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261107T202336020393Z_a73a1f74e407_c7c887/traceback.txt`。未回退模型或设置。
+
+## 2026-11-07T20:23:44.997746+00:00 — 20261107T202335153436Z_cdecbfbad0b7_423222
+ValueError: Nonintegral public arithmetic
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261107T202335153436Z_cdecbfbad0b7_423222/traceback.txt`。未回退模型或设置。
+
+## 2026-11-07T20:23:45.646847+00:00 — 20261107T202335304820Z_cc0a5e74207b_6c5e79
+ValueError: Nonintegral public arithmetic
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261107T202335304820Z_cc0a5e74207b_6c5e79/traceback.txt`。未回退模型或设置。
+# 2026-11-08 M8a 新增限制（执行中）
+两篇文献初始代理请求Connection refused，禁用失效代理后直连已成功取回原文；scope为latent-thought KV，本项目为full-prefill KV，文献方法只能标适配基线，不声称原系统逐项复现。E2真实数域零空间存在FP32矩阵乘舍入残差；额外丢弃改变fp16特征的记录更新以保证实际reader输入逐位一致，单独报告FP32残差。详情最终reports/M8a_details.md。
+
+
+## 2026-11-08 M8a 完成限制
+A1训练负例未覆盖e+2，seed33置信度及校准门限异常有cal_B证据；E2只保证实际fp16 reader输入逐位一致，FP32舍入残差明示。文献为full-prefill适配，未复现原latent-thought拓扑/PCA/RePS。有限PGD/4面板EOT/早停不构成鲁棒保证；50/200主曲线相同主要反映早停。clean receiver准确率仅30.8%，原本目标命中26.8%；主指标排除原本目标，另报clean-correct154组条件失效。正文、逐组CI及运行证据见reports/M8a_REVIEW.md。
+
+## 2026-11-08T06:31:21.881940+00:00 — 20261108T063044359115Z_ec97354b8d4f_b3b200
+KeyError: 'sha256'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261108T063044359115Z_ec97354b8d4f_b3b200/traceback.txt`。未回退模型或设置。
+
+## 2026-11-08T06:33:50.630971+00:00 — 20261108T063242344584Z_85a04fb5da6c_d02266
+FileNotFoundError: [Errno 2] No such file or directory: 'docs/M8b_LIVE.json.tmp' -> 'docs/M8b_LIVE.json'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261108T063242344584Z_85a04fb5da6c_d02266/traceback.txt`。未回退模型或设置。
+
+## 2026-11-08 — M8b 开发与协议限制
+LIVE并发临时文件冲突已加文件锁，freeze字段兼容已修复；原失败记录/成本保留。R2 seed33一次进程消失无终态，原记录不补造；额外保守计入10.1分钟上界，同设置在GPU5重启。
+R2当前固定随机f、128维、冻结主体的新适配器在val A1/A4接近随机；warm小样本诊断亦未充分学好，不作为有效鲁棒性提升。所有负面结果保留。
+随机f现场/缓存改为同一fp16充分统计；反传inplace问题在val前修复并加raw-KV梯度测试。完整数据实占17.5GiB（初次文字估算误算13.5GiB），未发生I/O错误。
+详情docs/M8b_TASK.md、reports/M8b_evidence/，最终test尚未打开。
+
+## 2026-11-08T13:29:23.529105+00:00 — 20261108T132913426339Z_6d673f74ff63_62766a
+ValueError: Source replay differs: R3 {'exact_fraction': 0.9999999403953552, 'max_absolute': 0.0}
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261108T132913426339Z_6d673f74ff63_62766a/traceback.txt`。未回退模型或设置。
+
+## 2026-11-08T16:08:42.752020+00:00 — 20261108T160830165990Z_f922e56d8f22_40af4f
+ValueError: Source replay differs: R2 {'exact_fraction': 0.9984580592105263, 'max_absolute': 0.00390625}
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261108T160830165990Z_f922e56d8f22_40af4f/traceback.txt`。未回退模型或设置。
+
+## 2026-11-08T16:10:23.504553+00:00 — 20261108T161023220310Z_186a526b8a56_0bae0c
+RuntimeError: GPU memory precheck
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261108T161023220310Z_186a526b8a56_0bae0c/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09 M8b test前预算调整
+完整val外推加20%余量与加载预留，主500+额外λ500预计27.4GPUh>25。
+主500/三seed/四设计/E1–E3/四ε/50与200全部保留；附加λ=.1/10敏感性改固定102组，ID在test前按无标签规则冻结，不能把其CI当500组。
+主表λ1及三λ102组附加结果分列；配置、公式和冻结ID见docs/M8b_TASK.md、data/M8b_v1/budget_lock.json。
+
+## 2026-11-09 M8b 完成限制
+R2/R4语义读取未达近完美；新适配器的训练负例修复、初始化与f维度均可能影响设计比较，负面结果完整保留。
+R1均值NLL规则不满足独立单问veto指数定理；有限PGD/EOT与成功早停只给经验失效，不能证明最坏情况鲁棒性。
+E1/E2针对原f盲区；R4需先消费消息，不能在消费前拒收。共享GPU时延、CPU/GPU舍入修复及孤儿run成本缺证据见reports/M8b_REVIEW.md。
+
+## 2026-11-09T01:10:20.857960+00:00 — 20261109T011013351421Z_bdabd784be93_7aa729
+ValueError: Public answer references do not match candidates
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261109T011013351421Z_bdabd784be93_7aa729/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09T01:12:42.162775+00:00 — 20261109T011216792176Z_bdabd784be93_7581c5
+RuntimeError: M8c direct-lookup admission gate failed
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261109T011216792176Z_bdabd784be93_7581c5/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09T01:30:22.596550+00:00 — 20261109T013022218907Z_acc23fc19a4c_e65e05
+RuntimeError: Adapter GPU memory precheck failed
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261109T013022218907Z_acc23fc19a4c_e65e05/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09T01:31:05.935930+00:00 — 20261109T013105546699Z_f883ca61198a_a46111
+RuntimeError: Adapter GPU memory precheck failed
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261109T013105546699Z_f883ca61198a_a46111/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09T01:31:31.268355+00:00 — 20261109T013129855015Z_04f475f20e4f_edb344
+RuntimeError: M8b total GPU budget exceeded
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261109T013129855015Z_04f475f20e4f_edb344/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09T02:19:20.385759+00:00 — 20261109T021920039300Z_6928b71c0a29_bf9d8c
+RuntimeError: Adapter GPU memory precheck failed
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261109T021920039300Z_6928b71c0a29_bf9d8c/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09T03:06:49.666885+00:00 — 20261109T030642082724Z_e02c2e28a946_42e3f9
+OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 5 has a total capacity of 47.51 GiB of which 18.75 MiB is free. Process 17303 has 1.52 GiB memory in use. Process 537856 has 704.00 MiB memory in use. Process 538953 has 22.79 GiB memory in use. Process 1118439 has 15.98 GiB memory in use. Process 1319700 has 6.49 GiB memory in use. Of the allocated memory 6.05 GiB is allocated by PyTorch, and 1.70 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261109T030642082724Z_e02c2e28a946_42e3f9/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09 M8c开发记录
+full日志依赖门槛失败，按授权short通过；R4低曝光仅诊断，正式三seed各≥4.224M问题。
+共享GPU5加载OOM未换模型/精度；一个误启重复val诊断已中止，真实记录及保守成本补差保留。
+M8b LIVE误更新已修复；上游实际33897文件SHA均一致，详data/M8c_v1/upstream_prelock.json。
+
+## 2026-11-09T04:13:01.741567+00:00 — 20261109T041301368563Z_8e83cd288ddb_e0d696
+KeyError: 'max_context'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261109T041301368563Z_8e83cd288ddb_e0d696/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09T05:43:33.721104+00:00 — 20261109T041333353840Z_482eec68a407_a050a8
+RuntimeError: M8c wall-time limit
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261109T041333353840Z_482eec68a407_a050a8/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09 M8c 新test协议预算未准入
+用户要求主test n≥200；当前新三ε矩阵最大可行估计124组，点估计181组，保守做满200组累计20.2GPUh>15。
+按用户规则停止GPU任务，等待追加预算决定；test未打开，旧60组方案从未锁定或执行，次要100组尚未执行。
+val主矩阵90分钟触发超时（19/20组完整），旧λ敏感性中止按原心跳加终止上界补差计费；所有部分记录保留。
+吞吐来自19完整val组，末组截断可能低估长尾；有限PGD曲线非单调不能解释为认证鲁棒性。详细reports/M8c_REVIEW.md、data/M8c_v1/budget_feasibility.json。
+
+## 2026-11-09T14:10:44.837006+00:00 — 20261109T061044089104Z_8ab574f90d00_cd6884
+RuntimeError: M8c wall-time limit
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261109T061044089104Z_8ab574f90d00_cd6884/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09T14:10:48.060581+00:00 — 20261109T061036143169Z_8412e9a482af_508978
+RuntimeError: Primary child failed: ['final_test_seed22']
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261109T061036143169Z_8412e9a482af_508978/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09T17:29:21.979064+00:00 — 20261109T144316687997Z_9adf6a431b6a_5bec2b
+RuntimeError: M8c GPU budget shutdown reserve reached
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261109T144316687997Z_9adf6a431b6a_5bec2b/traceback.txt`。未回退模型或设置。
+
+## 2026-11-09 M8c 交付限制
+21GPUh预算内实际λ网格、最小扰动样本规模与E1/E2未执行范围均见reports/M8c_REVIEW.md及budget_lock.json，未把部分网格冒充全量。
+二分为有限PGD搜索，不是认证最小值；未成功/原已目标/截尾及独立报告检测另列，条件比值不能代表所有episode。
+依赖门槛仅验证群体依赖；R4在消费消息后检测，conformal clean阈值不保证自适应攻击下的检测率。
+
+## 2026-11-10T05:31:02.025010+00:00 — 20261110T053055184672Z_fa94d5b3eb4d_29a6e7
+KeyError: 'ci95'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T053055184672Z_fa94d5b3eb4d_29a6e7/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10T05:46:30.642386+00:00 — 20261110T054401981250Z_42c3172908df_f047ab
+KeyError: 'options'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T054401981250Z_42c3172908df_f047ab/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10 M9交付限制
+LLaMA B0/prefix/single-state对照缺失，论文标NA，按任务不补跑；联合/单源比较有训练规模及优化混杂。
+CPU导出旧格式缺元数据/区间字段错误保留失败run；用冻结QA恢复选项，逐项复放原conformal值，无新推断。
+首次制图环境代理安装失败，直连完成；系统缺LaTeX引擎，未执行TeX编译。早期成本缺口标下界，不给项目完整总计。
+静态协议v1保留但不用于论文，v2读取实际冻结噪声选择；控制器调度交接保留历史running记录与终止说明。
+结论边界与不能主张清单见reports/FINAL_SUMMARY.md；以上未靠新增实验补齐。
+
+## 2026-11-10T09:48:25.362637+00:00 — 20261110T094822526172Z_4647f82145ec_60f395
+ValueError: Out of range float values are not JSON compliant: inf
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T094822526172Z_4647f82145ec_60f395/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10T09:58:10.376627+00:00 — 20261110T095720277292Z_6a754f2457ab_0cb2f7
+OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 3 has a total capacity of 47.51 GiB of which 18.69 MiB is free. Process 1565510 has 9.98 GiB memory in use. Process 3956603 has 17.74 GiB memory in use. Process 272553 has 10.91 GiB memory in use. Process 293745 has 8.46 GiB memory in use. Of the allocated memory 7.77 GiB is allocated by PyTorch, and 219.11 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T095720277292Z_6a754f2457ab_0cb2f7/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10T10:00:19.943383+00:00 — 20261110T095931513341Z_1f9c52542969_68953b
+OutOfMemoryError: CUDA out of memory. Tried to allocate 52.00 MiB. GPU 4 has a total capacity of 47.51 GiB of which 37.56 MiB is free. Process 1421060 has 30.73 GiB memory in use. Process 296103 has 1.03 GiB memory in use. Process 308848 has 15.69 GiB memory in use. Of the allocated memory 13.71 GiB is allocated by PyTorch, and 1.48 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T095931513341Z_1f9c52542969_68953b/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10T10:00:20.731520+00:00 — 20261110T095742657265Z_42ae1eb7dc8a_d0e886
+OutOfMemoryError: CUDA out of memory. Tried to allocate 262.00 MiB. GPU 4 has a total capacity of 47.51 GiB of which 169.56 MiB is free. Process 1421060 has 30.73 GiB memory in use. Process 296103 has 924.00 MiB memory in use. Process 308848 has 15.69 GiB memory in use. Of the allocated memory 395.05 MiB is allocated by PyTorch, and 16.95 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T095742657265Z_42ae1eb7dc8a_d0e886/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10 M10 LLaMA补充吞吐面板比例偏离
+LLaMA reader_val实际1000组；run 20261110T094237091635Z_bb9fab37a1bf_56ff0b的100组补充吞吐面板占10%，违反≤5% smoke要求，保留原记录。
+此前正式训练引用的20组smoke合规（2%），本次偏离未读test、不用于选模型；不能将100组面板写成合规smoke。
+新增自动5%组比例检查，补跑configs/M10/llama_CLR-lite-single_throughput_corrected50_smoke.yaml（50/1000）。失败/补跑成本均计入P1。
+
+## 2026-11-10 M10 B5c吞吐与P1资源竞争失败
+B5c batch64/checkpoint smoke先因GPU3新增占用OOM；换GPU4时与本任务P1 prefix22重叠，造成两项OOM，属调度失误。
+失败run/traceback均保留并计入各自子预算；prefix22以同一科学配置重跑，不择seed/换数据。
+新增M10逐GPU进程锁，禁止本任务两个新run同时占同卡；恢复P1后，B5c只在独立GPU2重测。
+证据reports/M10_evidence/B5c_gpt2_checkpoint64*_smoke.log、llama_B3-prefix_22_full.log；无test访问。
+复核另发现B5c把冻结主体强制eval使HF激活checkpoint未实际生效；已改为dropout=0的train模式（基座权重仍冻结），在独立GPU2新版本重新测量。
+
+## 2026-11-10 M10 P2-4 B5c全量预算准入未通过
+r16 LoRA/2层映射/Qwen3-1.7B的val-only smoke成功；实测batch16、真实checkpoint64、checkpoint512。
+最快实测下仅GPT2 Q3/Q4同一全训练集一遍×3seed已超过19GPUh；LLaMA/审计/校准/test另需成本，超过独立12GPUh上限。
+按用户预算取舍规则不启动全量、不擅自缩标签或seed；B5c最终比较缺失，论文不得声称CLR优于B5c。
+脚本scripts/m10_b5c_budget.py；配置configs/M10/B5c_budget_admission.yaml；精确估算data/M10_v1/B5c_budget_admission.json。未读test。
+
+## 2026-11-10T10:26:23.354307+00:00 — 20261110T102622070636Z_2c2c921ceb77_dcf9c7
+TypeError: Qwen3ForCausalLM.__init__() got an unexpected keyword argument 'dtype'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T102622070636Z_2c2c921ceb77_dcf9c7/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10T10:28:43.867756+00:00 — 20261110T102822333305Z_2c2c921ceb77_196890
+TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T102822333305Z_2c2c921ceb77_196890/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10 M10 HiddenBench协议与源smoke
+65案例仅63独立公开描述组，按13/20/4/20/6组冻结train/val/cal_A/cal_B/test；1%阈值只能为+∞，test仅6组，结果限探索性。
+原结论不可逆推出自由文本事实；commitment统一显式声明被审计事实及原结论，只做mismatch，不能外推counterfactual。
+复用M71真实KV特征与projection；通用文本选项显式增序列上限至384（局部位置<256），不截断、不套固定team编码。
+源smoke首次误用主环境dtype加载失败，通信环境重跑后汇总漏return失败；均保留计费，retry3通过，val1组=5%。
+训练smoke按QA标签抽≤5%；独立组粒度为1/13，有限场景无法达到组数≤5%，明确披露，val仍1/20。
+证据data/M10_v1/hiddenbench/protocol.json、source_smoke.json及reports/M10_evidence/hiddenbench_*；无test推断。
+
+## 2026-11-10T10:53:40.287891+00:00 — 20261110T105339605898Z_d1d410df3241_ab97a9
+FileNotFoundError: [Errno 2] No such file or directory: 'data/M10_v1/hiddenbench/protocol_public_v2.json'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T105339605898Z_d1d410df3241_ab97a9/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10 M10 HiddenBench公开评分契约澄清
+原结论及“审计事实”声明不足以推出其他候选事实不存在；test前新建protocol_public_v2.json，明确“候选面板中恰有一个事实”。
+所有类别统一声明；程序验证A1/A4实际模型输入、标签和期望标签逐项不变，KV/receiver提示不变，旧protocol.json保留。
+JSON字段首次按分号切分遇到事实内标点失败；改为JSON解码边界并加转义/分号单测；无test模型调用。
+新公开契约val-only评估smoke通过；证据public_protocol_verification.json、hiddenbench_public_v2_eval_smoke_retry2.log；11项单测通过。
+
+## 2026-11-10T13:30:08.820723+00:00 — 20261110T132949706064Z_c1aeb1a7d2a2_3a1082
+TypeError: latdef.utils.run.Run.write_metrics() got multiple values for keyword argument 'test_opened'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T132949706064Z_c1aeb1a7d2a2_3a1082/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10T13:30:12.477711+00:00 — 20261110T132951415825Z_8bf099707dc1_60e3c4
+TypeError: latdef.utils.run.Run.write_metrics() got multiple values for keyword argument 'test_opened'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T132951415825Z_8bf099707dc1_60e3c4/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10T13:31:38.681210+00:00 — 20261110T132952908184Z_bcc4a73b5a70_40810e
+TypeError: latdef.utils.run.Run.write_metrics() got multiple values for keyword argument 'test_opened'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T132952908184Z_bcc4a73b5a70_40810e/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10T13:37:18.516843+00:00 — 20261110T132951294202Z_8e9a03f8d101_7fc8e4
+TypeError: latdef.utils.run.Run.write_metrics() got multiple values for keyword argument 'test_opened'
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T132951294202Z_8e9a03f8d101_7fc8e4/traceback.txt`。未回退模型或设置。
+
+## 2026-11-10T15:25:25.640644+00:00 — 20261110T152525316247Z_ed7c1848e24f_fcb832
+SameFileError: PosixPath('/home/me/PaperField/CalReader/runs/20261110T152525316247Z_ed7c1848e24f_fcb832/config.json') and PosixPath('/home/me/PaperField/CalReader/runs/20261110T152525316247Z_ed7c1848e24f_fcb832/config.json') are the same file
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261110T152525316247Z_ed7c1848e24f_fcb832/traceback.txt`。未回退模型或设置。
+
+## M10b 新增工程失败与曝光说明
+首次source_snapshot自复制失败保留run/traceback，修复后同设置smoke通过；一次未source环境import失败，无GPU调用。
+前者原GPU计时缺失，独立账本保守计3.6秒；不作为模型结果。M10原B5c循环epochs1/min_epochs8未使用，M10b明确一遍完整标签。
+曝光少于八遍CLR/B6，不能单独归因架构/语言化设计；LLaMA、Q1/Q2、审计均不在授权范围。详情docs/M10b_TASK.md。
+
+## M10b 上游核验发现既有非指标日志差异
+136269项核验仅reports/M10_evidence/tests_final.log与M10冻结SHA不符；日志mtime23:03:33，M10 freeze23:02:05/audit23:02:22，M10b首run23:25:25。
+这是M10b启动前的pytest stdout改写；原字节未找到，不重造、不修改旧freeze，当前字节与SHA/时间保存在data/M10b_v1/preexisting_log_drift.json。
+其余模型/数据/指标136268项一致；科学实验继续，最终报告将此列为未通过的字节完整性例外，不声称上游全部一致。
+
+## 2026-11-11T04:02:43.312671+00:00 — 20261111T040027345050Z_36af86beac40_113c40
+OutOfMemoryError: CUDA out of memory. Tried to allocate 420.00 MiB. GPU 3 has a total capacity of 47.51 GiB of which 337.56 MiB is free. Process 1565510 has 10.48 GiB memory in use. Process 1830350 has 11.74 GiB memory in use. Process 548240 has 8.77 GiB memory in use. Process 548373 has 16.17 GiB memory in use. Of the allocated memory 7.58 GiB is allocated by PyTorch, and 731.89 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261111T040027345050Z_36af86beac40_113c40/traceback.txt`。未回退模型或设置。
+
+## 2026-11-11 M10b seed33资源中断与恢复
+seed11/22完整完成；33于12:02共享GPU3显存OOM（0.0377GPUh保留），原控制器退出，预算watch只防硬上限未自动恢复；17:00状态检查发现。
+所有卡空闲<9GiB，原设置峰值预留19.4GiB；新增CPU队列连续3次≥22GiB后同设置重跑33，仅device可变，不重训11/22；等待0GPUh。
+当前12.5/22GPUh，按最慢完整seed+2GPUh预留预计21.4；ETA为恢复后8–9h加资源等待。详细接续docs/M10b_EXECUTION_CONTINUATION.md。
+
+## 2026-11-11T11:27:10.260703+00:00 — 20261111T112434784211Z_beec019ccbd0_c9844b
+OutOfMemoryError: CUDA out of memory. Tried to allocate 280.00 MiB. GPU 1 has a total capacity of 47.51 GiB of which 176.00 MiB is free. Process 3076674 has 8.76 GiB memory in use. Process 3133646 has 8.41 GiB memory in use. Process 3698541 has 20.25 GiB memory in use. Process 3678761 has 9.89 GiB memory in use. Of the allocated memory 8.83 GiB is allocated by PyTorch, and 568.33 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261111T112434784211Z_beec019ccbd0_c9844b/traceback.txt`。未回退模型或设置。
+
+## 2026-11-11 M10b无显存阈值实际OOM
+依用户取消显存阈值等待/退出，以GPU1、min_free_GiB=0和完整原batch512尝试；首batch实际OOM，申请280MiB时仅余176MiB。
+run20261111T112434784211Z_beec019ccbd0_c9844b失败0.0431GPUh保留计费，累计12.54/22；11/22已完成权重不动，33未完成、未test。
+原等待队列已停；当前停止依据是真实OOM，不再使用显存阈值，预算硬上限保留。证据data/M10b_v1/controller_resume_v3.log。
+
+## 2026-11-12T01:18:18.742059+00:00 — 20261112T011813077212Z_d14fbe16e0be_6d04d0
+ValueError: FLOP instrumentation failed equivalence check
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261112T011813077212Z_d14fbe16e0be_6d04d0/traceback.txt`。未回退模型或设置。
+
+## 2026-11-12T01:19:03.209141+00:00 — 20261112T011857895959Z_d14fbe16e0be_ca0f95
+ValueError: FLOP instrumentation failed equivalence check: CLR-lite Q3 b1 FLOPs=0.0, error=0.0, argmax=True
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261112T011857895959Z_d14fbe16e0be_ca0f95/traceback.txt`。未回退模型或设置。
+
+## M10c 开销口径与完整性例外
+B3独立训练账本缺失，NA；GPU共享，未测独占/端到端预处理延迟。
+两次smoke FLOP计数为0，no_grad修复且完整计费；trace与精确口径见reports/M10c_details.md。
+启动前已有M10b完成stdout/LIVE哈希漂移，不改旧freeze；科学哈希一致，见data/M10c_v1/upstream_audit.json。
+M10 pytest日志既有例外已按授权加FINAL_SUMMARY；独立paper复现通过，未编译TeX。
+
+## 2026-11-12 — M10d 环境接续
+CPU汇总首次因系统libstdc++缺GLIBCXX_3.4.29退出；显式使用latdefer/lib后同协议重跑成功（reports/M10d_summary*.log）。
+内置TeX编译器CryptUnprotectData失败；改用项目内独立Tectonic，未改论文科学内容。首次编译器下载因默认代理拒连改为直连。
+最终编译与范围验证见data/M10d_v1/manuscript_validation.json；模型/阈值无回退。
+
+## 2026-11-12 — M10d 编译接续
+独立Tectonic已完成8页编译；默认TU编码使Times字体回退，采用独立build wrapper指定T1以匹配原pdfLaTeX字体，正文源不改。
+日志reports/M10d_compile*.log；完整编译状态/页数/显示核验见data/M10d_v1/manuscript_validation.json。
+
+## 2026-11-12T07:25:34.045065+00:00 — 20261112T072248432462Z_189260e52f8b_40c2ab
+AssertionError: ({'source': 'llama', 'model': 'B2', 'split': 'reader_val', 'qtype': 'Q4', 'kind': 'clean', 'metric': 'accuracy', 'mean': 0.4994279994279994, 'lo': 0.4920152295152295, 'hi': 0.5067925067925069}, 2.3833357166824776e-05)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261112T072248432462Z_189260e52f8b_40c2ab/traceback.txt`。未回退模型或设置。
+
+## M10e — 方法适配与论文交接
+HSRM按任务用Bernoulli BCE替代原文组内排序；CLUE末层prefix delta替代原文全层显式思维边界，完整轨迹质心不随t重训。
+无模型/训练精度/批大小降级；CPU导出精度审计失败后按既有表1 float64口径双重重放修复，原日志/预测/温度保留。
+论文改稿/8页编译按用户后续指令交给另一个对话，不能标作已验收。证据reports/M10e_details.md、M10e_PAPER_HANDOFF.md。
+
+## 2026-11-12 — M11-qual 导出边界与修复
+M8c未保存扰动张量和同一攻击的另一设计审计分数；按授权仅导出已有分数，缺字段显式null，未重跑PGD。
+Q4补足沿用跨题中间量负例族、按供体哈希固定；不宣称扩展面板仍有原题库精确数值边际匹配。
+附加LLaMA linear_probe无冻结conformal阈值，标null；任务必需Q3方法的阈值/集合完整。
+M5b冻结值为排序logits，原值保留，另用冻结同权重Q1温度计算概率；未拟合新温度。
+两次val smoke因reader_val无MC文件、旧conformal未按方法/seed过滤失败，已修复；未访问test样本，费用全部保留。
+原trace：runs/20261112T120657331440Z_7860e4ef7195_cfca45、runs/20261112T120930019017Z_7860e4ef7195_38ca87；详见reports/M11_qual_REVIEW.md。
+
+## M12 — 数值调用形状核验
+初始严格训练等价测试发现二分类头3D/原2D调用有微小舍入差；正式训练前恢复原2D形状，四类型输出与梯度逐bit测试通过。
+原/修正版smoke run均保留，修正版全关卡重跑且所有成本计入；未访问test。证据reports/M12_evidence/unit.log、unit_v2.log及各run启动源码快照。
+
+## 2026-11-12T19:22:57.294160+00:00 — 20261112T192135363582Z_7d7cf0bfdc8a_60af67
+OutOfMemoryError: CUDA out of memory. Tried to allocate 96.00 MiB. GPU 3 has a total capacity of 47.51 GiB of which 88.75 MiB is free. Process 1565510 has 12.16 GiB memory in use. Process 3229549 has 7.69 GiB memory in use. Process 450607 has 8.04 GiB memory in use. Process 581864 has 15.99 GiB memory in use. Process 583702 has 3.24 GiB memory in use. Of the allocated memory 2.58 GiB is allocated by PyTorch, and 155.34 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261112T192135363582Z_7d7cf0bfdc8a_60af67/traceback.txt`。未回退模型或设置。
+
+## M12 — A4 seed11共享显存OOM及恢复
+GPU3在首epoch一个优化步后OOM，失败run保留并计0.0225GPUh，未触test。
+同模型/batch1024/bf16/完整曝光重新训练至GPU0；A4 seed22/33不中断。
+恢复证据data/M12_ablation/recovery.json；原控制器等待另两seed后退出，接续复用完成回执。
+
+## 2026-11-12T22:14:02.887621+00:00 — 20261112T194218454921Z_9ee3281182c3_923a43
+RuntimeError: Recovered pipeline failed with exit code 1
+完整 traceback: `/home/me/PaperField/CalReader/runs/20261112T194218454921Z_9ee3281182c3_923a43/traceback.txt`。未回退模型或设置。
+
+## M12 — 置换脚本依赖导入恢复
+最终15份评估已完成；置换入口在recorded/GPU初始化前因Pillow/libLerc需要GLIBCXX_3.4.29退出。
+显式LD_PRELOAD现有latdefer libstdc++.so.6后依赖导入预检通过；不改科学代码/配置/数据/精度。
+从置换阶段接续，不重跑训练/已有评估；证据data/M12_ablation/postprocess_environment_recovery.json。
+
+## M12 — CPU bootstrap等价提速
+原高级索引合成计时41.1秒，计数矩阵0.398秒；10000次RNG(11)抽样完全相同、合成点估计/CI误差≤1e-14，9测试通过。
+显式中止旧CPU统计后重新读取原预测汇总，无新GPU/推断/校准；旧日志/源码快照保留。
+证据data/M12_ablation/statistics_runtime_recovery.json；旧冻结实现未改。
+
+## M12 — 解释范围
+A1保留原逻辑位置及规范化排序；零置换敏感性不能证明选项隔离，raw诊断另列。
+复用设计有不同训练数据/曝光；其差异不作严格单组件因果结论；bootstrap条件于原校准集。
+新增未解决运行阻塞：无。
+详细reports/M12_details.md；旧科学输入SHA核验见data/M12_ablation/upstream_audit.json。

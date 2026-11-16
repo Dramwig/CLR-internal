@@ -1,0 +1,20 @@
+{
+  "stage": "frozen_complete_pending_review",
+  "P0": "data/M8a_v1/P0.json",
+  "milestone_complete": true,
+  "updated_utc": "2026-11-07T23:28:01.446928+00:00",
+  "run": "/home/me/PaperField/CalReader/runs/20261107T204909107156Z_5f6d242b37b6_9b6a06",
+  "final_lock": "data/M8a_v1/final_lock.json",
+  "test_groups": 500,
+  "background_tasks_active": false,
+  "completed_parts": 4,
+  "total_parts": 4,
+  "report": "reports/M8a_REVIEW.md",
+  "analysis": "data/M8a_v1/analysis_v1",
+  "gpu_hours": 9.57106873426027,
+  "freeze": "data/M8a_v1/freeze.json",
+  "verification": "data/M8a_v1/verification.json",
+  "review": "reports/M8a_REVIEW.md",
+  "report_bytes": 5327,
+  "finalizer_run": "/home/me/PaperField/CalReader/runs/20261107T205422202212Z_22960895a288_5fcb1c"
+}

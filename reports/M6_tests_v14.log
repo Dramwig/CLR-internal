@@ -1,0 +1,93 @@
+...........F..                                                           [100%]
+=================================== FAILURES ===================================
+_______ test_final_statistics_fixture_clean_scope_and_three_seed_pairing _______
+
+tmp_path = PosixPath('/tmp/pytest-of-me/pytest-258/test_final_statistics_fixture_0')
+
+    def test_final_statistics_fixture_clean_scope_and_three_seed_pairing(tmp_path):
+        import pyarrow as pa
+        import pyarrow.parquet as pq
+        from scripts.m6_report import collect
+        lock={'models':{}};index={}
+        for source in ['gpt2','llama']:
+          for family in ['lite','b3']:
+           for sd in [11,22,33]:
+            key=f'single_{source}_{family}_{sd}';root=tmp_path/key;root.mkdir();index[key]={source:str(root)}
+            lock['models'][key]={'config':{'seed':sd,'kind':family,'n_labels':None}}
+            for split in ['reader_val','test']:
+             for q in ['Q1','Q2','Q3','Q4']:
+              rows=[]
+              for pid in ['a','b','c']:
+               for t in [0,1]:
+                rows.append({'problem_id':pid,'state_ref':{'t':t,'kind':'clean'},'label':2 if q=='Q3' else 1,'label_soft':1.,'calibrated_logits':([0.,0.,1.,0.] if family=='lite' else [1.,0.,0.,0.]) if q=='Q3' else [0.,1.]})
+              if split=='reader_val' and q in ['Q1','Q3']:
+                # These deliberately wrong trajectory predictions cannot dilute
+                # the clean M4.1 primary comparison.
+                for pid in ['a','b','c']:rows.append({'problem_id':pid,'state_ref':{'t':1,'kind':'traj'},'label':2 if q=='Q3' else 1,'label_soft':1.,'calibrated_logits':[1.,0.,0.,0.] if q=='Q3' else [1.,0.]})
+              pq.write_table(pa.Table.from_pylist(rows),root/f'{source}_{q}_{split}.parquet')
+        for sd in [11,22,33]:
+          for family in ['transfer','lite','b3']:
+            key=f'transfer_gpt2_to_llama_{family}_100_{sd}';base=f'single_llama_{"b3" if family=="b3" else "lite"}_{sd}'
+            index[key]={'llama':index[base]['llama']};lock['models'][key]={'config':{'seed':sd,'kind':family,'donor':'gpt2','n_labels':100}}
+          key=f'multi_lite_{sd}';index[key]={source:index[f'single_{source}_lite_{sd}'][source] for source in ['gpt2','llama']};lock['models'][key]={'config':{'seed':sd,'kind':'multi','n_labels':None}}
+>       out=tmp_path/'analysis';out.mkdir();frame,agg,paired,transfer=collect({},lock,index,out)
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_m6.py:222: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/m6_report.py:100: in collect
+    frame=pd.DataFrame(points);pq.write_table(pa.Table.from_pandas(frame,preserve_index=False),out/'problem_metrics.parquet',compression='zstd')
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pyarrow/table.pxi:4793: in pyarrow.lib.Table.from_pandas
+    ???
+../../anaconda3/envs/latdefer/lib/python3.11/site-packages/pyarrow/pandas_compat.py:639: in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+../../anaconda3/envs/latdefer/lib/python3.11/site-packages/pyarrow/pandas_compat.py:639: in <listcomp>
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+../../anaconda3/envs/latdefer/lib/python3.11/site-packages/pyarrow/pandas_compat.py:626: in convert_column
+    raise e
+../../anaconda3/envs/latdefer/lib/python3.11/site-packages/pyarrow/pandas_compat.py:620: in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pyarrow/array.pxi:365: in pyarrow.lib.array
+    ???
+pyarrow/array.pxi:90: in pyarrow.lib._ndarray_to_array
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column n_labels with type object')
+
+pyarrow/error.pxi:92: ArrowTypeError
+----------------------------- Captured stdout call -----------------------------
+statistics single_gpt2_lite_11 gpt2
+statistics single_gpt2_lite_22 gpt2
+statistics single_gpt2_lite_33 gpt2
+statistics single_gpt2_b3_11 gpt2
+statistics single_gpt2_b3_22 gpt2
+statistics single_gpt2_b3_33 gpt2
+statistics single_llama_lite_11 llama
+statistics single_llama_lite_22 llama
+statistics single_llama_lite_33 llama
+statistics single_llama_b3_11 llama
+statistics single_llama_b3_22 llama
+statistics single_llama_b3_33 llama
+statistics transfer_gpt2_to_llama_transfer_100_11 llama
+statistics transfer_gpt2_to_llama_lite_100_11 llama
+statistics transfer_gpt2_to_llama_b3_100_11 llama
+statistics multi_lite_11 gpt2
+statistics multi_lite_11 llama
+statistics transfer_gpt2_to_llama_transfer_100_22 llama
+statistics transfer_gpt2_to_llama_lite_100_22 llama
+statistics transfer_gpt2_to_llama_b3_100_22 llama
+statistics multi_lite_22 gpt2
+statistics multi_lite_22 llama
+statistics transfer_gpt2_to_llama_transfer_100_33 llama
+statistics transfer_gpt2_to_llama_lite_100_33 llama
+statistics transfer_gpt2_to_llama_b3_100_33 llama
+statistics multi_lite_33 gpt2
+statistics multi_lite_33 llama
+=========================== short test summary info ============================
+FAILED tests/test_m6.py::test_final_statistics_fixture_clean_scope_and_three_seed_pairing
+1 failed, 13 passed in 9.98s

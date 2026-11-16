@@ -1,0 +1,9 @@
+milestone: M7
+output: data/M7_v1
+training_config: configs/M7/train.yaml
+existing_controller_pid: 1803596
+reused_source_device: cuda:2
+existing_reader_device: cuda:7
+source_gpu_jobs: [[CLR, 22], [B3, 22], [CLR, 33], [B3, 33]]
+reader_gpu_jobs: [[B3, 11], [B0, 11], [B0, 22], [B0, 33], [linear, 11], [linear, 22], [linear, 33]]
+max_wait_seconds: 21600

@@ -1,0 +1,93 @@
+milestone: M8c
+mode: statistics_final
+seed: 20261109
+data_seed: 20261107
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8c_v1
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+device: cuda:0
+min_free_GiB: 0
+budget_gpu_hours: 21
+max_seconds: 3600
+reader_seeds:
+- 11
+- 22
+- 33
+designs:
+- D0
+- R4
+epsilons:
+- 0.01
+- 0.1
+- 1.0
+analysis_folder: analysis_final21
+calibration_folder: calibration
+minimum_specs:
+- pattern: minimum_available.json
+  split: test
+  parts: 1
+  groups: 100
+  optional: true
+  allow_partial: true
+test_groups: 200
+matrix_specs:
+- pattern: val_main_complete_prefix.json
+  split: reader_val
+  panel: main
+  parts: 1
+  groups: 19
+  kinds:
+  - E3
+  epsilons:
+  - 0.01
+  - 0.1
+  - 1.0
+  lambdas:
+  - 1.0
+  allow_failed_complete_prefix: true
+- pattern: final_test_seed11_part0.json
+  reader_seeds:
+  - 11
+  split: test
+  panel: main
+  parts: 1
+  groups: 200
+  kinds:
+  - E3
+  epsilons:
+  - 0.01
+  - 0.1
+  - 1.0
+  lambdas:
+  - 1.0
+- pattern: final_test_seed22_part0.json
+  reader_seeds:
+  - 22
+  split: test
+  panel: main
+  parts: 1
+  groups: 200
+  kinds:
+  - E3
+  epsilons:
+  - 0.01
+  - 0.1
+  - 1.0
+  lambdas:
+  - 1.0
+- pattern: final_test_seed33_part0.json
+  reader_seeds:
+  - 33
+  split: test
+  panel: main
+  parts: 1
+  groups: 200
+  kinds:
+  - E3
+  epsilons:
+  - 0.01
+  - 0.1
+  - 1.0
+  lambdas:
+  - 1.0

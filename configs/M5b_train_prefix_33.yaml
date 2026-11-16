@@ -1,0 +1,20 @@
+milestone: M5b
+version: trained_controls_v2
+stage: full
+case: B3-prefix
+seed: 33
+max_gpu_hours: 25
+run_budget_hours: 4
+smoke_run: runs/20261106T013437446606Z_d528fb85f52f_99f8a7
+threads: 2
+feature_cache_device: cpu
+device: cuda:0
+root: data/dumps/codi_gpt2_v3
+qa_root: data/M23_v1a/full
+m3_baseline_run: runs/20261103T045628621237Z_2964c31f2153_11a348
+m41_model_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+templates: clr/data/questions/templates.yaml
+b3_learning_rates:
+- 0.001
+- 0.0003
+output: data/M5b_v1

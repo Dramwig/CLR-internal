@@ -1,0 +1,30 @@
+section,field,value
+GPT2 production,carry_attention_mask,False
+GPT2 production,dtype,float32
+GPT2 production,family,gpt2
+GPT2 production,layer,-1
+GPT2 production,num_latent,6
+GPT2 production,position_ids,implicit_absolute
+GPT2 production,prefill_attention_mask,True
+GPT2 production,prj_dim,768
+LLaMA production,carry_attention_mask,False
+LLaMA production,dtype,bfloat16
+LLaMA production,family,llama
+LLaMA production,layer,-1
+LLaMA production,num_latent,6
+LLaMA production,position_ids,implicit_absolute
+LLaMA production,prefill_attention_mask,True
+LLaMA production,prj_dim,2048
+LLaMA actual noise selection,sigma,2.0
+LLaMA actual noise selection,degraded,True
+LLaMA actual noise selection,status,threshold_unmet_degraded
+GPT2 actual noise selection,sigma,1.5
+GPT2 actual noise selection,from_step,3
+LLaMA context metadata,protocol_errors,0
+KV storage verification,elements,3563840
+KV storage verification,exact_fraction,1.0
+KV storage verification,maximum_absolute_error,0.0
+M23 cal split,cal_A,250
+M23 cal split,cal_B,250
+M7.1 projection,seed,20261107
+M7.1 projection,orthogonality_max_abs,4.76837158203125e-07

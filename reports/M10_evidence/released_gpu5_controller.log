@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m10_opportunistic_training.py", line 21, in <module>
+    except BlockingIOError:time.sleep(2)
+                                         
+  File "/home/me/PaperField/CalReader/scripts/m10_opportunistic_training.py", line 17, in main
+    lease_path=Path(first['output'])/'runtime_locks'/(first['device'].replace(':','_')+'.lock')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['.venv/bin/python', 'scripts/m10_train_queue.py', 'configs/M10/released_gpu5_queue.yaml']' returned non-zero exit status 1.

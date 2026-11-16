@@ -1,0 +1,7 @@
+exposure_targets: data/M10_v1/exposure_targets.json
+smoke_refs:
+- data/M10_v1/trained/B5c_gpt2_11_smoke.json
+- data/M10_v1/trained/B5c_gpt2_checkpoint64_gpu2_v2_11_smoke.json
+- data/M10_v1/trained/B5c_gpt2_checkpoint512_gpu2_11_smoke.json
+section_budget: 12
+output: data/M10_v1/B5c_budget_admission.json

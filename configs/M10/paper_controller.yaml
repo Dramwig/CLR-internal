@@ -1,0 +1,8 @@
+exports_gate: data/M10_v1/exports_completed.json
+jobs:
+- [scripts/m10_paper_prepare.py, configs/M10/paper_prepare.yaml, reports/M10_evidence/paper_prepare.log]
+- [scripts/m10_repro.py, configs/M10/repro.yaml, reports/M10_evidence/paper_repro.log]
+- [scripts/m10_upstream.py, configs/M10/upstream_final.yaml, reports/M10_evidence/upstream_paper.log]
+- [scripts/m10_write_reports.py, configs/M10/write_reports.yaml, reports/M10_evidence/write_reports.log]
+- [scripts/m10_document_artifacts.py, configs/M10/document_artifacts.yaml, reports/M10_evidence/document_artifacts.log]
+- [scripts/m10_upstream.py, configs/M10/upstream_final.yaml, reports/M10_evidence/upstream_final.log]

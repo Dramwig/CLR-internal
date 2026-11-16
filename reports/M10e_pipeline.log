@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m10e_pipeline.py", line 49, in <module>
+    if __name__=='__main__':
+                             
+  File "/home/me/PaperField/CalReader/scripts/m10e_pipeline.py", line 43, in main
+    update('statistics',test_opened=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m10e_pipeline.py", line 21, in run
+    with Path(log).open('w') as f:
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/me/anaconda3/envs/latdefer/bin/python', '-m', 'scripts.m10e_summarize', 'configs/M10e/run.yaml']' returned non-zero exit status 1.

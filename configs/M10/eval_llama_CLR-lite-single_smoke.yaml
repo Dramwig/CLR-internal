@@ -1,0 +1,12 @@
+milestone: M10
+version: v1
+section: P1
+section_budget: 12
+stage: evaluate_gsm
+mode: smoke
+seed: 11
+device: cuda:5
+output: data/M10_v1
+training_ref: data/M10_v1/trained/llama_CLR-lite-single_11_smoke.json
+eval_lock: data/M10_v1/final_lock.json
+eval_batch: 512

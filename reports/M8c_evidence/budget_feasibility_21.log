@@ -1,0 +1,84 @@
+{
+  "run": "/home/me/PaperField/CalReader/runs/20261109T060922184063Z_a82980438029_f5cc86",
+  "test_opened": false,
+  "passed": true,
+  "maximum_feasible_groups": 211,
+  "maximum_at_point_rate": 308,
+  "minimum_main_groups": 200,
+  "budget_gpu_hours": 21,
+  "spent_gpu_hours": 6.431750062113893,
+  "remaining_gpu_hours": 14.568249937886108,
+  "primary_200_gpu_hours": 13.73385587859723,
+  "total_200_gpu_hours": 20.21560594071112,
+  "point_primary_200_gpu_hours": 9.401632336806747,
+  "point_total_200_gpu_hours": 15.88338239892064,
+  "additional_gpu_hours_for_200": 0,
+  "primary_fraction_of_remaining_when_planning": 1.0,
+  "loading_reserve_gpu_hours": 0.05,
+  "rate_gpu_hours_per_group": 0.06866927939298616,
+  "point_rate_gpu_hours_per_group": 0.04700816168403373,
+  "point_rate_bootstrap_ci": [
+    0.03851331674435525,
+    0.05722439949415513
+  ],
+  "throughput_margin": 0.2,
+  "bootstrap_resamples": 10000,
+  "val_complete_groups": 19,
+  "val_expected_groups": 20,
+  "val_partial_groups": {
+    "val-b7bae149ac3ef95a25265e01d0c5fcae815f409b8a3126b6b4eb2fafa413099b": 10
+  },
+  "val_run": "runs/20261109T041333353840Z_482eec68a407_a050a8",
+  "val_status": "failed",
+  "val_gpu_hours": 1.5000085215144725,
+  "new_main_matrix": {
+    "kind": "E3",
+    "lambdas": [
+      1.0
+    ],
+    "epsilons": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "designs": [
+      "D0",
+      "R4"
+    ],
+    "seeds": [
+      11,
+      22,
+      33
+    ],
+    "steps": 200
+  },
+  "model_seconds_coefficients": {
+    "fixed_per_group": 8.075777966856247,
+    "D0_per_PGD_step": 0.47587887342173724,
+    "R4_per_PGD_step": 0.4322793667412195
+  },
+  "model_residual_RMSE_seconds": 12.448884603485814,
+  "forecast_note": "Val five-epsilon group durations fit by nonnegative fixed/D0-step/R4-step costs; predict only the three requested epsilons. Lock rate is 97.5% bootstrap upper mean plus 20% timing margin. All remaining budget is offered to primary E3 before secondary items. Forecast is not a runtime guarantee.",
+  "secondary_protocol": {
+    "groups": 100,
+    "order": [
+      "minimum search at most 6 bisections",
+      "E1/E2 at epsilon=.1",
+      "lambda=.1/10 at epsilon=.1"
+    ],
+    "executed": false
+  },
+  "cropped_settings": {
+    "epsilons": [
+      0.03,
+      0.3
+    ],
+    "old_test60_plan": "superseded by user; never locked or executed"
+  },
+  "input_sha256": {
+    "runs/20261109T041333353840Z_482eec68a407_a050a8/results.jsonl": "98c3ab71e2ea08aa128d51eb7c933959a637617d115b9e28793bce376cc16a32",
+    "runs/20261109T041333353840Z_482eec68a407_a050a8/metrics.json": "96f2ce05f1b48461ad5036e829244cef1e7d10d20ab82f2d914e98e650ce7010",
+    "reports/M8c_evidence/val_main_v2.log": "f3a0d9c5573ebe4f24833006f1801fb22ad4c9320990f72967fe1c2793981d80",
+    "docs/M8c_TASK.md": "fb1134eb0d3aa9fa20a380dd1eafa5ecc8b7c8dd32bcf7acb3c0850602033deb"
+  }
+}

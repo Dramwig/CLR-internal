@@ -1,0 +1,8 @@
+{
+  "pid": 216183,
+  "started": "2026-10-28T13:15:27.487307+00:00",
+  "status": "completed",
+  "smoke_run": "runs/20261028T131027495042Z_d4e87644eae3_1eef38",
+  "child_pid": 216252,
+  "run": "/home/me/PaperField/CalReader/runs/20261028T131534016226Z_83bfd1aab8dd_d4e55b"
+}

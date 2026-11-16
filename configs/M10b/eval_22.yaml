@@ -1,0 +1,11 @@
+milestone: M10b
+version: v1
+section: B5c
+device: cuda:3
+output: data/M10b_v1
+stage: evaluate_B5c
+mode: full
+seed: 22
+training_ref: data/M10b_v1/trained/B5c_gpt2_22_full.json
+eval_batch: 128
+eval_lock: data/M10b_v1/final_lock.json

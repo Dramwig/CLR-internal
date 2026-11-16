@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\centering\scriptsize
+\caption{Appendix: Q1 reader validation by state kind}
+\label{tab:appendix-q1-clean-traj}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llll}
+\toprule
+Source & Reader & reader-val Q1 clean NLL & reader-val Q1 trajectory NLL \\
+\midrule
+CODI-GPT2 & B0 & $0.689\;[0.688,\,0.689]$ & $0.689\;[0.689,\,0.69]$ \\
+CODI-GPT2 & B3 & $0.375\;[0.361,\,0.39]$ & $0.397\;[0.382,\,0.413]$ \\
+CODI-GPT2 & B3-prefix & $0.37\;[0.355,\,0.384]$ & $0.387\;[0.372,\,0.402]$ \\
+CODI-GPT2 & CLR-lite-single & $0.41\;[0.396,\,0.425]$ & $0.433\;[0.418,\,0.448]$ \\
+CODI-GPT2 & CLR-lite & $0.42\;[0.405,\,0.434]$ & $0.438\;[0.423,\,0.454]$ \\
+CODI-GPT2 & CLR-lite-multi & $0.41\;[0.396,\,0.425]$ & $0.432\;[0.418,\,0.447]$ \\
+CODI-LLaMA & B0 & $0.651\;[0.65,\,0.652]$ & $0.652\;[0.65,\,0.654]$ \\
+CODI-LLaMA & B3 & $0.34\;[0.328,\,0.354]$ & $0.34\;[0.327,\,0.355]$ \\
+CODI-LLaMA & B3-prefix & $0.331\;[0.317,\,0.345]$ & $0.337\;[0.323,\,0.352]$ \\
+CODI-LLaMA & CLR-lite-single & $0.384\;[0.373,\,0.396]$ & $0.384\;[0.372,\,0.397]$ \\
+CODI-LLaMA & CLR-lite & $0.361\;[0.348,\,0.373]$ & $0.363\;[0.35,\,0.377]$ \\
+CODI-LLaMA & CLR-lite-multi & $0.379\;[0.368,\,0.391]$ & $0.38\;[0.368,\,0.393]$ \\
+\bottomrule
+\end{tabular}}
+\par\smallskip\parbox{\textwidth}{\scriptsize Same calibrated predictions and problem-cluster bootstrap as T1; clean/traj remain separate.}
+\end{table*}

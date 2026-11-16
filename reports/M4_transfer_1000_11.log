@@ -1,0 +1,21 @@
+{"epoch": 1, "train_nll": 0.7622749512195587, "examples": 1000, "gpu_hours": 0.016128397224998075}
+{"epoch": 2, "train_nll": 0.7004355320930481, "examples": 2000, "gpu_hours": 0.025388742058053644, "val_nll": {"Q4": 0.6948398854716814}, "selection_nll": 0.6948398854716814}
+{"epoch": 3, "train_nll": 0.6995180935859681, "examples": 3000, "gpu_hours": 0.06670724285527588}
+{"epoch": 4, "train_nll": 0.7015406956672668, "examples": 4000, "gpu_hours": 0.07584498247055713}
+{"epoch": 5, "train_nll": 0.7022852306365966, "examples": 5000, "gpu_hours": 0.08495337776305759, "val_nll": {"Q4": 0.6959853897523375}, "selection_nll": 0.6959853897523375}
+{"epoch": 6, "train_nll": 0.7021134328842163, "examples": 6000, "gpu_hours": 0.12907084820222534}
+{"epoch": 7, "train_nll": 0.7011742911338806, "examples": 7000, "gpu_hours": 0.13827693481138542}
+{"epoch": 8, "train_nll": 0.6973717422485352, "examples": 8000, "gpu_hours": 0.14706238865750088}
+{"epoch": 9, "train_nll": 0.6966067752838134, "examples": 9000, "gpu_hours": 0.15624203055583266}
+{"epoch": 10, "train_nll": 0.6951342616081237, "examples": 10000, "gpu_hours": 0.16535235078361438, "val_nll": {"Q4": 0.6934780585810205}, "selection_nll": 0.6934780585810205}
+{"epoch": 11, "train_nll": 0.6975628027915954, "examples": 11000, "gpu_hours": 0.20548313927138628}
+{"epoch": 12, "train_nll": 0.697520815372467, "examples": 12000, "gpu_hours": 0.214688526629442}
+{"epoch": 13, "train_nll": 0.7282874581813812, "examples": 13000, "gpu_hours": 0.2238303001594411}
+{"epoch": 14, "train_nll": 0.7479787139892579, "examples": 14000, "gpu_hours": 0.23318152351388563}
+{"epoch": 15, "train_nll": 0.7559033603668213, "examples": 15000, "gpu_hours": 0.24231481627722437}
+{"epoch": 16, "train_nll": 0.7218165149688721, "examples": 16000, "gpu_hours": 0.2514758921438907}
+{"epoch": 17, "train_nll": 0.7512937602996826, "examples": 17000, "gpu_hours": 0.26039104214139014}
+{"epoch": 18, "train_nll": 0.7240912923812867, "examples": 18000, "gpu_hours": 0.269398588495553}
+{"epoch": 19, "train_nll": 0.7057591691017151, "examples": 19000, "gpu_hours": 0.2781665880249986}
+{"epoch": 20, "train_nll": 0.7156261522769928, "examples": 20000, "gpu_hours": 0.28706885598388504, "val_nll": {"Q4": 0.6961198977266448}, "selection_nll": 0.6961198977266448}
+/home/me/PaperField/CalReader/runs/20261103T152100033140Z_025a414b3317_e101c5

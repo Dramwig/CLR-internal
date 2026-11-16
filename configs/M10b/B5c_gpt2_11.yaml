@@ -1,0 +1,41 @@
+milestone: M10b
+version: v1
+section: B5c
+stage: train_B5c
+mode: full
+kind: B5c
+case: B5c_gpt2
+seed: 11
+source: gpt2
+sources:
+  gpt2:
+    root: data/dumps/codi_gpt2_v3
+    qa: data/M23_v1a/full
+    dim: 768
+    normalization: runs/20261103T045628621237Z_2964c31f2153_11a348/normalization.npz
+    panels: data/M6_v1/panels/gpt2
+  llama:
+    root: data/dumps/codi_llama_M6_v1
+    qa: data/M6_v1/qa
+    dim: 2048
+    normalization: data/M6_v1/llama_normalization.npz
+    panels: data/M6_v1/panels/llama
+validation_split: reader_val
+smoke_problems: 20
+templates: clr/data/questions/templates.yaml
+device: cuda:3
+epochs: 1
+min_epochs: 1
+patience: 1
+batch: 512
+eval_batch: 128
+learning_rate: 0.0002
+weight_decay: 0.01
+output: data/M10b_v1
+section_budget: 22
+hidden: 256
+qwen_path: /home/me/models/huggingface/models--Qwen--Qwen3-1.7B/snapshots/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e
+audit_root: data/M71_v1
+gradient_checkpointing: true
+min_free_GiB: 18
+smoke_ref: data/M10b_v1/trained/B5c_gpt2_11_smoke.json

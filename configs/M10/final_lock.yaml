@@ -1,0 +1,19 @@
+output: data/M10_v1
+gsm_queue: configs/M10/full_gsm_queue.yaml
+audit_queue: configs/M10/full_audit_queue.yaml
+completion_gates:
+- data/M10_v1/gsm_training_completed.json
+- data/M10_v1/audit_B6_training_completed.json
+- data/M10_v1/hiddenbench/non_test_completed.json
+- data/M10_v1/trained/transfer_full.json
+- data/M10_v1/evaluation_branches_smoke_completed.json
+limits:
+  P1: 12
+  P2-4: 12
+  P2-5: 12
+  P2-6: 4
+evaluation_reserve:
+  P1: 1.5
+  P2-4: 0
+  P2-5: 0.25
+  P2-6: 0.4

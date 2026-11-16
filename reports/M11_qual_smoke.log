@@ -1,0 +1,29 @@
+/home/me/PaperField/CalReader/runs/20261112T120657331440Z_7860e4ef7195_cfca45
+reading gpt2
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m11_qual.py", line 43, in <module>
+    main(load_config(a.config,a.overrides))
+  File "/home/me/PaperField/CalReader/scripts/m11_qual.py", line 23, in main
+    export=Export(c,run);counts,size=export.execute();status='completed'
+                                     ^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/export/qual.py", line 569, in execute
+    print('reading',source,flush=True);counts[source+'_reading']=self.reading(source)
+                                                                 ^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/export/qual.py", line 272, in reading
+    mc={(r['problem_id'],r['t']):r for r in self.parquet(Path(root)/self.split/'mc.parquet',filters=[('problem_id','in',ids),('policy','=','pi')])}
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/export/qual.py", line 89, in parquet
+    def parquet(self, p, **kw): return pq.read_table(self.read(p), **kw).to_pylist()
+                                                     ^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/export/qual.py", line 81, in read
+    actual = digest(p); expected = self.frozen.get(s)
+             ^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/export/qual.py", line 35, in digest
+    with Path(path).open('rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/dumps/codi_gpt2_v3/reader_val/mc.parquet'

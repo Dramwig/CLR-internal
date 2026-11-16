@@ -1,0 +1,9 @@
+wait_for: []
+max_wait_seconds: 100
+jobs:
+- module: scripts.m8b_calibrate
+  config: configs/M8b/calibrate_gpu_v3.yaml
+  log: reports/M8b_evidence/calibrate_gpu_v3.log
+- module: scripts.m8b_evaluate
+  config: configs/M8b/gpu_matched_smoke_v3.yaml
+  log: reports/M8b_evidence/gpu_matched_smoke_v3.log

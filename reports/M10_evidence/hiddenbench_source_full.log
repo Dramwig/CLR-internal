@@ -1,0 +1,61 @@
+/home/me/PaperField/CalReader/runs/20261110T103052782239Z_193d73faf9a3_2a595e
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:02,  1.21s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.22s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:02<00:00,  1.21it/s]
+reader_train 8 2
+reader_train 12 6
+reader_train 14 9
+reader_train 24 13
+reader_train 25 15
+reader_train 26 17
+reader_train 30 22
+reader_train 31 25
+reader_train 32 28
+reader_train 40 31
+reader_train 44 33
+reader_train 59 37
+reader_train 63 39
+reader_val 1 41
+reader_val 2 43
+reader_val 3 45
+reader_val 4 49
+reader_val 5 52
+reader_val 10 56
+reader_val 11 60
+reader_val 16 62
+reader_val 17 65
+reader_val 19 68
+reader_val 20 70
+reader_val 21 74
+reader_val 22 78
+reader_val 28 80
+reader_val 37 82
+reader_val 41 85
+reader_val 45 89
+reader_val 48 92
+reader_val 51 94
+reader_val 53 100
+reader_val 55 102
+reader_val 64 105
+cal_A 13 108
+cal_A 42 111
+cal_A 47 114
+cal_A 52 117
+cal_B 6 121
+cal_B 7 123
+cal_B 9 127
+cal_B 18 130
+cal_B 23 133
+cal_B 27 137
+cal_B 29 139
+cal_B 33 143
+cal_B 34 145
+cal_B 36 148
+cal_B 39 151
+cal_B 43 153
+cal_B 49 156
+cal_B 50 161
+cal_B 54 163
+cal_B 56 166
+cal_B 58 168
+cal_B 61 171
+cal_B 62 173
+cal_B 65 177

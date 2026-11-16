@@ -1,0 +1,25 @@
+{
+  "objective_file": "/home/me/.codex/attachments/fed1a80d-a0aa-4508-9b19-0a53d6dda8cf/goal-objective.md",
+  "status": "completed",
+  "timestamp": "2026-11-16T02:58:28.945623+08:00",
+  "authorization": "Complete A1-A4 and B within25 GPUh, before2026-11-17 evening; new directory only; final deliverable one REPORT.md and full text in final reply",
+  "A": "a_completed.json, a_validation.json, reproduction_passed.json, table_number_audit.json",
+  "B": "b_pipeline.py runs train/smoke/all-model lock/final eval; analyze_after_b.py waits then runs analysis_b.py",
+  "runtime": "Jobs under jobs/ reference real runs/progress.json; never infer completion from launch",
+  "remaining": [],
+  "important": "b_pipeline process loaded initial lock scope: all new *.py/*.yaml are hashed at final lock; do not edit any existing script/config after b_final_lock.json exists until all evaluation completes",
+  "tool_sessions": {
+    "b_pipeline": 65695,
+    "analysis_waiter": 63418
+  },
+  "scope": "Do not edit repository historical files or paper. All state under this directory.",
+  "task_copy": "TASK.md",
+  "objective_sha256": "74ab2c76260a20b1f3a004d525f8f31c6445adee72c4e0762f69a9323faecc08",
+  "gpu_hours": 3.66727262859776,
+  "new_training_completed": 9,
+  "running": [],
+  "new_evaluation_completed": 9,
+  "report": "/home/me/PaperField/CalReader/supplemental/stats_20261116_v1/REPORT.md",
+  "final_audit": "/home/me/PaperField/CalReader/supplemental/stats_20261116_v1/final_audit.json",
+  "freeze": "/home/me/PaperField/CalReader/supplemental/stats_20261116_v1/freeze.json"
+}

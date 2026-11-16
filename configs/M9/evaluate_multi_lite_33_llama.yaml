@@ -1,0 +1,51 @@
+milestone: M9
+version: v1
+section: CD
+stage: evaluate
+mode: full
+kind: multi
+case: multi
+seed: 33
+panel_seed: 11
+source: llama
+sources:
+  gpt2:
+    root: data/dumps/codi_gpt2_v3
+    qa: data/M23_v1a/full
+    dim: 768
+    normalization: runs/20261103T045628621237Z_2964c31f2153_11a348/normalization.npz
+    panels: data/M6_v1/panels/gpt2
+  llama:
+    root: data/dumps/codi_llama_M6_v1
+    qa: data/M6_v1/qa
+    dim: 2048
+    normalization: data/M6_v1/llama_normalization.npz
+    panels: data/M6_v1/panels/llama
+validation_split: reader_val
+smoke_problems: 40
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+templates: clr/data/questions/templates.yaml
+device: cuda:4
+n_labels: null
+epochs: 10
+min_epochs: 8
+patience: 1
+batch: 1024
+b3_batch: 4096
+eval_batch: 1024
+learning_rate: 0.0003
+b3_lrs:
+- 0.001
+- 0.0003
+weight_decay: 0.0001
+output: data/M9_v1
+smoke_run: /home/me/PaperField/CalReader/runs/20261110T035410233751Z_66d6cc429e33_251c9e
+validation_every: 1
+validation_problem_limit: null
+budget_gpu_hours: 10
+model_key: multi_lite_33
+checkpoint: /home/me/PaperField/CalReader/runs/20261110T052537082287Z_e28aff3f6df6_2d0975/best.pt
+eval_lock: data/M9_v1/training_lock.json
+eval_splits:
+- reader_val
+- test

@@ -1,0 +1,12 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.07it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.13it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.66it/s]
+group 1 20 seconds 1.46 GPUh 0.003
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m8b_evaluate.py", line 174, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m8b_evaluate.py", line 117, in main
+    if rr[d]['exact_fraction']!=1.:raise ValueError('Source replay differs: '+d+' '+str(rr[d]))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Source replay differs: R3 {'exact_fraction': 0.9999999403953552, 'max_absolute': 0.0}

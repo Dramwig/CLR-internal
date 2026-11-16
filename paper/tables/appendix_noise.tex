@@ -1,0 +1,37 @@
+\begin{table*}[t]
+\centering\scriptsize
+\caption{Appendix: Noise selection}
+\label{tab:appendix-noise}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllll}
+\toprule
+Source & Sigma & Noise start & Accuracy (\%) & Nondegenerate (\%) \\
+\midrule
+GPT2 & 0 & 0 & $42.3\;[36.7,\,48]$ & $0\;[0,\,0]$ \\
+GPT2 & 0.1 & 0 & $42.4\;[42.3,\,42.6]$ & $1.44\;[0.488,\,2.4]$ \\
+GPT2 & 0.3 & 0 & $42.5\;[42.3,\,42.6]$ & $6.67\;[6.67,\,6.67]$ \\
+GPT2 & 0.5 & 0 & $41.9\;[41.6,\,42.2]$ & $11.2\;[9.14,\,13.3]$ \\
+GPT2 & 0.75 & 0 & $41.2\;[41,\,41.4]$ & $19.2\;[17.1,\,21.3]$ \\
+GPT2 & 1 & 0 & $39.2\;[38.8,\,39.7]$ & $28.4\;[26.4,\,30.5]$ \\
+GPT2 & 1.5 & 0 & $30\;[28.9,\,31.2]$ & $44.9\;[42.8,\,47]$ \\
+GPT2 & 2 & 0 & $18.1\;[16.7,\,19.6]$ & $42.4\;[36.8,\,48.1]$ \\
+GPT2 & 0 & 3 & $42.3\;[36.7,\,48]$ & $0\;[0,\,0]$ \\
+GPT2 & 0.1 & 3 & $42.4\;[42.3,\,42.5]$ & $1.22\;[0.744,\,1.7]$ \\
+GPT2 & 0.3 & 3 & $42.5\;[42.2,\,42.7]$ & $5.33\;[5.33,\,5.33]$ \\
+GPT2 & 0.5 & 3 & $42.3\;[42,\,42.7]$ & $8.67\;[5.8,\,11.5]$ \\
+GPT2 & 0.75 & 3 & $42\;[41.8,\,42.2]$ & $14.3\;[10.5,\,18.1]$ \\
+GPT2 & 1 & 3 & $41.2\;[41,\,41.3]$ & $20\;[17,\,23]$ \\
+GPT2 & 1.5 & 3 & $37.4\;[37.1,\,37.7]$ & $32.9\;[30.8,\,35]$ \\
+GPT2 & 2 & 3 & $32.1\;[31.7,\,32.5]$ & $38.7\;[32.2,\,45.1]$ \\
+LLaMA & 0.5 & all relative t=0..5 & $53.9\;[48.2,\,59.5]$ & $3.06\;[1.56,\,4.78]$ \\
+LLaMA & 1 & all relative t=0..5 & $53.6\;[48,\,59.2]$ & $6.28\;[4.17,\,8.56]$ \\
+LLaMA & 1.5 & all relative t=0..5 & $53.1\;[47.7,\,58.6]$ & $10.8\;[8.17,\,13.6]$ \\
+LLaMA & 2 & all relative t=0..5 & $52.3\;[47,\,57.8]$ & $14.8\;[11.6,\,18.1]$ \\
+LLaMA & 3 & all relative t=0..5 & $49\;[43.9,\,54.2]$ & $24.7\;[21.1,\,28.5]$ \\
+LLaMA & 4 & all relative t=0..5 & $43.8\;[39.1,\,48.6]$ & $35.2\;[31.1,\,39.4]$ \\
+LLaMA & 6 & all relative t=0..5 & $36\;[31.8,\,40.2]$ & $41.1\;[36.9,\,45.3]$ \\
+LLaMA & 8 & all relative t=0..5 & $32.6\;[28.7,\,36.6]$ & $41.5\;[37.4,\,45.7]$ \\
+\bottomrule
+\end{tabular}}
+\par\smallskip\parbox{\textwidth}{\scriptsize GPT2: M0.1 val300/K16/three seeds, original seed-t intervals for stochastic settings and problem bootstrap for deterministic settings. LLaMA: M6 val300/K16/seed11, problem bootstrap. GPT2 selected sigma=1.5/start=3 by the original mean rule. LLaMA selected sigma=2 as an explicitly authorized degradation: no eight-point setting met both original thresholds. Starting-step protocols differ.}
+\end{table*}

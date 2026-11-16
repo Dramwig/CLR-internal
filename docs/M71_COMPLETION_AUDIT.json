@@ -1,0 +1,280 @@
+{
+  "run": "/home/me/PaperField/CalReader/runs/20261107T131540385640Z_04b89d9439db_a109d9",
+  "model_calls": 0,
+  "gpu_hours": 0,
+  "requirements": {
+    "environment_and_immutability": {
+      "execution": "verified",
+      "evidence": {
+        "frozen_files": {
+          "data/M7_v1/freeze.json": 2912,
+          "data/M6_v1/freeze.json": 35688,
+          "data/M71_v1/freeze.json": 22830
+        },
+        "final_lock_files": 149,
+        "generator": {
+          "latdef/data/synthetic_v2.py": "30879ec2915fc3ef18f3322374c4dff3ea06aac11054c9592269162dcd4bf01b",
+          "latdef/data/synthetic.py": "8621ebd00d532071b138377d03e99cfc7fbb7a81091aba810940933c63a1ecab",
+          "latdef/data/schema.py": "3ff77c5e553809738d8f025839c90562bcbaf7b046537f9c80f5ea27716ed815"
+        }
+      }
+    },
+    "A1_features_and_gradient": {
+      "execution": "verified",
+      "evidence": {
+        "source": "clr/audit/features.py",
+        "projection": {
+          "file": "data/M71_v1/projection.pt",
+          "sha256": "fc7b23c823293ec6f616c36aa25ca11e3347b957a048c791de9419be311dbcfa",
+          "seed": 20261107,
+          "shape": [
+            2048,
+            512
+          ],
+          "orthogonality_max_abs": 4.76837158203125e-07
+        },
+        "actual_sender_gradient": {
+          "K_gradient_L1": 3.8991336822509766,
+          "V_gradient_L1": 3.513157367706299,
+          "finite": true,
+          "deterministic_algorithms": true,
+          "layer": 0,
+          "actual_sender_KV": true
+        },
+        "unit_tests": "reports/M71_evidence/tests_resume_v20.log"
+      }
+    },
+    "A2_layer_scan_and_projection": {
+      "execution": "verified",
+      "evidence": {
+        "scan": "data/M71_v1/layer_selection_v2.json",
+        "layers": [
+          7,
+          16,
+          25,
+          34
+        ],
+        "projection_point_losses": {
+          "A1_accuracy": 0.0,
+          "A4_accuracy": 0.017499983310699463
+        },
+        "intervals": "data/M71_v1/projection_intervals.json"
+      },
+      "scientific_limitation": "The <2pp criterion is a point estimate; the A4 loss CI extends to 5.75pp."
+    },
+    "A3_and_B_smoke_and_estimates": {
+      "execution": "verified",
+      "evidence": {
+        "smoke": {
+          "run": "/home/me/PaperField/CalReader/runs/20261107T060923875785Z_fe4ddb3d3c22_7b3d88",
+          "groups": 12,
+          "seconds": 23.354547438037116,
+          "mean_bytes_per_clean_CF_pair": 547634.1666666666,
+          "features_projected_GiB": 9.052927101341385,
+          "sender_prefill_estimated_GPUh": 6.757681939234317,
+          "smoke_passed": true,
+          "test_opened": false,
+          "counts": {
+            "reader_train": 8000,
+            "reader_val": 1000,
+            "cal_A": 500,
+            "cal_B": 1000,
+            "test": 2000
+          },
+          "layers": [
+            0,
+            9,
+            18,
+            27
+          ],
+          "controls_included": false,
+          "mean_actual_bundle_bytes": 547634.1666666666,
+          "storage_compression": "gzip1"
+        },
+        "storage_comparison": {
+          "old_run": "runs/20261107T060446157910Z_3fe532c89348_f6165f",
+          "new_run": "/home/me/PaperField/CalReader/runs/20261107T060923875785Z_fe4ddb3d3c22_7b3d88",
+          "groups": 12,
+          "cross_gpu_and_storage_comparison": true,
+          "elements": 3563840,
+          "exact_fraction": 1.0,
+          "maximum_absolute_error": 0.0,
+          "fp16_values_preserved": true
+        },
+        "actual_frozen_bytes": 10366244450
+      }
+    },
+    "B_full_data_pairs_splits_controls": {
+      "execution": "verified",
+      "evidence": {
+        "groups": {
+          "reader_train": 8000,
+          "reader_val": 1000,
+          "cal_A": 500,
+          "cal_B": 1000,
+          "test": 2000
+        },
+        "bundles": 12500,
+        "feature_sequences": 35500,
+        "all_bundles_loaded": true,
+        "overlapping_groups": 0,
+        "raw_controls_implementation": "clr/audit/m71_controls.py"
+      }
+    },
+    "B_receiver_and_natural_authorized_panels": {
+      "execution": "verified",
+      "evidence": {
+        "receiver": {
+          "cal_A": 300,
+          "cal_B": 300,
+          "test": 300
+        },
+        "natural": {
+          "reader_val": 100,
+          "test": 300
+        },
+        "authorization": "docs/M7.1_TASK.md additional authorization"
+      }
+    },
+    "C1_C2_and_fallback_rule": {
+      "execution": "verified",
+      "evidence": {
+        "C1": {
+          "passed": true,
+          "results": {
+            "linear": {
+              "run": "/home/me/PaperField/CalReader/runs/20261107T071907104969Z_4de1ada90cda_1b25be",
+              "passed": true,
+              "metrics": {
+                "A1": {
+                  "n": 16000,
+                  "accuracy": 0.6834999918937683,
+                  "nll": 0.6021676063537598,
+                  "AUROC": 0.7560875
+                },
+                "A4": {
+                  "n": 8000,
+                  "accuracy": 0.4975000023841858,
+                  "nll": 1.1892858743667603
+                }
+              },
+              "checkpoint": "/home/me/PaperField/CalReader/runs/20261107T071907104969Z_4de1ada90cda_1b25be/best.pt",
+              "reader_train_groups": 8000,
+              "reader_val_groups": 1000,
+              "exposure": 2688000,
+              "epochs": 14
+            },
+            "B3": {
+              "run": "/home/me/PaperField/CalReader/runs/20261107T071906966925Z_78c03d279efe_f90b67",
+              "passed": true,
+              "metrics": {
+                "A1": {
+                  "n": 16000,
+                  "accuracy": 0.6790000200271606,
+                  "nll": 0.6048468947410583,
+                  "AUROC": 0.758324625
+                },
+                "A4": {
+                  "n": 8000,
+                  "accuracy": 0.4560000002384186,
+                  "nll": 1.2597016096115112
+                }
+              },
+              "checkpoint": "/home/me/PaperField/CalReader/runs/20261107T071906966925Z_78c03d279efe_f90b67/best.pt",
+              "reader_train_groups": 8000,
+              "reader_val_groups": 1000,
+              "exposure": 1536000,
+              "epochs": 8
+            }
+          },
+          "test_opened": false
+        },
+        "C2_run": "/home/me/PaperField/CalReader/runs/20261107T072209489259Z_1de301d623be_30cf76",
+        "C2_accuracy": 0.982,
+        "C2_rows": 500,
+        "fallback_needed": false
+      }
+    },
+    "D_three_seeds_exposure_calibration_predictions": {
+      "execution": "verified",
+      "evidence": {
+        "models": 15,
+        "exposure": {
+          "11": {
+            "B3_actual": 1920000,
+            "CLR_selected": 1920000
+          },
+          "22": {
+            "B3_actual": 1920000,
+            "CLR_selected": 3072000
+          },
+          "33": {
+            "B3_actual": 2304000,
+            "CLR_selected": 2304000
+          }
+        },
+        "threshold_values_recomputed": 78,
+        "natural_A3_rows_per_seed": 4800,
+        "QA_templates": "4 seen + 2 held out",
+        "k": [
+          1,
+          4,
+          16
+        ],
+        "alpha": [
+          0.01,
+          0.05
+        ]
+      }
+    },
+    "D_supervised_binary_comparator": {
+      "execution": "verified",
+      "evidence": {
+        "implementation": "scripts/m71_train.py supervised branch + scripts/m71_evaluate.py supervised_scores",
+        "label_equivalence_verified_for_all_groups": "A3 Yes=clean, No=CF; detected score=P(No)",
+        "seeds": [
+          11,
+          22,
+          33
+        ]
+      },
+      "scientific_limitation": "The directly supervised model remained at chance. Its measured gap is not a valid estimate of the cost of avoiding attack-specific training, nor a learned performance upper bound."
+    },
+    "report_statistics_tests_and_four_answers": {
+      "execution": "verified",
+      "evidence": {
+        "review": "reports/M7.1_REVIEW.md",
+        "bytes": 6317,
+        "sections": 6,
+        "tables": 3,
+        "tests": 36,
+        "bootstrap_repeats": 10000,
+        "statistics": "data/M71_v1/analysis_v3"
+      },
+      "scientific_limitation": "FPR columns are independent empirical test FPRs under clean cal_B nominal thresholds, not thresholds retuned on test."
+    },
+    "budget_and_optional_M6_C2": {
+      "execution": "verified",
+      "evidence": {
+        "GPUh": 15.938052800835898,
+        "frozen_bytes": 10366244450,
+        "optional_M6_C2": "not run; not a dependency"
+      }
+    }
+  },
+  "freeze_counts": {
+    "data/M7_v1/freeze.json": 2912,
+    "data/M6_v1/freeze.json": 35688,
+    "data/M71_v1/freeze.json": 22830
+  },
+  "unique_frozen_files_checked": 61222,
+  "status": "completed_protocol_audit_passed",
+  "scientific_success_not_required": true,
+  "seconds": 168.91809925501002,
+  "findings": {
+    "supervised_upper_bound": "not established; failed learning is reported",
+    "A2_A3": "near chance; reported",
+    "projection": "point gate passed; uncertainty reported",
+    "historical_M7_raw_equivalence": "missing artifact; not a new M7.1 execution requirement"
+  }
+}

@@ -1,0 +1,8 @@
+milestone: M9
+version: v1
+stage: paper_export
+seed: 11
+output: data/M9_v1
+include_main: true
+include_new: false
+freeze_inputs: false

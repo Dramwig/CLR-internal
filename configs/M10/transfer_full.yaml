@@ -1,0 +1,31 @@
+milestone: M10
+version: v1
+section: P2-6
+section_budget: 4
+stage: train_transfer
+mode: full
+seed: 11
+seeds:
+- 11
+- 22
+- 33
+panel_seed: 11
+device: cuda:5
+label_counts:
+- 100
+- 300
+- 1000
+- null
+smoke_groups: 20
+validation_groups: 100
+smoke_epochs: 2
+small_epochs: 32
+full_epochs: 4
+batch: 128
+eval_batch: 256
+learning_rate: 0.0003
+data_root: data/M71_v1
+output: data/M10_v1
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+smoke_ref: data/M10_v1/trained/transfer_smoke.json
+body_training: fine-tune initialized body and new adapter; matched scratch pair

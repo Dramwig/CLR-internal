@@ -1,0 +1,25 @@
+wait_run: runs/20261106T014306312129Z_8127b80897ce_107f46
+journal: data/M5b_v1/queue_C.json
+jobs:
+- script: scripts/m5b_bc.py
+  config: configs/M5b_C_11_v2.yaml
+  log: reports/M5b_C_11.log
+  gpu: 0
+- script: scripts/m5b_bc.py
+  config: configs/M5b_C_22_v2.yaml
+  log: reports/M5b_C_22.log
+  gpu: 2
+- script: scripts/m5b_bc.py
+  config: configs/M5b_C_33_v2.yaml
+  log: reports/M5b_C_33.log
+  gpu: 4
+gpu_candidates:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+minimum_free_gib: 9

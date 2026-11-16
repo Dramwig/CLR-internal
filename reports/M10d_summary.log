@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m10d_summarize.py", line 9, in <module>
+    from clr.paper.statistics import metric_summary, auc_summary
+  File "/home/me/PaperField/CalReader/clr/paper/statistics.py", line 4, in <module>
+    from scripts.m6_report import cluster_estimate
+  File "/home/me/PaperField/CalReader/scripts/m6_report.py", line 15, in <module>
+    import matplotlib
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/matplotlib/__init__.py", line 161, in <module>
+    from . import _api, _version, cbook, _docstring, rcsetup
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/matplotlib/rcsetup.py", line 28, in <module>
+    from matplotlib.colors import Colormap, is_color_like
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/matplotlib/colors.py", line 52, in <module>
+    from PIL import Image
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/PIL/Image.py", line 90, in <module>
+    from . import _imaging as core
+ImportError: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.29' not found (required by /home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/PIL/../../.././libLerc.so.4)

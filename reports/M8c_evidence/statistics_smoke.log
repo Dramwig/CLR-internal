@@ -1,0 +1,3 @@
+/home/me/PaperField/CalReader/scripts/m8c_statistics.py:142: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.set(xscale='log',xlabel='Per-layer relative KV radius ε',ylabel='Robust failure (%)',ylim=(0,100));ax.legend();fig.tight_layout();fig.savefig(dest/'epsilon_failure.pdf');fig.savefig(dest/'epsilon_failure.png',dpi=170);plt.close(fig)
+data/M8c_v1/analysis_smoke

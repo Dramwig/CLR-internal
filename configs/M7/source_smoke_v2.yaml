@@ -1,0 +1,21 @@
+milestone: M7
+mode: smoke
+seed: 20261106
+data_seed: 20261106
+output: data/M7_source_smoke_v2
+idea_a: /home/me/PaperField/LatDefer
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+device: cuda:0
+max_context: 8192
+batch_size: 2
+layers: [35]
+answer_mode: direct
+max_new_tokens: 0
+commitment_policy: programmatic_verified
+counts: {reader_train: 4, reader_val: 2, cal_A: 2, cal_B: 2, test: 2}
+source_splits: [reader_val]
+final_lock: data/M7_v1/final_lock.json
+max_seconds: 900
+budget_gpu_hours: 40
+disk_cap_GiB: 15
+acceptance_file: data/M7_v1/acceptance.json

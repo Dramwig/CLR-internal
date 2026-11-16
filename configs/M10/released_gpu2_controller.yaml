@@ -1,0 +1,4 @@
+dependency: data/M10_v1/llama_b6_gpu2_training_completed.json
+queue: configs/M10/released_gpu2_queue.yaml
+log: reports/M10_evidence/released_gpu2_queue.log
+completion: data/M10_v1/released_gpu2_controller_completed.json

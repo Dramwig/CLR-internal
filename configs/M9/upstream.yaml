@@ -1,0 +1,18 @@
+milestone: M9
+version: v1
+stage: upstream_audit
+seed: 11
+output: data/M9_v1
+manifests:
+- data/M23_v1a/freeze.json
+- data/M41_v1/freeze.json
+- data/M4_v0/freeze.json
+- data/M5a_v13/freeze.json
+- data/M5b_v1/freeze.json
+- data/M6_v1/freeze.json
+- data/M71_v1/freeze.json
+- data/M7_v1/freeze.json
+- data/M8a_v1/freeze.json
+- data/M8b_v1/freeze.json
+- data/M8c_v1/freeze.json
+- reports/M1_completed_v3_manifest.json

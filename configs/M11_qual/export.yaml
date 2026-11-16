@@ -1,0 +1,17 @@
+milestone: M11_qual
+version: v1
+seed: 11
+stage: smoke
+output: data/M11_qual_v1
+device: cuda:3
+batch: 32
+latentqa_batch: 4
+tokenizer: /home/me/models/huggingface/ModernBERT-base-8949b909
+templates: clr/data/questions/templates.yaml
+reading_n: 12
+reasoning_n: 300
+sibling_n: 40
+audit_n: 600
+dependent_n: 100
+gpu_budget_hours: 1.0
+max_bytes: 300000000

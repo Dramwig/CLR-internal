@@ -1,0 +1,3 @@
+output: data/M10b_v1
+python: .venv/bin/python
+paper_python: .venv-paper/bin/python

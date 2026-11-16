@@ -1,0 +1,224 @@
+{
+  "date": "2026-11-16",
+  "timezone": "Asia/Shanghai",
+  "scope": "Repository housekeeping and commit of existing research files; no new scientific runs.",
+  "cleanup": {
+    "removed_files": 384,
+    "removed_file_groups": {
+      "python/pytest cache": 378,
+      "empty live lock": 5,
+      "temporary build wrapper": 1
+    },
+    "removed_bytes": 4726341,
+    "removed_directories": [
+      ".pytest_cache",
+      "clr/__pycache__",
+      "clr/search/__pycache__",
+      "clr/calib/__pycache__",
+      "clr/attacks/__pycache__",
+      "clr/sources/__pycache__",
+      "clr/paper/__pycache__",
+      "clr/utils/__pycache__",
+      "clr/export/__pycache__",
+      "clr/models/__pycache__",
+      "clr/baselines/__pycache__",
+      "clr/data/__pycache__",
+      "clr/audit/__pycache__",
+      "clr/data/questions/__pycache__",
+      "clr/data/m4/__pycache__",
+      "scripts/__pycache__",
+      "tests/__pycache__",
+      "build/M10d_tex",
+      "build",
+      "calreader/utils",
+      "calreader/search",
+      "calreader/reader",
+      "calreader/eval",
+      "calreader/data",
+      "calreader/calibration",
+      "calreader/audit",
+      "calreader/adapters",
+      "calreader",
+      "outputs"
+    ],
+    "compatibility_links": [
+      {
+        "path": "CLR_Codex_Plan.md",
+        "target": "docs/CLR_Codex_Plan.md"
+      },
+      {
+        "path": "IdeaB_Calibrated_Latent_Reader.md",
+        "target": "docs/proposal.md"
+      }
+    ],
+    "removed_noncache_files": [
+      {
+        "path": "docs/M7_LIVE.lock",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/M71_LIVE.lock",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/M8b_LIVE.lock",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/M8c_LIVE.lock",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/M6_LIVE.lock",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "build/M10d_tex/main_M10d_T1.tex",
+        "bytes": 46,
+        "sha256": "eda4e5b34f00e71972dbd983ea16fea8a8701639d77cc24b9259489bfff671a4"
+      }
+    ]
+  },
+  "validation": {
+    "ignore_cases_passed": 25,
+    "python_syntax_files": 534,
+    "yaml_configs_parsed": 855,
+    "unit_tests": {
+      "passed": 22,
+      "seconds": 8.72,
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_m1_resume.py tests/test_m10c.py tests/test_m10d.py tests/test_m10e.py tests/test_m12.py"
+    }
+  },
+  "integrity": {
+    "freeze_manifests_unchanged": 20,
+    "protected_files_stat_unchanged": 139977,
+    "protected_nonruntime_sha256_unchanged": 2590,
+    "new_missing_or_changed_files": [],
+    "preexisting_missing_paths": [
+      "manuscripts/CVPR27-CLR/build/M10d/README.md",
+      "manuscripts/CVPR27-CLR/build/M10d/main_M10d_T1.tex",
+      "manuscripts/CVPR27-CLR/number_audit.md",
+      "manuscripts/CVPR27-CLR/outputs/main_M10d_T1.log",
+      "manuscripts/CVPR27-CLR/outputs/main_M10d_T1.pdf"
+    ],
+    "independent_manuscript_git_status_unchanged": true,
+    "freeze_sha256": {
+      "data/M10_v1/freeze.json": "34253d1dca78843832db96e07b9716b5812396e018ee765995002fb144c7b34e",
+      "data/M10b_v1/freeze.json": "7bfbdeb623f81b129a40ff8a2a32bfbad817277c5afa220592c335fcf1ca0ccc",
+      "data/M10c_v1/freeze.json": "e71187a1c425499add26796685b2a9056bef9496838d393eec0f7443e09bd46d",
+      "data/M10d_v1/freeze.json": "8151cb1a5e0af9697a925850ed087dc07661035a7373043b67ec6e7aab89ae89",
+      "data/M10e_v1/freeze.json": "e4d5de5b3de4f38dc331ed7e8b8939efe8135b869a660f96f11f909d33c101e9",
+      "data/M11_qual_v1/freeze.json": "c491be6bad5c9791767f49fa213759b14bf637dfec66ea9a191e39088e5d3bd1",
+      "data/M12_ablation/freeze.json": "66ff60f86e2d4ee3b2a5b2497846e6fa9e953279fb9cbda1d2e121ab55ae1f89",
+      "data/M23_v1a/freeze.json": "1c361de24e3108c83d24cedabfc11ad0ac70035b14d3af336044d385d506ec31",
+      "data/M41_v1/freeze.json": "8fc62297347d35ccdf38c11de0c7630499d5b1e58c6d03170c58c600d7fbfe87",
+      "data/M4_v0/freeze.json": "ef62c409b01f6b08c1309ce4641e012d744abf44e1bb9554f6a164d97bbe7605",
+      "data/M5a_v13/freeze.json": "6c97c1331839cf758a9a3d05805eebe258284c9d2b4184db766a9fee9c854cf1",
+      "data/M5b_v1/freeze.json": "35d6355fc007b1c8bd558b69da24fd4d2c8a1bd11987f903c280052115a5f463",
+      "data/M6_v1/freeze.json": "8354b1fa76abee3f7cce4f3d064fbad1b15014cb51aef71b12d3679df5a0da2d",
+      "data/M71_v1/freeze.json": "b87fb776bcbf1cd50bd0d479e170e4405083bb9d3cc38c5c0d321295a565ad01",
+      "data/M7_v1/freeze.json": "0c045351d8fdf8aca3788dc074334d341c2c785e3fabcae625d6816df30ac5e8",
+      "data/M8a_v1/freeze.json": "0806bb119f7fac4b1105c690ab14e8c4efd1653b45bd40c46254ca9e750ddcaa",
+      "data/M8b_v1/freeze.json": "9c407b65a5de6699b12e7793e50c4a3a4ef8f4f640ec000988463759fe55a352",
+      "data/M8c_v1/freeze.json": "094be35cc787e4d2e6420371693e12c41edee639c4d47a18d1c8c897a7c2dfb4",
+      "data/M9_v1/freeze.json": "4a233cd007466f83a5f4cd2c5fbd91968db71f34de546a96bcec241f8bb87995",
+      "supplemental/stats_20261116_v1/freeze.json": "515cf15c1993a314dddd7832712e7519f465a87239551a3e38c5af66e34eafbd"
+    }
+  },
+  "staged_inventory": {
+    "tracked_files": 3387,
+    "tracked_worktree_bytes": 87196841,
+    "symlinks": [
+      {
+        "path": "BLOCKERS.md",
+        "target": "docs/BLOCKERS.md"
+      },
+      {
+        "path": "CLR_Codex_Plan.md",
+        "target": "docs/CLR_Codex_Plan.md"
+      },
+      {
+        "path": "EXPERIMENTS.md",
+        "target": "docs/EXPERIMENTS.md"
+      },
+      {
+        "path": "IdeaB_Calibrated_Latent_Reader.md",
+        "target": "docs/proposal.md"
+      },
+      {
+        "path": "docs/IdeaB_Calibrated_Latent_Reader.md",
+        "target": "proposal.md"
+      }
+    ],
+    "files_larger_than_10MiB": [
+      {
+        "path": "data/splits/gsm8k_M01_v2.json",
+        "bytes": 27888402
+      }
+    ],
+    "no_embedded_gitlinks_or_runtime_paths": true,
+    "private_key_markers_found": [],
+    "maintenance_diff_check": "passed",
+    "historical_diff_check": {
+      "exit_code": 2,
+      "issue_count": 1115,
+      "files": {
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/TEMPLATE_README.md": 79,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/evidence/number_fill_20261112/B4_search.json": 1,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/evidence/number_fill_20261112/changes.json": 241,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/fig/README.md": 5,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/fig/architecture.tex": 6,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/fig/search.tex": 6,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/fig/transfer.tex": 6,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/ieeenat_fullname.bst": 1,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/main.tex": 38,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/number_audit.md": 85,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/rebuttal.tex": 33,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/sec/2_related.tex": 14,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/sec/4_setup.tex": 8,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/sec/5_results.tex": 105,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/sec/6_analysis.tex": 43,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/sec/8_limitations.tex": 3,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/sec/9_conclusion.tex": 2,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/sec/README.md": 1,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/sec/X_suppl.tex": 14,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/template/cvpr2027/README.md": 2,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/template/cvpr2027/ieeenat_fullname.bst": 1,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/template/cvpr2027/main.tex": 3,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/template/cvpr2027/preamble.tex": 1,
+        "manuscripts/CVPR27-CLR-achieve-2026-11-12/template/cvpr2027/sec/X_suppl.tex": 4,
+        "reports/M10_evidence/released_gpu0_controller.log": 1,
+        "reports/M10_evidence/released_gpu2_controller.log": 1,
+        "reports/M10_evidence/released_gpu5_controller.log": 1,
+        "reports/M10e_pipeline.log": 1,
+        "reports/M12_evidence/completion_audit_tests_v2.log": 2,
+        "reports/M12_evidence/summarize.log": 1,
+        "reports/M4_tests_initial.log": 6,
+        "reports/M4_training_suite_v8.log": 1,
+        "reports/M5a_preflight_costs.csv": 306,
+        "reports/M5a_smoke_compiled128_v6.log": 1,
+        "reports/M6_pipeline_v2.log": 1,
+        "reports/M6_priority_pipeline.log": 2,
+        "reports/M6_priority_resume.log": 1,
+        "reports/M6_production_noise_v2.log": 2,
+        "reports/M6_source_noise.log": 1,
+        "reports/M6_tests_v13.log": 3,
+        "reports/M6_tests_v14.log": 3,
+        "reports/M8a_evidence/2605.28214_abs.html": 2,
+        "reports/M8a_evidence/2605.28214_html.html": 10,
+        "reports/M8a_evidence/2606.28958_abs.html": 2,
+        "reports/M8a_evidence/2606.28958_html.html": 60,
+        "reports/evidence_M1/smoke.log": 1,
+        "scripts/m7_freeze.py": 1,
+        "supplemental/stats_20261116_v1/a_validation.log": 1,
+        "supplemental/stats_20261116_v1/b_train_changes.diff": 2
+      },
+      "disposition": "Preserved pre-existing scientific/frozen evidence and third-party template bytes; no whitespace normalization."
+    }
+  }
+}

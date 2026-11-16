@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m71_report_wait_natural_v2.py", line 24, in <module>
+    report.main(c)
+  File "/home/me/PaperField/CalReader/scripts/m71_report.py", line 285, in main
+    raise ValueError('M7.1 run still open: '+str(p.parent))
+ValueError: M7.1 run still open: runs/20261107T121722207176Z_7dd6f8e381b6_5e441d

@@ -1,0 +1,6 @@
+artifact: t4_qa
+caption: 'T4: Audit question accuracy'
+input_freeze: data/M10_v1/paper_inputs/freeze.json
+inputs:
+  qa: data/M10_v1/paper_inputs/communication_qa.csv
+output_root: paper

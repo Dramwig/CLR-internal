@@ -1,0 +1,21 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.11it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.14it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.67it/s]
+group 1 20 rows 10 seconds 5.172
+group 2 20 rows 20 seconds 5.129
+group 3 20 rows 30 seconds 5.501
+group 4 20 rows 40 seconds 7.509
+group 5 20 rows 50 seconds 6.807
+group 6 20 rows 60 seconds 6.557
+group 7 20 rows 70 seconds 6.124
+group 8 20 rows 80 seconds 5.736
+group 9 20 rows 90 seconds 3.471
+group 10 20 rows 100 seconds 5.013
+group 11 20 rows 110 seconds 5.48
+group 12 20 rows 120 seconds 5.375
+group 13 20 rows 130 seconds 5.821
+group 14 20 rows 140 seconds 8.085
+group 15 20 rows 150 seconds 5.906
+group 16 20 rows 160 seconds 5.102
+group 17 20 rows 170 seconds 9.437
+group 18 20 rows 180 seconds 8.32
+group 19 20 rows 190 seconds 5.294
+group 20 20 rows 200 seconds 8.028

@@ -1,0 +1,18 @@
+{
+  "stage": "frozen_complete_pending_review",
+  "last_trained": "multi",
+  "last_training_run": "/home/me/PaperField/CalReader/runs/20261110T052537082287Z_e28aff3f6df6_2d0975",
+  "updated_utc": "2026-11-10T08:45:30.249136+00:00",
+  "test_opened": true,
+  "trained_seeds": [
+    11,
+    22,
+    33
+  ],
+  "gpu_hours": 7.381691136108131,
+  "primary_experiment_complete": true,
+  "background_tasks_active": false,
+  "milestone_complete": true,
+  "review": "reports/M9_REVIEW.md",
+  "freeze": "data/M9_v1/freeze.json"
+}

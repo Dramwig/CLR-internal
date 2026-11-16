@@ -1,0 +1,56 @@
+{
+  "v0_evaluation_events": [
+    {
+      "timestamp": "2026-11-04T01:21:36.581086+00:00",
+      "event": "created",
+      "commit": "d8ba86a8db61ee1defbb298c02f33560ee8bc26c",
+      "dirty": true
+    },
+    {
+      "timestamp": "2026-11-04T02:14:42.303493+00:00",
+      "event": "finished",
+      "status": "completed"
+    }
+  ],
+  "v0_evaluation_run": "runs/20261104T012135920192Z_bf96a9d0faf6_5af52e",
+  "M41_selection": {
+    "selected": "lite",
+    "reader_val_macro_nll": {
+      "v1": 0.618355683281303,
+      "lite": 0.5589417683798593
+    },
+    "test_opened": false
+  },
+  "parameters": {
+    "v1": {
+      "trainable_parameters": 124536584,
+      "checkpoint": "/home/me/PaperField/CalReader/runs/20261105T032051954084Z_b7a23d2a9613_46bc9e/best.pt",
+      "tensor_names": 192
+    },
+    "lite": {
+      "trainable_parameters": 17180931,
+      "checkpoint": "/home/me/PaperField/CalReader/runs/20261105T134549665017Z_13a5b7d07c74_c9bce9/best.pt",
+      "tensor_names": 73
+    }
+  },
+  "selection_scope": "v1 versus lite; not the later single-step/default/joint trio",
+  "historical_test_exposure": true,
+  "verified_scientific_input_files": 776,
+  "checked_at": "2026-11-16T01:46:29.153056+08:00",
+  "input_sha256": {
+    "data/M4_v0/evaluation_suite.json": "ceab8bfab0a1d6f9848d3fdcfac892c0f33717c66ff7382e97787770edea67c9",
+    "data/M41_v1/training_complete.json": "bb52ff61f8c9da436696b0e0c0f99a35b7d47ad0d1e86b85535c48adcb438aee",
+    "data/M41_v1/variant_selection.json": "bab3bb38317d54c605c332d5a3d170af2d23d9d9b18a19d9b0cc9d4c06cf5922",
+    "/home/me/PaperField/CalReader/runs/20261105T032051954084Z_b7a23d2a9613_46bc9e/best.pt": "a24e1910a7c108ed5b37a91a3001767f26b49dfc4a6f7b9da1c5d16eea937f14",
+    "/home/me/PaperField/CalReader/runs/20261105T134549665017Z_13a5b7d07c74_c9bce9/best.pt": "77301c75f0982205ad7270ec5c8b66a0b742b5b3bb3762e8c6b8f90abeba75e0",
+    "runs/20261104T012135920192Z_bf96a9d0faf6_5af52e/events.jsonl": "1b116bf78276017c9448ede8277179774a07784057b826d74f7cb4d823334a11",
+    "data/M10_v1/gsm_export_sources.json": "2d1c27d3cfbfedce71f99d252351e2728e40f88051ee28abe5a2119841c0f136",
+    "data/M10b_v1/export_sources.json": "3db458e83cc888ec662826cb428e7fc0c2e4edde9fa501739c6d62e19feded38",
+    "data/M12_ablation/statistics_provenance.json": "14cff733343b007ca67ec3c536ad3cf418cc9ba0016996daf1fceb907064acfc",
+    "docs/M4.1_TASK.md": "3ae8c1cb0e8087babb280d1c9a022246a829f573a4cd8174cccb75ef3bc731ef",
+    "reports/M4.1_details.md": "210d083e1dafb68c14233e304b8d97b395be9d3f58a215536648f7188ac35cad",
+    "scripts/m41_train_suite.py": "a8d58e4950979a454f1a582c54e9a77746093bc36961df81bc1c911dbe267c46",
+    "docs/M5b_TASK.md": "a23964d086cb9ca47f54e9d7966a7aaf27c2dc8313047802d86ed25546418afc",
+    "docs/M9_TASK.md": "07ce1b526fe0cab06d7cc6c5ca19de8ecd4a71efe30f50ad9831eabad3680cff"
+  }
+}

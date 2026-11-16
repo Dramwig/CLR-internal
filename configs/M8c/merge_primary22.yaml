@@ -1,0 +1,10 @@
+milestone: M8c
+mode: merge_primary22
+seed: 20261109
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8c_v1
+budget_gpu_hours: 21
+reader_seed: 22
+parent_runs:
+- runs/20261109T061044089104Z_8ab574f90d00_cd6884
+- runs/20261109T141353366132Z_4620dfd5b906_f27d26

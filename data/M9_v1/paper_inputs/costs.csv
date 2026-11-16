@@ -1,0 +1,16 @@
+milestone,gpu_hours,source_forward_calls,missing_source_counts,cost_scope,evidence
+M0/M0b,,,1,unavailable: no complete frozen cumulative ledger; missing costs are not zero,reports/M0_env.md; reports/M0_repro.md; reports/evidence/M0b_coconut/manifest.json
+M1,23.6695645986315,2855126,0,lower bound: cumulative v3 generation plus saved smoke/gate preflight; legacy preparations may be absent,reports/M1_completed_v3_manifest.json; generation/budget run metrics
+M0.1,36.3019848282818,3506255,2,lower bound: completed v2 noise plus its saved preparatory ledger; earlier M0/M0b not fully instrumented,runs/20261028T131534016226Z_83bfd1aab8dd_d4e55b/metrics.json; reports/evidence_v2/costs.json
+M4,53.8128026982414,117826,0,lower bound: frozen legacy per-run fields; uninstrumented/pre-freeze runs may be absent,data/M9_v1/paper_inputs/legacy_cost_runs.csv
+M2–M3,2.40444641674805,200689,0,lower bound: frozen legacy per-run fields; uninstrumented/pre-freeze runs may be absent,data/M9_v1/paper_inputs/legacy_cost_runs.csv
+M4.1,34.6309915393122,0,1,sum of run wall time; see original missing/upper-bound notes,reports/M41_costs.csv
+M5a,5.80961141244503,1124771,1,sum of run wall time; see original missing/upper-bound notes,data/M5a_v13/analysis/cost_ledger.csv
+M5b,16.8066365736319,1729285,0,sum of run wall time; see original missing/upper-bound notes,data/M5b_v1/analysis/costs.csv
+M6,47.5973454914325,1907392,0,sum of run wall time; see original missing/upper-bound notes,data/M6_v1/analysis/costs.csv
+M7,7.72646848712278,59274,0,sum of run wall time; see original missing/upper-bound notes,data/M7_v1/analysis/costs.csv
+M7.1,15.9380528008359,126485,0,sum of run wall time; see original missing/upper-bound notes,data/M71_v1/analysis_v3/costs.csv
+M8a,9.57106873426027,122695,0,sum of run wall time; see original missing/upper-bound notes,data/M8a_v1/analysis_v1/costs.csv
+M8b,19.1694742216453,157833,4,sum of run wall time; see original missing/upper-bound notes,data/M8b_v1/analysis_v1/costs.csv
+M8c,20.9700712147998,159655,2,sum of run wall time; see original missing/upper-bound notes,data/M8c_v1/analysis_final21/costs.csv
+M9-A,7.38169113610813,0,0,includes M9-A smoke/failures/calibration; CPU paper work=0,data/M9_v1/experiment_complete.json

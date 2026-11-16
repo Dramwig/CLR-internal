@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "pages": 8,
+  "baseline_pages": 8,
+  "table_page": 5,
+  "tex_scope": "four TODO replacements and column-best bold only; reversed byte equality",
+  "audit_append_only": true,
+  "compiler": "Tectonic 0.17.0; T1 font compatibility wrapper only",
+  "compiler_source": ".tools/tectonic/SOURCE.json",
+  "log": "reports/M10d_compile_T1.log",
+  "pdf": "manuscripts/CVPR27-CLR/outputs/main.pdf",
+  "pdf_sha256": "58b537d9634676609712067aa53c7f51da432ba721f3c44dfcf10439cb303208",
+  "visual_check": "data/M10d_v1/table_page_T1.png",
+  "unresolved_references": false,
+  "overfull": false,
+  "warnings": [
+    "two preexisting Times small-caps italic fallbacks",
+    "lineno package internal UTF8 comment"
+  ],
+  "old_frozen_inputs": 4895,
+  "old_frozen_input_mismatches": 0
+}

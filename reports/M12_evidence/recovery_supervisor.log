@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m12_recover.py", line 38, in <module>
+    parser=argparse.ArgumentParser();parser.add_argument('config');args=parser.parse_args();main(load_config(args.config))
+                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m12_recover.py", line 34, in main
+    if code:raise RuntimeError(f'Recovered pipeline failed with exit code {code}')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Recovered pipeline failed with exit code 1

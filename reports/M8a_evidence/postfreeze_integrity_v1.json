@@ -1,0 +1,32 @@
+{
+  "started_utc": "2026-11-07T23:28:58.423030+00:00",
+  "finished_utc": "2026-11-07T23:29:21.747266+00:00",
+  "passed": true,
+  "checks": [
+    {
+      "freeze": "data/M7_v1/freeze.json",
+      "freeze_sha256": "0c045351d8fdf8aca3788dc074334d341c2c785e3fabcae625d6816df30ac5e8",
+      "files": 2912,
+      "mismatches": []
+    },
+    {
+      "freeze": "data/M6_v1/freeze.json",
+      "freeze_sha256": "8354b1fa76abee3f7cce4f3d064fbad1b15014cb51aef71b12d3679df5a0da2d",
+      "files": 35688,
+      "mismatches": []
+    },
+    {
+      "freeze": "data/M71_v1/freeze.json",
+      "freeze_sha256": "b87fb776bcbf1cd50bd0d479e170e4405083bb9d3cc38c5c0d321295a565ad01",
+      "files": 22830,
+      "mismatches": []
+    },
+    {
+      "freeze": "data/M8a_v1/freeze.json",
+      "freeze_sha256": "0806bb119f7fac4b1105c690ab14e8c4efd1653b45bd40c46254ca9e750ddcaa",
+      "files": 933,
+      "mismatches": []
+    }
+  ],
+  "note": "Read-only post-completion verification; this is an added evidence file, not a modification of any frozen file."
+}

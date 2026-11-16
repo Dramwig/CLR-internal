@@ -1,0 +1,14 @@
+milestone: M9
+version: v1
+stage: resume_pipeline
+seed: 11
+output: data/M9_v1
+budget_gpu_hours: 10
+previous_controller_pid: 1269729
+previous_controller_run: runs/20261110T035638336299Z_994f3bd2f745_015236
+preserved_worker_pid: 1269773
+preserved_worker_run: runs/20261110T035645180399Z_8587a7c4ac1a_9e3b58
+training_configs:
+- configs/M9/train_11.yaml
+- configs/M9/train_22_parallel.yaml
+- configs/M9/train_33_parallel.yaml

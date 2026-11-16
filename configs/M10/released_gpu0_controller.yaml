@@ -1,0 +1,4 @@
+dependency: data/M10_v1/audit_B6_training_completed.json
+queue: configs/M10/released_gpu0_queue.yaml
+log: reports/M10_evidence/released_gpu0_queue.log
+completion: data/M10_v1/released_gpu0_controller_completed.json

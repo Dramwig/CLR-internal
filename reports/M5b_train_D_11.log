@@ -1,0 +1,6 @@
+/home/me/PaperField/CalReader/runs/20261106T021538998125Z_b0c94e47357c_308d11
+{"epoch": 1, "training_side_sibling_monitor": 0.9005261437098185, "reader_val_selection_nll": 0.5173715539124131, "gpu_hours": 0.028656015494715473}
+{"epoch": 2, "training_side_sibling_monitor": 0.9472997220357259, "reader_val_selection_nll": 0.6050882026661427, "gpu_hours": 0.04427794108388803}
+{"epoch": 3, "training_side_sibling_monitor": 1.0059832906723023, "reader_val_selection_nll": 0.6608195940432817, "gpu_hours": 0.059925486306941216}
+{"epoch": 4, "training_side_sibling_monitor": 1.0700449442863464, "reader_val_selection_nll": 0.7125063490825058, "gpu_hours": 0.07536659329888708}
+{"epoch": 5, "training_side_sibling_monitor": 1.1296813122431437, "reader_val_selection_nll": 0.6936488473823536, "gpu_hours": 0.09112865664221721}

@@ -1,0 +1,58 @@
+A1 CLR-lite Q1 nll
+A1 CLR-lite Q2 auroc
+A1 CLR-lite Q3 accuracy
+A1 CLR-lite Q4 accuracy
+A1 CLR-lite Q3 size
+A1 A1 Q1 nll
+A1 A1 Q2 auroc
+A1 A1 Q3 accuracy
+A1 A1 Q4 accuracy
+A1 A1 Q3 size
+A1 A2 Q1 nll
+A1 A2 Q2 auroc
+A1 A2 Q3 accuracy
+A1 A2 Q4 accuracy
+A1 A2 Q3 size
+A1 A3 Q1 nll
+A1 A3 Q2 auroc
+A1 A3 Q3 accuracy
+A1 A3 Q4 accuracy
+A1 A3 Q3 size
+A1 A4 Q1 nll
+A1 A4 Q2 auroc
+A1 A4 Q3 accuracy
+A1 A4 Q4 accuracy
+A1 A4 Q3 size
+A1 CLR-v1 Q1 nll
+A1 CLR-v1 Q2 auroc
+A1 CLR-v1 Q3 accuracy
+A1 CLR-v1 Q4 accuracy
+A1 CLR-v1 Q3 size
+A1 CLR-lite-single Q1 nll
+A1 CLR-lite-single Q2 auroc
+A1 CLR-lite-single Q3 accuracy
+A1 CLR-lite-single Q4 accuracy
+A1 CLR-lite-single Q3 size
+A1 A5 Q1 nll
+A1 A5 Q2 auroc
+A1 A5 Q3 accuracy
+A1 A5 Q4 accuracy
+A1 A5 Q3 size
+A1 CLR-per-type Q1 nll
+A1 CLR-per-type Q2 auroc
+A1 CLR-per-type Q3 accuracy
+A1 CLR-per-type Q4 accuracy
+A1 CLR-per-type Q3 size
+A4 gpt2 B3
+A4 gpt2 B3-prefix
+A4 gpt2 B6
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/supplemental/stats_20261116_v1/analysis_a.py", line 115, in <module>
+    if __name__=='__main__':main(load_config(sys.argv[1]))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/supplemental/stats_20261116_v1/analysis_a.py", line 100, in main
+    r=dict(source=s,model=model,seed=seed,run=m41[f'B4_{seed}'],native=False)
+                                              ~~~^^^^^^^^^^^^^^
+KeyError: 'B4_11'

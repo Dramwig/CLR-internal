@@ -1,0 +1,20 @@
+% CVPR 2027 project preamble. Packages here are loaded before hyperref.
+% The CVPR style itself supplies the standard proceedings packages.
+\usepackage{amsthm}
+\usepackage{multirow}
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+
+\newcommand{\TODO}[1]{\textcolor{red}{[#1]}}
+\newcommand{\clr}{\textsc{CLR}}
+\newtheorem{proposition}{Proposition}
+
+% Missing draft figures are shown explicitly until their PDF files are supplied.
+\newcommand{\draftfigure}[1]{%
+  \IfFileExists{#1}{\includegraphics[width=\linewidth]{#1}}{%
+    \PackageWarning{CLR}{Missing figure: #1; showing draft placeholder}%
+    \fbox{\parbox[c][1.1in][c]{0.94\linewidth}{\centering
+      \textbf{Figure pending}\\[6pt]\texttt{\detokenize{#1}}}}}}
+
+% Optional official-template helpers (enable only when needed).
+% \usepackage{microtype}
+% \newcommand{\red}[1]{{\color{red}#1}}

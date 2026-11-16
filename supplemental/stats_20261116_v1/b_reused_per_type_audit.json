@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "seed": 11,
+      "qtype": "Q1",
+      "exposure": 2019192,
+      "epochs": 8,
+      "passed": true
+    },
+    {
+      "seed": 11,
+      "qtype": "Q2",
+      "exposure": 381752,
+      "epochs": 8,
+      "passed": true
+    },
+    {
+      "seed": 11,
+      "qtype": "Q3",
+      "exposure": 2346408,
+      "epochs": 8,
+      "passed": true
+    },
+    {
+      "seed": 11,
+      "qtype": "Q4",
+      "exposure": 761824,
+      "epochs": 8,
+      "passed": true
+    },
+    {
+      "seed": 22,
+      "qtype": "Q1",
+      "exposure": 2019192,
+      "epochs": 8,
+      "passed": true
+    },
+    {
+      "seed": 22,
+      "qtype": "Q2",
+      "exposure": 381752,
+      "epochs": 8,
+      "passed": true
+    },
+    {
+      "seed": 22,
+      "qtype": "Q3",
+      "exposure": 2346408,
+      "epochs": 8,
+      "passed": true
+    },
+    {
+      "seed": 22,
+      "qtype": "Q4",
+      "exposure": 761824,
+      "epochs": 8,
+      "passed": true
+    },
+    {
+      "seed": 33,
+      "qtype": "Q1",
+      "exposure": 2019192,
+      "epochs": 8,
+      "passed": true
+    },
+    {
+      "seed": 33,
+      "qtype": "Q2",
+      "exposure": 381752,
+      "epochs": 8,
+      "passed": true
+    },
+    {
+      "seed": 33,
+      "qtype": "Q3",
+      "exposure": 2346408,
+      "epochs": 8,
+      "passed": true
+    },
+    {
+      "seed": 33,
+      "qtype": "Q4",
+      "exposure": 761824,
+      "epochs": 8,
+      "passed": true
+    }
+  ],
+  "input_sha256": {
+    "data/M10_v1/paper_inputs/main.csv": "251d12ea3eb9b428f540557ca2d02774acc80e83bd910245ce854f37c4f46b2d",
+    "data/M10e_v1/summary.csv": "557016b1de9e831caee0d89668b8dbd0e206aa14cbd54d559236d1e3a3d268a1",
+    "data/M10d_v1/B4_summary.csv": "5d6d752ef714bb2ba00512e469193a5de9acd7db0cfd306ba54e885c46beace4",
+    "data/M10b_v1/paper_inputs/B5c_summary.csv": "2d3b2fa5adcb2ce1815afc4315de355f0bd06348ec6b7fdb1bb189dc69037104",
+    "data/M4_v0/evaluation_suite.json": "ceab8bfab0a1d6f9848d3fdcfac892c0f33717c66ff7382e97787770edea67c9",
+    "runs/20261103T045628621237Z_2964c31f2153_11a348/statistics.json": "266dc3bbf9a10630cca37b7a1f120b79e87e13e58db79507f315e52931da85fc",
+    "runs/20261104T034309806032Z_fd58477eb61e_b47aaf/statistics.json": "dbd2802f8e87e64e94bb13331675ccf937779dae9ccf8c8364df3de5fdf38b79",
+    "runs/20261104T034622875568Z_51a665c1545c_572a53/statistics.json": "f9677ff2d2d92dda4771982f9e19c3252f540d80faeda5055bda39f9696a3b05",
+    "runs/20261104T042124601620Z_a913cc835e05_a308f5/statistics.json": "b027e296c2a5ac5101b35520e61ed2c517f01a3b075f8a732960f1e91323e8db",
+    "data/M12_ablation/summary.csv": "5e0a75b31992501675252a8ac4840bce7e32b30e108884d5e7d540df042c4daf",
+    "data/M10_v1/exposure_targets.json": "2a53ac7e4149f04c017cf8c9a9abd737636c528283b40e89c4264e078dad0b56",
+    "data/M10_v1/trained/llama_CLR-per-type_11_full.json": "5f620cb33e0d4592b86c1fbc0f8a92ee029f1620330a5a69b2c51596c1c7fdb8",
+    "/home/me/PaperField/CalReader/runs/20261110T130020293950Z_dd7a612ef651_68a49a/training_manifest.json": "788615b11a51fa7e8d1d48568345181d16e1f044515764fe2b4fe99a52f46b8c",
+    "/home/me/PaperField/CalReader/runs/20261110T130020293950Z_dd7a612ef651_68a49a/Q1_best.pt": "49633afab40f6159d88900083640e02120986e32419fd7e829dd154c47f10925",
+    "/home/me/PaperField/CalReader/runs/20261110T130020293950Z_dd7a612ef651_68a49a/Q2_best.pt": "d2f1b36bc470b8f522ff1a872d66cc53c2a5b26eb1f7bca0c01a8dd4811c9f65",
+    "/home/me/PaperField/CalReader/runs/20261110T130020293950Z_dd7a612ef651_68a49a/Q3_best.pt": "aa98e33e172a0663f5569f4a562eb7f75fb7473cc38cb63e1e61d0a3042752a0",
+    "/home/me/PaperField/CalReader/runs/20261110T130020293950Z_dd7a612ef651_68a49a/Q4_best.pt": "df362030602a30f96ab626ed68a10d4e905c956faaa3f2079619042a8d48f773",
+    "data/M10_v1/trained/llama_CLR-per-type_22_full.json": "17cbd0ed2f3340a863442dfe19c46db8ea25ca5a97093783a85b3daf01904a41",
+    "/home/me/PaperField/CalReader/runs/20261110T131350494444Z_85cdb1244d6d_d0615d/training_manifest.json": "1648054c43ab8a3a9dd5947e060c11b3d52ec9bc8f00a885d9cefb4795abad4b",
+    "/home/me/PaperField/CalReader/runs/20261110T131350494444Z_85cdb1244d6d_d0615d/Q1_best.pt": "92684f988bbf388cea6396f062de677166ba34d959ebdb257898b056a7911a96",
+    "/home/me/PaperField/CalReader/runs/20261110T131350494444Z_85cdb1244d6d_d0615d/Q2_best.pt": "7e6f19617ce9fc72a1af8e102d452cf3e5070b214dbc88786d8ab70b861bbc1c",
+    "/home/me/PaperField/CalReader/runs/20261110T131350494444Z_85cdb1244d6d_d0615d/Q3_best.pt": "b755911aa48b332cabc0fa59891ffa72f9cb06b5a3e983a47466e927316f4c3a",
+    "/home/me/PaperField/CalReader/runs/20261110T131350494444Z_85cdb1244d6d_d0615d/Q4_best.pt": "3990fc468fc8c7c2d19d46870df218a439b56d8823fccd6baa2070ffd3c61100",
+    "data/M10_v1/trained/llama_CLR-per-type_33_full.json": "5b8a926583170dbcbbea3373a9056506d57d9617da196fc5ebe7945ccd6166ed",
+    "/home/me/PaperField/CalReader/runs/20261110T123140054418Z_d3ea75e7327a_9f969e/training_manifest.json": "45edc5edc8fc5d96b339f28684d11533242597bdfae5bc63847392f6b51d633f",
+    "/home/me/PaperField/CalReader/runs/20261110T123140054418Z_d3ea75e7327a_9f969e/Q1_best.pt": "aff5494307f25d40b67b622adcd55864977b66f65670cd3fa8ece2f6f2156809",
+    "/home/me/PaperField/CalReader/runs/20261110T123140054418Z_d3ea75e7327a_9f969e/Q2_best.pt": "1c9eaa82b0fec20a347a168f7260d9a3a5729e7f0d15c894f8d8f73b6237b87f",
+    "/home/me/PaperField/CalReader/runs/20261110T123140054418Z_d3ea75e7327a_9f969e/Q3_best.pt": "93da891d78b9f39a06d75fd2ba9720afd738738d09849fedfdb5d1c68162232c",
+    "/home/me/PaperField/CalReader/runs/20261110T123140054418Z_d3ea75e7327a_9f969e/Q4_best.pt": "3a72902d6a6222501d764dcdab18d40bedfeca775f66ed6c658b8c9002edd654"
+  }
+}

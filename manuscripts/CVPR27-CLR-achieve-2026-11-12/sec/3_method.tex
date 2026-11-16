@@ -1,0 +1,34 @@
+\section{Calibrated Latent Reader}
+\label{sec:method}
+
+\subsection{Problem setup}
+A source model $M_s$ produces a latent object $z$: either the sequence of continuous thoughts $z_{0:t}$ after $t$ latent steps, or a KV message. A typed question $q$ has a finite answer space $\mathcal{A}_q$ (choice over options, yes/no) or a Bernoulli target (score). The reader outputs
+\begin{equation}
+R(z, q, s) = p(\,\cdot \mid z, q),\quad \text{over } \mathcal{A}_q,
+\end{equation}
+where $s$ identifies the source. We require accuracy, calibration, conformal coverage $P(a^\star \in C(z,q)) \ge 1-\alpha$, and cost comparable to a single forward step of the source model. The reader never sees the source problem text or private sender inputs; it sees only $z$, the question template, and the options.
+
+\subsection{Architecture}
+\clr{} has three parts (\cref{fig:arch}). A \emph{source adapter} (two-layer MLP) maps each latent vector to the reader width and adds a step embedding and a learned source token. The \emph{reader body} is a small bidirectional transformer trained from scratch (4--6 layers, width 256--512); its input is the adapted latent sequence, the question template tokens, and the option tokens (text embedding plus numeric features). A block attention mask lets every option attend to the latents and the template but not to other options, so predictions are equivariant to option order. A joint state$\times$option head scores each option; separate heads serve yes/no and score questions. We found that a pretrained text encoder with cross-attention (our first variant) underperformed when trained with the same exposure as probes; a key failure in early runs was 37--129$\times$ lower training exposure than the probe baselines, which we fix by full passes with inverse-frequency type weighting (see supplementary material).
+
+\input{fig/architecture}
+
+\subsection{Questions and labels}
+\label{sec:labels}
+For latent reasoning we define four question types. \textbf{Q1} (score): ``continuing from here, will the final answer be correct?'' The target is the outcome of a fixed stochastic continuation policy $\pi_\sigma$ that adds relative Gaussian noise $z\leftarrow z+\sigma\|z\|\epsilon/\sqrt{d}$ to every \emph{later} latent step and decodes greedily. \textbf{Q2} (yes/no): ``if forced to answer now, is the answer correct?'' (early-exit outcome). \textbf{Q3} (choice): ``which of these four answers will the model output?'' (true model answer plus distractors from sibling rollouts, gold, and other problems). \textbf{Q4} (yes/no): ``is value $v$ an intermediate quantity of this problem's reference solution?'' (negatives drawn from other problems' intermediates so positive and negative values share the same marginal). Each type has six templates, two held out for evaluation.
+
+All labels are behavioral or programmatic. Training Q1 labels come from perturbed trajectories: each trajectory starting at $t_0$ gives one Bernoulli label to the clean state $z_{t_0}$ and to every later perturbed state; clean prefixes before $t_0$ receive no Q1 label, because their continuation was not drawn from $\pi_\sigma$. Evaluation Q1 targets use $K{=}16$ Monte Carlo rollouts from each clean state. We select $\sigma$ by a pre-registered rule (accuracy drop $<5$ points, maximal non-degenerate fraction); $\sigma=1.5$ for CODI-GPT-2 and $\sigma=2$ for CODI-LLaMA (the latter did not reach the 30\% non-degeneracy target and is reported as degraded).
+
+\subsection{Calibration and conformal sets}
+Calibration data are split by problem into $\mathrm{cal}_A$ (temperature per question type) and $\mathrm{cal}_B$ (conformal thresholds). We use Mondrian split conformal stratified by (question type, step), taking one instance per problem per stratum to preserve exchangeability.
+
+\begin{proposition}[Coverage]
+If calibration and test pairs within a stratum are exchangeable, the Mondrian split-conformal set with threshold at the $\lceil (n+1)(1-\alpha)\rceil$-th smallest nonconformity score satisfies $P(a^\star \in C(z,q)) \ge 1-\alpha$ within each stratum.
+\end{proposition}
+This is standard~\cite{vovk2005alrw}; we evaluate how far it degrades under source, dataset, and step shift in \cref{sec:exp-cross}.
+
+\subsection{Typed auditing of latent messages}
+\label{sec:audit-method}
+A sender reads public input $x_{\mathrm{pub}}$ and private input $x_{\mathrm{priv}}$, sends its KV cache to a receiver that sees only $x_{\mathrm{pub}}$, and publishes a short textual commitment. The auditor asks typed questions about the message---A1 ``does the message state fact $F$?'', A2 ``does it support conclusion $C$?'', A3 ``is it consistent with the commitment?'', A4 ``which value does private variable $X$ take?''---and compares the answers with \emph{expected answers derived only from the commitment and public constraints}. The consistency score averages the log-probability of the expected answers over $k$ randomly drawn questions; the alarm threshold is set by split conformal on clean messages so that the false-positive rate is at most $\alpha$. KV messages are compressed by a fixed differentiable map $f$: mean pooling within each log-record segment plus the last 8 tokens, at four layers chosen by a probe scan on training data, followed by a fixed random orthogonal projection to 512 dimensions.
+
+% ---------------------------------------------------------------

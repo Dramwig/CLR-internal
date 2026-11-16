@@ -1,0 +1,33 @@
+{
+  "artifact": "f3_robustness",
+  "config": {
+    "artifact": "f3_robustness",
+    "caption": "F3: Monotone envelopes of observed white-box failure",
+    "input_freeze": "data/M9_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "dependent": "data/M9_v1/paper_inputs/dependent.csv",
+      "weak_d0": "data/M9_v1/paper_inputs/weak_D0.csv",
+      "weak_designs": "data/M9_v1/paper_inputs/weak_designs.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "20913314673c6f976b24b943332b82d4f5c3c1923bd0d6c3e1a9fe26e275b33c",
+  "input_freeze_sha256": "3494aa1f8f9596db929a57e29a8e5e442b645865c8b300d6cb03c21963e20c06",
+  "inputs": {
+    "data/M9_v1/paper_inputs/dependent.csv": "948376557068c5bd084cd811ccd5de29ca9f4566e8ab02743a95f0418ff42dcb",
+    "data/M9_v1/paper_inputs/weak_D0.csv": "76fb6abdc7255785031cb6b2d659836e8defea88594bdc7cb222a051ce835023",
+    "data/M9_v1/paper_inputs/weak_designs.csv": "36de02b589bd3063a0814416f494da0657b65cbc8ec156bc92c8de7c0fc3f364"
+  },
+  "outputs": {
+    "derived/f3_robustness.csv": "71354ae69f1f1231f5cf180f7507e4709086a35df969089a558f8e6346ea706e",
+    "figures/f3_robustness.pdf": "589620a8b28695a51677be5967d814a941ecd28c5a07049908a2c21ff762f873"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

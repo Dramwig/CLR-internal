@@ -1,0 +1,24 @@
+milestone: M8c
+mode: finalize21_continuation
+seed: 20261109
+data_seed: 20261107
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8c_v1
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+device: cuda:0
+min_free_GiB: 0
+budget_gpu_hours: 21
+max_seconds: 3600
+all_requested_settings_completed: true
+status_statement: M8c固定test200组三seed E3主矩阵完成待审查；21GPUh内次要项完成范围见reports/M8c_REVIEW.md，冻结data/M8c_v1/freeze.json。
+jobs:
+- module: scripts.m8c_verify
+  config: configs/M8c/verify_final.yaml
+  log: reports/M8c_evidence/verify_final.log
+- module: scripts.m8c_statistics
+  config: configs/M8c/statistics_final.yaml
+  log: reports/M8c_evidence/statistics_final.log
+- module: scripts.m8c_report
+  config: configs/M8c/report_final21_continuation.yaml
+  log: reports/M8c_evidence/report_final.log

@@ -1,0 +1,9 @@
+configs:
+- configs/M10/eval_llama_B3-prefix_smoke.yaml
+- configs/M10/eval_llama_CLR-lite-single_smoke.yaml
+- configs/M10/eval_gpt2_B6_smoke.yaml
+- configs/M10/eval_llama_B6_smoke.yaml
+- configs/M10/eval_gpt2_CLR-per-type_smoke.yaml
+- configs/M10/eval_llama_CLR-per-type_smoke.yaml
+overrides: ['device=cuda:3']
+completion_file: data/M10_v1/evaluation_branches_smoke_completed.json

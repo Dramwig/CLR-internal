@@ -1,0 +1,52 @@
+{
+  "stage": "completed_pending_review",
+  "milestone_complete": true,
+  "authorized_budget_gpu_hours": 25,
+  "budget_plan": "data/M5b_v1/budget_plan_v2.json",
+  "A_smokes": {
+    "single": "runs/20261106T013254401248Z_c4d9d916cf95_d82b85",
+    "prefix": "runs/20261106T013437446606Z_d528fb85f52f_99f8a7"
+  },
+  "A_training_seed11": {
+    "single": "runs/20261106T013428955588Z_f6b3514e5b47_f56df3",
+    "prefix": "runs/20261106T014102482338Z_bc28fed53f53_ffb35a"
+  },
+  "A_queues": [
+    "data/M5b_v1/queue_single.json",
+    "data/M5b_v1/queue_prefix.json"
+  ],
+  "BC_smoke": "runs/20261106T013903583983Z_451db0fc9605_616732",
+  "B_full": "runs/20261106T014306312129Z_8127b80897ce_107f46",
+  "C_queue": "data/M5b_v1/queue_C.json",
+  "D_generation_smoke": "runs/20261106T014323476251Z_a1bc67be3aea_daf5af",
+  "D_training_smoke_log": "reports/M5b_D_training_smoke.log",
+  "test_scope": "A only; historical invalid early exposure retained/excluded; B/C/D test=false",
+  "invalid_development": "data/M5b_v1/invalid_development_runs.json",
+  "review": "reports/M5b_REVIEW.md",
+  "A_training_parallel": {
+    "11": "runs/20261106T013428955588Z_f6b3514e5b47_f56df3",
+    "22": "runs/20261106T015718730397Z_ca583f7ba43a_f00655",
+    "33": "runs/20261106T015718916822Z_da13b218a378_a4299a"
+  },
+  "C_parallel_config": "configs/M5b_C_parallel_v2.yaml",
+  "D_pipeline": "data/M5b_v1/D_pipeline.json",
+  "D_generation_full": "runs/20261106T014712520214Z_44358174d9aa_bfb76f",
+  "D_training_smoke": "runs/20261106T015358523741Z_8dc9b13535b9_16432b",
+  "tests": "reports/M5b_tests_pytest_v2.log",
+  "tests_passed": 26,
+  "finish_pipeline": "data/M5b_v1/finish_pipeline.json",
+  "final_tests": "reports/M5b_tests_final.log",
+  "frozen_input_verification": "data/M5b_v1/frozen_inputs_verification.json",
+  "last_check_utc": "2026-11-06T02:52:55.542087+00:00",
+  "D_training_complete": "data/M5b_v1/D_training_complete.json",
+  "D_next": "waiting B completion before frozen-state rescoring",
+  "B_completed": true,
+  "B_analysis": "data/M5b_v1/analysis/B_summary.csv",
+  "D_early_schedule": "data/M5b_v1/D_early_schedule.json",
+  "D_early_pipeline_config": "configs/M5b_d_search_early.yaml",
+  "D_early_full_log": "reports/M5b_D_C_early_full.log",
+  "completed_utc": "2026-11-06T05:16:33.248867+00:00",
+  "cost_gpu_hours": 16.80663657363192,
+  "freeze": "data/M5b_v1/freeze.json",
+  "completion": "data/M5b_v1/completion.json"
+}

@@ -1,0 +1,27 @@
+milestone: M8c
+mode: final_protocol_lock
+seed: 20261109
+data_seed: 20261107
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8c_v1
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+device: cuda:0
+min_free_GiB: 0
+budget_gpu_hours: 21
+max_seconds: 3600
+reader_seeds:
+- 11
+- 22
+- 33
+training_folder: training_exposure_v2
+calibration_folder: calibration
+minimum_groups: 100
+minimum_test_groups: 200
+test_groups: 200
+forecast_total_gpu_hours: 20.3
+budget_plan: 'User-authorized cumulative21GPUh. Fixed primary200, E3 lambda1 x D0/R4
+  x seeds11/22/33 x epsilon.01/.1/1 PGD200. After full primary only: first100 minimum
+  search <=6 bisections; then E1/E2 epsilon.1; then lambda.1/10 epsilon.1. Stop secondary
+  at budget; primary forecast>21 pauses unchanged matrix.'
+feasibility_name: budget_feasibility_21.json

@@ -1,0 +1,26 @@
+{
+  "2606.28958": {
+    "abs": {
+      "status": 200,
+      "bytes": 42342,
+      "url": "https://arxiv.org/abs/2606.28958"
+    },
+    "html": {
+      "status": 200,
+      "bytes": 234180,
+      "url": "https://arxiv.org/html/2606.28958"
+    }
+  },
+  "2605.28214": {
+    "abs": {
+      "status": 200,
+      "bytes": 41349,
+      "url": "https://arxiv.org/abs/2605.28214"
+    },
+    "html": {
+      "status": 200,
+      "bytes": 721851,
+      "url": "https://arxiv.org/html/2605.28214"
+    }
+  }
+}

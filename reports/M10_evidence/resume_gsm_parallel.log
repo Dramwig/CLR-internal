@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m10_resume_gsm_parallel.py", line 33, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');a=p.parse_args();main(load_config(a.config))
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m10_resume_gsm_parallel.py", line 26, in main
+    if status:raise RuntimeError('GSM partition failed: '+str(status))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: GSM partition failed: 1

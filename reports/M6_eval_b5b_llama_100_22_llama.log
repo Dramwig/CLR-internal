@@ -1,0 +1,10 @@
+/home/me/PaperField/CalReader/runs/20261107T012907336916Z_bc31986afcd6_a3dd47
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  7.48it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 14.85it/s]
+reader_val Q1 37142
+reader_val Q2 7000
+reader_val Q3 43142
+reader_val Q4 13986
+test Q1 7035
+test Q2 7035
+test Q3 7035
+test Q4 13888

@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering\scriptsize
+\caption{T6: CODI-GPT2 precision and query cost}
+\label{tab:t6-cost-precision}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllllllllll}
+\toprule
+Type & Reader & Test acc. (\%) & Trainable (M) & Total (M) & GFLOPs/query (1/64) & Source-step ratio (1/64) & b1 ms/batch & b1 query/s & b64 ms/batch & b64 query/s & Training GPUh (3 seeds) \\
+\midrule
+Q3 & B3 & $58.6\;[57.1,\,60]$ & 0.108 & 0.108 & 0.000861 / 0.000861 & 0.00296 / 0.00296 & 0.581 & 1.72e+03 & 1.49 & 4.3e+04 & NA \\
+Q3 & B6 & $65.4\;[64,\,66.7]$ & 0.661 & 39.3 & 0.00726 / 0.00726 & 0.025 / 0.025 & 1.72 & 582 & 3.37 & 1.9e+04 & 2.35 \\
+Q3 & CLR-lite & $76.1\;[74.8,\,77.4]$ & 17.2 & 17.2 & 0.254 / 0.311 & 0.874 / 1.07 & 7.79 & 128 & 10.1 & 6.36e+03 & 6.03 \\
+Q3 & B5c & $76.8\;[75.5,\,78.1]$ & 18.9 & 1.74e+03 & 165 / 193 & 567 / 664 & 152 & 6.58 & 802 & 79.8 & 16.7 \\
+Q4 & B3 & $68.3\;[66.7,\,69.8]$ & 0.108 & 0.108 & 0.000215 / 0.000215 & 0.000741 / 0.000741 & 0.519 & 1.93e+03 & 1.63 & 3.93e+04 & NA \\
+Q4 & B6 & $72\;[70.7,\,73.3]$ & 0.661 & 39.3 & 0.00525 / 0.00525 & 0.0181 / 0.0181 & 1.83 & 545 & 5.4 & 1.19e+04 & 2.35 \\
+Q4 & CLR-lite & $76.2\;[74.7,\,77.7]$ & 17.2 & 17.2 & 0.175 / 0.256 & 0.604 / 0.881 & 7.69 & 130 & 8.87 & 7.22e+03 & 6.03 \\
+Q4 & B5c & $76.3\;[74.8,\,77.7]$ & 18.9 & 1.74e+03 & 76.6 / 121 & 264 / 416 & 145 & 6.9 & 393 & 163 & 16.7 \\
+\bottomrule
+\end{tabular}}
+\par\smallskip\parbox{\textwidth}{\scriptsize Fixed seed11 weights, shared RTX4090 GPU4; 64 reader\_val problems shared across models. Timings: median of three rounds, three inner loops after two warmups; feature preparation, tokenization and CPU-to-GPU transfer excluded. GPU is shared with concurrent jobs: these are contended, implementation-dependent timings, not isolated hardware limits. FLOPs: matrix and attention operations, 2 FLOP/MAC; no lookup, activation, norm or softmax. B5c includes full frozen Qwen3-1.7B forward, injection, unmerged rank16 LoRA and final vocabulary head. Padding changes b64 FLOPs. Source denominator: mean cached one-token CODI-GPT2 step, unmerged LoRA, projection and vocabulary head, no prefill. B6 total includes frozen option embedding table (38.7M); its trainable parameters and B3 parameters are per-type models. CLR/B5c share Q3/Q4 weights. Historical completed resident training costs include loading/validation: CLR and B6 train Q1-Q4 (B6 includes both learning-rate sweeps), B5c trains Q3-Q4 for one pass. B3 isolated training cost is unavailable (NA); entire original B0-B4 multi-type/three-seed fitting/calibration/evaluation run costs 0.534 GPUh. Costs are repeated across types, not additive. Accuracy uses frozen three-seed test predictions, problem-bootstrap 95\% CI; no new test inference.}
+\end{table*}

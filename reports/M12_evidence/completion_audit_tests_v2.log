@@ -1,0 +1,91 @@
+.......F                                                                 [100%]
+=================================== FAILURES ===================================
+_____ test_permutation_delivery_requires_identity_alignment_and_all_seeds ______
+
+    def test_permutation_delivery_requires_identity_alignment_and_all_seeds():
+        import pandas as pd
+        from clr.calib.m12_audit import audit_permutation
+        records=[];summary=[]
+        for variant in ['main','A1']:
+            for split in ['reader_val','test']:
+                for canonical in [False,True]:
+                    summary.append(dict(variant=variant,split=split,canonical=canonical,n=12,changes=6,mean=.5,lo=.1,hi=.9))
+                    for seed in [11,22,33]:
+                        for t in [0,1]:
+                            for i in [0,1]:
+                                records.append(dict(variant=variant,split=split,canonical=canonical,seed=seed,t=t,problem_id=str(i),template_id='x',replicate=0,changed=i,original_identity=0,permuted_identity=i))
+        frame=pd.DataFrame(records);table=pd.DataFrame(summary)
+        assert audit_permutation(table,frame,['A1'])['passed']
+        wrong=frame.copy();wrong.loc[0,'permuted_identity']=2
+        with pytest.raises(ValueError,match='identity comparison'):audit_permutation(table,wrong,['A1'])
+>       with pytest.raises(ValueError,match='different support'):audit_permutation(table,frame.iloc[1:],['A1'])
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_m12.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+summary =   variant       split  canonical   n  changes  mean   lo   hi
+0    main  reader_val      False  12        6   0.5  0.1...   A1        test      False  12        6   0.5  0.1  0.9
+7      A1        test       True  12        6   0.5  0.1  0.9
+observations =    variant       split  ...  original_identity  permuted_identity
+1     main  reader_val  ...                  0      ...         0                  0
+95      A1        test  ...                  0                  1
+
+[95 rows x 11 columns]
+retained = ['A1']
+
+    def audit_permutation(summary,observations,retained):
+        variants={'main'}|({'A1'} if 'A1' in retained else set())
+        keys={(v,s,c) for v in variants for s in ['reader_val','test'] for c in [False,True]}
+        if summary.duplicated(['variant','split','canonical']).any() or set(map(tuple,summary[['variant','split','canonical']].to_numpy()))!=keys:
+            raise ValueError('Permutation summary coverage incomplete')
+        index=['seed','problem_id','t','template_id','replicate']
+        if observations.duplicated(['variant','split','canonical',*index]).any():raise ValueError('Duplicate permutation observations')
+        actual_keys=set(observations.groupby(['variant','split','canonical']).groups)
+        if actual_keys!=keys:raise ValueError('Permutation observation coverage incomplete')
+        for split in ['reader_val','test']:
+            reference=None
+            for variant in variants:
+                for canonical in [False,True]:
+                    g=observations[(observations.variant==variant)&(observations.split==split)&(observations.canonical==canonical)]
+                    if set(g.seed)!={11,22,33}:raise ValueError('Permutation seeds incomplete')
+                    support=set(map(tuple,g[index].to_numpy()))
+                    if reference is None:reference=support
+                    if support!=reference:raise ValueError('Permutation panels have different support')
+                    if not np.array_equal(g.changed,(g.original_identity!=g.permuted_identity).astype(int)):raise ValueError('Permutation identity comparison incorrect')
+                    if not g.original_identity.between(0,3).all() or not g.permuted_identity.between(0,3).all():raise ValueError('Invalid option identity')
+                    r=summary[(summary.variant==variant)&(summary.split==split)&(summary.canonical==canonical)].iloc[0]
+                    mean=g.groupby(['seed','t']).changed.mean().mean()
+>                   if r['n']!=len(g) or r['changes']!=g.changed.sum() or not np.isclose(r['mean'],mean,rtol=0,atol=1e-12):raise ValueError('Permutation summary differs from observations')
+                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                   ValueError: Permutation summary differs from observations
+
+clr/calib/m12_audit.py:58: ValueError
+
+During handling of the above exception, another exception occurred:
+
+    def test_permutation_delivery_requires_identity_alignment_and_all_seeds():
+        import pandas as pd
+        from clr.calib.m12_audit import audit_permutation
+        records=[];summary=[]
+        for variant in ['main','A1']:
+            for split in ['reader_val','test']:
+                for canonical in [False,True]:
+                    summary.append(dict(variant=variant,split=split,canonical=canonical,n=12,changes=6,mean=.5,lo=.1,hi=.9))
+                    for seed in [11,22,33]:
+                        for t in [0,1]:
+                            for i in [0,1]:
+                                records.append(dict(variant=variant,split=split,canonical=canonical,seed=seed,t=t,problem_id=str(i),template_id='x',replicate=0,changed=i,original_identity=0,permuted_identity=i))
+        frame=pd.DataFrame(records);table=pd.DataFrame(summary)
+        assert audit_permutation(table,frame,['A1'])['passed']
+        wrong=frame.copy();wrong.loc[0,'permuted_identity']=2
+        with pytest.raises(ValueError,match='identity comparison'):audit_permutation(table,wrong,['A1'])
+>       with pytest.raises(ValueError,match='different support'):audit_permutation(table,frame.iloc[1:],['A1'])
+E       AssertionError: Regex pattern did not match.
+E        Regex: 'different support'
+E        Input: 'Permutation summary differs from observations'
+
+tests/test_m12.py:140: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_m12.py::test_permutation_delivery_requires_identity_alignment_and_all_seeds
+1 failed, 7 passed in 7.95s

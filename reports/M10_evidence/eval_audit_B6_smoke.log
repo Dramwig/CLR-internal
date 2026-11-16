@@ -1,0 +1,31 @@
+/home/me/PaperField/CalReader/runs/20261110T094822526172Z_4647f82145ec_60f395
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m10_evaluate_audit_b6.py", line 79, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m10_evaluate_audit_b6.py", line 64, in main
+    write_json(run.path/'calibration.json',{'temperatures':temp,'detection_thresholds':th,'QA_thresholds':qa_th,'expectations':'frozen M8 P0-verified public T,z_pub and programmatic commitment only'})
+  File "/home/me/PaperField/LatDefer/latdef/utils/run.py", line 31, in write_json
+    payload = json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/json/encoder.py", line 398, in _iterencode_dict
+    yield _floatstr(value)
+          ^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/json/encoder.py", line 240, in floatstr
+    raise ValueError(
+ValueError: Out of range float values are not JSON compliant: inf

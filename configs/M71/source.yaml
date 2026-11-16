@@ -1,0 +1,39 @@
+milestone: M7.1
+mode: smoke
+seed: 20261107
+data_seed: 20261107
+output: data/M71_v1
+idea_a: /home/me/PaperField/LatDefer
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+device: cuda:1
+max_context: 8192
+batch_size: 2
+layers:
+- 0
+- 9
+- 18
+- 27
+tail_tokens: 8
+feature_dim: 512
+projection_seed: 20261107
+critical_tokens: false
+counts:
+  reader_train: 8000
+  reader_val: 1000
+  cal_A: 500
+  cal_B: 1000
+  test: 2000
+source_splits:
+- reader_val
+smoke_groups: 12
+scan_groups: 1000
+scan_fit_groups: 800
+scan_layers: 36
+scan_steps: 400
+scan_lr: 0.01
+scan_batch_size: 128
+min_free_GiB: 14
+max_seconds: 900
+budget_gpu_hours: 30
+disk_cap_GiB: 15
+compression: gzip1

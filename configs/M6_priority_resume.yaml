@@ -1,0 +1,11 @@
+milestone: M6
+section: CD
+stage: priority_controller_handover
+prior_pids:
+- 2020262
+- 1686073
+pipeline: data/M6_v1/pipeline_noise_v2.json
+config: data/M6_v1/extension_controller/configs/production_noise_v2.yaml
+log: reports/M6_priority_pipeline.log
+runtime_env:
+  LD_LIBRARY_PATH: /home/me/anaconda3/envs/latdefer/lib

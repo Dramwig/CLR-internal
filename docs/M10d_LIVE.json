@@ -1,0 +1,14 @@
+{
+  "status": "completed_pending_review",
+  "date": "2026-11-12",
+  "cells": "data/M10d_v1/four_cells.json",
+  "training_lock": "data/M10d_v1/training_lock.json",
+  "final": "data/M10d_v1/final.json",
+  "gpu_hours": 0.0289412008566756,
+  "budget_hours": 2,
+  "review": "reports/M10d_REVIEW.md",
+  "manuscript": "manuscripts/CVPR27-CLR",
+  "freeze": "data/M10d_v1/freeze.json",
+  "pages": 8,
+  "validation": "data/M10d_v1/manuscript_validation.json"
+}

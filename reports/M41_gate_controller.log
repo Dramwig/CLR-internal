@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m41_gate_controller.py", line 29, in <module>
+    try:main(load_config(a.config,a.overrides))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m41_gate_controller.py", line 20, in main
+    for f in fs:f.result()
+                ^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m41_gate_controller.py", line 17, in worker
+    with Path(f'reports/M41_gate_{Path(cfg).stem}.log').open('w') as log:subprocess.run(['.venv/bin/python','scripts/m41_learnability.py',cfg],check=True,stdout=log,stderr=subprocess.STDOUT)
+                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['.venv/bin/python', 'scripts/m41_learnability.py', 'configs/M41_gate_v1_overfit_Q4.yaml']' returned non-zero exit status 1.

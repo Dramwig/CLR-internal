@@ -1,0 +1,8 @@
+{
+  "version": "M10c_paper_inputs_v1",
+  "sha256": {
+    "data/M10c_v1/paper_inputs/conformal_paired.csv": "871a2ed2fc48fd228f64826123ca530fe7aebb760e17bac993a23ffe8b0a9eb5",
+    "data/M10c_v1/paper_inputs/historical_training.csv": "c4757e145d411668bb02632a149921a25627bf0fe79ffaea68b7a267e14142e9",
+    "data/M10c_v1/paper_inputs/cost_precision.csv": "180486e76ff97283311876d5e238d4cd1265e3e167d003d86b158a9ba7da3efb"
+  }
+}

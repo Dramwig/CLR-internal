@@ -1,0 +1,36 @@
+--- scripts/m12_train.py
++++ supplemental/stats_20261116_v1/b_train.py
+@@ -1,3 +1,5 @@
++import sys
++sys.dont_write_bytecode=True
+ """Full-exposure M12 joint training, gated by learnability, no test access.
+ 
+ One epoch visits every QA instance exactly once; inverse-qtype-frequency loss
+@@ -10,13 +12,14 @@
+ import torch
+ from transformers import AutoTokenizer
+ from clr.utils.config import load_config
+-from clr.utils.m12_runtime import recorded
++from supplemental.stats_20261116_v1.runtime import recorded
+ from clr.utils.idea_a import seed_everything,write_json
+-from clr.utils.m12_runtime import Budget
++from supplemental.stats_20261116_v1.runtime import Budget
+ from clr.data.m12 import TensorSerializer as Serializer
+-from clr.models.m12 import make_model
++from supplemental.stats_20261116_v1.model_data import make_model
+ from clr.baselines.b3_multi_v0 import B3Multi
+-from clr.data.m4.reader import PrefixBank,rows_for,targets
++from supplemental.stats_20261116_v1.model_data import PrefixBank,rows_for
++from clr.data.m4.reader import targets
+ from scripts.m4_train import evaluate,forward
+ 
+ def main(c):
+@@ -39,7 +42,7 @@
+         if c.get('mode')=='smoke':
+             vids=set(sorted({r['problem_id'] for r in vr})[:20]);vr=[r for r in vr if r['problem_id'] in vids]
+         vg={q:[r for r in vr if r['qtype']==q] for q in qtypes};vb=PrefixBank(c,'reader_val','validate',{r['problem_id'] for r in vr});del vr
+-        kind='b3_multi' if c['variant']=='b3_multi' else 'clr';model=(B3Multi() if kind=='b3_multi' else make_model(c)).to(device);norm=np.load(Path(c['m3_baseline_run'])/'normalization.npz');norm=[torch.from_numpy(norm[k]).to(device) for k in ['mean','scale']]
++        kind='b3_multi' if c['variant']=='b3_multi' else 'clr';model=(B3Multi() if kind=='b3_multi' else make_model(c)).to(device);norm=np.load(c['normalization']);norm=[torch.from_numpy(norm[k]).to(device) for k in ['mean','scale']]
+         if kind=='clr':model.state_mean.copy_(norm[0]);model.state_scale.copy_(norm[1])
+         s=Serializer(AutoTokenizer.from_pretrained(c['model_path'],local_files_only=True),templates) if kind=='clr' else None
+         if c.get('initial_checkpoint'):model.restore_trainable(torch.load(c['initial_checkpoint'],map_location='cpu',weights_only=True))

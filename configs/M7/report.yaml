@@ -1,0 +1,6 @@
+milestone: M7
+output: data/M7_v1
+bootstrap_repeats: 10000
+bootstrap_seed: 20261106
+review: reports/M7_REVIEW.md
+details: reports/M7_details.md

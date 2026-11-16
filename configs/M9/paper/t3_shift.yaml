@@ -1,0 +1,13 @@
+artifact: t3_shift
+caption: 'T3: Coverage under source, dataset, and step shifts'
+input_freeze: data/M9_v1/paper_inputs/freeze.json
+inputs:
+  shift: data/M9_v1/paper_inputs/shift.csv
+output_root: paper
+column_widths:
+- 2.5
+- 0.7
+- 0.5
+- 1.8
+- 2.2
+- 2.2

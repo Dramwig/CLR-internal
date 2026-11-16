@@ -1,0 +1,31 @@
+milestone: M10
+section: P2-5
+section_budget: 12
+stage: hiddenbench_source
+mode: smoke
+seed: 20261110
+device: cuda:7
+raw_path: /home/me/datasets/HiddenBench/1e3c25b1fd798c6717f4df0463edd3825c8e37f9/benchmark.json
+raw_sha256: 2815afffca4e470d1dfbc81e625160447df1109ce371968181c9e1e6b90443a3
+hidden_root: data/M10_v1/hiddenbench
+group_counts:
+  reader_train: 13
+  reader_val: 20
+  cal_A: 4
+  cal_B: 20
+  test: 6
+layers:
+- 7
+- 16
+- 25
+- 34
+idea_a: /home/me/PaperField/LatDefer
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+max_context: 8192
+min_free_GiB: 14
+source_splits:
+- reader_val
+projection: data/M71_v1/projection.pt
+projection_sha256: fc7b23c823293ec6f616c36aa25ca11e3347b957a048c791de9419be311dbcfa
+source_smoke_ref: data/M10_v1/hiddenbench/source_smoke.json
+eval_lock: data/M10_v1/final_lock.json

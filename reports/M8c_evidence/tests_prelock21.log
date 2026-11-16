@@ -1,0 +1,15 @@
+test_E1_E2_preserve_actual_D0_features (tests.test_m8c.DirectLookupProtocol.test_E1_E2_preserve_actual_D0_features) ... ok
+test_attack_selection_cannot_use_report_detection (tests.test_m8c.DirectLookupProtocol.test_attack_selection_cannot_use_report_detection) ... ok
+test_budget_crop_uses_only_requested_epsilons (tests.test_m8c.DirectLookupProtocol.test_budget_crop_uses_only_requested_epsilons) ... ok
+test_calibration_question_labels_come_from_commitment (tests.test_m8c.DirectLookupProtocol.test_calibration_question_labels_come_from_commitment) ... ok
+test_conformal_threshold_boundary (tests.test_m8c.DirectLookupProtocol.test_conformal_threshold_boundary) ... ok
+test_direct_has_no_route_answer_conflict (tests.test_m8c.DirectLookupProtocol.test_direct_has_no_route_answer_conflict) ... ok
+test_expected_answers_ignore_private_metadata (tests.test_m8c.DirectLookupProtocol.test_expected_answers_ignore_private_metadata) ... ok
+test_non_test_group_splits_do_not_overlap (tests.test_m8c.DirectLookupProtocol.test_non_test_group_splits_do_not_overlap) ... ok
+test_public_prompt_ignores_private_label (tests.test_m8c.DirectLookupProtocol.test_public_prompt_ignores_private_label) ... ok
+test_shortening_preserves_symbolic_answer_and_pair (tests.test_m8c.DirectLookupProtocol.test_shortening_preserves_symbolic_answer_and_pair) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 4.930s
+
+OK

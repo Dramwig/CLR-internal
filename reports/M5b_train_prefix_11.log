@@ -1,0 +1,12 @@
+/home/me/PaperField/CalReader/runs/20261106T013716476785Z_a7f761ff5492_d6f6e8
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m5b_train_a.py", line 96, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m5b_train_a.py", line 40, in main
+    bank.z=prefix_features(bank,mean,scale,device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/models/m5b_controls.py", line 26, in prefix_features
+    zz=(z[ii[start:start+4096]]-mean)/scale
+        ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 84.00 MiB. GPU 0 has a total capacity of 47.51 GiB of which 73.75 MiB is free. Process 17376 has 1.52 GiB memory in use. Process 3576943 has 15.54 GiB memory in use. Process 3586263 has 7.55 GiB memory in use. Process 3778541 has 7.69 GiB memory in use. Process 3835359 has 4.63 GiB memory in use. Process 3894383 has 9.94 GiB memory in use. Of the allocated memory 8.96 GiB is allocated by PyTorch, and 561.74 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

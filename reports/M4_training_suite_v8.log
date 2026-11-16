@@ -1,0 +1,29 @@
+Waiting for active runs/20261103T070515702150Z_e258073e121b_22aa90
+pilot_k8_preflight_v2_11 runs/20261103T070515702150Z_e258073e121b_22aa90
+main_22 runs/20261103T073907451420Z_899a42fad462_cc925a
+main_33 runs/20261103T073906424755Z_51393c3ef0a3_649863
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m4_train_suite.py", line 87, in <module>
+    if __name__=='__main__':
+                             
+  File "/home/me/PaperField/CalReader/scripts/m4_train_suite.py", line 70, in main
+    parallel(lambda s,device:train('main',s,cross_every=selected,reader_device=device))
+  File "/home/me/PaperField/CalReader/scripts/m4_train_suite.py", line 69, in parallel
+    for future in futures:future.result()
+                          ^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m4_train_suite.py", line 70, in <lambda>
+    parallel(lambda s,device:train('main',s,cross_every=selected,reader_device=device))
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m4_train_suite.py", line 56, in train
+    subprocess.run(['.venv/bin/python','scripts/m4_train.py',str(path)],check=True,stdout=log,stderr=subprocess.STDOUT,env={**os.environ,'PYTHONPATH':'.','OMP_NUM_THREADS':'2','HF_HUB_OFFLINE':'1'})
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['.venv/bin/python', 'scripts/m4_train.py', 'data/M4_v0/train_configs/main_11.yaml']' returned non-zero exit status 1.

@@ -1,0 +1,23 @@
+test_real_group_splits (tests.test_m8b.CandidateAndSplit.test_real_group_splits) ... /home/me/PaperField/CalReader/tests/test_m8b.py:51: ResourceWarning: unclosed file <_io.TextIOWrapper name='data/M8b_v1/source/reader_train/manifest.jsonl' mode='r' encoding='UTF-8'>
+  groups=[json.loads(l)['group_id'] for l in (folder/split/'manifest.jsonl').open()]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/me/PaperField/CalReader/tests/test_m8b.py:51: ResourceWarning: unclosed file <_io.TextIOWrapper name='data/M8b_v1/source/reader_val/manifest.jsonl' mode='r' encoding='UTF-8'>
+  groups=[json.loads(l)['group_id'] for l in (folder/split/'manifest.jsonl').open()]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/me/PaperField/CalReader/tests/test_m8b.py:51: ResourceWarning: unclosed file <_io.TextIOWrapper name='data/M8b_v1/source/cal_A/manifest.jsonl' mode='r' encoding='UTF-8'>
+  groups=[json.loads(l)['group_id'] for l in (folder/split/'manifest.jsonl').open()]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/me/PaperField/CalReader/tests/test_m8b.py:51: ResourceWarning: unclosed file <_io.TextIOWrapper name='data/M8b_v1/source/cal_B/manifest.jsonl' mode='r' encoding='UTF-8'>
+  groups=[json.loads(l)['group_id'] for l in (folder/split/'manifest.jsonl').open()]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_report_decisions_cannot_select_attack (tests.test_m8b.CandidateAndSplit.test_report_decisions_cannot_select_attack) ... ok
+test_option_order (tests.test_m8b.Protocol.test_option_order) ... ok
+test_public_expectations_ignore_private (tests.test_m8b.Protocol.test_public_expectations_ignore_private) ... ok
+test_random_cache_and_gradient (tests.test_m8b.Protocol.test_random_cache_and_gradient) ... ok
+test_threshold (tests.test_m8b.Protocol.test_threshold) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.151s
+
+OK

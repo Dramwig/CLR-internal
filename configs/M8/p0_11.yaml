@@ -1,0 +1,11 @@
+milestone: M8
+mode: full
+output: data/M8_v1
+seed: 11
+device: cuda:2
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+batch_size: 128
+splits:
+- reader_val
+- test
+max_seconds: 7200

@@ -1,0 +1,19 @@
+/home/me/PaperField/CalReader/runs/20261105T030800205767Z_737802093d4b_c03853
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m5a_search.py", line 258, in <module>
+    main(load_config(args.config, args.overrides))
+  File "/home/me/PaperField/CalReader/scripts/m5a_search.py", line 82, in main
+    source = load({**protocol, 'device': c['device'], 'min_free_gib': c['min_free_gib']})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/sources/codi_v2.py", line 98, in load
+    def load(config):return CODISourceV2(config)
+                            ^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/sources/codi_v2.py", line 23, in __init__
+    super().__init__(initial)
+  File "/home/me/PaperField/CalReader/clr/sources/codi.py", line 19, in __init__
+    self.config=dict(config);self.device=check_device(config)
+                                         ^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/sources/common.py", line 46, in check_device
+    if free < config['min_free_gib']*1024**3: raise RuntimeError(f'GPU free {free/1024**3:.2f} GiB < required {config["min_free_gib"]} GiB')
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: GPU free 13.73 GiB < required 14.0 GiB

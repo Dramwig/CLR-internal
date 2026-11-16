@@ -1,0 +1,9 @@
+milestone: M7
+output: data/M7_v1
+evaluation_config: configs/M7/evaluate.yaml
+test_source_config: configs/M7/test_final.yaml
+report_config: configs/M7/report.yaml
+freeze_config: configs/M7/freeze.yaml
+max_wait_seconds: 86400
+superseded_waiter_pid: 1905836
+superseded_waiter_run: runs/20261106T093015667354Z_cc4bac2d2609_6b10fb

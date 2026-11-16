@@ -1,0 +1,18 @@
+\section{Introduction}
+\label{sec:intro}
+
+Two lines of work move model computation out of text. \emph{Latent reasoning} replaces chain-of-thought tokens with continuous hidden states~\cite{hao2024coconut,shen2025codi,geiping2025huginn}; \emph{latent communication} lets agents exchange hidden states or KV caches instead of messages~\cite{latentmas,c2c}. Both are efficient, and both remove the one property that made earlier systems inspectable: we can no longer read what the model ``thought'' or ``said''. This matters for process supervision, which needs step-level signals~\cite{wang2024mathshepherd,lightman2024verify}, and for multi-agent safety, where tampered latent messages can derail collaboration while the visible text still looks reasonable~\cite{latentlie}.
+
+Current tools for reading activations fall into two groups. \emph{Probes} map a hidden state to one label~\cite{alain2016probes}; they are cheap but answer a single fixed question each. \emph{Verbalizers} decode activations into free text~\cite{ghandeharioun2024patchscopes,chen2024selfie,pan2024latentqa}; they are flexible, but free text can hallucinate, carries no calibrated confidence, and is hard to use as a control signal. Latent reward models~\cite{lto} sit in between: they predict one scalar (``will the final answer be correct?'') for one model.
+
+We take the interface of a narrow decision model---\emph{typed question in, calibrated distribution out}---and use it to read latent objects. A typed question fixes the answer space (choice, yes/no, or score), so the reader cannot hallucinate outside it; calibrated outputs support split-conformal prediction sets with finite-sample marginal coverage~\cite{vovk2005alrw,angelopoulos2021gentle}; and one reader can serve many question types and, through small adapters, many source models.
+
+\paragraph{Contributions.}
+\begin{itemize}
+\item \textbf{Typed, calibrated latent reading.} We define \clr{} and a label protocol that uses only behavioral outcomes (rollouts, early exits) and program-generated structure. On two CODI models, \clr{} outperforms MLP probes and attention probes on option-conditioned questions, survives controls for input length, yields smaller conformal sets, adapts to unseen question types from 100--1k labels, and matches a trained LoRA verbalizer with 400--650$\times$ fewer FLOPs per query (\cref{sec:exp-read}).
+\item \textbf{Cross-model reading.} Freezing the reader body and training only a source adapter transfers between CODI-GPT-2 and CODI-LLaMA in both directions, beating probes and readers trained from scratch at small label budgets; joint multi-source training helps the weaker source (\cref{sec:exp-cross}).
+\item \textbf{Typed auditing of latent messages.} Decomposing ``is this KV message consistent with its visible commitment?'' into typed sub-questions whose expected answers are derived from public information detects counterfactual message substitution at 93--98\% recall (FPR 5\%); norm and text audits are at chance, and asking the consistency question end-to-end fails (\cref{sec:exp-audit}).
+\item \textbf{Two negative results with diagnoses.} Reader-guided latent search does not beat greedy decoding, because readers learn between-problem difficulty, not within-problem ranking (\cref{sec:search}); and semantic auditing is not robust to white-box KV perturbations, even when the receiver depends on the message and the auditor reads the receiver's own state (\cref{sec:robust}).
+\end{itemize}
+
+% ---------------------------------------------------------------

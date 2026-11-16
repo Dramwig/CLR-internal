@@ -1,0 +1,26 @@
+milestone: M8c
+mode: gate_short_smoke
+seed: 20261109
+data_seed: 20261107
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8c_v1
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+device: cuda:5
+max_context: 8192
+min_free_GiB: 25
+budget_gpu_hours: 15
+max_seconds: 900
+counts:
+  reader_train: 8000
+  reader_val: 1000
+  cal_A: 500
+  cal_B: 1000
+  test: 2000
+layers:
+- 7
+- 16
+- 25
+- 34
+groups: 20
+log_view: short

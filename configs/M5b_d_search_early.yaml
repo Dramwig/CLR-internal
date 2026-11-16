@@ -1,0 +1,4 @@
+output: data/M5b_v1
+gpu: 6
+config: configs/M5b_D_C_early_full.yaml
+log: reports/M5b_D_C_early_full.log

@@ -1,0 +1,27 @@
+{
+  "stage": "frozen_budgeted_results_pending_review",
+  "milestone_complete": true,
+  "test_opened": true,
+  "run": "/home/me/PaperField/CalReader/runs/20261109T144316687997Z_9adf6a431b6a_5bec2b",
+  "groups_completed": 15,
+  "updated_utc": "2026-11-09T17:31:41.956202+00:00",
+  "gate_passed": true,
+  "seed": 22,
+  "epoch": 82,
+  "background_tasks_active": false,
+  "budget_feasibility": "data/M8c_v1/budget_feasibility_21.json",
+  "maximum_feasible_groups": 211,
+  "total_200_gpu_hours": 20.21560594071112,
+  "gpu_hours_conservative": 20.97007121479976,
+  "review": "reports/M8c_REVIEW.md",
+  "final_lock": "data/M8c_v1/final_lock.json",
+  "primary_groups": [
+    200,
+    200,
+    200
+  ],
+  "primary_forecast_gpu_hours": 18.182474551338327,
+  "primary_complete": true,
+  "budgeted_plan_complete": true,
+  "freeze": "data/M8c_v1/freeze.json"
+}

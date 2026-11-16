@@ -1,0 +1,42 @@
+\begingroup\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}p{0.1831\textwidth}p{0.2593\textwidth}p{0.4576\textwidth}@{}}
+\caption{Appendix: Frozen protocol alignment}\label{tab:appendix-protocol}\\
+\toprule
+Protocol & Field & Frozen value \\
+\midrule\endfirsthead
+\toprule
+Protocol & Field & Frozen value \\
+\midrule\endhead
+GPT2 production & carry\_attention\_mask & False \\
+GPT2 production & dtype & float32 \\
+GPT2 production & family & gpt2 \\
+GPT2 production & layer & -1 \\
+GPT2 production & num\_latent & 6 \\
+GPT2 production & position\_ids & implicit\_absolute \\
+GPT2 production & prefill\_attention\_mask & True \\
+GPT2 production & prj\_dim & 768 \\
+LLaMA production & carry\_attention\_mask & False \\
+LLaMA production & dtype & bfloat16 \\
+LLaMA production & family & llama \\
+LLaMA production & layer & -1 \\
+LLaMA production & num\_latent & 6 \\
+LLaMA production & position\_ids & implicit\_absolute \\
+LLaMA production & prefill\_attention\_mask & True \\
+LLaMA production & prj\_dim & 2048 \\
+LLaMA actual noise selection & sigma & 2.0 \\
+LLaMA actual noise selection & degraded & True \\
+LLaMA actual noise selection & status & threshold\_unmet\_degraded \\
+GPT2 actual noise selection & sigma & 1.5 \\
+GPT2 actual noise selection & from\_step & 3 \\
+LLaMA context metadata & protocol\_errors & 0 \\
+KV storage verification & elements & 3563840 \\
+KV storage verification & exact\_fraction & 1.0 \\
+KV storage verification & maximum\_absolute\_error & 0.0 \\
+M23 cal split & cal\_A & 250 \\
+M23 cal split & cal\_B & 250 \\
+M7.1 projection & seed & 20261107 \\
+M7.1 projection & orthogonality\_max\_abs & 4.76837158203125e-07 \\
+\bottomrule
+\end{longtable}
+\noindent Frozen configuration/verification metadata only. Protocol differences do not imply equal model behavior; cohort padding and post-RoPE K conventions must be retained.
+\endgroup

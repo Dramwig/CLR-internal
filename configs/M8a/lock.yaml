@@ -1,0 +1,16 @@
+milestone: M8a
+mode: lock
+seed: 20261108
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8a_v1
+budget_gpu_hours: 25
+max_seconds: 900
+required_smokes:
+- smoke_v2_part0.json
+- smoke_v3_part0.json
+- smoke_v4_part0.json
+- smoke_baselines_part0.json
+freezes:
+- data/M7_v1/freeze.json
+- data/M6_v1/freeze.json
+- data/M71_v1/freeze.json

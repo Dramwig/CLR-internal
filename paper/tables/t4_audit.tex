@@ -1,0 +1,27 @@
+\begin{table*}[t]
+\centering\scriptsize
+\caption{T4: Counterfactual latent communication audit}
+\label{tab:t4-audit}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+Split & Auditor & CF detect @5\% & CF detect @1\% & AUROC & Clean FPR @5\% \\
+\midrule
+test & CLR & $93.1\;[92.5,\,93.8]$ & $83.9\;[83,\,84.7]$ & $0.986\;[0.984,\,0.988]$ & $5.07\;[4.52,\,5.63]$ \\
+test & B3 & $23.9\;[22.4,\,25.5]$ & $13.3\;[12.1,\,14.5]$ & $0.735\;[0.725,\,0.745]$ & $4.22\;[3.63,\,4.83]$ \\
+test & B6 & $97.9\;[97.5,\,98.2]$ & $92.8\;[92.1,\,93.5]$ & $0.994\;[0.993,\,0.996]$ & $4.95\;[4.42,\,5.5]$ \\
+test & B5c & NR & NR & NR & NR \\
+test & linear & $21.8\;[20.4,\,23.3]$ & $9.97\;[8.97,\,11]$ & $0.733\;[0.723,\,0.743]$ & $4.72\;[4.08,\,5.38]$ \\
+test & norm & $6.5\;[5.45,\,7.6]$ & $0.9\;[0.5,\,1.35]$ & $0.5\;[0.499,\,0.501]$ & $6.8\;[5.75,\,7.95]$ \\
+test & text & $0\;[0,\,0]$ & $0\;[0,\,0]$ & $0.533\;[0.513,\,0.554]$ & $0\;[0,\,0]$ \\
+reader\_val & CLR & $92.8\;[91.9,\,93.7]$ & $83.9\;[82.7,\,85]$ & $0.985\;[0.982,\,0.988]$ & $5.53\;[4.73,\,6.37]$ \\
+reader\_val & B3 & $24.1\;[22,\,26.3]$ & $12.8\;[11.1,\,14.4]$ & $0.719\;[0.705,\,0.733]$ & $5.1\;[4.2,\,6.03]$ \\
+reader\_val & B6 & $97.6\;[97,\,98.2]$ & $91.8\;[90.6,\,92.9]$ & $0.993\;[0.991,\,0.995]$ & $4.93\;[4.17,\,5.73]$ \\
+reader\_val & B5c & NR & NR & NR & NR \\
+reader\_val & linear & $21.2\;[19.2,\,23.2]$ & $9.8\;[8.43,\,11.2]$ & $0.724\;[0.711,\,0.737]$ & $5.53\;[4.57,\,6.57]$ \\
+reader\_val & norm & $5.8\;[4.4,\,7.3]$ & $1.2\;[0.6,\,1.9]$ & $0.5\;[0.499,\,0.502]$ & $6\;[4.6,\,7.5]$ \\
+reader\_val & text & NA & NA & NA & NA \\
+\bottomrule
+\end{tabular}}
+\par\smallskip\parbox{\textwidth}{\scriptsize Synthetic v2, fixed-seed group-bootstrap intervals; k=16 for QA readers. Expectations use visible commitment and public constraints only. Text is restricted to its original authorized 300 test groups. Commitments are programmatic for all categories. B5c NR under the preassigned budget; it is not a defeated comparator.}
+\end{table*}

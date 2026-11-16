@@ -1,0 +1,49 @@
+--- scripts/m12_evaluate.py
++++ supplemental/stats_20261116_v1/b_evaluate.py
+@@ -1,3 +1,5 @@
++import sys
++sys.dont_write_bytecode=True
+ """M12 final inference: shared all-variant lock, frozen M41 calibration definitions."""
+ import argparse,json,time
+ from pathlib import Path
+@@ -8,10 +10,10 @@
+ from transformers import AutoTokenizer
+ from clr.utils.config import load_config
+ from clr.utils.idea_a import seed_everything,write_json
+-from clr.utils.m12_runtime import recorded,Budget,digest
++from supplemental.stats_20261116_v1.runtime import recorded,Budget,digest
+ from clr.data.m12 import TensorSerializer as Serializer
+-from clr.models.m12 import make_model
+-from clr.data.m4.reader import PrefixBank,rows_for
++from supplemental.stats_20261116_v1.model_data import make_model
++from supplemental.stats_20261116_v1.model_data import PrefixBank,rows_for
+ from clr.calib.m4 import fit
+ from clr.calib.m4_evaluation import target_array,thresholds,summarize
+ from scripts.m41_evaluate import predict
+@@ -28,11 +30,15 @@
+             for p,h in lock['code_sha256'].items():
+                 if digest(p)!=h:raise ValueError('Code changed after training lock: '+p)
+             if lock['checkpoint_sha256'][c['case']+'_'+str(c['seed'])]!=digest(c['checkpoint']):raise ValueError('Checkpoint differs from lock')
+-            write_json(Path(c['output'])/'test_access.json',{'first_final_run':str(run.path),'lock':c['eval_lock'],'timestamp':time.time()}) if not Path(c['output'],'test_access.json').exists() else None
++            try:
++                with (Path(c['output'])/'test_access.json').open('x') as access:
++                    json.dump({'first_final_run':str(run.path),'lock':c['eval_lock'],'timestamp':time.time()},access)
++            except FileExistsError:
++                pass
+         templates=load_config(c['templates']);serializer=Serializer(AutoTokenizer.from_pretrained(c['model_path'],local_files_only=True),templates,c['max_length'])
+         model=make_model(c).to(device);model.restore_trainable(torch.load(c['checkpoint'],map_location='cpu',weights_only=True))
+         if smoke:
+-            allval=rows_for(c,'reader_val','validate',qtypes=c['qtypes']);ids=sorted({r['problem_id'] for r in allval})[:50];caids=set(ids[:15]);cbids=set(ids[15:30]);evalids=set(ids[30:]);calrows=[r for r in allval if r['problem_id'] in caids|cbids];calbank=PrefixBank(c,'reader_val','validate',set(ids))
++            allval=rows_for(c,'reader_val','validate',qtypes=c['qtypes']);available=sorted({r['problem_id'] for r in allval});ids=available[:min(30,int(len(available)*.05))];n=len(ids)//3;caids=set(ids[:n]);cbids=set(ids[n:2*n]);evalids=set(ids[2*n:]);calrows=[r for r in allval if r['problem_id'] in caids|cbids];calbank=PrefixBank(c,'reader_val','validate',set(ids))
+         else:calrows=rows_for(c,'cal','calibrate',qtypes=c['qtypes']);calbank=PrefixBank(c,'cal','calibrate')
+         calibrations={};threshold_map={};stats=[];cp=[]
+         for q in c['qtypes']:
+@@ -48,7 +54,7 @@
+         for split in ['reader_val'] if smoke else ['reader_val','test']:
+             phase='validate' if smoke else 'final';bank=PrefixBank(c,split,phase,set(ids) if smoke else None)
+             for q in c['qtypes']:
+-                for held in [False,True]:
++                for held in [False]:
+                     rows=rows_for(c,split,phase,heldout=held,ids=evalids if smoke else None,qtypes=[q])
+                     logits=predict(model,'clr',rows,bank,serializer,templates,None,device,c['eval_batch'],budget)
+                     pred=[{**{k:r[k] for k in ['problem_id','template_id','replicate','label','label_soft','options']},'t':r['state_ref']['t'],'traj_id':r['state_ref']['traj_id'],'kind':r['state_ref']['kind'],'heldout':held,'logits':x.tolist()} for r,x in zip(rows,logits)]

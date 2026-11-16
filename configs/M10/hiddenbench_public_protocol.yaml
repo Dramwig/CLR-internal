@@ -1,0 +1,3 @@
+input: data/M10_v1/hiddenbench/protocol.json
+output: data/M10_v1/hiddenbench/protocol_public_v2.json
+verification: data/M10_v1/hiddenbench/public_protocol_verification.json

@@ -1,0 +1,8 @@
+output: supplemental/stats_20261116_v1
+bootstrap_draws: 10000
+bootstrap_seed: 11
+seeds: [11, 22, 33]
+equivalence_accuracy_pp: 2.0
+equivalence_set_size: 0.10
+gpu_budget_hours: 25
+deadline: '2026-11-17T20:00:00+08:00'

@@ -1,0 +1,15 @@
+milestone: M7
+mode: acceptance_val
+seed: 20261106
+output: data/M7_v1
+idea_a: /home/me/PaperField/LatDefer
+reference_run: /home/me/PaperField/LatDefer/runs/20261029T193142287175Z_142891a52ccc_f733c0
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+device: cuda:0
+max_context: 8192
+batch_size: 2
+smoke_groups: 80
+layers: [35]
+max_seconds: 3600
+budget_gpu_hours: 40
+historical_logit_atol: 0.001

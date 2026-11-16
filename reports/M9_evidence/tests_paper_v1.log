@@ -1,0 +1,59 @@
+....                                                                     [100%]
+=============================== warnings summary ===============================
+tests/test_m9.py::test_paper_auroc_ties_and_monotone_radius
+  /home/me/PaperField/CalReader/clr/paper/statistics.py:22: RuntimeWarning: Mean of empty slice
+    return np.nanmean(values,axis=0)
+
+tests/test_m9.py::test_paper_input_hash_is_required
+  /home/me/PaperField/CalReader/clr/paper/render.py:52: DeprecationWarning: invalid escape sequence '\;'
+    return f'${number(scale * row[mean])}\;[{number(scale * row[lo])},\,{number(scale * row[hi])}]$'
+
+tests/test_m9.py::test_paper_input_hash_is_required
+  /home/me/PaperField/CalReader/clr/paper/render.py:52: DeprecationWarning: invalid escape sequence '\,'
+    return f'${number(scale * row[mean])}\;[{number(scale * row[lo])},\,{number(scale * row[hi])}]$'
+
+tests/test_m9.py::test_paper_input_hash_is_required
+tests/test_m9.py::test_paper_input_hash_is_required
+  /home/me/PaperField/CalReader/clr/paper/render.py:140: DeprecationWarning: invalid escape sequence '\%'
+    'Q3 acc. (\%)', 'Q4 acc. (\%)', 'Q3$-$B0 (pp)'], rows,
+
+tests/test_m9.py::test_paper_input_hash_is_required
+  /home/me/PaperField/CalReader/clr/paper/render.py:159: DeprecationWarning: invalid escape sequence '\%'
+    c.table(['Source', 'Split', 'Reader', 'Type', 'Coverage (\%)', 'Set size'], rows,
+
+tests/test_m9.py::test_paper_input_hash_is_required
+  /home/me/PaperField/CalReader/clr/paper/render.py:184: DeprecationWarning: invalid escape sequence '\%'
+    c.table(['Shift','Reader','Type','Calibration','Coverage $-$ 90\% (pp)','Set size'], rows,
+
+tests/test_m9.py::test_paper_input_hash_is_required
+tests/test_m9.py::test_paper_input_hash_is_required
+tests/test_m9.py::test_paper_input_hash_is_required
+  /home/me/PaperField/CalReader/clr/paper/render.py:200: DeprecationWarning: invalid escape sequence '\%'
+    c.table(['Split','Auditor','Groups','CF detect @5\%','CF detect @1\%','AUROC','Actual clean FPR @5\%'], rows,
+
+tests/test_m9.py::test_paper_input_hash_is_required
+tests/test_m9.py::test_paper_input_hash_is_required
+tests/test_m9.py::test_paper_input_hash_is_required
+tests/test_m9.py::test_paper_input_hash_is_required
+  /home/me/PaperField/CalReader/clr/paper/render.py:216: DeprecationWarning: invalid escape sequence '\%'
+    c.table(['Split','Reader','A1 acc. (\%)','A2 acc. (\%)','A3 acc. (\%)','A4 acc. (\%)'],rows,
+
+tests/test_m9.py::test_paper_input_hash_is_required
+  /home/me/PaperField/CalReader/clr/paper/render.py:227: DeprecationWarning: invalid escape sequence '\%'
+    c.table(['Split','Task','Observed KV segments','Accuracy (\%)','Groups'],rows,
+
+tests/test_m9.py::test_paper_input_hash_is_required
+  /home/me/PaperField/CalReader/clr/paper/render.py:236: DeprecationWarning: invalid escape sequence '\g'
+    rows.append([escape(r.milestone), ('$\geq$' if partial else '') + number(r.gpu_hours),
+
+tests/test_m9.py::test_paper_input_hash_is_required
+  /home/me/PaperField/CalReader/clr/paper/render.py:237: DeprecationWarning: invalid escape sequence '\g'
+    ('$\geq$' if partial or r.missing_source_counts else '') + number(r.source_forward_calls),
+
+tests/test_m9.py::test_paper_input_hash_is_required
+tests/test_m9.py::test_paper_input_hash_is_required
+  /home/me/PaperField/CalReader/clr/paper/render.py:348: DeprecationWarning: invalid escape sequence '\%'
+    c.table(['Source','Sigma','Noise start','Accuracy (\%)','Nondegenerate (\%)'],rows,
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+4 passed, 19 warnings in 7.73s

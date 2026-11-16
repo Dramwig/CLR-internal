@@ -8,4 +8,7 @@
 - 从 M4 起唯一审查交付：`reports/Mx_REVIEW.md`，≤ 8KB、固定六段、≤ 3 张核心表、3 位有效数字；详见全局约定第 10 条。
 - [旧 AGENTS 快照](history/AGENTS_20261103_before_global_rules.md)：保留历史，不作为现行规则入口。
 
-当前 M2–M3 已完成待审查，M4 尚未执行；完整接续信息以 STATUS.md 为准。
+当前已推进至 M12 组件消融，完成待审查；完整接续信息以 [STATUS.md](STATUS.md) 与最新阶段报告为准。
+
+- [目录与 Git 保留策略](REPOSITORY_LAYOUT.md)：本地数据、冻结证据和独立论文仓库的分工。
+- [补充统计报告](../supplemental/stats_20261116_v1/REPORT.md)：2026-11-16 版本，独立冻结。

@@ -1,0 +1,28 @@
+completion_gates:
+- data/M10_v1/gsm_training_completed.json
+- data/M10_v1/audit_B6_training_completed.json
+- data/M10_v1/hiddenbench/non_test_completed.json
+- data/M10_v1/trained/transfer_full.json
+lock_config: configs/M10/final_lock.yaml
+evaluation_jobs:
+- - scripts/m10_evaluation_queue.py
+  - configs/M10/final_gsm_queue.yaml
+  - reports/M10_evidence/final_gsm_evaluation_queue.log
+- - scripts/m10_evaluation_queue.py
+  - configs/M10/final_audit_queue.yaml
+  - reports/M10_evidence/final_audit_evaluation_queue.log
+- - scripts/m10_evaluate_transfer.py
+  - configs/M10/transfer_eval_full.yaml
+  - reports/M10_evidence/transfer_eval_full.log
+hidden_source: configs/M10/hiddenbench_source_test.yaml
+hidden_eval: configs/M10/hiddenbench_eval_full.yaml
+exports:
+- - scripts/m10_export_gsm.py
+  - configs/M10/export_gsm.yaml
+  - reports/M10_evidence/export_gsm.log
+- - scripts/m10_export_audit.py
+  - configs/M10/export_audit.yaml
+  - reports/M10_evidence/export_audit.log
+- - scripts/m10_export_transfer.py
+  - configs/M10/export_transfer.yaml
+  - reports/M10_evidence/export_transfer.log

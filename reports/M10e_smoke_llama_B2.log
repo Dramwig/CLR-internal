@@ -1,0 +1,9 @@
+/home/me/PaperField/CalReader/runs/20261112T064215707311Z_7e222a1ef082_163beb
+{'qtype': 'Q1', 'seed': 11, 'lr': 0.001, 'epoch': 1, 'val_nll': 0.6816002130508423, 'train_rows': 733, 'train_seconds': 0.271947845001705, 'parameters': 2123}
+{'qtype': 'Q1', 'seed': 11, 'lr': 0.0003, 'epoch': 1, 'val_nll': 0.7027959227561951, 'train_rows': 733, 'train_seconds': 0.00501188007183373, 'parameters': 2123}
+{'qtype': 'Q2', 'seed': 11, 'lr': 0.001, 'epoch': 1, 'val_nll': 0.6941364407539368, 'train_rows': 140, 'train_seconds': 0.00703276798594743, 'parameters': 2123}
+{'qtype': 'Q2', 'seed': 11, 'lr': 0.0003, 'epoch': 1, 'val_nll': 0.712215006351471, 'train_rows': 140, 'train_seconds': 0.004772400017827749, 'parameters': 2123}
+{'qtype': 'Q3', 'seed': 11, 'lr': 0.001, 'epoch': 1, 'val_nll': 1.4904297590255737, 'train_rows': 853, 'train_seconds': 0.039538880926556885, 'parameters': 18507}
+{'qtype': 'Q3', 'seed': 11, 'lr': 0.0003, 'epoch': 1, 'val_nll': 1.493403434753418, 'train_rows': 853, 'train_seconds': 0.005296571995131671, 'parameters': 18507}
+{'qtype': 'Q4', 'seed': 11, 'lr': 0.001, 'epoch': 1, 'val_nll': 0.772656261920929, 'train_rows': 280, 'train_seconds': 0.007773814024403691, 'parameters': 2123}
+{'qtype': 'Q4', 'seed': 11, 'lr': 0.0003, 'epoch': 1, 'val_nll': 0.7852939963340759, 'train_rows': 280, 'train_seconds': 0.0054398420033976436, 'parameters': 2123}

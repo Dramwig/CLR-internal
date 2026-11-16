@@ -1,0 +1,17 @@
+/home/me/PaperField/CalReader/runs/20261107T004902233336Z_0784b5644dbb_47a4e0
+reader_val Q1 74062
+reader_val Q2 14000
+reader_val Q3 86062
+reader_val Q4 27944
+test Q1 7035
+test Q2 7035
+test Q3 7035
+test Q4 13888
+unseen_train Q1 37016
+unseen_train Q2 6972
+unseen_train Q3 42992
+unseen_train Q4 11984
+unseen_eval Q1 6979
+unseen_eval Q2 6979
+unseen_eval Q3 6979
+unseen_eval Q4 12264

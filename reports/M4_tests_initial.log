@@ -1,0 +1,104 @@
+.FF.                                                                     [100%]
+=================================== FAILURES ===================================
+____________________ test_option_equivariance_and_isolation ____________________
+
+    def test_option_equivariance_and_isolation():
+>       m=model();s=Serializer(Tokens(),{'Q3':['Choose']});row={'qtype':'Q3','template_id':0,'options':['9','2','7','4'],'question':'SOURCE_SECRET'}
+          ^^^^^^^
+
+tests/test_m4_model.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_m4_model.py:13: in model
+    return CLR(ModernBertModel(cfg),k=1,gradient_checkpointing=False).eval()
+               ^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.11/site-packages/transformers/models/modernbert/modeling_modernbert.py:768: in __init__
+    self.embeddings = ModernBertEmbeddings(config)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.11/site-packages/transformers/models/modernbert/modeling_modernbert.py:200: in __init__
+    self.tok_embeddings = nn.Embedding(config.vocab_size, config.hidden_size, padding_idx=config.pad_token_id)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'Embedding' object has no attribute 'padding_idx'") raised in repr()] Embedding object at 0x7f35659b2790>
+num_embeddings = 40, embedding_dim = 24, padding_idx = 50283, max_norm = None
+norm_type = 2.0, scale_grad_by_freq = False, sparse = False, _weight = None
+_freeze = False, device = None, dtype = None
+
+    def __init__(
+        self,
+        num_embeddings: int,
+        embedding_dim: int,
+        padding_idx: Optional[int] = None,
+        max_norm: Optional[float] = None,
+        norm_type: float = 2.0,
+        scale_grad_by_freq: bool = False,
+        sparse: bool = False,
+        _weight: Optional[Tensor] = None,
+        _freeze: bool = False,
+        device=None,
+        dtype=None,
+    ) -> None:
+        factory_kwargs = {"device": device, "dtype": dtype}
+        super().__init__()
+        self.num_embeddings = num_embeddings
+        self.embedding_dim = embedding_dim
+        if padding_idx is not None:
+            if padding_idx > 0:
+>               assert (
+                    padding_idx < self.num_embeddings
+E                   AssertionError: Padding_idx must be within num_embeddings
+
+../../anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/sparse.py:153: AssertionError
+_________________ test_prefix_padding_cannot_change_prediction _________________
+
+    def test_prefix_padding_cannot_change_prediction():
+>       m=model();s=Serializer(Tokens(),{'Q1':['Probability?']});text=s.batch([{'qtype':'Q1','template_id':0,'options':[]}]);z=torch.randn(1,7,768);mask=torch.tensor([[1,1,0,0,0,0,0]],dtype=torch.bool)
+          ^^^^^^^
+
+tests/test_m4_model.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_m4_model.py:13: in model
+    return CLR(ModernBertModel(cfg),k=1,gradient_checkpointing=False).eval()
+               ^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.11/site-packages/transformers/models/modernbert/modeling_modernbert.py:768: in __init__
+    self.embeddings = ModernBertEmbeddings(config)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.11/site-packages/transformers/models/modernbert/modeling_modernbert.py:200: in __init__
+    self.tok_embeddings = nn.Embedding(config.vocab_size, config.hidden_size, padding_idx=config.pad_token_id)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'Embedding' object has no attribute 'padding_idx'") raised in repr()] Embedding object at 0x7f35646f7b90>
+num_embeddings = 40, embedding_dim = 24, padding_idx = 50283, max_norm = None
+norm_type = 2.0, scale_grad_by_freq = False, sparse = False, _weight = None
+_freeze = False, device = None, dtype = None
+
+    def __init__(
+        self,
+        num_embeddings: int,
+        embedding_dim: int,
+        padding_idx: Optional[int] = None,
+        max_norm: Optional[float] = None,
+        norm_type: float = 2.0,
+        scale_grad_by_freq: bool = False,
+        sparse: bool = False,
+        _weight: Optional[Tensor] = None,
+        _freeze: bool = False,
+        device=None,
+        dtype=None,
+    ) -> None:
+        factory_kwargs = {"device": device, "dtype": dtype}
+        super().__init__()
+        self.num_embeddings = num_embeddings
+        self.embedding_dim = embedding_dim
+        if padding_idx is not None:
+            if padding_idx > 0:
+>               assert (
+                    padding_idx < self.num_embeddings
+E                   AssertionError: Padding_idx must be within num_embeddings
+
+../../anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/sparse.py:153: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_m4_model.py::test_option_equivariance_and_isolation - Asser...
+FAILED tests/test_m4_model.py::test_prefix_padding_cannot_change_prediction
+2 failed, 2 passed in 6.46s

@@ -1,0 +1,16 @@
+/home/me/PaperField/CalReader/runs/20261106T194556751954Z_cf264c1cffa2_db57cb
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m6_pipeline.py", line 390, in <module>
+    reserve_qwen_inference()
+                             
+  File "/home/me/PaperField/CalReader/scripts/m6_pipeline.py", line 324, in main
+    else:
+          
+  File "/home/me/PaperField/CalReader/scripts/m6_pipeline.py", line 158, in train_batch
+    for f in [pool.submit(worker,q) for q in queues]:f.result()
+                                                     ^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/threading.py", line 327, in wait
+    waiter.acquire()
+KeyboardInterrupt

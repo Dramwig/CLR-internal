@@ -1,0 +1,29 @@
+{
+  "artifact": "t1_gsm8k",
+  "config": {
+    "artifact": "t1_gsm8k",
+    "caption": "T1: GSM8K test, calibrated typed reading",
+    "input_freeze": "data/M10b_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "main": "data/M10b_v1/paper_inputs/main.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "63d18b808036603d02605975b588ab1afe213de0b9620da521b465d72cb9d269",
+  "input_freeze_sha256": "c847c80bed11bb10d4152530e2d54dc3e2cc1a2d3030b009b1923a54ce99f453",
+  "inputs": {
+    "data/M10b_v1/paper_inputs/main.csv": "dcb77fc2c0ed9854146461a5bfb19788f15eb7e423f29b81960a791bde93f85e"
+  },
+  "outputs": {
+    "derived/t1_gsm8k.csv": "843a5b0fa74cdde8cce39d22880c4c0c475884738817dcd04f7cc1252b39e762",
+    "tables/t1_gsm8k.tex": "dfa9a0dbd992addd23a514eef07e9623bdf32c697c38f92671b5d00fb2554a80"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

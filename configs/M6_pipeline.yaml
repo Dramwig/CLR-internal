@@ -1,0 +1,52 @@
+milestone: M6
+version: v1
+stage: pipeline
+section: CD
+output: data/M6_v1
+seeds:
+- 11
+- 22
+- 33
+rq1_run: runs/20261106T071548963602Z_eb6498d61086_716529
+noise_run: runs/20261106T064505704384Z_46346b5277a6_2acd02
+source_config: configs/M6_source_noise.yaml
+source_smoke: runs/20261106T072708384215Z_1dec084d5a18_da3e8a
+source_devices:
+- cuda:5
+- cuda:0
+- cuda:1
+questions_config: configs/M6_questions_smoke.yaml
+training_config: configs/M6_train_cost_smoke.yaml
+training_smoke: runs/20261106T073552873874Z_cd26cc99795b_53244c
+reader_devices:
+- cuda:0
+- cuda:1
+- cuda:4
+evaluation_reserve_hours: 3.0
+runtime_env:
+  LD_LIBRARY_PATH: /home/me/anaconda3/envs/latdefer/lib
+sources:
+  gpt2:
+    root: data/dumps/codi_gpt2_v3
+    qa: data/M23_v1a/full
+    dim: 768
+    normalization: runs/20261103T045628621237Z_2964c31f2153_11a348/normalization.npz
+    panels: data/M6_v1/panels/gpt2
+  llama:
+    root: data/dumps/codi_llama_M6_v1
+    qa: data/M6_v1/qa
+    dim: 2048
+    normalization: data/M6_v1/llama_normalization.npz
+    panels: data/M6_v1/panels/llama
+m3_run: runs/20261103T045628621237Z_2964c31f2153_11a348
+m41_runs:
+  '11': runs/20261105T134549665017Z_13a5b7d07c74_c9bce9
+  '22': runs/20261105T111703141949Z_078915e779b4_e2c879
+  '33': runs/20261105T093924222497Z_259fba41ad54_7528a4
+qwen_path: /home/me/models/huggingface/models--Qwen--Qwen3-1.7B/snapshots/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e
+b5b_smoke: runs/20261106T071234867418Z_3019ed666bcd_b7af6c
+b5b_full_label_upper_bound: 2200000
+b5b_validation_eval_label_allowance: 500000
+shift_smoke: runs/20261106T072959157942Z_71708f35daaa_284ded
+tests_log: reports/M6_tests_noise_v4.log
+b5b_final_eval_label_upper_bound: 350000

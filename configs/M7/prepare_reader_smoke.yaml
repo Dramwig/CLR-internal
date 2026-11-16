@@ -1,0 +1,4 @@
+milestone: M7
+output: data/M7_reader_smoke
+train_source: data/M7_v1
+val_source: data/M7_source_smoke_v2

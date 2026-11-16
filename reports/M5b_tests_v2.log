@@ -1,0 +1,13 @@
+test_matching_exact_coverage_with_ties (tests.test_m5b.M5bStatisticsTests.test_matching_exact_coverage_with_ties) ... ok
+test_soft_auc_matches_repeated_bernoulli (tests.test_m5b.M5bStatisticsTests.test_soft_auc_matches_repeated_bernoulli) ... ok
+test_weighted_pairwise_gradient (tests.test_m5b.M5bStatisticsTests.test_weighted_pairwise_gradient) ... ok
+test_b_split_guard (tests.test_m5b.M5bTests.test_b_split_guard) ... ok
+test_clean_child_per_parent_and_order (tests.test_m5b.M5bTests.test_clean_child_per_parent_and_order) ... ok
+test_current_only_padding (tests.test_m5b.M5bTests.test_current_only_padding) ... ok
+test_rank_ties_and_clean_reference (tests.test_m5b.M5bTests.test_rank_ties_and_clean_reference) ... ok
+test_root_observed_prefix (tests.test_m5b.M5bTests.test_root_observed_prefix) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.242s
+
+OK

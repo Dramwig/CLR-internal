@@ -1,0 +1,12 @@
+wait_for:
+- data/M8b_v1/full_test_part0.json
+- data/M8b_v1/full_test_part1.json
+- data/M8b_v1/full_test_part2.json
+- data/M8b_v1/full_test_sensitivity_part0.json
+- data/M8b_v1/full_test_sensitivity_part1.json
+- data/M8b_v1/full_test_sensitivity_part2.json
+max_wait_seconds: 86400
+jobs:
+- module: scripts.m8b_finalize_v1
+  config: configs/M8b/finalize_v1.yaml
+  log: reports/M8b_evidence/finalize_v1.log

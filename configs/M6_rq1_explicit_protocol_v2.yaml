@@ -1,0 +1,43 @@
+milestone: M6
+version: v1
+stage: rq1
+seed: 11
+seeds:
+- 11
+- 22
+- 33
+smoke_indices:
+- 0
+- 149
+- 250
+threads: 2
+device: cuda:0
+batch: 128
+min_free_gib: 8
+merge_lora: true
+protocol: configs/protocol_codi_v2.yaml
+val_manifest: data/dumps/codi_gpt2_v3/val/manifest.parquet
+m3_baseline_run: runs/20261103T045628621237Z_2964c31f2153_11a348
+templates: clr/data/questions/templates.yaml
+m41_model_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+m41_runs:
+  lite:
+    '11': runs/20261105T134549665017Z_13a5b7d07c74_c9bce9
+    '22': runs/20261105T111703141949Z_078915e779b4_e2c879
+    '33': runs/20261105T093924222497Z_259fba41ad54_7528a4
+output: data/M6_v1
+smoke_run: runs/20261106T065946659348Z_3d4b3285d389_4cac9e
+section: A
+mode: full
+search:
+  candidate_sigmas:
+  - 0.3
+  - 0.75
+  candidate_N: 8
+  beam: 4
+  horizon: 6
+  value_names:
+  - B3
+  - CLR-lite
+  include_clean: true
+  value_training_sigma: 1.5

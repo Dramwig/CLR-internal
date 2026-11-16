@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering\scriptsize
+\caption{Appendix: Historical train-versus-heldout overlap}
+\label{tab:appendix-dedup}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllll}
+\toprule
+Historical split & Original n & Exact overlap & 13-gram overlap & Removed union \\
+\midrule
+val & 250 & 0 & 3 & 3 \\
+cal & 250 & 0 & 4 & 4 \\
+test & 1319 & 0 & 7 & 7 \\
+\bottomrule
+\end{tabular}}
+\par\smallskip\parbox{\textwidth}{\scriptsize Frozen M0.1 train-versus-heldout audit. The retained val/cal pool was subsequently reassigned to M1 val300/cal500/test1005; these rows are historical inputs, not current split counts. Near-duplicate filtering does not prove absence of all semantic overlap.}
+\end{table*}

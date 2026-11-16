@@ -1,0 +1,12 @@
+{
+  "version": "M10b_paper_inputs_v1",
+  "sha256": {
+    "data/M10b_v1/paper_inputs/B5c_conformal.csv": "c880b37d8047f25e283db328921f79bf73d42d27c7c7e6891ba9e1307873fdf1",
+    "data/M10b_v1/paper_inputs/CLR_minus_B5c.csv": "eecc117c708ffbef275fdccaa929c4a4e0264152400df5b9dbe4fdfc334742d6",
+    "data/M10b_v1/paper_inputs/B5c_conformal_problem.csv": "a3b0d12c2f4e9da7edf9bac6969ea2aa87070518904e7f26c21053343195de40",
+    "data/M10b_v1/paper_inputs/B5c_problem_metrics.csv": "68ce7a3ed6728df38a0ceae397cd8de1265bfe6eac074b07a002f2023581877f",
+    "data/M10b_v1/paper_inputs/costs.csv": "681777e6d09eaeb6db5565b559382e7161dfe0035df2b1629daf7402ea51db93",
+    "data/M10b_v1/paper_inputs/main.csv": "dcb77fc2c0ed9854146461a5bfb19788f15eb7e423f29b81960a791bde93f85e",
+    "data/M10b_v1/paper_inputs/B5c_summary.csv": "2d3b2fa5adcb2ce1815afc4315de355f0bd06348ec6b7fdb1bb189dc69037104"
+  }
+}

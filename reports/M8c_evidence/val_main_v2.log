@@ -1,0 +1,36 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:02,  1.26s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.22s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:02<00:00,  1.21it/s]
+group 1 20 seconds 172.19 GPUh 0.051
+group 2 20 seconds 556.87 GPUh 0.206
+group 3 20 seconds 258.92 GPUh 0.277
+group 4 20 seconds 204.26 GPUh 0.334
+group 5 20 seconds 147.98 GPUh 0.375
+group 6 20 seconds 275.46 GPUh 0.452
+group 7 20 seconds 231.7 GPUh 0.516
+group 8 20 seconds 320.9 GPUh 0.605
+group 9 20 seconds 292.56 GPUh 0.687
+group 10 20 seconds 341.47 GPUh 0.781
+group 11 20 seconds 237.86 GPUh 0.848
+group 12 20 seconds 166.33 GPUh 0.894
+group 13 20 seconds 226.2 GPUh 0.957
+group 14 20 seconds 222.28 GPUh 1.018
+group 15 20 seconds 249.76 GPUh 1.088
+group 16 20 seconds 393.66 GPUh 1.197
+group 17 20 seconds 175.92 GPUh 1.246
+group 18 20 seconds 607.45 GPUh 1.415
+group 19 20 seconds 285.36 GPUh 1.494
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m8c_evaluate.py", line 100, in <module>
+    except BaseException:cost.update(status='failed');live(stage='evaluation_failed',run=str(run.path));raise
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m8c_evaluate.py", line 84, in main
+    trials=[(d,s,l) for d in c['designs'] for s in c['reader_seeds'] for l in c['lambdas']] if kind=='E3' else [(None,None,0.)]
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/audit/m8c_pgd.py", line 13, in optimize
+    cost.check();attack.leaf();prefix=attack.build()
+    ^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/audit/m8c_runtime.py", line 46, in check
+    if elapsed>self.c.get('max_seconds',86400):raise RuntimeError('M8c wall-time limit')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: M8c wall-time limit

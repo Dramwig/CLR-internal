@@ -1,0 +1,29 @@
+{
+  "artifact": "t6_cost_precision",
+  "config": {
+    "artifact": "t6_cost_precision",
+    "caption": "T6: CODI-GPT2 precision and query cost",
+    "input_freeze": "data/M10c_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "cost": "data/M10c_v1/paper_inputs/cost_precision.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "9370122d401d428344184340edd3966ddb68ba42ad54644fd2de109a4cc10664",
+  "input_freeze_sha256": "03dd53da6c359bc81e7e2b0ca7b50324752e4edd5def96bd0ec8ef919eac0dcb",
+  "inputs": {
+    "data/M10c_v1/paper_inputs/cost_precision.csv": "180486e76ff97283311876d5e238d4cd1265e3e167d003d86b158a9ba7da3efb"
+  },
+  "outputs": {
+    "derived/t6_cost_precision.csv": "0378c1871996ce996d6ad36f876ea14bd1bfa5665b23968e470da9952d504fd6",
+    "tables/t6_cost_precision.tex": "0c362f1d7e496273b806136f9ff2514d1e0ddaffb56f821c676a17a76b58b644"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

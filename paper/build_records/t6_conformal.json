@@ -1,0 +1,29 @@
+{
+  "artifact": "t6_conformal",
+  "config": {
+    "artifact": "t6_conformal",
+    "caption": "T6 companion: frozen conformal coverage and paired set sizes",
+    "input_freeze": "data/M10c_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "conformal": "data/M10c_v1/paper_inputs/conformal_paired.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "8686e954a3e35de89bcab61c1bd557291754a33862e562f74bc8dd36b52267eb",
+  "input_freeze_sha256": "03dd53da6c359bc81e7e2b0ca7b50324752e4edd5def96bd0ec8ef919eac0dcb",
+  "inputs": {
+    "data/M10c_v1/paper_inputs/conformal_paired.csv": "871a2ed2fc48fd228f64826123ca530fe7aebb760e17bac993a23ffe8b0a9eb5"
+  },
+  "outputs": {
+    "derived/t6_conformal.csv": "13adbae426ef74b7f9842475f81360bbfdb649c762e5ee57b1d85c7985924bf2",
+    "tables/t6_conformal.tex": "2fea90e1d9005b4982d3c0c6c2733cef1eee713a70edf10b06bba3b41af1938a"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

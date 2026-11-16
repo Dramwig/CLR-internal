@@ -1,0 +1,38 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m41_learnability.py", line 86, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m41_learnability.py", line 69, in main
+    out=forward(rs,z[ids],mask[ids]);loss=-(targets(rs,device)*out.log_softmax(-1)).sum(-1).mean()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m41_learnability.py", line 54, in forward
+    return model(serializer.batch(rs,device),zz,mm,q).float()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/models/clr_v1.py", line 37, in forward
+    hidden=(checkpoint(layer,hidden,use_reentrant=False,**args) if self.training and self.checkpointing else layer(hidden,**args))[0]
+                                                                                                             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/models/modernbert/modeling_modernbert.py", line 550, in forward
+    else self.mlp(self.mlp_norm(hidden_states))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/models/modernbert/modeling_modernbert.py", line 239, in forward
+    return self.Wo(self.drop(self.act(input) * gate))
+                             ~~~~~~~~~~~~~~~~^~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 2 has a total capacity of 47.51 GiB of which 2.81 MiB is free. Process 1250670 has 10.92 GiB memory in use. Process 1951826 has 11.08 GiB memory in use. Process 2048953 has 494.00 MiB memory in use. Process 2051667 has 2.05 GiB memory in use. Process 2109596 has 18.88 GiB memory in use. Process 2124607 has 4.06 GiB memory in use. Of the allocated memory 3.30 GiB is allocated by PyTorch, and 269.53 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

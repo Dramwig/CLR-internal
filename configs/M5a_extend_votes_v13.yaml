@@ -1,0 +1,14 @@
+milestone: M5a
+version: authorized_vote_extension_v13
+stage: vote_extension
+seed: 11
+search_run: runs/20261105T060403949446Z_3a4adb8b01c7_fd463e
+gpu_uuid: GPU-14e194dd-cd75-0b9a-dc6e-3998732471a9
+min_free_gib: 9.0
+prior_gpu_hours: 5.806825900276422
+max_gpu_hours: 10
+smoke_seconds: 900
+vote_max: 8192
+pools:
+- problem_index: 289
+  seed: 11

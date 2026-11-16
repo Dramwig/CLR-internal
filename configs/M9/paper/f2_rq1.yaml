@@ -1,0 +1,8 @@
+artifact: f2_rq1
+caption: 'F2: Early exit, candidate ranking, and compute-matched search'
+input_freeze: data/M9_v1/paper_inputs/freeze.json
+inputs:
+  early: data/M9_v1/paper_inputs/early_exit.csv
+  ranking: data/M9_v1/paper_inputs/ranking.csv
+  search: data/M9_v1/paper_inputs/search.csv
+output_root: paper

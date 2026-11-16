@@ -1,0 +1,9 @@
+jobs:
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_B6_11_gpu2.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_B6_22_gpu2.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_B6_33_gpu2.yaml
+completion_file: data/M10_v1/llama_b6_gpu2_training_completed.json
+completed_stage: llama_b6_gpu2_completed

@@ -1,0 +1,12 @@
+artifact: appendix_data_scales
+caption: 'Appendix: Frozen data sizes'
+input_freeze: data/M9_v1/paper_inputs/freeze.json
+inputs:
+  scales: data/M9_v1/paper_inputs/data_scales.csv
+output_root: paper
+column_widths:
+- 1.5
+- 1
+- 0.9
+- 0.9
+- 1.6

@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m71_natural_finish_v2.py", line 56, in <module>
+    main(load_config(a.config,a.overrides))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/utils/config.py", line 7, in load_config
+    config = yaml.load(f, Loader=UniqueKeyLoader)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/yaml/__init__.py", line 81, in load
+    return loader.get_single_data()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/yaml/constructor.py", line 51, in get_single_data
+    return self.construct_document(node)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/yaml/constructor.py", line 55, in construct_document
+    data = self.construct_object(node)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/yaml/constructor.py", line 100, in construct_object
+    data = constructor(self, node)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/LatDefer/latdef/utils/config.py", line 20, in _mapping
+    result[key] = loader.construct_object(value_node, deep=deep)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/yaml/constructor.py", line 100, in construct_object
+    data = constructor(self, node)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/LatDefer/latdef/utils/config.py", line 19, in _mapping
+    raise ValueError(f"Non-string or duplicate YAML key: {key!r}")
+ValueError: Non-string or duplicate YAML key: 11

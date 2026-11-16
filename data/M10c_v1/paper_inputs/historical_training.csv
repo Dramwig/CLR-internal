@@ -1,0 +1,10 @@
+model,seed,run,gpu_hours,scope,pure_Q3_train_gpu_hours,pure_Q4_train_gpu_hours
+CLR-lite,33,runs/20261105T093924222497Z_259fba41ad54_7528a4,1.96741495489277,"Q1-Q4 joint completed training; loading, val and early stopping included",,
+CLR-lite,11,runs/20261105T134549665017Z_13a5b7d07c74_c9bce9,1.94372243853111,"Q1-Q4 joint completed training; loading, val and early stopping included",,
+CLR-lite,22,runs/20261105T111703141949Z_078915e779b4_e2c879,2.11837675074888,"Q1-Q4 joint completed training; loading, val and early stopping included",,
+B6,11,/home/me/PaperField/CalReader/runs/20261110T105347226216Z_cf4fc54b6977_6517df,0.814704123220258,Q1-Q4 per-type hyperparameter sweeps (B6),0.531353306671889,0.0480120930446881
+B6,22,/home/me/PaperField/CalReader/runs/20261110T114304197244Z_12e6db1eb9a3_c09c9d,0.782770807139427,Q1-Q4 per-type hyperparameter sweeps (B6),0.505964677018055,0.050955273362989
+B6,33,/home/me/PaperField/CalReader/runs/20261110T120251658362Z_6f061c99bb54_b7a7c1,0.755930124660566,Q1-Q4 per-type hyperparameter sweeps (B6),0.462327917136136,0.0498719372277911
+B5c,11,/home/me/PaperField/CalReader/runs/20261110T153403133055Z_3b01ed7a1758_884b9e,5.55541308562417,Q3-Q4 joint single full pass (B5c),4.44813337951087,0.875461961304471
+B5c,22,/home/me/PaperField/CalReader/runs/20261110T210732390867Z_58401f5f4840_086989,6.87918198604308,Q3-Q4 joint single full pass (B5c),5.57123687119207,1.08347590033117
+B5c,33,/home/me/PaperField/CalReader/runs/20261111T153625926168Z_ff6c66784589_dceb36,4.28394463512723,Q3-Q4 joint single full pass (B5c),3.47342410285715,0.666956242572762

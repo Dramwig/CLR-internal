@@ -1,0 +1,29 @@
+{
+  "artifact": "t5_cost",
+  "config": {
+    "artifact": "t5_cost",
+    "caption": "T5: Recorded computational costs",
+    "input_freeze": "data/M10b_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "costs": "data/M10b_v1/paper_inputs/costs.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "2523c02be76dc42708d9ac80e4521c0882b68112bbca4412bd47b8e970d196e1",
+  "input_freeze_sha256": "c847c80bed11bb10d4152530e2d54dc3e2cc1a2d3030b009b1923a54ce99f453",
+  "inputs": {
+    "data/M10b_v1/paper_inputs/costs.csv": "681777e6d09eaeb6db5565b559382e7161dfe0035df2b1629daf7402ea51db93"
+  },
+  "outputs": {
+    "derived/t5_cost.csv": "681777e6d09eaeb6db5565b559382e7161dfe0035df2b1629daf7402ea51db93",
+    "tables/t5_cost.tex": "c39e3b5f2e2b5e874e820adbc1d59a2bbdc904368d0b55348175d5d8eeb0b1ef"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

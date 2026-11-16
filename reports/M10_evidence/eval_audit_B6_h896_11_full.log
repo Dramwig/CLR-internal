@@ -1,0 +1,16 @@
+/home/me/PaperField/CalReader/runs/20261110T132951294202Z_8e9a03f8d101_7fc8e4
+reader_val completed
+test completed
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m10_evaluate_audit_b6.py", line 81, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m10_evaluate_audit_b6.py", line 77, in main
+    budget.check(status='completed',test_opened=not smoke,gate_passed=True)
+  File "/home/me/PaperField/CalReader/clr/utils/m10_runtime.py", line 45, in check
+    payload=dict(status=status,gpu_hours=own,source_forward_calls=self.source_calls,test_opened=self.test_opened)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: latdef.utils.run.Run.write_metrics() got multiple values for keyword argument 'test_opened'

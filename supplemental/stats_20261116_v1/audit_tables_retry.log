@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/supplemental/stats_20261116_v1/audit_tables.py", line 74, in <module>
+    if __name__=='__main__':main(load_config(sys.argv[1]))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/supplemental/stats_20261116_v1/audit_tables.py", line 45, in main
+    use=[x[metric] for x in rs if x['split']=='test' and x['qtype']==q and not x['heldout'] and x.get('kind','clean')=='clean' and x.get('calibration','temperature')=='temperature' and x.get('subset','all')=='all' and (model!='B2' or x.get('baseline')=='B2' and x.get('seed')==seed)]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/supplemental/stats_20261116_v1/audit_tables.py", line 45, in <listcomp>
+    use=[x[metric] for x in rs if x['split']=='test' and x['qtype']==q and not x['heldout'] and x.get('kind','clean')=='clean' and x.get('calibration','temperature')=='temperature' and x.get('subset','all')=='all' and (model!='B2' or x.get('baseline')=='B2' and x.get('seed')==seed)]
+         ~^^^^^^^^
+KeyError: 'nll'

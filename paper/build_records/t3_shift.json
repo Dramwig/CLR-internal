@@ -1,0 +1,37 @@
+{
+  "artifact": "t3_shift",
+  "config": {
+    "artifact": "t3_shift",
+    "caption": "T3: Coverage under source, dataset, and step shifts",
+    "column_widths": [
+      2.5,
+      0.7,
+      0.5,
+      1.8,
+      2.2,
+      2.2
+    ],
+    "input_freeze": "data/M9_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "shift": "data/M9_v1/paper_inputs/shift.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "36f01011c689061edd68fc115d24feeb35e7ccc734f777d063b1b674d1462a0b",
+  "input_freeze_sha256": "3494aa1f8f9596db929a57e29a8e5e442b645865c8b300d6cb03c21963e20c06",
+  "inputs": {
+    "data/M9_v1/paper_inputs/shift.csv": "21b9287434721bbd630495efeca5fc0406ea6947bbb38e65868271078230a084"
+  },
+  "outputs": {
+    "derived/t3_shift.csv": "dfaf953aeca4374f81a3fc418bde9d4a09e170a4d4287df7ccb364a7a05df18e",
+    "tables/t3_shift.tex": "dc7e9b83603501e1f8fa3ecc0067a440a17df4e82f4aa3a7c32717a144cf845f"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

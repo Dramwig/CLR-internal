@@ -1,0 +1,18 @@
+{
+  "status": "completed_pending_review",
+  "zip": "data/M11_qual_v1/qual_export.zip",
+  "zip_bytes": 47119727,
+  "zip_sha256": "42fb349acd43362576d3b7e0f39980c8c7a88e0a25ebb45ce89bd79132e6d7ee",
+  "gpu_hours": 0.08493512665303166,
+  "source_forward_calls": 0,
+  "counts": {
+    "gpt2_reading": 12,
+    "llama_reading": 12,
+    "reasoning_states": 1200,
+    "sibling_states": 1360,
+    "audit_messages": 1200,
+    "dependent_trials": 600
+  },
+  "review": "reports/M11_qual_REVIEW.md",
+  "freeze": "data/M11_qual_v1/freeze.json"
+}

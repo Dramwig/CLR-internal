@@ -1,0 +1,5 @@
+/home/me/PaperField/CalReader/runs/20261106T194604624608Z_ce14c97ec41e_b104ed
+Q1 {'lr': 0.001, 'epoch': 10, 'val_nll': 0.482141411105669}
+Q2 {'lr': 0.001, 'epoch': 10, 'val_nll': 0.5018127986363002}
+Q3 {'lr': 0.001, 'epoch': 90, 'val_nll': 1.324693044704861}
+Q4 {'lr': 0.0003, 'epoch': 5, 'val_nll': 0.752361672265189}

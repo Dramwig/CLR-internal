@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m71_source.py", line 177, in <module>
+    main(load_config(a.config,a.overrides))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/utils/config.py", line 12, in load_config
+    if parts[-1] not in dest: raise KeyError(key)
+                              ^^^^^^^^^^^^^^^^^^^
+KeyError: 'include_controls'

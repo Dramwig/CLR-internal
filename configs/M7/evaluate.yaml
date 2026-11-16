@@ -1,0 +1,13 @@
+milestone: M7
+phase: calibrate
+mode: full
+output: data/M7_v1
+device: cuda:7
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+batch_size: 32
+kinds: [CLR, B3, B0, linear]
+seeds: [11, 22, 33]
+split: reader_val
+natural_commitment_analysis: true
+max_seconds: 18000
+budget_gpu_hours: 40

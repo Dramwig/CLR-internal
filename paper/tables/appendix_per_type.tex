@@ -1,0 +1,29 @@
+\begingroup\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}p{0.1500\textwidth}p{0.1500\textwidth}p{0.1500\textwidth}p{0.1500\textwidth}p{0.1500\textwidth}p{0.1500\textwidth}@{}}
+\caption{Separate-type versus multitype CLR with matched exposure}\label{tab:appendix-per-type}\\
+\toprule
+Source & Split & Type & Metric & Multitype CLR & Separate-type CLR \\
+\midrule\endfirsthead
+\toprule
+Source & Split & Type & Metric & Multitype CLR & Separate-type CLR \\
+\midrule\endhead
+CODI-GPT2 & test & Q1 & nll & $0.548\;[0.527,\,0.57]$ & $0.557\;[0.536,\,0.579]$ \\
+CODI-GPT2 & test & Q2 & auroc & $0.83\;[0.812,\,0.847]$ & $0.823\;[0.804,\,0.842]$ \\
+CODI-GPT2 & test & Q3 & accuracy & $76.1\;[74.8,\,77.4]$ & $76.7\;[75.4,\,77.9]$ \\
+CODI-GPT2 & test & Q4 & accuracy & $76.2\;[74.7,\,77.7]$ & $73.7\;[72.1,\,75.3]$ \\
+CODI-LLaMA & test & Q1 & nll & $0.615\;[0.596,\,0.635]$ & $0.634\;[0.616,\,0.651]$ \\
+CODI-LLaMA & test & Q2 & auroc & $0.821\;[0.802,\,0.84]$ & $0.818\;[0.799,\,0.837]$ \\
+CODI-LLaMA & test & Q3 & accuracy & $72.1\;[70.6,\,73.6]$ & $72.6\;[71,\,74.1]$ \\
+CODI-LLaMA & test & Q4 & accuracy & $74.2\;[72.6,\,75.7]$ & $71.4\;[69.7,\,73]$ \\
+CODI-GPT2 & reader\_val & Q1 & nll & $0.42\;[0.405,\,0.434]$ & $0.431\;[0.417,\,0.445]$ \\
+CODI-GPT2 & reader\_val & Q2 & auroc & $0.859\;[0.847,\,0.871]$ & $0.862\;[0.85,\,0.873]$ \\
+CODI-GPT2 & reader\_val & Q3 & accuracy & $86.3\;[85.6,\,87.1]$ & $87.1\;[86.3,\,87.8]$ \\
+CODI-GPT2 & reader\_val & Q4 & accuracy & $85.1\;[84.3,\,85.9]$ & $82.1\;[81.2,\,83.1]$ \\
+CODI-LLaMA & reader\_val & Q1 & nll & $0.361\;[0.348,\,0.373]$ & $0.411\;[0.401,\,0.421]$ \\
+CODI-LLaMA & reader\_val & Q2 & auroc & $0.85\;[0.82,\,0.878]$ & $0.852\;[0.822,\,0.878]$ \\
+CODI-LLaMA & reader\_val & Q3 & accuracy & $80.1\;[78.7,\,81.5]$ & $79.9\;[78.5,\,81.4]$ \\
+CODI-LLaMA & reader\_val & Q4 & accuracy & $81.1\;[79.7,\,82.5]$ & $76.9\;[75.4,\,78.4]$ \\
+\bottomrule
+\end{longtable}
+\noindent Identical CLR architecture; each separate-type checkpoint receives exactly the corresponding type exposure of the frozen multitype checkpoint (eight complete epochs). Accuracy is percent; NLL/AUROC are unscaled. Fixed three seeds, 10000 problem-cluster bootstrap intervals.
+\endgroup

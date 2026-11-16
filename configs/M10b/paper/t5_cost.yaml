@@ -1,0 +1,6 @@
+artifact: t5_cost
+caption: 'T5: Recorded computational costs'
+input_freeze: data/M10b_v1/paper_inputs/freeze.json
+inputs:
+  costs: data/M10b_v1/paper_inputs/costs.csv
+output_root: paper

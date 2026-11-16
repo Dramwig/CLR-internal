@@ -1,0 +1,33 @@
+\begin{table*}[t]
+\centering\scriptsize
+\caption{T4: KV localization and state controls}
+\label{tab:t4-localization}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllll}
+\toprule
+Split & Task & Observed KV segments & Accuracy (\%) & Groups \\
+\midrule
+reader\_val & A1 & full & $99.7\;[99.6,\,99.8]$ & 1000 \\
+reader\_val & A1 & shuffle & $50.7\;[47.7,\,53.8]$ & 1000 \\
+reader\_val & A1 & zero & $50\;[50,\,50]$ & 1000 \\
+reader\_val & A4 & critical\_only & $99.7\;[99.5,\,99.8]$ & 1000 \\
+reader\_val & A4 & critical\_remove & $26.2\;[25.2,\,27.3]$ & 1000 \\
+reader\_val & A4 & full & $99.5\;[99.3,\,99.7]$ & 1000 \\
+reader\_val & A4 & shuffle & $25.5\;[22.8,\,28.2]$ & 1000 \\
+reader\_val & A4 & value\_only & $99.9\;[99.8,\,100]$ & 1000 \\
+reader\_val & A4 & value\_remove & $2.74\;[2.27,\,3.21]$ & 1000 \\
+reader\_val & A4 & zero & $25.1\;[24.6,\,25.7]$ & 1000 \\
+test & A1 & full & $99.5\;[99.4,\,99.7]$ & 2000 \\
+test & A1 & shuffle & $50.4\;[48.3,\,52.6]$ & 2000 \\
+test & A1 & zero & $50\;[50,\,50]$ & 2000 \\
+test & A4 & critical\_only & $99.5\;[99.3,\,99.6]$ & 2000 \\
+test & A4 & critical\_remove & $26\;[25.3,\,26.8]$ & 2000 \\
+test & A4 & full & $99.3\;[99.1,\,99.5]$ & 2000 \\
+test & A4 & shuffle & $23.9\;[22,\,25.8]$ & 2000 \\
+test & A4 & value\_only & $99.9\;[99.8,\,99.9]$ & 2000 \\
+test & A4 & value\_remove & $2.51\;[2.19,\,2.84]$ & 2000 \\
+test & A4 & zero & $25\;[24.6,\,25.4]$ & 2000 \\
+\bottomrule
+\end{tabular}}
+\par\smallskip\parbox{\textwidth}{\scriptsize Frozen M8a P0 interventions on the M7.1 reader. Critical-only keeps the private-value record; critical-remove removes it. These are localization controls, not new training experiments.}
+\end{table*}

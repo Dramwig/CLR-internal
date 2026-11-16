@@ -1,0 +1,7 @@
+milestone: M7.1
+output: data/M71_v1
+mode: val_proxy_statistics_smoke
+seed: 11
+proxy_groups: 12
+bootstrap_seed: 20261107
+bootstrap_repeats: 10000

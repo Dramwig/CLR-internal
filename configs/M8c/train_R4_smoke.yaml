@@ -1,0 +1,22 @@
+milestone: M8c
+mode: smoke
+seed: 11
+data_seed: 20261107
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8c_v1
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+device: cuda:4
+min_free_GiB: 20
+budget_gpu_hours: 15
+max_seconds: 900
+counts: {reader_train: 4000, reader_val: 1000, cal_A: 500, cal_B: 1000, test: 2000}
+reader_seeds: [11,22,33]
+layers: [7,16,25,34]
+design: R4
+epochs: 1
+batch_size: 128
+lr: 0.0003
+patience: 1
+training_folder: smoke_training
+source_folder: smoke_source

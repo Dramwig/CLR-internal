@@ -1,0 +1,6 @@
+artifact: appendix_per_type
+caption: Separate-type versus multitype CLR with matched exposure
+input_freeze: data/M10_v1/paper_inputs/freeze.json
+inputs:
+  main: data/M10_v1/paper_inputs/main.csv
+output_root: paper

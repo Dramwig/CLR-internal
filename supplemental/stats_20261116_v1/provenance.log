@@ -1,0 +1,1 @@
+Parameter counts {'v1': {'trainable_parameters': 124536584, 'checkpoint': '/home/me/PaperField/CalReader/runs/20261105T032051954084Z_b7a23d2a9613_46bc9e/best.pt', 'tensor_names': 192}, 'lite': {'trainable_parameters': 17180931, 'checkpoint': '/home/me/PaperField/CalReader/runs/20261105T134549665017Z_13a5b7d07c74_c9bce9/best.pt', 'tensor_names': 73}} scientific files verified 776

@@ -1,0 +1,12 @@
+starting scripts.m9_statistics configs/M9/statistics.yaml
+completed scripts.m9_statistics
+starting scripts.m9_export configs/M9/export.yaml
+completed scripts.m9_export
+starting paper_render configs/M9/paper.yaml
+completed paper_render
+starting scripts.m9_repro configs/M9/repro.yaml
+completed scripts.m9_repro
+starting scripts.m9_upstream configs/M9/upstream.yaml
+completed scripts.m9_upstream
+starting scripts.m9_finalize configs/M9/finalize.yaml
+completed scripts.m9_finalize

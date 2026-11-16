@@ -1,0 +1,14 @@
+milestone: M7.1
+mode: learnability
+output: data/M71_v1
+representation: pool
+kind: linear
+seed: 11
+device: cuda:1
+batch_size: 512
+lr: 0.0003
+epochs: 40
+min_epochs: 8
+patience: 5
+max_seconds: 14400
+budget_gpu_hours: 30

@@ -1,0 +1,43 @@
+\section{Analysis: Two Negative Results}
+\label{sec:analysis}
+
+\subsection{Reader-guided latent search}
+\label{sec:search}
+We generate candidate next states with the same perturbation as $\pi_\sigma$, always including the noise-free child, and select with a reader's Q1 value by best-of-$N$ or beam search ($N\le16$, beam $\le4$), matching compute counted in source forward passes. On CODI-GPT-2 (val, 300 problems, 3 seeds) greedy decoding reaches 42.3\%; majority voting over perturbed trajectories is worse (37.8\%) because each trajectory is noisier. Across 90 settings and five value functions (B3, B4, \clr{}, and \clr{} trained with a sibling-ranking loss), no setting beats greedy; the best is $-0.9$ $[-4.7, 2.9]$ points (\cref{fig:search}). The privileged oracle that checks final answers against gold reaches 70.6\%, which is essentially pass@$N$ and not attainable by any reader; pass@16 itself is 53.3\%.
+
+The diagnosis is that value functions rank problems, not siblings. The same readers that separate problems with AUROC 0.82--0.86 correlate with the Monte Carlo value of sibling candidates only at Spearman $\rho\approx0.08$--$0.10$, rank clearly different siblings correctly 60--62\% of the time, and select children whose value is 1.0--1.6 points \emph{lower} than the noise-free child. In 54\% of sibling groups all candidates have identical value. A sibling-ranking loss improves pairwise accuracy by 1.8 points but not search. Smaller candidate noise ($\sigma\in\{0.3,0.75\}$) does not change the conclusion. Calibration across problems is therefore not sufficient for search; within-problem discrimination is the bottleneck.
+
+\input{fig/search}
+
+\subsection{Robustness of semantic auditing}
+\label{sec:robust}
+We evaluate worst-case perturbations $\delta$ of the KV message under per-layer relative norm bounds $\|\delta_l\|\le\epsilon\|\mathrm{KV}_l\|$, optimized with PGD (200 steps) to make the receiver output the counterfactual answer. A failure is a receiver change to the target that the auditor accepts at its FPR-5\% threshold. Besides the white-box setting (auditor weights known, EOT over question draws), we test two structured perturbations: perturbing only layers the auditor does not read, and perturbing within the null space of $f$.
+
+\begin{proposition}[Null-space blind spot]
+Let the auditor depend on the message only through a linear map $f$ with $\dim\ker f>0$. Then for every $\delta\in\ker f$ the auditor's output on $\mathrm{KV}+\delta$ equals its output on $\mathrm{KV}$, while the receiver, which consumes the full $\mathrm{KV}$, is generally not invariant to $\delta$.
+\end{proposition}
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llccc}
+\toprule
+Receiver & Auditor & $\epsilon{=}0.01$ & $0.1$ & $1$\\
+\midrule
+\multirow{2}{*}{weak} & message (\clr{}) & 70.6 & 70.1 & 69.4$^\dagger$\\
+ & receiver state & 71.5 & 70.9 & 70.5$^\dagger$\\
+\midrule
+\multirow{2}{*}{dependent} & message (\clr{}) & 96.5 & 96.0 & 95.3\\
+ & receiver state & 81.7 & 72.0 & 64.0\\
+\bottomrule
+\end{tabular}
+\caption{White-box failure rate (\%; lower is better). Weak receiver: 30.8\% clean accuracy; dependent receiver: 93\%/27\% accuracy with/without message. Finite PGD gives a lower bound on worst-case failure; since any perturbation feasible at small $\epsilon$ is feasible at larger $\epsilon$, the true worst case is at least the maximum over smaller radii (e.g.\ $\ge 81.7\%$ for the receiver-state auditor at $\epsilon=1$). $^\dagger$Weak-receiver runs used $\epsilon=0.3$ as the largest radius (M8b, A1/A4 auditors).}
+\label{tab:robust}
+\end{table}
+
+With the original weak receiver, a 1\% relative perturbation already reaches the target answer in every group, and the message auditor's detection rate equals its FPR; randomizing the question set ($k$ from 1 to 64), secret randomization of $f$, and reading all layers all leave failure at 69--72\%, because questions about the same private value are highly correlated. Reading the receiver's own post-message state reduces failure against unread-layer and null-space perturbations (to 33\% and 58\%) but not against white-box perturbations (71\%).
+
+A natural objection is that the weak receiver barely uses the message, so tiny perturbations flip it without any semantic change. We therefore built a direct-lookup task in which the receiver depends on the message (93\% vs.\ 27\% accuracy with vs.\ without it) and trained a strong receiver-state auditor (A4 99.5\%). White-box failure remains 95--97\% for the message auditor and at least 82\% for the receiver-state auditor (\cref{tab:robust}); on the groups where we searched for minimal perturbations, evading the auditor needed no larger $\epsilon$ than changing the receiver alone (median ratio 1). Semantic readability does not imply behavioral control: adversarial KV perturbations act through directions the auditor does not read. Typed auditing should thus be paired with transport integrity (authenticated messages~\cite{latentlie}); its role is to audit the \emph{content} a sender chose to transmit---which cryptography cannot do---not to resist an adversary in the channel.
+
+% ---------------------------------------------------------------

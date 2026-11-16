@@ -1,0 +1,30 @@
+wait_for:
+- data/M8b_v1/warm_training_v2/R2_11.json
+- data/M8b_v1/warm_training_v2/R2_22.json
+- data/M8b_v1/warm_training_v2/R2_33.json
+- data/M8b_v1/calibration/R1_11.json
+- data/M8b_v1/calibration/R1_22.json
+- data/M8b_v1/calibration/R1_33.json
+- data/M8b_v1/calibration/R2_11.json
+- data/M8b_v1/calibration/R2_22.json
+- data/M8b_v1/calibration/R2_33.json
+- data/M8b_v1/calibration/R3_11.json
+- data/M8b_v1/calibration/R3_22.json
+- data/M8b_v1/calibration/R3_33.json
+- data/M8b_v1/calibration/R4_11.json
+- data/M8b_v1/calibration/R4_22.json
+- data/M8b_v1/calibration/R4_33.json
+- data/M8b_v1/warm_training_v2/R3_11.json
+- data/M8b_v1/warm_training_v2/R3_22.json
+- data/M8b_v1/warm_training_v2/R3_33.json
+max_wait_seconds: 10800
+jobs:
+- module: scripts.m8b_select
+  config: configs/M8b/select.yaml
+  log: reports/M8b_evidence/select.log
+- module: scripts.m8b_calibrate
+  config: configs/M8b/calibrate_selected.yaml
+  log: reports/M8b_evidence/calibrate_selected.log
+- module: scripts.m8b_evaluate
+  config: configs/M8b/selected_smoke.yaml
+  log: reports/M8b_evidence/selected_smoke.log

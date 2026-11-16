@@ -1,0 +1,14 @@
+/home/me/PaperField/CalReader/runs/20261110T132952908184Z_bcc4a73b5a70_40810e
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m10_evaluate_transfer.py", line 60, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m10_evaluate_transfer.py", line 49, in main
+    if split=='test':budget.check(test_opened=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/utils/m10_runtime.py", line 45, in check
+    self.run.write_metrics(status=status,gpu_hours=own,source_forward_calls=self.source_calls,test_opened=self.test_opened,**kw)
+TypeError: latdef.utils.run.Run.write_metrics() got multiple values for keyword argument 'test_opened'

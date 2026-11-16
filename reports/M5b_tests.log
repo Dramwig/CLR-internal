@@ -1,0 +1,27 @@
+test_matching_exact_coverage_with_ties (tests.test_m5b.M5bStatisticsTests.test_matching_exact_coverage_with_ties) ... ok
+test_soft_auc_matches_repeated_bernoulli (tests.test_m5b.M5bStatisticsTests.test_soft_auc_matches_repeated_bernoulli) ... ok
+test_weighted_pairwise_gradient (tests.test_m5b.M5bStatisticsTests.test_weighted_pairwise_gradient) ... ok
+test_b_split_guard (tests.test_m5b.M5bTests.test_b_split_guard) ... ok
+test_clean_child_per_parent_and_order (tests.test_m5b.M5bTests.test_clean_child_per_parent_and_order) ... ok
+test_current_only_padding (tests.test_m5b.M5bTests.test_current_only_padding) ... ok
+test_rank_ties_and_clean_reference (tests.test_m5b.M5bTests.test_rank_ties_and_clean_reference) ... ok
+test_root_observed_prefix (tests.test_m5b.M5bTests.test_root_observed_prefix) ... ok
+test_m5a (unittest.loader._FailedTest.test_m5a) ... ERROR
+
+======================================================================
+ERROR: test_m5a (unittest.loader._FailedTest.test_m5a)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_m5a
+Traceback (most recent call last):
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/unittest/loader.py", line 162, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/tests/test_m5a.py", line 3, in <module>
+    from test_m1_policy import tiny
+ModuleNotFoundError: No module named 'test_m1_policy'
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.318s
+
+FAILED (errors=1)

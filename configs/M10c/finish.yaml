@@ -1,0 +1,4 @@
+output: data/M10c_v1
+paper_python: .venv-paper/bin/python
+review: reports/M10c_REVIEW.md
+summary: reports/FINAL_SUMMARY.md

@@ -1,0 +1,29 @@
+{
+  "artifact": "appendix_per_type",
+  "config": {
+    "artifact": "appendix_per_type",
+    "caption": "Separate-type versus multitype CLR with matched exposure",
+    "input_freeze": "data/M10_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "main": "data/M10_v1/paper_inputs/main.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "99b98207724bf05a1fa01c7e3b059a32bd893f2c59916479f8c3160dd3a7acef",
+  "input_freeze_sha256": "e3740a68245812c57534ba4cf571542dad946ad17c05978611dc542b9f43aa6e",
+  "inputs": {
+    "data/M10_v1/paper_inputs/main.csv": "251d12ea3eb9b428f540557ca2d02774acc80e83bd910245ce854f37c4f46b2d"
+  },
+  "outputs": {
+    "derived/appendix_per_type.csv": "972d49af4cfa42cb47eced779c18a6af59d180c6c1378e205483d8f2b0a34232",
+    "tables/appendix_per_type.tex": "7f8cb0da571768a8024065b6055f6d7ea0dd2609eb43382c76a571d72927a02d"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m5a_report.py", line 414, in <module>
+    main(config)
+  File "/home/me/PaperField/CalReader/scripts/m5a_report.py", line 62, in main
+    raise ValueError('Input changed since search startup: '+path)
+ValueError: Input changed since search startup: docs/M5a_TASK.md

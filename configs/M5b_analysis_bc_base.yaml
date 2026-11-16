@@ -1,0 +1,14 @@
+milestone: M5b
+version: stats_v2
+stage: full
+case: BC_analysis
+seed: 20261106
+seeds: [11,22,33]
+expected_questions: 300
+bootstrap: 10000
+B_run: runs/20261106T014306312129Z_8127b80897ce_107f46
+C_runs: []
+D_B_run: null
+D_C_runs: []
+budget_points: [32,64,128,256,512,1024,2048,4096,8192,16384]
+output: data/M5b_v1

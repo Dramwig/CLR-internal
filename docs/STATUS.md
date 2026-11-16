@@ -1,6 +1,11 @@
 # CLR 当前状态与接续索引
 
-最后更新：2026-11-03（北京时间）。此文件描述当前状态；历史失败、重启及恢复记录保留在 EXPERIMENTS/BLOCKERS/CHANGELOG。
+最后更新：2026-11-16（北京时间）。此文件按历史追加，最新状态见末尾及各里程碑 LIVE 索引；历史失败、重启及恢复记录保留在 EXPERIMENTS/BLOCKERS/CHANGELOG。
+
+## 2026-11-05 当前 M5a 接续
+
+M5a全量val300/三seed及配对统计完成，待审查；oracle同预算S1增益32.8pp，95%CI[27.8,38]；B4/B3未见正收益。保守累计5.81GPUh≤10，不触碰test。
+用户“允许 继续完成”后按10GPUh方案执行：仅S3 oracle限N16/b4全步，其余S1/S2/B4/B3原网格不变。两项研究问题的估计/限制见唯一审查reports/M5a_REVIEW.md。详细reports/M5a_search.md；逐题CSV/图/成本data/M5a_v13/analysis；冻结data/M5a_v13/freeze.json；接续docs/M5a_LIVE.json。专项授权不代表G1通过，完整M5/M6未启动。
 
 ## 里程碑
 
@@ -188,3 +193,297 @@ GPU1同设置smoke通过（0.01956GPUh，峰值2.41778GiB）；以M4_train_v2配
 M4：14项单元测试通过（reports/M4_tests_v6.log）。三个main seed现均实际训练中；11恢复run `runs/20261103T074705242247Z_5aff9999085b_a3ec49`，22 `runs/20261103T073907451420Z_899a42fad462_cc925a`，33 `runs/20261103T073906424755Z_51393c3ef0a3_649863`。新pipeline日志 `reports/M4_pipeline_v2.log`；旧controller不杀，其失败退出已由新controller接管。匹配曝光B3按CLR最佳epoch、相同采样顺序训练，保留原始B3作为主参考。
 
 M4最新核实：main seed11/22/33都在运行，分别已训练24800/40800/37600个样本（22进入epoch2，其他epoch1）；无M4 test访问。新增混合来源reader前缀批处理只合并已保存观测状态，维持行/标签顺序，减少增强训练的双forward开销；测试总15项。源模型cohort/rollout协议未改。后台接续覆盖原始B3、匹配曝光B3、B3-multi、迁移、增强、校准、最终评估、报告与冻结。
+
+## M4 时间预估更新（2026-11-03 22:50，北京时间）
+已核实主模型3seed完成（耗时3.67/3.70/5.15 GPUh），B3-multi 3seed完成；留一类型预训练3seed处于epoch5–6，已运行约1.89小时。控制器与pipeline均存活，最终test尚未评估。累计约20.2 GPUh。
+剩余墙钟估计：留一类型预训练0.5–2.5小时；小样本迁移/对照约2–4小时；增强训练约4–6小时；匹配曝光对照、最终校准评估与汇总约2–4小时。考虑阶段重叠和早停，整体预计再需10–16小时，即11月4日09:00–15:00；不是保证完成时间，共享GPU吞吐/错误可能改变范围。不调整实验设置或80GPUh上限。
+证据：data/M4_v0/training_suite_v2.json、docs/M4_LIVE.json、当前三个leave_q4_out run的progress.json；该估算按墙钟时间，不把GPU小时直接当经过时间。
+
+## M4 实时核实（2026-11-04 09:05，北京时间）
+M4（11月4日09:05北京时间）：原训练队列31/32完成；主模型、B3-multi、留一类型预训练及N=100/1000/10000迁移/从零B3三seed均完成。增强训练seed11/22完成，seed33已结束epoch10训练、正在最后Q4验证。累计约45.7 GPUh/80。控制器与接续pipeline存活；接下来匹配曝光B3、校准/最终评估、统计报告与冻结。预计还需3–6小时（今日12:00–15:00，视共享GPU及汇总耗时）；尚无最终test/G1结论。
+证据：training_suite_v2.json完成31项；augmented_33 run `runs/20261103T195318687671Z_9ba0fc3828b4_a91323` 最终验证Q4已处理16000/27944；预算工具汇总45.659GPUh。最终训练锁及评估尚未生成，不以训练完成比例代表整个里程碑完成比例。
+
+M4 v0实验完成，待G1审查。唯一审查文件 `reports/M4_REVIEW.md`；完整报告 `reports/M4_clr_v0.md`；冻结 `data/M4_v0/freeze.json`。M1/M23冻结哈希复核无变化，测试通过；不自动启动M5。
+
+## 2026-11-05 M4.1启动
+用户暂缓G1判定，授权A诊断→B两变体修复→C主比较。任务书M4.1_TASK.md；M4结果不改，诊断不访问test。首先核实信息通路与原训练曝光，根因尚未确定。
+
+M4.1初诊：80批FP32梯度/干预完成（0.02095GPUh，test_opened=false），每层cross可见性测试通过；通路非完全断开。原CLR最佳checkpoint各类型4/4/6万曝光，B3 Q3为430/516/516万、Q4各224万。B3的val300 1k实例过拟合达98%，v0及合成任务继续。pending审查文件 reports/M4.1_REVIEW.md；根因尚未定稿。
+
+M4.1合成基准控制：保留原16值/RMS1/std0.08及后续低噪声、4值控制失败记录；最终单位L2线性编码、16值、std0.001的同一任务上B3 Q3/Q4均达98%独立验证门槛（索引data/M41_v1/synthetic_unit）。v0正在此同协议上核验；不能把B3也未达标的任务当作CLR架构失败证据。
+候选实现已新增clr/models/clr_v1.py（尚未宣布修复成功）：v1保留22层encoder，增加非零cross残差尺度与显式状态/数值/选项联合非线性头；lite为4层256。置换、padding梯度和选项隔离2项测试通过；val吞吐实测v1 batch256约647–1323条/s，lite batch1024约2.07万–2.37万条/s（不含数据加载，正式预算须保留余量）。未进入C。
+
+M4.1接续已部署：tmux clr-m41-gates（A完成→根因→B门槛），clr-m41-pipeline（双门槛→val smoke→C→最终报告）。候选路径/隔离/置换与按题统计单测4通过。旧v0原配置1k Q4训练100epoch为81.2%，降低LR续训正在提高；单位L2合成Q3原v0已过98%，Q4仍运行，不能概括为架构完全不能学。当前仍A，未访问test。
+
+M4.1 A诊断完成，根因结论已写reports/M4.1_REVIEW.md(b)，完整证据data/M41_v1/diagnosis_complete.json。继续B两候选学习能力关卡；尚未进入C。
+
+M4.1 A根因已落盘（≤3KB）：无完全断路证据；v0单位L2合成Q3/Q4验证98.6%/99.6%，原配置1k Q4拟合81.2%，低LR续训97.0%，曝光差37–129倍。B首次运行出现GPU2共享显存OOM及lite日志器AttributeError，已记录并显式恢复到GPU1/5、相同模型/batch/精度。tmux clr-m41-gates-v2，日志reports/M41_gate_controller_retry_v2.log。代码066ba79；C pipeline仍等待双门槛。M4冻结12946文件SHA全部一致。
+
+M4.1 A诊断完成，根因结论已写reports/M4.1_REVIEW.md(b)，完整证据data/M41_v1/diagnosis_complete.json。继续B两候选学习能力关卡；尚未进入C。
+
+M4.1（2026-11-05T10:59:22+08:00）：A根因已落盘；两个候选1k Q4拟合均超过99%，lite合成Q3/Q4通过，v1合成仍在运行；C尚未启动；状态索引docs/M41_LIVE.json。
+
+M4.1 B关卡完成，both_variants_passed=True；见data/M41_v1/gate_lock.json。C只有两者全部通过才可启动。
+
+M4.1（2026-11-05T11:01:05+08:00）：A诊断已完成；v1/lite的1k Q4拟合99.2%/99.3%，合成Q3均100%、Q4为98.9%/99.2%，六项门槛全通过。正式入口val smoke正在运行，随后全量三seed训练；test未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-05T11:20:46+08:00）：seed11启用activation checkpointing，等价性及全量长度审计对应的48-token压力smoke通过；seed22/33原训练继续，模型/batch/精度/曝光不变；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-05T11:33:20+08:00）：A/B完成，三seed全量训练运行；bf16补充80批均有非零z梯度/置换效应，7项测试通过。seed11 checkpointing恢复正常；最终test未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-05T17:39:16+08:00）：C训练完成1项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-05T19:16:55+08:00）：C训练完成2项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-05T19:36:45+08:00）：CLR v1 seed22/33完成，seed11已完成8epoch并在第9epoch；lite seed33第9epoch、seed22第2epoch。累计约27.1/35 GPUh；剩余主训练、迁移及评估预算偏紧，预计墙钟仍需4–6小时且不保证预算内全部完成；test未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-05T19:37:31+08:00）：C训练完成3项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-05T19:39:54+08:00）：用户授权提高预算：总50 GPUh，新训练单run14h；现有训练不打断，旧9h时限若触发则从epoch检查点新run恢复。预算50接续控制器已启动，科学设置不变；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-05T19:57:13+08:00）：C训练完成4项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-05T21:24:13+08:00）：C训练完成5项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-05T21:45:24+08:00）：C训练完成6项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-05T21:45:43+08:00）：C训练完成7项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-05T23:42:31+08:00）：C训练完成8项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:02:29+08:00）：C训练完成9项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:24:53+08:00）：C训练完成10项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:25:36+08:00）：C训练完成11项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:26:08+08:00）：C训练完成12项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:27:07+08:00）：C训练完成13项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:27:28+08:00）：C训练完成14项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:27:36+08:00）：C训练完成15项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:28:28+08:00）：C训练完成16项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:29:04+08:00）：C训练完成17项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:30:40+08:00）：C训练完成18项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:30:52+08:00）：C训练完成19项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:31:27+08:00）：C训练完成20项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:34:42+08:00）：C训练完成21项，最终test尚未打开；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:40:13+08:00）：最终评估完成1/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:40:58+08:00）：最终评估完成2/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:42:48+08:00）：最终评估完成3/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:43:34+08:00）：最终评估完成4/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:44:32+08:00）：最终评估完成5/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:44:34+08:00）：最终评估完成6/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:45:18+08:00）：最终评估完成7/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:45:32+08:00）：最终评估完成8/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:46:07+08:00）：最终评估完成9/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:46:18+08:00）：最终评估完成10/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:46:36+08:00）：最终评估完成11/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:46:53+08:00）：最终评估完成12/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:47:07+08:00）：最终评估完成13/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:47:37+08:00）：最终评估完成14/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:47:57+08:00）：最终评估完成15/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:48:30+08:00）：最终评估完成16/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:49:20+08:00）：最终评估完成17/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1（2026-11-06T00:50:10+08:00）：最终评估完成18/18项，训练已锁定；状态索引docs/M41_LIVE.json。
+
+M4.1实验完成，待G1审查；唯一审查文件reports/M4.1_REVIEW.md，冻结data/M41_v1/freeze.json。M4原冻结哈希全部一致。
+
+M4.1（2026-11-06T00:58:03+08:00）：M4.1实验完成，待G1审查；唯一审查文件reports/M4.1_REVIEW.md，冻结data/M41_v1/freeze.json。M4原冻结哈希全部一致。；状态索引docs/M41_LIVE.json。
+
+## 2026-11-06 M5b 启动与实现复核
+用户按Q3/Q4有条件通过G1并授权M5b；预算25GPUh，A预先指定消融可test，B/C/D禁止test。任务书docs/M5b_TASK.md，实时索引docs/M5b_LIVE.json。
+A正式控制从头重训：B3-prefix均值/当前拼接、lite-single仅当前；保持原训练协议/三seed。早期冻结权重输入干预有归一化混用且已test暴露，run保留并全排除，不用作结论/选超参。B3全量GPU缓存OOM后显式移至CPU缓存，科学设置未变。
+A train/val smoke、B/C五题全网格smoke通过（26.1秒/题/seed，test=false），5项单测通过；预算含余量估计21.2GPUh。A训练、B全量运行，C等待B完成，D仅smoke；尚无正式完整结论。
+
+## 2026-11-06T05:13:28.693528+00:00 — M5b完成待审查
+M5b A–D/三seed、配对统计完成，待审查；累计16.8/25 GPUh。唯一审查reports/M5b_REVIEW.md；冻结data/M5b_v1/freeze.json，接续docs/M5b_LIVE.json。搜索结论见审查报告；A历史无效开发run提前test暴露保留并排除，B/C/D未触碰test。用户G1按Q3/Q4有条件通过；未启动M6。
+详细reports/M5b_details.md，全部CSV/曲线/成本data/M5b_v1/analysis；run索引data/M5b_v1/completion.json。M41/M5a共4154个冻结文件SHA一致。
+
+## 2026-11-06T05:16:33.248867+00:00 — M5b完成待审查
+M5b A–D/三seed、配对统计完成，待审查；累计16.8/25 GPUh。唯一审查reports/M5b_REVIEW.md；冻结data/M5b_v1/freeze.json，接续docs/M5b_LIVE.json。搜索结论见审查报告；A历史无效开发run提前test暴露保留并排除，B/C/D未触碰test。用户G1按Q3/Q4有条件通过；未启动M6。
+详细reports/M5b_details.md，全部CSV/曲线/成本data/M5b_v1/analysis；run索引data/M5b_v1/completion.json。M41/M5a共4154个冻结文件SHA一致。
+
+
+<!-- M6_LIVE -->
+M6实验与统计完成，待审查；唯一审查reports/M6_REVIEW.md，冻结data/M6_v1/freeze.json。
+<!-- /M6_LIVE -->
+
+
+## 2026-11-06 — M7 前置 Idea A 与归档对话核验
+已找到本仓库归档对话「搭建 CLR 研究项目骨架」；对话链接、源码与 run 证据见 [M7_IDEA_A_READINESS.md](M7_IDEA_A_READINESS.md)。
+Idea A M1.1/synthetic v2 已完成，三份核心生成器源码哈希与冻结一致；M3 KV 契约和机制已验收。
+Idea A M4 正式 direct 训练完成、正式 val 评测待执行；不写成整体训练效果已验收。
+两项目 transformers 版本不同（CLR 4.52.4 / Idea A 4.57.1）；CLR 尚无 LatentMAS/C2C source，需 M7 自行验证集成、传信及 commitment。
+本次只核验既有记录并新增接续文档，未启动 M7 实验，未修改 Idea A 或任何冻结产物。
+
+<!-- M7_LIVE -->
+M7非自适应实验完成待审查；唯一审查reports/M7_REVIEW.md。冻结data/M7_v1/freeze.json；缩量/历史raw缺证据/1%无穷门限等限制见审查文件；未启动M8。
+<!-- /M7_LIVE -->
+
+## M6 2026-11-07
+M6实验与统计完成，待审查；唯一审查reports/M6_REVIEW.md，冻结data/M6_v1/freeze.json。
+
+<!-- M71_LIVE -->
+M7.1足量非自适应审计完成待审查；C1/C2通过，三seed主比较/统计完成；唯一审查reports/M7.1_REVIEW.md，冻结data/M71_v1/freeze.json；接续docs/M71_LIVE.json，M8未启动。
+<!-- /M71_LIVE -->
+
+<!-- M8_LIVE -->
+M8a固定500组评估与统计完成待审查；P0通过，三seed/E0–E4齐全；唯一审查reports/M8a_REVIEW.md，冻结data/M8a_v1/freeze.json。
+<!-- /M8_LIVE -->
+
+## 2026-11-08 — M8b启动
+用户授权设计比较，优先R4→R2→R1→R3，独立预算25GPUh。任务书docs/M8b_TASK.md；实时docs/M8b_LIVE.json。
+R4 receiver状态提取smoke（train100/val20）完成，4项协议单测通过；小样本适配器尚未学好A4，保留为诊断。
+正在提取固定train4000/val200/cal_A300/cal_B1000；不改上游冻结，不打开test。最终审查reports/M8b_REVIEW.md。
+
+## 2026-11-08 — M8b接续更新
+提取5500组完成（17.5GiB、1.42GPUh）；上游62363项SHA一致。R4三seed训练完成，val A4约56%–60%；R2接近随机，初始化诊断负面结果保留。
+R4训练后val20 PGD smoke约112秒通过；原始实现与修正版本均存run快照，未打开test。
+R2 seed33孤儿run实际GPU成本缺失，原记录保留；保守上界10.1分钟单列，同设置GPU5重启完成。tmux clr-m8b-development继续R3训练/校准。
+接续docs/M8b_LIVE.json、reports/M8b_evidence/；最终test须先执行M8b final lock。
+
+## 2026-11-09 — M8b训练完成、test前预算核验
+R4原三seed、R2/R3两种初始化均完成，按三seed平均val NLL整体选R2/R3 v2；R3 val A4约94.5%–96.5%，R2约37.8%–47.8%。
+统一A1/A4分布；R2随机读取CPU/GPU舍入已定位，正在GPU同路径重校准并严格重放。所有旧记录保留，累计成本实时见M8b runtime。
+后台GPU7：同设备smoke→val20完整ε矩阵→λ敏感性预算核验，尚未final lock/尚未test。接续docs/M8b_HANDOFF.md、M8b_LIVE.json。
+
+## 2026-11-09 M8b最终评估已启动
+val20正式主矩阵1552秒、λ敏感性810秒，严格重放及统计smoke、7项单测通过。累计7.54GPUh后锁定final_lock.json。
+主500/三seed/四设计/E1–E3/四ε/50与200预算/λ1保留；附加λ=.1/10在ε=.03固定102组，预算含20%余量预计总22.0GPUh，硬上限25。
+GPU7/6/5三分区tmux clr-m8b-final-p0/p1/p2；完成后自动接统计/上游复核/审查与冻结，tmux clr-m8b-final-finish。尚未完成，不能把启动当结论。
+
+<!-- M8B_LIVE -->
+M8b四种设计/三seed、固定500组E1/E2/E3评估与统计完成待审查；唯一审查reports/M8b_REVIEW.md，冻结data/M8b_v1/freeze.json。
+<!-- /M8B_LIVE -->
+
+## 2026-11-09 M8c启动
+任务书docs/M8c_TASK.md；独立15GPUh，先4B完整日志direct-lookup val20/val200，失败按授权缩日志、升型号，仍失败即报告。M8a/M8b冻结不变，未打开test。
+
+<!-- M8C_LIVE -->
+M8c固定test200组三seed E3主矩阵完成待审查；21GPUh内次要项完成范围见reports/M8c_REVIEW.md，冻结data/M8c_v1/freeze.json。
+<!-- /M8C_LIVE -->
+
+## 2026-11-10 M9 启动
+用户授权最后补实验仅M6 C2（GPT2+LLaMA联合CLR-lite、3seed、10GPUh），其余不新增实验。论文产物和主张核验见docs/M9_TASK.md。
+两源各5训练/val题smoke完成（70.7秒），训练及校准/预测val代理均通过；正式3seed顺序训练，全部权重锁后再test。
+上游105515个唯一文件SHA核验全部一致（data/M9_v1/upstream_audit.json）。论文脚本仅消费冻结CSV，缺失对照保留NA。
+<!-- M9_LIVE -->
+M9-A三seed联合训练与论文产物完成待审查；实验至此冻结。唯一审查reports/M9_REVIEW.md，冻结data/M9_v1/freeze.json。
+<!-- /M9_LIVE -->
+
+## 2026-11-10 M9 接续
+seed11原worker保留，原纯CPU顺序控制器停止；22/33按同一配置在GPU0/4并行，累计10GPUh账本不变。
+接续scripts.m9_resume_pipeline configs/M9/resume_pipeline.yaml；调度补充data/M9_v1/execution_supplement.json。
+已生成静态表图并核查；论文CSV哈希门槛与AUROC/单调包络测试通过。独立.venv-paper依赖直连安装成功，主环境未改。
+正式训练仍运行；全部权重锁后才test。主表缺失对照保留NA，强主张按四贡献/两局限核对。
+
+## 2026-11-10 M9 收尾接续
+当前实验控制器PID1560935，保留seed11、22/33并行，训练配置不改；所有权重锁后才test。
+新增CPU收尾控制器PID1763304：scripts.m9_finish configs/M9/finish.yaml，日志reports/M9_evidence/finish.log；等待experiment_complete后统计→CSV冻结→独立环境制图/逐字节重建→上游复核→审查/冻结。
+旧格式预测已按冻结QA恢复选项，逐项对照原conformal值；已有模型CSV导出PID1690664仍运行，无模型调用。
+脚本测试4项通过，无warning；PDF已核查无raster图像对象且嵌入TrueType字体。最终协议附录采用v2；原开发v1保留。
+
+<!-- M10_LIVE -->
+M10投稿补实验及论文产物完成待审查，实验最终冻结；B5c全量因预算NR，HiddenBench仅探索性。唯一审查reports/M10_REVIEW.md；冻结data/M10_v1/freeze.json。
+<!-- /M10_LIVE -->
+
+## 2026-11-10 — M10 P1执行中
+用户授权投稿前补充实验≤40GPUh（P1≤12、B5c≤12、HiddenBench≤12、跨用途≤4），完成后最终冻结。
+7项GSM设置及审计B6通过val-only smoke；LLaMA缺失格/B6/每类型CLR正式训练队列已启动，test仍关闭。
+配置入口configs/M10/full_gsm_queue.yaml、full_audit_queue.yaml；接续docs/M10_LIVE.json，预算按runs/*/budget.json实测，不把启动写为完成。
+M9及上游冻结只读；M10新建data/M10_v1。HiddenBench原始文件仅65场景组，独立组校准的有限样本约束仍待处理。
+
+## 2026-11-10 M10执行接续
+P1缺失格三seed训练已完成；GSM B6/每类型及审计B6仍在队列；跨用途小N完成、full训练中；HiddenBench CLR完成后训练B3/B6。
+GSM所有评估分支、审计/迁移/HiddenBench及公开契约v2 val-only smoke通过；11项单测；上游110122文件SHA一致。
+B5c全量准入失败：仅GPT2 Q3/Q4一遍×三seed实测下界19.2GPUh>12，保留NR；不声称优于训练式语言化基线。
+HiddenBench63组，程序化事实+结论+公开one-of-panel约束；13/20/4/20/6组，只有mismatch，1%阈值+∞。局限与早期失败见BLOCKERS。
+最终控制器等待全部训练后自动lock/eval/export；当前未开test。旧paper/FINAL_SUMMARY66文件已归档。尚缺最终结果、paper/review/复现/冻结；详见接续文档。
+
+## 2026-11-10 M10接续调度与关卡
+HiddenBench非test源及15checkpoint已完成；B5c最快实测19.2GPUh是条件于当前吞吐的单轮估算，并非理论下界。
+B6两源与审计、每类型CLR及迁移full继续；12项单测通过。final lock新增逐run test访问标记与terminal状态检查。
+依赖已完成队列释放GPU0/2/5接续未启动任务，case/seed任务锁避免重复训练；科学配置仅device变化，仍在原子预算。
+当前未开test；接续docs/M10_EXECUTION_CONTINUATION.md、M10_LIVE.json；完成后再paper复现/审查/最终freeze。
+
+<!-- M10b_LIVE -->
+M10b GPT2 B5c Q3/Q4三seed与论文复现完成待审查，实验永久冻结；唯一审查reports/M10b_REVIEW.md；冻结data/M10b_v1/freeze.json。
+<!-- /M10b_LIVE -->
+
+<!-- M10c_LIVE -->
+M10c只读开销测量与T6/配对conformal汇总完成待审查；无训练/重校准，科学结果永久冻结。唯一审查reports/M10c_REVIEW.md；冻结data/M10c_v1/freeze.json。
+<!-- /M10c_LIVE -->
+
+## 2026-11-12 — M10d完成待审查
+M10d四格补齐完成待审查；GPT2 B6复用0.574/0.853，LLaMA B4新增三seed0.551/0.806（Q1 NLL/Q2 AUROC）；0.0289GPUh≤2、源前向0，旧冻结不改；论文仍8页。唯一审查reports/M10d_REVIEW.md；冻结data/M10d_v1/freeze.json。
+任务书docs/M10d_TASK.md；接续docs/M10d_LIVE.json；证据reports/M10d_details.md及data/M10d_v1/four_cells.json。
+论文同步目录manuscripts/CVPR27-CLR；sec/5_results.tex只替换四格及最优加粗，number_audit.md仅追加。输出outputs/main.pdf；独立Tectonic+T1兼容构建，8页/第5页主表核查通过。
+
+<!-- M10e_LIVE -->
+M10e两源HSRM三seed/确定性CLUE及LLaMA B2 Q1–Q4三seed完成待审查，实验再次冻结；0.942GPUh、源前向0，旧科学输入SHA一致。论文按用户修订仅交付reports/M10e_PAPER_HANDOFF.md，未改稿/编译。唯一审查reports/M10e_REVIEW.md；冻结data/M10e_v1/freeze.json。
+<!-- /M10e_LIVE -->
+
+<!-- M11_QUAL_LIVE -->
+M11-qual只读导出完成待审查；两源各12题、跨题300、兄弟40、审计600、M8c100组。唯一审查reports/M11_qual_REVIEW.md；交付data/M11_qual_v1/qual_export.zip，冻结data/M11_qual_v1/freeze.json。无训练/重校准/PGD；M8c仅已有分数。
+<!-- /M11_QUAL_LIVE -->
+
+## 2026-11-12 M12启动
+用户授权CODI-GPT2 CLR-lite A1–A5单组件消融，三seed沿用M41曝光/早停/校准；预算30GPUh、北京时间11-15 12:00截止，按优先级放弃未完项。
+任务docs/M12_TASK.md；仅新代码/结果，M41等冻结只读，不改论文。先val-only smoke，所有保留训练hash锁后再统一test。
+
+M12 23:07：修正版训练/协议smoke通过（训练约6.8分钟、协议约1.8分钟），12项单测及20项复用val格式/conformal回放核验通过。A1三seed在GPU3/2/5实际训练，未访问test；后续A2–A5按成本优先级准入。自动接续PID见data/M12_ablation/controller_pid；控制器reports/M12_evidence/controller.log，逐run从jobs/及progress.json核实。
+
+M12持续核验：A1三seed进程存活（seed11/33至epoch8、22至epoch6），约2.75GPUh，未开test。收尾增强完整曝光/原配置/早停历史核验与未准入项显式NA；paper/和已有CVPR归档共96文件SHA匹配。统计前测试通过，实际最新进度以docs/M12_LIVE.json/jobs下progress.json为准。
+
+M12 2026-11-13 00:30：A1三seed全部训练完成（11/22/33实际10/9/9epoch、选中9/8/8epoch），完整曝光及checkpoint选择回执核验通过；A1训练合计3.51GPUh。预算准入后A2三seed实际启动，含全部smoke累计约3.79GPUh；test仍关闭。完成回执核验data/M12_ablation/completed_training_receipt_audit.json；后续A3–A5按成本继续。
+
+M12 2026-11-13 00:50接续：A1三seed完成，A2三seed均至epoch3（11/22/33 batch约1660/240/1960），进程持续推进；累计4.77/30GPUh，test仍关闭。现有start/pipeline PID2845222/2867996保持运行，勿重启已完成训练。最终评估/统计/冻结仍待所有保留变体训练锁；本轮核对收尾代码未改科学设置。
+
+M12 01:23接续：A2 seed11/33至epoch8、22至epoch6，累计6.40GPUh，test仍关闭。新增最终论文96文件SHA复核及置换结果三seed/支持集/身份对齐一致性核验，8项单测通过（reports/M12_evidence/completion_audit_tests_v3.log）；只改交付核验，不改训练/评估科学设置。
+
+M12 01:34：A2 seed11/33完成9epoch，均选epoch8，完整曝光/选点与hash回执核验通过；seed22仍运行（epoch7末，进程存活）。累计约6.86/30GPUh，test未开；A3–A5仍等待现有控制器继续准入，未重启已完成run。
+
+M12 01:52：A2三seed均完成9epoch/选择8epoch，完整曝光与checkpoint SHA回执核验通过，现累计6个完成run。A3通过成本准入（三seed预测4.89GPUh+最终预留2GPUh），实际三进程已启动；累计约7.18/30GPUh。test仍关闭；既有控制器PID2867996继续A3–A5。
+
+M12 03:22：A3三seed训练完成（11/22/33实际9/10/9epoch，选择8/9/8epoch），完整曝光/选点及checkpoint SHA回执通过。A1–A3累计9个完成run；A4通过成本准入，三进程已实际启动，test仍关闭。累计约10.8/30GPUh，原控制器继续A4–A5，详见docs/M12_LIVE.json及jobs。
+
+M12 03:44恢复：A4 seed11在GPU3首epoch一个优化步后共享显存OOM，失败0.0225GPUh保留；相同模型/batch1024/bf16/完整曝光在GPU0全新重跑PID3255842，已到epoch1。22/33原worker继续。CPU监督PID3256871等待旧pipeline及重跑结束后复用A1–A4回执接续A5/评估；配置configs/M12/recovery_supervisor.yaml，证据data/M12_ablation/recovery.json。累计11.5/30GPUh，test未开。
+
+M12 04:51：A4三seed最终完成，均9epoch/选8epoch；完整曝光/选点/hash回执通过（12个完成run）。A4/11原OOM保留，GPU0同设置重跑成功。原controller终止后恢复监督复用A1–A4回执，A5三seed已实际启动，设备0/2/5；新PID见data/M12_ablation/recovered_controller.json。累计约14.2/30GPUh，test未开。
+
+M12 06:02：A1–A5全部15个训练run完成，完整曝光/早停/hash回执通过；06:02:09统一锁定checkpoint/config/code后才开启最终test评估，三卡0/2/5按seed处理。累计约17.5/30GPUh；校准、置换、配对统计和最终冻结仍在执行。接续docs/M12_LIVE.json。
+
+## M12完成
+M12组件消融完成待审查；5变体三seed，18.1/30GPUh；唯一审查reports/M12_REVIEW.md，冻结data/M12_ablation/freeze.json；未改论文。
+
+## 2026-11-16 — 目录整理与版本归档
+按用户授权整理目录、清理缓存并完善 `.gitignore`，归档现有未提交的代码、配置、报告及冻结索引；未启动训练、评估或重校准。
+根目录重复提案/规划改为兼容链接；冻结材料、旧稿路径及独立论文仓库保持原样。补充统计另见 `supplemental/stats_20261116_v1/REPORT.md` 与其 `freeze.json`。
+目录分工与本地保留范围见 [REPOSITORY_LAYOUT.md](REPOSITORY_LAYOUT.md)，清理核验见 `docs/maintenance/20261116_cleanup.json`。本次维护不代表任何里程碑审查通过。

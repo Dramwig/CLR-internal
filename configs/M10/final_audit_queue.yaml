@@ -1,0 +1,15 @@
+eval_lock: data/M10_v1/final_lock.json
+jobs:
+- script: scripts/m10_evaluate_audit_b6.py
+  config: configs/M10/eval_audit_B6_h896_11_full.yaml
+  completion: data/M10_v1/evaluated/audit_B6_h896_11_full.json
+  log: reports/M10_evidence/eval_audit_B6_h896_11_full.log
+- script: scripts/m10_evaluate_audit_b6.py
+  config: configs/M10/eval_audit_B6_h896_22_full.yaml
+  completion: data/M10_v1/evaluated/audit_B6_h896_22_full.json
+  log: reports/M10_evidence/eval_audit_B6_h896_22_full.log
+- script: scripts/m10_evaluate_audit_b6.py
+  config: configs/M10/eval_audit_B6_h896_33_full.yaml
+  completion: data/M10_v1/evaluated/audit_B6_h896_33_full.json
+  log: reports/M10_evidence/eval_audit_B6_h896_33_full.log
+completion_file: data/M10_v1/audit_evaluation_completed.json

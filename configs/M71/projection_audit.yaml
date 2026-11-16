@@ -1,0 +1,5 @@
+milestone: M7.1
+output: data/M71_v1
+selection_name: layer_selection_v2.json
+seed: 20261107
+expected_groups: 200

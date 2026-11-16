@@ -1,0 +1,24 @@
+milestone: M5b
+version: sibling_rank_v1
+case: D-lite
+stage: smoke
+seed: 11
+max_gpu_hours: 25
+run_budget_hours: 3
+device: cuda:0
+learning_rate: 0.0001
+rank_weight: 1.0
+epochs: 5
+group_batch: 32
+generation_run: null
+smoke_run: null
+root: data/dumps/codi_gpt2_v3
+qa_root: data/M23_v1a/full
+templates: clr/data/questions/templates.yaml
+m41_model_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+m41_runs:
+  lite:
+    '11': runs/20261105T134549665017Z_13a5b7d07c74_c9bce9
+    '22': runs/20261105T111703141949Z_078915e779b4_e2c879
+    '33': runs/20261105T093924222497Z_259fba41ad54_7528a4
+output: data/M5b_v1

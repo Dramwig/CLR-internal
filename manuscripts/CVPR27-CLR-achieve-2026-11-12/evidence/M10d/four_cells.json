@@ -1,0 +1,55 @@
+{
+  "cells": [
+    {
+      "source": "gpt2",
+      "model": "B6",
+      "qtype": "Q1",
+      "metric": "nll",
+      "mean": 0.574010961648221,
+      "lo": 0.553966717028884,
+      "hi": 0.594342948979264,
+      "table": "0.574",
+      "origin": "found_frozen",
+      "evidence": "data/M10_v1/paper_inputs/main.csv"
+    },
+    {
+      "source": "gpt2",
+      "model": "B6",
+      "qtype": "Q2",
+      "metric": "auroc",
+      "mean": 0.852715892250876,
+      "lo": 0.835300997596845,
+      "hi": 0.869775645745138,
+      "table": "0.853",
+      "origin": "found_frozen",
+      "evidence": "data/M10_v1/paper_inputs/main.csv"
+    },
+    {
+      "source": "llama",
+      "model": "B4",
+      "qtype": "Q1",
+      "metric": "nll",
+      "mean": 0.5510710848511579,
+      "lo": 0.5230477581574647,
+      "hi": 0.5804588138128872,
+      "table": "0.551",
+      "origin": "new_training_final",
+      "evidence": "data/M10d_v1/B4_summary.csv"
+    },
+    {
+      "source": "llama",
+      "model": "B4",
+      "qtype": "Q2",
+      "metric": "auroc",
+      "mean": 0.8058417175316815,
+      "lo": 0.786090464380286,
+      "hi": 0.8246409833186451,
+      "table": "0.806",
+      "origin": "new_training_final",
+      "evidence": "data/M10d_v1/B4_summary.csv"
+    }
+  ],
+  "protocol": "test; clean; seen templates; micro within t, equal across t and fixed seeds 11/22/33",
+  "uncertainty": "95% problem-cluster bootstrap 10000, preserving steps/seeds; conditional on three trained seeds; B6 CIs reused",
+  "summary_run": "/home/me/PaperField/CalReader/runs/20261112T024907194969Z_4a3ddb4bda25_1e16a4"
+}

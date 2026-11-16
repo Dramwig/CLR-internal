@@ -1,0 +1,14 @@
+milestone: M7
+mode: full
+seed: 11
+output: data/M7_v1
+kind: CLR
+device: cuda:7
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+batch_size: 16
+lr: 0.0003
+epochs: 20
+min_epochs: 4
+patience: 3
+max_seconds: 18000
+budget_gpu_hours: 40

@@ -1,0 +1,417 @@
+/home/me/PaperField/CalReader/runs/20261106T070035210710Z_f14e9fb1123a_81badd
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/peft/tuners/lora/layer.py:1768: UserWarning: fan_in_fan_out is set to False but the target module is `Conv1D`. Setting fan_in_fan_out to True.
+  warnings.warn(
+Passing a tuple of `past_key_values` is deprecated and will be removed in Transformers v4.53.0. You should pass an instance of `Cache` instead, e.g. `past_key_values=DynamicCache.from_legacy_cache(past_key_values)`.
+11 0 2.195089504995849
+11 1 1.5552994380122982
+11 2 1.707486508996226
+11 3 1.6793313400121406
+11 4 1.597317541949451
+11 5 1.6021689210319892
+11 6 1.5724585560383275
+11 7 1.5686482739984058
+11 8 1.5930639890138991
+11 9 1.5707899979897775
+11 10 1.579895487986505
+11 11 1.6892399889766239
+11 12 1.7625619359896518
+11 13 1.370142902014777
+11 14 1.5985898990184069
+11 15 1.7796362229855731
+11 16 1.7888110849889927
+11 17 1.6725422209710814
+11 18 1.598952457017731
+11 19 1.5952678039902821
+11 20 1.5906168129877187
+11 21 1.5795159649569541
+11 22 1.634900706994813
+11 23 1.630916046036873
+11 24 1.8458796060294844
+11 25 1.6134329249616712
+11 26 1.8434577750158496
+11 27 2.225017208023928
+11 28 1.8472025300143287
+11 29 1.7476063199574128
+11 30 1.7121980910305865
+11 31 1.674623112019617
+11 32 1.5468083869782276
+11 33 1.6125618680380285
+11 34 1.590721182001289
+11 35 1.574133861984592
+11 36 1.3360212139668874
+11 37 1.642819867003709
+11 38 1.638944245991297
+11 39 1.6042888409574516
+11 40 1.572171371022705
+11 41 1.5881190880318172
+11 42 1.5975447539822198
+11 43 1.5968325909925625
+11 44 1.5820698229945265
+11 45 1.586630517966114
+11 46 1.5925104689667933
+11 47 1.587257643986959
+11 48 1.602685127989389
+11 49 1.3904287859913893
+11 50 1.650015480001457
+11 51 1.595263427007012
+11 52 1.5715255640097894
+11 53 1.5946384189883247
+11 54 1.5925646709511057
+11 55 1.5546367630013265
+11 56 1.606114502006676
+11 57 1.5912446239963174
+11 58 1.6004921879502945
+11 59 1.5827564610517584
+11 60 1.9118667599977925
+11 61 1.4358987199957483
+11 62 1.686385673994664
+11 63 1.7489870780264027
+11 64 1.7153935880050994
+11 65 1.6277738270000555
+11 66 1.644923513988033
+11 67 1.8896675200085156
+11 68 1.7523270020028576
+11 69 1.7269577120314352
+11 70 1.6677808969980106
+11 71 1.6145468020113185
+11 72 1.5331838370184414
+11 73 1.591062541003339
+11 74 1.6291898030322045
+11 75 1.6311660149949603
+11 76 1.6282685340265743
+11 77 1.5992222860222682
+11 78 1.6334350539837033
+11 79 1.6897233750205487
+11 80 1.5969415699946694
+11 81 1.6186632869648747
+11 82 1.637223745987285
+11 83 1.6195529259857722
+11 84 1.485886398004368
+11 85 1.7582571540260687
+11 86 1.8018814120441675
+11 87 1.7611510130227543
+11 88 1.7661130269989371
+11 89 1.7480696249986067
+11 90 1.683131973957643
+11 91 1.624809845990967
+11 92 1.693840998050291
+11 93 1.634541382023599
+11 94 1.6601099830004387
+11 95 1.7225237900274806
+11 96 1.5766813210211694
+11 97 1.6338827980216593
+11 98 1.6996851000003517
+11 99 1.6962094989721663
+11 100 1.6918064689962193
+11 101 1.7552260069642216
+11 102 1.7163612429867499
+11 103 1.6824496470508166
+11 104 1.9264278080081567
+11 105 1.8276250140042976
+11 106 1.653558035963215
+11 107 1.643793719005771
+11 108 1.6590301499818452
+11 109 1.748680355027318
+11 110 1.64044930099044
+11 111 1.6530463059898466
+11 112 1.6397723429836333
+11 113 1.6375196960289031
+11 114 1.840614719025325
+11 115 1.6715021700365469
+11 116 1.8026407320285216
+11 117 1.6603058979962952
+11 118 1.7899531039875
+11 119 1.7242318379576318
+11 120 1.9931999639957212
+11 121 1.644293782999739
+11 122 1.6693031130125746
+11 123 1.6094891300308518
+11 124 1.647289669024758
+11 125 1.6414392639999278
+11 126 1.6338345619733445
+11 127 1.6557331850053743
+11 128 1.623183450952638
+11 129 1.4947024150169455
+11 130 1.675753885996528
+11 131 1.5669803509954363
+11 132 1.5976682850159705
+11 133 1.7122956410166807
+11 134 1.8222897889791057
+11 135 2.0191390240215696
+11 136 1.7162750840070657
+11 137 1.737927287002094
+11 138 1.6878090149839409
+11 139 1.5860658879973926
+11 140 1.7584469499997795
+11 141 1.6652929810225032
+11 142 1.6302054109983146
+11 143 1.6262187489774078
+11 144 1.6174469229881652
+11 145 1.5957888910197653
+11 146 1.630432572972495
+11 147 1.6261589510249905
+11 148 1.6435395699809305
+11 149 1.8274170109652914
+11 150 1.4874722370295785
+11 151 1.6930280480301008
+11 152 1.645689514989499
+11 153 1.621900447004009
+11 154 1.624958150961902
+11 155 1.6573235300020315
+11 156 1.6408614600077271
+11 157 1.6239462459925562
+11 158 1.6463455710327253
+11 159 1.7025345289730467
+11 160 1.7688655860256404
+11 161 1.6895458400249481
+11 162 1.568443472031504
+11 163 1.8047171119833365
+11 164 1.598608051019255
+11 165 1.6303426679805852
+11 166 1.6215123040019535
+11 167 1.6186609319993295
+11 168 1.6322693870170042
+11 169 1.6128104419913143
+11 170 1.6270662009483203
+11 171 1.6630098369787447
+11 172 1.6770741879590787
+11 173 1.4087820280110464
+11 174 1.6718054260127246
+11 175 1.7330992839997634
+11 176 1.7658237820141949
+11 177 1.763189596007578
+11 178 2.0160864909994416
+11 179 1.7337576969875954
+11 180 1.6863620709627867
+11 181 1.651520064973738
+11 182 1.6667629799921997
+11 183 1.6487047350383364
+11 184 1.4710539929801598
+11 185 1.658561795949936
+11 186 1.6618321069981903
+11 187 1.6384905209997669
+11 188 1.6457336710300297
+11 189 1.6486770209739916
+11 190 1.683657696004957
+11 191 1.6562351969769225
+11 192 1.8909559639869258
+11 193 2.0836110250093043
+11 194 1.8440984489861876
+11 195 1.6477392539964058
+11 196 1.5943469039630145
+11 197 1.5950337930116802
+11 198 1.7080406949971803
+11 199 1.6593521559843794
+11 200 1.6724678179598413
+11 201 1.6462364100152627
+11 202 1.6558016079943627
+11 203 1.6397890849621035
+11 204 1.8932213860098273
+11 205 1.865809631999582
+11 206 1.694076485990081
+11 207 2.0475227899733
+11 208 1.8474344899877906
+11 209 1.7167620609980077
+11 210 1.6326671280548908
+11 211 1.6744724330492318
+11 212 1.6925254500238225
+11 213 1.8019243049784563
+11 214 1.771077613986563
+11 215 1.8657266730442643
+11 216 1.895397144020535
+11 217 1.6173211389686912
+11 218 1.776547808025498
+11 219 1.7338200089870952
+11 220 1.6846797380130738
+11 221 1.7629782760050148
+11 222 1.791074997978285
+11 223 1.8956956960028037
+11 224 1.728942132962402
+11 225 1.7002874359604903
+11 226 1.7187892330111936
+11 227 1.5608505220152438
+11 228 1.6869414349785075
+11 229 1.6378963940078393
+11 230 1.7669048899551854
+11 231 1.684431555971969
+11 232 1.7576391870388761
+11 233 1.7060972100007348
+11 234 1.6471728259930387
+11 235 1.8808108759694733
+11 236 1.728177719982341
+11 237 1.7523443620302714
+11 238 1.5592651350307278
+11 239 1.7882478869869374
+11 240 1.9100494849844836
+11 241 2.1343920979998074
+11 242 1.869291135983076
+11 243 1.6757760819746181
+11 244 1.691926357045304
+11 245 1.787593056971673
+11 246 2.084048016986344
+11 247 1.871533140016254
+11 248 1.694287988008
+11 249 1.7940079449908808
+11 250 1.9887090409756638
+11 251 2.1886739450274035
+11 252 1.9159697389695793
+11 253 1.8729967920226045
+11 254 1.9518168270005845
+11 255 1.9388690470368601
+11 256 2.0906591879902408
+11 257 1.7032508700503968
+11 258 2.2168536339886487
+11 259 1.9064490390010178
+11 260 1.760639459011145
+11 261 1.8833621069788933
+11 262 1.7172230759751983
+11 263 1.7146011809818447
+11 264 1.6953834560117684
+11 265 1.7174304249929264
+11 266 1.7084828189690597
+11 267 1.9202990530175157
+11 268 1.8574615829857066
+11 269 1.6952371099614538
+11 270 1.7031803029822186
+11 271 1.7316306689754128
+11 272 1.696957216016017
+11 273 1.9860381549806334
+11 274 1.73947175295325
+11 275 1.6881186519749463
+11 276 1.7212917319848202
+11 277 1.7256847629905678
+11 278 1.6321910480037332
+11 279 1.9108637809986249
+11 280 1.7367938829702325
+11 281 1.6839506240212359
+11 282 1.7459482059930451
+11 283 1.6668629249907099
+11 284 1.9715495579876006
+11 285 1.7148988430271856
+11 286 1.9074413679772988
+11 287 1.9225321770063601
+11 288 1.885174550989177
+11 289 1.7851638249703683
+11 290 2.0677666069823317
+11 291 1.7960175949847326
+11 292 1.7567485790350474
+11 293 1.784311997005716
+11 294 1.761785181995947
+11 295 2.006704764033202
+11 296 1.756305625953246
+11 297 1.7698623550240882
+11 298 1.7484041129937395
+11 299 1.5912665329524316
+22 0 1.9269702230230905
+22 1 1.9606851240387186
+22 2 1.7459324569790624
+22 3 1.768615243025124
+22 4 1.830900596047286
+22 5 1.9936460619792342
+22 6 1.9318617809913121
+22 7 2.0196361270500347
+22 8 1.6299339620163664
+22 9 1.7917030660319142
+22 10 1.8209833259461448
+22 11 1.899996092019137
+22 12 1.7496757879853249
+22 13 1.9811168590094894
+22 14 1.7795825430075638
+22 15 1.7764620630186982
+22 16 1.904880793998018
+22 17 1.8266240049852058
+22 18 1.798313366016373
+22 19 1.8582938250037841
+22 20 1.7911038559977897
+22 21 1.7911841360037215
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m6_rq1.py", line 61, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m6_rq1.py", line 49, in main
+    branch=children(e,branch,8,seeds);scores=vr(branch);branch=branch.select(np.argsort(-scores,kind='stable')[:(1 if branch.state.t==6 else 4)])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/search/m5b.py", line 42, in children
+    return transition(engine,expanded,seeds,range(0,len(seeds),N))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/search/m5b.py", line 32, in transition
+    if ii:parts.append(engine.transition(branch.state.select(ii),[seeds[i] for i in ii],sigma=sigma));order+=ii
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/search/m5a.py", line 92, in transition
+    result = self.source._forward(inputs_embeds=self.source.model.prj(feedback),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/search/m5a.py", line 74, in forward
+    return self.original(**kw)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/search/m5a.py", line 74, in forward
+    return self.original(**kw)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/search/m5a.py", line 74, in forward
+    return self.original(**kw)
+           ^^^^^^^^^^^^^^^^^^^
+  [Previous line repeated 965 more times]
+  File "/home/me/PaperField/CalReader/clr/sources/codi.py", line 39, in _forward
+    return self.model.codi(**kw)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py", line 1210, in forward
+    transformer_outputs = self.transformer(
+                          ^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py", line 939, in forward
+    outputs = block(
+              ^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py", line 403, in forward
+    attn_output, self_attn_weights = self.attn(
+                                     ^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py", line 293, in forward
+    query_states, key_states, value_states = self.c_attn(hidden_states).split(self.split_size, dim=2)
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/transformers/pytorch_utils.py", line 118, in forward
+    x = torch.addmm(self.bias, x.view(-1, x.size(-1)), self.weight)
+                               ^^^^^^^^^^^^^^^^^^^^^^
+RecursionError: maximum recursion depth exceeded in __instancecheck__

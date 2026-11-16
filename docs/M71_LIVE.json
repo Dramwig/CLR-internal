@@ -1,0 +1,82 @@
+{
+  "stage": "frozen_complete_pending_review",
+  "source_run": "/home/me/PaperField/CalReader/runs/20261107T111617064027Z_0c420c69f377_58c666",
+  "milestone_complete": true,
+  "updated_utc": "2026-11-07T13:08:14.190408+00:00",
+  "scan_run": "/home/me/PaperField/CalReader/runs/20261107T055248064840Z_663383a48874_c2f9c4",
+  "selected_layers": [
+    7,
+    16,
+    25,
+    34
+  ],
+  "projection_loss": {
+    "A1_accuracy": 0.0,
+    "A4_accuracy": 0.017499983310699463
+  },
+  "pipeline_config": "configs/M71/pipeline_pool_v3.yaml",
+  "storage_comparison_passed": true,
+  "upstream_freeze_passed": true,
+  "receiver_cal_counts": {
+    "cal_A": 300,
+    "cal_B": 300
+  },
+  "natural_counts": {
+    "reader_val": 100,
+    "test": 300
+  },
+  "test_opened": true,
+  "representation": "pool",
+  "source_shards": {
+    "2": {
+      "run": "/home/me/PaperField/CalReader/runs/20261107T061742097770Z_3b3cf0628cff_e77f24",
+      "device": "cuda:4",
+      "progress": "/home/me/PaperField/CalReader/runs/20261107T061742097770Z_3b3cf0628cff_e77f24/progress.json"
+    },
+    "1": {
+      "run": "/home/me/PaperField/CalReader/runs/20261107T061742513751Z_bd87d66bddbc_3b3029",
+      "device": "cuda:2",
+      "progress": "/home/me/PaperField/CalReader/runs/20261107T061742513751Z_bd87d66bddbc_3b3029/progress.json"
+    },
+    "0": {
+      "run": "/home/me/PaperField/CalReader/runs/20261107T061742631310Z_0ad2fbd4d947_1edcd0",
+      "device": "cuda:1",
+      "progress": "/home/me/PaperField/CalReader/runs/20261107T061742631310Z_0ad2fbd4d947_1edcd0/progress.json"
+    }
+  },
+  "projection_interval_file": "data/M71_v1/projection_intervals.json",
+  "continuation_config": "configs/M71/continue_gates.yaml",
+  "continuation_session": "clr-m71-continue-v2",
+  "tests_passed": 36,
+  "main_pipeline_config": "configs/M71/main_pipeline.yaml",
+  "main_pipeline_session": "clr-m71-main",
+  "gate_run": "/home/me/PaperField/CalReader/runs/20261107T071907104969Z_4de1ada90cda_1b25be",
+  "pool_B3_gate_passed": true,
+  "pool_linear_gate_passed": true,
+  "C1_passed": true,
+  "training_run": "/home/me/PaperField/CalReader/runs/20261107T102039542645Z_29102e4cdf22_0c20c6",
+  "C2_passed": true,
+  "finalize_pipeline_config": "configs/M71/finalize.yaml",
+  "finalize_pipeline_session": "clr-m71-finalize",
+  "diagnostic_run": "/home/me/PaperField/CalReader/runs/20261107T120616525909Z_944261a2f7c0_691d01",
+  "evaluation_run": "/home/me/PaperField/CalReader/runs/20261107T120401203444Z_514f304f3fe8_ffff5d",
+  "natural_partition_config": "configs/M71/natural_finish_v2.yaml",
+  "statistics_session": "clr-m71-statistics-v2",
+  "natural_val_completed": 100,
+  "natural_val_original_exit": "planned output ownership FileExistsError; no interrupted forward",
+  "review": "reports/M7.1_REVIEW.md",
+  "gpu_hours": 15.938052800835898,
+  "freeze": "data/M71_v1/freeze.json",
+  "statistics_directory": "data/M71_v1/analysis_v3",
+  "verification": "data/M71_v1/verification.json",
+  "artifact_bytes": 10366244450,
+  "final_report_run": "runs/20261107T130032706890Z_c4d49666ee67_333473",
+  "final_freezer_run": "runs/20261107T130329619836Z_162152d69134_7f984f",
+  "final_review_script": "scripts/m71_review_freeze_v5.py",
+  "background_tasks_active": false,
+  "review_bytes": 6317,
+  "completion_audit": "docs/M71_COMPLETION_AUDIT.json",
+  "completion_audit_freeze": "docs/M71_COMPLETION_AUDIT_FREEZE.json",
+  "completion_audit_status": "completed_protocol_audit_passed",
+  "completion_audit_utc": "2026-11-07T13:26:21.256745+00:00"
+}

@@ -1,0 +1,26 @@
+milestone: M9
+version: v1
+stage: finish_controller
+output: data/M9_v1
+experiment_controller_pid: 1560935
+jobs:
+- module: scripts.m9_statistics
+  config: configs/M9/statistics.yaml
+  log: reports/M9_evidence/statistics.log
+- module: scripts.m9_export
+  config: configs/M9/export.yaml
+  log: reports/M9_evidence/export_final.log
+- module: paper_render
+  script: scripts/paper/make_all.py
+  python: .venv-paper/bin/python
+  config: configs/M9/paper.yaml
+  log: reports/M9_evidence/render_final.log
+- module: scripts.m9_repro
+  config: configs/M9/repro.yaml
+  log: reports/M9_evidence/reproduction.log
+- module: scripts.m9_upstream
+  config: configs/M9/upstream.yaml
+  log: reports/M9_evidence/upstream_final.log
+- module: scripts.m9_finalize
+  config: configs/M9/finalize.yaml
+  log: reports/M9_evidence/finalize.log

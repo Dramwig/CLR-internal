@@ -1,0 +1,12 @@
+milestone: M8c
+mode: budget_pause_report
+seed: 20261109
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8c_v1
+budget_gpu_hours: 15
+reader_seeds: [11, 22, 33]
+designs: [D0, R4]
+training_folder: training_exposure_v2
+calibration_folder: calibration
+analysis_folder: analysis_budget_pause
+verification_name: upstream_final.json

@@ -1,0 +1,31 @@
+{
+  "artifact": "appendix_noise",
+  "config": {
+    "artifact": "appendix_noise",
+    "caption": "Appendix: Noise selection",
+    "input_freeze": "data/M9_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "gpt2": "data/M9_v1/paper_inputs/noise_gpt2.csv",
+      "llama": "data/M9_v1/paper_inputs/noise_llama.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "d17b6fc4696debf8d59662314fd13047425e7c8651ce366fb6467bed8ddfefbb",
+  "input_freeze_sha256": "3494aa1f8f9596db929a57e29a8e5e442b645865c8b300d6cb03c21963e20c06",
+  "inputs": {
+    "data/M9_v1/paper_inputs/noise_gpt2.csv": "3d5124db2f07d48ecd1b1901593c27c04213ae0398ce82b78074d34856e3af0d",
+    "data/M9_v1/paper_inputs/noise_llama.csv": "609b27728f9f49c487aa10b72f7eeecb185e8cf9bdaf69a05bcf782fc08bfdcb"
+  },
+  "outputs": {
+    "derived/appendix_noise.csv": "5929d57abc9cf58bfc50be9bdd5c5d1d778c7d1606e8af9092bca9fd05c8e7d3",
+    "tables/appendix_noise.tex": "4711a0eceb9d599a10f9e0f8846dad66276669e6c065a7c19552e5057e25b484"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

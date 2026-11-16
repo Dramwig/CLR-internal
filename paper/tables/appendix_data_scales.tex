@@ -1,0 +1,28 @@
+\begingroup\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}p{0.2288\textwidth}p{0.1525\textwidth}p{0.1373\textwidth}p{0.1373\textwidth}p{0.2441\textwidth}@{}}
+\caption{Appendix: Frozen data sizes}\label{tab:appendix-data-scales}\\
+\toprule
+Source & Split & Problem/group count & QA rows & Count unit \\
+\midrule\endfirsthead
+\toprule
+Source & Split & Problem/group count & QA rows & Count unit \\
+\midrule\endhead
+gpt2 & reader\_train & 2e+04 & 2.02e+06 & problem \\
+gpt2 & reader\_val & 2e+03 & 6.06e+05 & problem \\
+gpt2 & val & 300 & 3.13e+04 & problem \\
+gpt2 & cal & 500 & 5.21e+04 & problem \\
+gpt2 & test & 1e+03 & 1.05e+05 & problem \\
+llama & reader\_train & 6.82e+03 & 6.89e+05 & problem; seen templates only \\
+llama & reader\_val & 1e+03 & 1.01e+05 & problem; seen templates only \\
+llama & val & 300 & 1.04e+04 & problem; seen templates only \\
+llama & cal & 500 & 1.74e+04 & problem; seen templates only \\
+llama & test & 1e+03 & 3.5e+04 & problem; seen templates only \\
+synthetic\_v2\_M7.1 & reader\_train & 8e+03 & NA & counterfactual group \\
+synthetic\_v2\_M7.1 & reader\_val & 1e+03 & NA & counterfactual group \\
+synthetic\_v2\_M7.1 & cal\_A & 500 & NA & counterfactual group \\
+synthetic\_v2\_M7.1 & cal\_B & 1e+03 & NA & counterfactual group \\
+synthetic\_v2\_M7.1 & test & 2e+03 & NA & counterfactual group \\
+\bottomrule
+\end{longtable}
+\noindent Problem/episode groups never cross splits. Synthetic groups have several message categories and QA instances; group counts must not be read as IID QA counts. GPT2 and LLaMA use different training-data sizes and continuation policies.
+\endgroup

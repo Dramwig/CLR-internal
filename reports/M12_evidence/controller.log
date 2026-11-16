@@ -1,0 +1,42 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m12_pipeline.py", line 78, in <module>
+    if not receipt.exists():launch('scripts.m12_evaluate',cfg,f'eval_{a}_{seed}')
+                                                               ^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m12_pipeline.py", line 44, in main
+    decision['admitted']=True;decisions.append(decision);write_json(ROOT/'admission.json',decisions)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m12_pipeline.py", line 38, in worker
+    decision={'ablation':a,'used_gpu_hours':hours,'training_estimate_gpu_hours':need,'final_reserved_gpu_hours':2.,'seconds_to_deadline':seconds}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m12_pipeline.py", line 19, in launch
+    subprocess.run(['.venv/bin/python','-m',module,str(p)],stdout=f,stderr=subprocess.STDOUT,check=True)
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['.venv/bin/python', '-m', 'scripts.m12_train', 'configs/M12/train_A4_11.yaml']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m12_start.py", line 17, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');a=p.parse_args();main(load_config(a.config),a.config)
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m12_start.py", line 15, in main
+    subprocess.run(['.venv/bin/python','-m','scripts.m12_pipeline',config],check=True)
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['.venv/bin/python', '-m', 'scripts.m12_pipeline', 'configs/M12/base.yaml']' returned non-zero exit status 1.

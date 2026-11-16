@@ -1,0 +1,11 @@
+wait_run: runs/20261106T013428955588Z_f6b3514e5b47_f56df3
+journal: data/M5b_v1/queue_single.json
+env:
+  CUDA_VISIBLE_DEVICES: '1'
+jobs:
+- script: scripts/m5b_train_a.py
+  config: configs/M5b_train_single_22.yaml
+  log: reports/M5b_train_single_22.log
+- script: scripts/m5b_train_a.py
+  config: configs/M5b_train_single_33.yaml
+  log: reports/M5b_train_single_33.log

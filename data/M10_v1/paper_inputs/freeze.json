@@ -1,0 +1,22 @@
+{
+  "version": "M10_paper_inputs_v1",
+  "sha256": {
+    "data/M10_v1/paper_inputs/M10_audit_paired.csv": "11bd4fb760fb83a01b07286084bf55d8ef8678ca68f1ce52010312d4eecc0ff6",
+    "data/M10_v1/paper_inputs/M10_gsm_paired.csv": "1915efbf4428d6f93f4715f7b8b2afd3495f0190f72b5fc7588ae80c2e4323a1",
+    "data/M10_v1/paper_inputs/communication_detection.csv": "9ec66f4eded81493f12c27480a9098429c0c2fe2c5831f06d5517c75aa178a5a",
+    "data/M10_v1/paper_inputs/communication_qa.csv": "5963890cac586f949fcdb61c623364d4c3a3e53db2154daa41340e19dca095ce",
+    "data/M10_v1/paper_inputs/conformal.csv": "3ed842626e241feb104d17c0c131564fd685246404ece6a49896230bdcd981ce",
+    "data/M10_v1/paper_inputs/conformal_paired.csv": "b3c96ee070b7d91f3c7cd0a5ecba276b50ec1daba454b2d8567129ee1f7c2d08",
+    "data/M10_v1/paper_inputs/conformal_problem.csv": "2d4eb39345cef38042407f2015493dee7e89e3ab151d5193f67f09ae7c2e764c",
+    "data/M10_v1/paper_inputs/conformal_replay_checks.csv": "13f3081a49fddf096bab9ede6b7d2a33962853a767cea9d15705052b33e27289",
+    "data/M10_v1/paper_inputs/costs.csv": "169d02128fdbff09dcbdb0d268461f540bdbe986d793a6ee851aaa073e432f2e",
+    "data/M10_v1/paper_inputs/cross_use_transfer.csv": "57ecd82c794652b3bc4e01649b0cdc25afa3fee215334c2028df9d1b78941ebe",
+    "data/M10_v1/paper_inputs/cross_use_transfer_paired.csv": "39518e08a3c8ea9fa2da7d4a4b28a56b275150f5c23bd5544392cafcd3d90b55",
+    "data/M10_v1/paper_inputs/equal_coverage_paired.csv": "7311275640fa6c1f17c7232be6adb9ec283c14e70e30e9cbccca4dcb352eb40d",
+    "data/M10_v1/paper_inputs/hiddenbench.csv": "72a13f31b108a686b1b31c58725f2d46f18c690df36d52a00cb75c959e8c5709",
+    "data/M10_v1/paper_inputs/main.csv": "251d12ea3eb9b428f540557ca2d02774acc80e83bd910245ce854f37c4f46b2d",
+    "data/M10_v1/paper_inputs/main_problem_metrics.csv": "80e3d1201f89220f639720a63a2d0f5057fa125c6933bc57f5c81929fdd27b25",
+    "data/M10_v1/paper_inputs/reader_val_q1_clean_traj.csv": "1e10a6fa42aa1ac676e97adaf6ee3989a14d991c68f6d9e5225a4244c3c86bb2",
+    "data/M10_v1/paper_inputs/provenance.json": "123e34b676f570bec57d0cbb638331437bcc9c1a41d5168b354bed1ddfc491bc"
+  }
+}

@@ -1,0 +1,67 @@
+milestone: M5b
+version: observed_sigma0_v2
+stage: full
+case: C
+seed: 11
+seeds:
+- 11
+- 22
+- 33
+parts:
+- C
+smoke_indices:
+- 149
+max_gpu_hours: 25
+run_budget_hours: 12
+threads: 2
+device: cuda:0
+batch: 128
+value_batch: 128
+min_free_gib: 9
+sigma: 1.5
+Ns:
+- 4
+- 8
+- 16
+beams:
+- 2
+- 4
+horizons:
+- 6
+- 4
+values:
+- B4
+- B3
+- CLR-lite
+- CLR-v1
+merge_lora: true
+vote_max: 1024
+vote_Ns:
+- 1
+- 2
+- 4
+- 8
+- 16
+- 32
+- 64
+- 128
+- 256
+- 512
+- 1024
+protocol: configs/protocol_codi_v2.yaml
+val_manifest: data/dumps/codi_gpt2_v3/val/manifest.parquet
+m3_baseline_run: runs/20261103T045628621237Z_2964c31f2153_11a348
+templates: clr/data/questions/templates.yaml
+m41_model_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+m41_runs:
+  lite:
+    '11': runs/20261105T134549665017Z_13a5b7d07c74_c9bce9
+    '22': runs/20261105T111703141949Z_078915e779b4_e2c879
+    '33': runs/20261105T093924222497Z_259fba41ad54_7528a4
+  v1:
+    '11': runs/20261105T032051954084Z_b7a23d2a9613_46bc9e
+    '22': runs/20261105T030532043532Z_0898c762bd20_d5a7d4
+    '33': runs/20261105T030531420712Z_b64a9dfacca8_480032
+output: data/M5b_v1
+smoke_run: runs/20261106T013903583983Z_451db0fc9605_616732
+budget_plan: data/M5b_v1/budget_plan.json

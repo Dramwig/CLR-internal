@@ -1,0 +1,15 @@
+{
+  "main_completed": 500,
+  "main_total": 500,
+  "main_parts": [
+    167,
+    167,
+    166
+  ],
+  "sensitivity_completed": 102,
+  "sensitivity_total": 102,
+  "gpu_hours": 19.169,
+  "stage": "frozen_complete_pending_review",
+  "complete": true,
+  "failed": []
+}

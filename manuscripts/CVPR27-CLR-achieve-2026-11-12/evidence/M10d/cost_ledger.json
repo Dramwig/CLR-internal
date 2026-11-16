@@ -1,0 +1,32 @@
+{
+  "gpu_hours": 0.0289412008566756,
+  "budget_hours": 2,
+  "source_forward_calls": 0,
+  "scope": "RTX4090 GPU5 resident wall time incl smoke/train/cal/final; CPU lookup/statistics/TeX zero GPUh",
+  "runs": [
+    {
+      "run": "/home/me/PaperField/CalReader/runs/20261112T024717093641Z_b3ebcf90e887_187be8",
+      "stage": "final",
+      "gpu_hours": 0.004249810681115681,
+      "source_forward_calls": 0,
+      "gpu": "RTX4090",
+      "device": "cuda:5"
+    },
+    {
+      "run": "/home/me/PaperField/CalReader/runs/20261112T024411295788Z_4a3ddb4bda25_7257e3",
+      "stage": "smoke",
+      "gpu_hours": 0.0013376456616808557,
+      "source_forward_calls": 0,
+      "gpu": "RTX4090",
+      "device": "cuda:5"
+    },
+    {
+      "run": "/home/me/PaperField/CalReader/runs/20261112T024518010110Z_2c8d73cccc27_1dba42",
+      "stage": "train",
+      "gpu_hours": 0.023353744513879063,
+      "source_forward_calls": 0,
+      "gpu": "RTX4090",
+      "device": "cuda:5"
+    }
+  ]
+}

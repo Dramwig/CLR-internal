@@ -1,0 +1,14 @@
+milestone: M7.1
+output: data/M71_v1
+initial: pool
+alternative: critical
+tag: critical_v1
+selection_name: layer_selection_v2.json
+alternative_selection: layer_selection_critical_v1.json
+source_config: configs/M71/source_hash.yaml
+scan_config: configs/M71/scan_v2.yaml
+projection_audit_config: configs/M71/projection_audit.yaml
+gate_config: configs/M71/gate.yaml
+source_devices: [cuda:1, cuda:2, cuda:4]
+source_min_free_GiB: [14, 11, 12]
+gate_devices: [cuda:1, cuda:4]

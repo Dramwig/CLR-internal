@@ -1,0 +1,11 @@
+milestone: M6
+stage: shift_smoke
+section: CD
+mode: smoke
+seeds:
+- 11
+output: data/M6_v1/shift_smoke
+evaluation_index: data/M6_v1/shift_smoke/index.json
+eval_lock: data/M6_v1/shift_smoke/proxy_lock.json
+proxy_sources:
+  llama: gpt2

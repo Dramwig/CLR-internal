@@ -1,0 +1,34 @@
+{
+  "artifact": "appendix_protocol",
+  "config": {
+    "artifact": "appendix_protocol",
+    "caption": "Appendix: Frozen protocol alignment",
+    "column_widths": [
+      1.2,
+      1.7,
+      3
+    ],
+    "input_freeze": "data/M9_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "protocol": "data/M9_v1/paper_inputs/protocol_alignment_v2.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "2af8de42d03df07f4ad75cd3e604457ff4197054671f69f27cca3f1c3c2b5bbf",
+  "input_freeze_sha256": "3494aa1f8f9596db929a57e29a8e5e442b645865c8b300d6cb03c21963e20c06",
+  "inputs": {
+    "data/M9_v1/paper_inputs/protocol_alignment_v2.csv": "d9f6d401a5b08b33f9ac40f4c350aab7316bfed02a7cfb4861875208a66accf0"
+  },
+  "outputs": {
+    "derived/appendix_protocol.csv": "d9f6d401a5b08b33f9ac40f4c350aab7316bfed02a7cfb4861875208a66accf0",
+    "tables/appendix_protocol.tex": "efece8d43959219d28acec3dc58f1dd3cb9582c786b3b49b9441f5e7a338a152"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

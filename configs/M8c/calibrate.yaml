@@ -1,0 +1,40 @@
+milestone: M8c
+mode: calibrate
+seed: 20261109
+data_seed: 20261107
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8c_v1
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+device: cuda:4
+min_free_GiB: 8
+budget_gpu_hours: 15
+max_seconds: 7200
+counts:
+  reader_train: 4000
+  reader_val: 1000
+  cal_A: 500
+  cal_B: 1000
+  test: 2000
+reader_seeds:
+- 11
+- 22
+- 33
+layers:
+- 7
+- 16
+- 25
+- 34
+design: R4
+epochs: 82
+batch_size: 128
+lr: 0.0003
+patience: 6
+training_folder: training_exposure_v2
+source_folder: source
+all_negatives: true
+min_exposure: 4224000
+designs:
+- D0
+- R4
+calibration_folder: calibration

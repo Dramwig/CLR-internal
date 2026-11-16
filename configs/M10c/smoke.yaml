@@ -1,0 +1,39 @@
+milestone: M10c
+version: v1
+stage: read_only_cost_measurement
+seed: 11
+device: cuda:4
+output: data/M10c_v1
+models:
+- CLR-lite
+- B3
+- B6
+- B5c
+warmup: 2
+states: data/dumps/codi_gpt2_v3
+qa: data/M23_v1a/full
+normalization: runs/20261103T045628621237Z_2964c31f2153_11a348/normalization.npz
+tokenizer: /home/me/models/huggingface/ModernBERT-base-8949b909
+templates: clr/data/questions/templates.yaml
+clr_checkpoint: runs/20261105T134549665017Z_13a5b7d07c74_c9bce9/best.pt
+b3_run: runs/20261103T045628621237Z_2964c31f2153_11a348
+b6_ref: data/M10_v1/trained/gpt2_B6_11_full.json
+b5c_ref: data/M10b_v1/trained/B5c_gpt2_11_full.json
+locked_inputs:
+  runs/20261105T134549665017Z_13a5b7d07c74_c9bce9/best.pt: 77301c75f0982205ad7270ec5c8b66a0b742b5b3bb3762e8c6b8f90abeba75e0
+  data/M10b_v1/trained/B5c_gpt2_11_full.json: 3c2472fd067cf791180cc98a3523e52fd5300695c8c1f7477c34e3f4f9046151
+  data/M10_v1/trained/gpt2_B6_11_full.json: 82caac72da613254ef8a440a24ebe94ae028de5325beaad4ec68ca61b12767d5
+  runs/20261103T045628621237Z_2964c31f2153_11a348/normalization.npz: 238e17c0c1f2e8fcea7364b56f0eaa8f402df3783b0597ea267218299ec31799
+  data/M23_v1a/full/reader_val.parquet: b65faba2cd5dcf672145c6bf1a4ea4e3448c745bb12840e665fbcaf3bcd5f1ed
+  data/dumps/codi_gpt2_v3/reader_val/manifest.parquet: 533f981dcd551a498a7546ab7281afcb76b0d45487e39472befb4b3a028d7cd2
+  clr/data/questions/templates.yaml: 93e963cbfdc5c537b1891888f5cd8d017440bcbfeb7ccae991cea45197fbae11
+  /home/me/PaperField/CalReader/runs/20261110T153403133055Z_3b01ed7a1758_884b9e/best.pt: cb5abe0858a35e9c4ccb7be0434a97d6b6795a0d42e44dc689f9e524b45dcf9e
+  /home/me/PaperField/CalReader/runs/20261110T105347226216Z_cf4fc54b6977_6517df/Q3_best.pt: 06cbcc7cbb050e0f93ece315f66d9c420dc710ce92a1a0d228006750a962ed4a
+  /home/me/PaperField/CalReader/runs/20261110T105347226216Z_cf4fc54b6977_6517df/Q4_best.pt: a87bb1a11296f23b6db8b52f8ab90bb2377f32c2ca26a52cb2ac7a37ecd069ce
+  runs/20261103T045628621237Z_2964c31f2153_11a348/B3_Q3_11.pt: 075ea4d755608ae158bd658a8cced244401b0f6234a238dc03be5196d24d948e
+  runs/20261103T045628621237Z_2964c31f2153_11a348/B3_Q4_11.pt: 7f6fdd003221e64e5a7accb587e983bf96af9f758c5fa644b8d577068942e770
+mode: smoke
+problems: 4
+batches:
+- 1
+loops: 1

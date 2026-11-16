@@ -1,0 +1,242 @@
+[
+  {
+    "location": "tab:main / LLaMA / B0 question-only / Q1 nll",
+    "old": "\\TODO{}",
+    "new": "0.692",
+    "raw": "0.691724614833074",
+    "source": "paper/derived/t1_gsm8k.csv:66",
+    "selector": "source=llama, model=B0, split=test, qtype=Q1, metric=nll"
+  },
+  {
+    "location": "tab:main / LLaMA / B0 question-only / Q2 auroc",
+    "old": "\\TODO{}",
+    "new": "0.509",
+    "raw": "0.509004192330581",
+    "source": "paper/derived/t1_gsm8k.csv:138",
+    "selector": "source=llama, model=B0, split=test, qtype=Q2, metric=auroc"
+  },
+  {
+    "location": "tab:main / LLaMA / B0 question-only / Q3 accuracy",
+    "old": "\\TODO{}",
+    "new": "39.1",
+    "raw": "0.391471215351812",
+    "source": "paper/derived/t1_gsm8k.csv:71",
+    "selector": "source=llama, model=B0, split=test, qtype=Q3, metric=accuracy"
+  },
+  {
+    "location": "tab:main / LLaMA / B0 question-only / Q4 accuracy",
+    "old": "\\TODO{}",
+    "new": "50.1",
+    "raw": "0.500672043010753",
+    "source": "paper/derived/t1_gsm8k.csv:73",
+    "selector": "source=llama, model=B0, split=test, qtype=Q4, metric=accuracy"
+  },
+  {
+    "location": "tab:main / LLaMA / B3 MLP probe / Q1 nll",
+    "old": "\\TODO{}",
+    "new": "0.612",
+    "raw": "0.611703345581023",
+    "source": "paper/derived/t1_gsm8k.csv:74",
+    "selector": "source=llama, model=B3, split=test, qtype=Q1, metric=nll"
+  },
+  {
+    "location": "tab:main / LLaMA / B3 MLP probe / Q2 auroc",
+    "old": "\\TODO{}",
+    "new": "0.851",
+    "raw": "0.851368919434858",
+    "source": "paper/derived/t1_gsm8k.csv:139",
+    "selector": "source=llama, model=B3, split=test, qtype=Q2, metric=auroc"
+  },
+  {
+    "location": "tab:main / LLaMA / B3-prefix / Q1 nll",
+    "old": "\\TODO{}",
+    "new": "0.606",
+    "raw": "0.60615229743764",
+    "source": "paper/derived/t1_gsm8k.csv:82",
+    "selector": "source=llama, model=B3-prefix, split=test, qtype=Q1, metric=nll"
+  },
+  {
+    "location": "tab:main / LLaMA / B3-prefix / Q2 auroc",
+    "old": "\\TODO{}",
+    "new": "0.852",
+    "raw": "0.852119384835572",
+    "source": "paper/derived/t1_gsm8k.csv:140",
+    "selector": "source=llama, model=B3-prefix, split=test, qtype=Q2, metric=auroc"
+  },
+  {
+    "location": "tab:main / LLaMA / B3-prefix / Q3 accuracy",
+    "old": "\\TODO{59.2}",
+    "new": "59.3",
+    "raw": "0.592513622364368",
+    "source": "paper/derived/t1_gsm8k.csv:87",
+    "selector": "source=llama, model=B3-prefix, split=test, qtype=Q3, metric=accuracy"
+  },
+  {
+    "location": "tab:main / LLaMA / B3-prefix / Q4 accuracy",
+    "old": "\\TODO{60.3}",
+    "new": "60.3",
+    "raw": "0.603230606758832",
+    "source": "paper/derived/t1_gsm8k.csv:89",
+    "selector": "source=llama, model=B3-prefix, split=test, qtype=Q4, metric=accuracy"
+  },
+  {
+    "location": "tab:main / LLaMA / B6 attention probe / Q1 nll",
+    "old": "\\TODO{}",
+    "new": "0.632",
+    "raw": "0.63181077521184",
+    "source": "paper/derived/t1_gsm8k.csv:90",
+    "selector": "source=llama, model=B6, split=test, qtype=Q1, metric=nll"
+  },
+  {
+    "location": "tab:main / LLaMA / B6 attention probe / Q2 auroc",
+    "old": "\\TODO{}",
+    "new": "0.824",
+    "raw": "0.823777205097489",
+    "source": "paper/derived/t1_gsm8k.csv:141",
+    "selector": "source=llama, model=B6, split=test, qtype=Q2, metric=auroc"
+  },
+  {
+    "location": "tab:main / LLaMA / B6 attention probe / Q3 accuracy",
+    "old": "\\TODO{57.8}",
+    "new": "57.8",
+    "raw": "0.578109452736318",
+    "source": "paper/derived/t1_gsm8k.csv:95",
+    "selector": "source=llama, model=B6, split=test, qtype=Q3, metric=accuracy"
+  },
+  {
+    "location": "tab:main / LLaMA / B6 attention probe / Q4 accuracy",
+    "old": "\\TODO{66.6}",
+    "new": "66.6",
+    "raw": "0.665754608294931",
+    "source": "paper/derived/t1_gsm8k.csv:97",
+    "selector": "source=llama, model=B6, split=test, qtype=Q4, metric=accuracy"
+  },
+  {
+    "location": "tab:main / LLaMA / \\clr{} single-step / Q1 nll",
+    "old": "\\TODO{}",
+    "new": "0.627",
+    "raw": "0.626804175272813",
+    "source": "paper/derived/t1_gsm8k.csv:114",
+    "selector": "source=llama, model=CLR-lite-single, split=test, qtype=Q1, metric=nll"
+  },
+  {
+    "location": "tab:main / LLaMA / \\clr{} single-step / Q2 auroc",
+    "old": "\\TODO{}",
+    "new": "0.813",
+    "raw": "0.812945213964628",
+    "source": "paper/derived/t1_gsm8k.csv:144",
+    "selector": "source=llama, model=CLR-lite-single, split=test, qtype=Q2, metric=auroc"
+  },
+  {
+    "location": "tab:main / LLaMA / \\clr{} single-step / Q3 accuracy",
+    "old": "\\TODO{}",
+    "new": "74.7",
+    "raw": "0.747311063728974",
+    "source": "paper/derived/t1_gsm8k.csv:119",
+    "selector": "source=llama, model=CLR-lite-single, split=test, qtype=Q3, metric=accuracy"
+  },
+  {
+    "location": "tab:main / LLaMA / \\clr{} single-step / Q4 accuracy",
+    "old": "\\TODO{}",
+    "new": "75.5",
+    "raw": "0.754944316436252",
+    "source": "paper/derived/t1_gsm8k.csv:121",
+    "selector": "source=llama, model=CLR-lite-single, split=test, qtype=Q4, metric=accuracy"
+  },
+  {
+    "location": "5.2 / N=100 / gpt2->llama / transfer / Q3",
+    "old": "TODO (not supplied)",
+    "new": "39.1\\%",
+    "raw": "0.390713101160862",
+    "source": "paper/derived/f1_transfer.csv:12",
+    "selector": "case=transfer_gpt2_to_llama_transfer_100, split=test, qtype=Q3, metric=accuracy"
+  },
+  {
+    "location": "5.2 / N=100 / gpt2->llama / transfer / Q4",
+    "old": "TODO (not supplied)",
+    "new": "54.3\\%",
+    "raw": "0.543154761904762",
+    "source": "paper/derived/f1_transfer.csv:13",
+    "selector": "case=transfer_gpt2_to_llama_transfer_100, split=test, qtype=Q4, metric=accuracy"
+  },
+  {
+    "location": "5.2 / N=100 / gpt2->llama / b3 / Q3",
+    "old": "TODO (not supplied)",
+    "new": "36.6\\%",
+    "raw": "0.365979625681118",
+    "source": "paper/derived/f1_transfer.csv:10",
+    "selector": "case=transfer_gpt2_to_llama_b3_100, split=test, qtype=Q3, metric=accuracy"
+  },
+  {
+    "location": "5.2 / N=100 / gpt2->llama / b3 / Q4",
+    "old": "TODO (not supplied)",
+    "new": "50.0\\%",
+    "raw": "0.499903993855607",
+    "source": "paper/derived/f1_transfer.csv:11",
+    "selector": "case=transfer_gpt2_to_llama_b3_100, split=test, qtype=Q4, metric=accuracy"
+  },
+  {
+    "location": "5.2 / N=100 / gpt2->llama / lite / Q3",
+    "old": "TODO (not supplied)",
+    "new": "35.2\\%",
+    "raw": "0.352049277422412",
+    "source": "paper/derived/f1_transfer.csv:14",
+    "selector": "case=transfer_gpt2_to_llama_lite_100, split=test, qtype=Q3, metric=accuracy"
+  },
+  {
+    "location": "5.2 / N=100 / gpt2->llama / lite / Q4",
+    "old": "TODO (not supplied)",
+    "new": "50.4\\%",
+    "raw": "0.503768241167435",
+    "source": "paper/derived/f1_transfer.csv:15",
+    "selector": "case=transfer_gpt2_to_llama_lite_100, split=test, qtype=Q4, metric=accuracy"
+  },
+  {
+    "location": "5.2 / N=100 / llama->gpt2 / transfer / Q3",
+    "old": "TODO (not supplied)",
+    "new": "36.6\\%",
+    "raw": "0.366453447050462",
+    "source": "paper/derived/f1_transfer.csv:42",
+    "selector": "case=transfer_llama_to_gpt2_transfer_100, split=test, qtype=Q3, metric=accuracy"
+  },
+  {
+    "location": "5.2 / N=100 / llama->gpt2 / transfer / Q4",
+    "old": "TODO (not supplied)",
+    "new": "55.4\\%",
+    "raw": "0.553763440860215",
+    "source": "paper/derived/f1_transfer.csv:43",
+    "selector": "case=transfer_llama_to_gpt2_transfer_100, split=test, qtype=Q4, metric=accuracy"
+  },
+  {
+    "location": "5.2 / N=100 / llama->gpt2 / b3 / Q3",
+    "old": "TODO (not supplied)",
+    "new": "30.9\\%",
+    "raw": "0.309073679222933",
+    "source": "paper/derived/f1_transfer.csv:30",
+    "selector": "case=transfer_llama_to_gpt2_b3_100, split=test, qtype=Q3, metric=accuracy"
+  },
+  {
+    "location": "5.2 / N=100 / llama->gpt2 / b3 / Q4",
+    "old": "TODO (not supplied)",
+    "new": "50.0\\%",
+    "raw": "0.500480030721966",
+    "source": "paper/derived/f1_transfer.csv:31",
+    "selector": "case=transfer_llama_to_gpt2_b3_100, split=test, qtype=Q4, metric=accuracy"
+  },
+  {
+    "location": "5.2 / N=100 / llama->gpt2 / lite / Q3",
+    "old": "TODO (not supplied)",
+    "new": "31.8\\%",
+    "raw": "0.317934138829661",
+    "source": "paper/derived/f1_transfer.csv:44",
+    "selector": "case=transfer_llama_to_gpt2_lite_100, split=test, qtype=Q3, metric=accuracy"
+  },
+  {
+    "location": "5.2 / N=100 / llama->gpt2 / lite / Q4",
+    "old": "TODO (not supplied)",
+    "new": "50.1\\%",
+    "raw": "0.501224078341014",
+    "source": "paper/derived/f1_transfer.csv:45",
+    "selector": "case=transfer_llama_to_gpt2_lite_100, split=test, qtype=Q4, metric=accuracy"
+  }
+]

@@ -1,0 +1,4 @@
+  File "/home/me/PaperField/CalReader/scripts/m71_source.py", line 146
+    count=sum(config['counts'].values());mean=sum(totals)/len(totals)
+    ^
+IndentationError: expected an indented block after 'if' statement on line 145

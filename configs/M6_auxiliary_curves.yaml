@@ -1,0 +1,7 @@
+milestone: M6
+section: CD
+stage: auxiliary_learning_curves
+seed: 11
+pipeline_config: configs/M6_pipeline_noise_v2.yaml
+metrics: data/M6_v1/analysis/metrics.csv
+output: data/M6_v1/analysis

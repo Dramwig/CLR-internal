@@ -1,0 +1,14 @@
+milestone: M5b
+version: stats_v1
+stage: smoke
+case: BC_analysis
+seed: 20261106
+seeds: [11]
+expected_questions: 5
+bootstrap: 1000
+B_run: runs/20261106T013903583983Z_451db0fc9605_616732
+C_runs: [runs/20261106T013903583983Z_451db0fc9605_616732]
+D_B_run: null
+D_C_run: null
+budget_points: [32,64,128,256,512,1024,2048,4096,8192,16384]
+output: data/M5b_analysis_smoke

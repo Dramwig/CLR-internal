@@ -1,0 +1,30 @@
+{
+  "artifact": "t1_reader_val",
+  "config": {
+    "artifact": "t1_reader_val",
+    "caption": "T1 supplement: reader validation",
+    "input_freeze": "data/M10b_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "main": "data/M10b_v1/paper_inputs/main.csv"
+    },
+    "output_root": "paper",
+    "split": "reader_val"
+  },
+  "entrypoint_sha256": "63d18b808036603d02605975b588ab1afe213de0b9620da521b465d72cb9d269",
+  "input_freeze_sha256": "c847c80bed11bb10d4152530e2d54dc3e2cc1a2d3030b009b1923a54ce99f453",
+  "inputs": {
+    "data/M10b_v1/paper_inputs/main.csv": "dcb77fc2c0ed9854146461a5bfb19788f15eb7e423f29b81960a791bde93f85e"
+  },
+  "outputs": {
+    "derived/t1_reader_val.csv": "52b15871236bcf24d953e169bd141bcb7785ff80469c272130988cee569fa88f",
+    "tables/t1_reader_val.tex": "022f617258d7afb77699c32f0b277928593e44cd43daca35199467faab62484c"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

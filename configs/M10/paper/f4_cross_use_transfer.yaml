@@ -1,0 +1,6 @@
+artifact: f4_cross_use_transfer
+caption: M9 inference-body initialization for communication auditing
+input_freeze: data/M10_v1/paper_inputs/freeze.json
+inputs:
+  transfer: data/M10_v1/paper_inputs/cross_use_transfer.csv
+output_root: paper

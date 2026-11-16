@@ -1,0 +1,335 @@
+{
+  "passed": true,
+  "timestamp": "2026-11-16T02:58:28.942983+08:00",
+  "verified_old_input_files": 5768,
+  "M6_dump_QA_files": 4859,
+  "split_problem_counts": {
+    "reader_train": 6817,
+    "reader_val": 1000,
+    "cal": 500,
+    "test": 1005
+  },
+  "cal_problem_counts": {
+    "cal_A": 250,
+    "cal_B": 250
+  },
+  "problem_split_disjoint": true,
+  "training": [
+    {
+      "variant": "A1",
+      "seed": 11,
+      "epochs": 9,
+      "selected_epoch": 8,
+      "selected_exposure": {
+        "Q1": 2019192,
+        "Q2": 381752,
+        "Q3": 2346408,
+        "Q4": 761824
+      },
+      "checkpoint_sha256": "f2931ddd60d385f7c0f600f693a142803f1edc32a61217fd9ad16f152df3180f"
+    },
+    {
+      "variant": "A1",
+      "seed": 22,
+      "epochs": 10,
+      "selected_epoch": 9,
+      "selected_exposure": {
+        "Q1": 2271591,
+        "Q2": 429471,
+        "Q3": 2639709,
+        "Q4": 857052
+      },
+      "checkpoint_sha256": "626a44917d8c46b6158bb55f7921aeb923575feccc3448922e3130cbe37c047c"
+    },
+    {
+      "variant": "A1",
+      "seed": 33,
+      "epochs": 9,
+      "selected_epoch": 8,
+      "selected_exposure": {
+        "Q1": 2019192,
+        "Q2": 381752,
+        "Q3": 2346408,
+        "Q4": 761824
+      },
+      "checkpoint_sha256": "de88bdad87135642c67c2e81e28d8c0553a4a82604c46c938718bb71936bf10f"
+    },
+    {
+      "variant": "A2",
+      "seed": 11,
+      "epochs": 9,
+      "selected_epoch": 8,
+      "selected_exposure": {
+        "Q1": 2019192,
+        "Q2": 381752,
+        "Q3": 2346408,
+        "Q4": 761824
+      },
+      "checkpoint_sha256": "71f026060f0e9d483f4e4dceaf03effb70f4e841fe617b6cfd18f087e820f4b5"
+    },
+    {
+      "variant": "A2",
+      "seed": 22,
+      "epochs": 9,
+      "selected_epoch": 8,
+      "selected_exposure": {
+        "Q1": 2019192,
+        "Q2": 381752,
+        "Q3": 2346408,
+        "Q4": 761824
+      },
+      "checkpoint_sha256": "af5c2ef0631f3154977074987f077e2823898e87ae398c6adab61fc662ca3b52"
+    },
+    {
+      "variant": "A2",
+      "seed": 33,
+      "epochs": 9,
+      "selected_epoch": 8,
+      "selected_exposure": {
+        "Q1": 2019192,
+        "Q2": 381752,
+        "Q3": 2346408,
+        "Q4": 761824
+      },
+      "checkpoint_sha256": "d99b78bf623a404cf284ce457456f054b4337bb0ed3198d194058f91669d19ad"
+    },
+    {
+      "variant": "A4",
+      "seed": 11,
+      "epochs": 9,
+      "selected_epoch": 8,
+      "selected_exposure": {
+        "Q1": 2019192,
+        "Q2": 381752,
+        "Q3": 2346408,
+        "Q4": 761824
+      },
+      "checkpoint_sha256": "e301189a8dfbe4cf35ecb0f29707a0fea08279e764605b873869f2eda8258c4c"
+    },
+    {
+      "variant": "A4",
+      "seed": 22,
+      "epochs": 9,
+      "selected_epoch": 8,
+      "selected_exposure": {
+        "Q1": 2019192,
+        "Q2": 381752,
+        "Q3": 2346408,
+        "Q4": 761824
+      },
+      "checkpoint_sha256": "1d79af815501de502f4a894d015e9d84f985fadcfc23f64323f564aa0012a42e"
+    },
+    {
+      "variant": "A4",
+      "seed": 33,
+      "epochs": 9,
+      "selected_epoch": 8,
+      "selected_exposure": {
+        "Q1": 2019192,
+        "Q2": 381752,
+        "Q3": 2346408,
+        "Q4": 761824
+      },
+      "checkpoint_sha256": "c83f11407649fe451b94ccbab20f2e44afcdb9e18de2e16646ab8836d3540e1b"
+    }
+  ],
+  "jobs": [
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T184943941188Z_fd84276c67f9_def35b",
+      "stage": "evaluate",
+      "case": "A1",
+      "mode": "full",
+      "seed": 11,
+      "gpu_hours": 0.010209973463853304
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T185029433047Z_5c0d4553c457_1ccb4c",
+      "stage": "evaluate",
+      "case": "A2",
+      "mode": "full",
+      "seed": 33,
+      "gpu_hours": 0.009820335081636182
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T173440777660Z_ebb006f91bba_3d15db",
+      "stage": "train",
+      "case": "smoke_A1",
+      "mode": "smoke",
+      "seed": 11,
+      "gpu_hours": 0.007041161624171461
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T173513348134Z_4bd66846817e_0f5aa3",
+      "stage": "evaluate",
+      "case": "smoke_A1",
+      "mode": "smoke",
+      "seed": 11,
+      "gpu_hours": 0.001933645019437083
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T182606672038Z_a99fe4f6102b_610ad4",
+      "stage": "train",
+      "case": "A4",
+      "mode": "full",
+      "seed": 22,
+      "gpu_hours": 0.3848533714300073
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T173600984875Z_8632525a5fdf_bdc588",
+      "stage": "evaluate",
+      "case": "smoke_A2",
+      "mode": "smoke",
+      "seed": 11,
+      "gpu_hours": 0.001833800216166613
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T184944562625Z_e161aa9425a1_085c91",
+      "stage": "evaluate",
+      "case": "A1",
+      "mode": "full",
+      "seed": 33,
+      "gpu_hours": 0.010292477165219478
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T173527903362Z_ff1861b76796_8e41b7",
+      "stage": "train",
+      "case": "smoke_A2",
+      "mode": "smoke",
+      "seed": 11,
+      "gpu_hours": 0.007150035014686485
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T184944140444Z_0a78e71361fb_6ef346",
+      "stage": "evaluate",
+      "case": "A1",
+      "mode": "full",
+      "seed": 22,
+      "gpu_hours": 0.010457450780021544
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T173646493070Z_dd20d5a82ad8_8ccd1f",
+      "stage": "evaluate",
+      "case": "smoke_A4",
+      "mode": "smoke",
+      "seed": 11,
+      "gpu_hours": 0.001961160584469326
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T173614841068Z_13342939e86b_aaa038",
+      "stage": "train",
+      "case": "smoke_A4",
+      "mode": "smoke",
+      "seed": 11,
+      "gpu_hours": 0.006646713638328947
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T180001535966Z_12986646efc9_c7f017",
+      "stage": "train",
+      "case": "A2",
+      "mode": "full",
+      "seed": 33,
+      "gpu_hours": 0.39164663391530563
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T185028665847Z_c7880820cdbb_a1bb75",
+      "stage": "evaluate",
+      "case": "A2",
+      "mode": "full",
+      "seed": 11,
+      "gpu_hours": 0.009829532644685566
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T180037520948Z_3950a060a39a_b4a2f9",
+      "stage": "train",
+      "case": "A2",
+      "mode": "full",
+      "seed": 11,
+      "gpu_hours": 0.39575085719918
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T173700922431Z_37de8f356cda_2393b3",
+      "stage": "train",
+      "case": "A1",
+      "mode": "full",
+      "seed": 33,
+      "gpu_hours": 0.378941639854715
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T182437690397Z_bdeaadfdbb02_dc6f8d",
+      "stage": "train",
+      "case": "A4",
+      "mode": "full",
+      "seed": 11,
+      "gpu_hours": 0.41292243001917894
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T173700735459Z_88db70b663cc_560a64",
+      "stage": "train",
+      "case": "A1",
+      "mode": "full",
+      "seed": 22,
+      "gpu_hours": 0.4246336073047456
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T182349308400Z_0b4dca79f160_d50397",
+      "stage": "train",
+      "case": "A4",
+      "mode": "full",
+      "seed": 33,
+      "gpu_hours": 0.38586962819416337
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T180247269638Z_40316a16a73f_63011c",
+      "stage": "train",
+      "case": "A2",
+      "mode": "full",
+      "seed": 22,
+      "gpu_hours": 0.3841435770135528
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T173700712858Z_a046435c9f9d_62e77c",
+      "stage": "train",
+      "case": "A1",
+      "mode": "full",
+      "seed": 11,
+      "gpu_hours": 0.3887958856239372
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T185029485289Z_7b147f991bf8_fbb253",
+      "stage": "evaluate",
+      "case": "A2",
+      "mode": "full",
+      "seed": 22,
+      "gpu_hours": 0.010914305213890555
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T185111977192Z_f026fd49f2fd_8ad2d5",
+      "stage": "evaluate",
+      "case": "A4",
+      "mode": "full",
+      "seed": 33,
+      "gpu_hours": 0.010622159410591444
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T185111691449Z_c6365ba9e3be_76f640",
+      "stage": "evaluate",
+      "case": "A4",
+      "mode": "full",
+      "seed": 11,
+      "gpu_hours": 0.00996624114360505
+    },
+    {
+      "run": "supplemental/stats_20261116_v1/runs/20261115T185116210274Z_928997f897aa_38c642",
+      "stage": "evaluate",
+      "case": "A4",
+      "mode": "full",
+      "seed": 22,
+      "gpu_hours": 0.011036007042211067
+    }
+  ],
+  "gpu_hours": 3.66727262859776,
+  "source_forward_calls": 0,
+  "online_prediction_metric_checks": 504,
+  "max_online_replay_error": 2.220446049250313e-16,
+  "report_bytes": 21475
+}

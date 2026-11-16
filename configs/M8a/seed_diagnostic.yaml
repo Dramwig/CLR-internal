@@ -1,0 +1,10 @@
+milestone: M8a
+mode: seed_diagnostic
+seed: 20261108
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8a_v1
+device: cuda:7
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+batch_size: 128
+budget_gpu_hours: 25
+max_seconds: 900

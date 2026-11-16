@@ -1,0 +1,110 @@
+collected CLR-lite 11
+collected CLR-v1 11
+collected CLR-lite-single 11
+collected CLR-per-type 11
+collected CLR-lite-multi 11
+collected CLR-lite 22
+collected CLR-v1 22
+collected CLR-lite-single 22
+collected CLR-per-type 22
+collected CLR-lite-multi 22
+collected CLR-lite 33
+collected CLR-v1 33
+collected CLR-lite-single 33
+collected CLR-per-type 33
+collected CLR-lite-multi 33
+collected A1 33
+collected A1 11
+collected A1 22
+collected A2 33
+collected A2 11
+collected A2 22
+collected A3 33
+collected A3 11
+collected A3 22
+collected A4 33
+collected A4 11
+collected A4 22
+collected A5 33
+collected A5 11
+collected A5 22
+summarized A1 reader_val Q1
+summarized A1 reader_val Q2
+summarized A1 reader_val Q3
+summarized A1 reader_val Q4
+summarized A1 test Q1
+summarized A1 test Q2
+summarized A1 test Q3
+summarized A1 test Q4
+summarized A2 reader_val Q1
+summarized A2 reader_val Q2
+summarized A2 reader_val Q3
+summarized A2 reader_val Q4
+summarized A2 test Q1
+summarized A2 test Q2
+summarized A2 test Q3
+summarized A2 test Q4
+summarized A3 reader_val Q1
+summarized A3 reader_val Q2
+summarized A3 reader_val Q3
+summarized A3 reader_val Q4
+summarized A3 test Q1
+summarized A3 test Q2
+summarized A3 test Q3
+summarized A3 test Q4
+summarized A4 reader_val Q1
+summarized A4 reader_val Q2
+summarized A4 reader_val Q3
+summarized A4 reader_val Q4
+summarized A4 test Q1
+summarized A4 test Q2
+summarized A4 test Q3
+summarized A4 test Q4
+summarized A5 reader_val Q1
+summarized A5 reader_val Q2
+summarized A5 reader_val Q3
+summarized A5 reader_val Q4
+summarized A5 test Q1
+summarized A5 test Q2
+summarized A5 test Q3
+summarized A5 test Q4
+summarized CLR-lite reader_val Q1
+summarized CLR-lite reader_val Q2
+summarized CLR-lite reader_val Q3
+summarized CLR-lite reader_val Q4
+summarized CLR-lite test Q1
+summarized CLR-lite test Q2
+summarized CLR-lite test Q3
+summarized CLR-lite test Q4
+summarized CLR-lite-multi reader_val Q1
+summarized CLR-lite-multi reader_val Q2
+summarized CLR-lite-multi reader_val Q3
+summarized CLR-lite-multi reader_val Q4
+summarized CLR-lite-multi test Q1
+summarized CLR-lite-multi test Q2
+summarized CLR-lite-multi test Q3
+summarized CLR-lite-multi test Q4
+summarized CLR-lite-single reader_val Q1
+summarized CLR-lite-single reader_val Q2
+summarized CLR-lite-single reader_val Q3
+summarized CLR-lite-single reader_val Q4
+summarized CLR-lite-single test Q1
+summarized CLR-lite-single test Q2
+summarized CLR-lite-single test Q3
+summarized CLR-lite-single test Q4
+summarized CLR-per-type reader_val Q1
+summarized CLR-per-type reader_val Q2
+summarized CLR-per-type reader_val Q3
+summarized CLR-per-type reader_val Q4
+summarized CLR-per-type test Q1
+summarized CLR-per-type test Q2
+summarized CLR-per-type test Q3
+summarized CLR-per-type test Q4
+summarized CLR-v1 reader_val Q1
+summarized CLR-v1 reader_val Q2
+summarized CLR-v1 reader_val Q3
+summarized CLR-v1 reader_val Q4
+summarized CLR-v1 test Q1
+summarized CLR-v1 test Q2
+summarized CLR-v1 test Q3
+summarized CLR-v1 test Q4

@@ -1,0 +1,92 @@
+[
+  {
+    "baseline": "CLR-per-type",
+    "qtype": "Q4",
+    "estimate_pp": 2.512960829493088,
+    "lo_pp": 1.4520329301075274,
+    "hi_pp": 3.5978902649769586,
+    "expected": [
+      2.51,
+      1.45,
+      3.6
+    ],
+    "max_error_pp": 0.0029608294930882906,
+    "counted_error": 6.938893903907228e-18,
+    "passed": true
+  },
+  {
+    "baseline": "CLR-per-type",
+    "qtype": "Q3",
+    "estimate_pp": -0.5354181473584458,
+    "lo_pp": -1.3126036484245442,
+    "hi_pp": 0.2606017531390666,
+    "expected": [
+      null,
+      -1.31,
+      0.261
+    ],
+    "max_error_pp": 0.0026036484245441915,
+    "counted_error": 3.469446951953614e-18,
+    "passed": true
+  },
+  {
+    "baseline": "B3",
+    "qtype": "Q3",
+    "estimate_pp": 17.536128879412463,
+    "lo_pp": 16.076759061833684,
+    "hi_pp": 19.01445155176498,
+    "expected": [
+      17.5,
+      16.1,
+      19.0
+    ],
+    "max_error_pp": 0.03612887941246257,
+    "counted_error": 2.7755575615628914e-17,
+    "passed": true
+  },
+  {
+    "baseline": "B3",
+    "qtype": "Q4",
+    "estimate_pp": 7.925307219662059,
+    "lo_pp": 6.348346294162825,
+    "hi_pp": 9.52380952380952,
+    "expected": [
+      7.93,
+      6.31,
+      9.56
+    ],
+    "max_error_pp": 0.03834629416282542,
+    "counted_error": 2.7755575615628914e-17,
+    "passed": true
+  },
+  {
+    "baseline": "B5c",
+    "qtype": "Q3",
+    "estimate_pp": -0.6586117033878229,
+    "lo_pp": -1.5114901682065862,
+    "hi_pp": 0.18964700307983756,
+    "expected": [
+      -0.659,
+      -1.51,
+      0.19
+    ],
+    "max_error_pp": 0.0014901682065862065,
+    "counted_error": 1.0842021724855044e-18,
+    "passed": true
+  },
+  {
+    "baseline": "B5c",
+    "qtype": "Q4",
+    "estimate_pp": -0.0864055299539173,
+    "lo_pp": -0.9841229838709677,
+    "hi_pp": 0.8304531490015363,
+    "expected": [
+      -0.0864,
+      -0.984,
+      0.83
+    ],
+    "max_error_pp": 0.00045314900153636817,
+    "counted_error": 3.469446951953614e-18,
+    "passed": true
+  }
+]

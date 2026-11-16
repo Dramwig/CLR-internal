@@ -1,0 +1,19 @@
+frozen files verified 61222
+bundles checked reader_train 1000 8000
+bundles checked reader_train 2000 8000
+bundles checked reader_train 3000 8000
+bundles checked reader_train 4000 8000
+bundles checked reader_train 5000 8000
+bundles checked reader_train 6000 8000
+bundles checked reader_train 7000 8000
+bundles checked reader_train 8000 8000
+split complete reader_train 8000
+bundles checked reader_val 1000 1000
+split complete reader_val 1000
+split complete cal_A 500
+bundles checked cal_B 1000 1000
+split complete cal_B 1000
+bundles checked test 1000 2000
+bundles checked test 2000 2000
+split complete test 2000
+completion audit passed 11 requirements; 12500 bundles; 35500 sequences

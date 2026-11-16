@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "checked_M12_intervals": 45,
+  "checked_point_interval_numbers": 67,
+  "maximum_absolute_error": 4.440892098500626e-15,
+  "conformal_sign_replay": true,
+  "paper_cells_matched": 123
+}
+

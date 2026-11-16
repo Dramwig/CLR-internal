@@ -1,0 +1,13 @@
+milestone: M6
+stage: noise_extension_controller
+section: B
+output: data/M6_v1/extension_controller
+production_output: data/M6_v1
+smoke_config: configs/M6_noise_extension_smoke.yaml
+full_config: configs/M6_noise_extension_full.yaml
+original_run: runs/20261106T064505704384Z_46346b5277a6_2acd02
+preregistration: data/M6_v1/noise_extension_preregistration.json
+production_config: configs/M6_pipeline.yaml
+evaluation_reserve_hours: 3
+runtime_env:
+  LD_LIBRARY_PATH: /home/me/anaconda3/envs/latdefer/lib

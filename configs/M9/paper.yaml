@@ -1,0 +1,43 @@
+milestone: M9
+stage: paper_render
+seed: 11
+output_root: paper
+artifacts:
+- script: scripts/paper/make_t1_gsm8k.py
+  config: configs/M9/paper/t1_gsm8k.yaml
+- script: scripts/paper/make_t1_reader_val.py
+  config: configs/M9/paper/t1_reader_val.yaml
+- script: scripts/paper/make_t2_conformal.py
+  config: configs/M9/paper/t2_conformal.yaml
+- script: scripts/paper/make_t2_paired_sizes.py
+  config: configs/M9/paper/t2_paired_sizes.yaml
+- script: scripts/paper/make_t3_shift.py
+  config: configs/M9/paper/t3_shift.yaml
+- script: scripts/paper/make_t4_audit.py
+  config: configs/M9/paper/t4_audit.yaml
+- script: scripts/paper/make_t4_qa.py
+  config: configs/M9/paper/t4_qa.yaml
+- script: scripts/paper/make_t4_localization.py
+  config: configs/M9/paper/t4_localization.yaml
+- script: scripts/paper/make_t5_cost.py
+  config: configs/M9/paper/t5_cost.yaml
+- script: scripts/paper/make_f1_transfer.py
+  config: configs/M9/paper/f1_transfer.yaml
+- script: scripts/paper/make_f2_rq1.py
+  config: configs/M9/paper/f2_rq1.yaml
+- script: scripts/paper/make_f3_robustness.py
+  config: configs/M9/paper/f3_robustness.yaml
+- script: scripts/paper/make_f3_r1_questions.py
+  config: configs/M9/paper/f3_r1_questions.yaml
+- script: scripts/paper/make_appendix_noise.py
+  config: configs/M9/paper/appendix_noise.yaml
+- script: scripts/paper/make_appendix_protocol.py
+  config: configs/M9/paper/appendix_protocol.yaml
+- script: scripts/paper/make_appendix_dedup.py
+  config: configs/M9/paper/appendix_dedup.yaml
+- script: scripts/paper/make_appendix_labels.py
+  config: configs/M9/paper/appendix_labels.yaml
+- script: scripts/paper/make_appendix_data_scales.py
+  config: configs/M9/paper/appendix_data_scales.yaml
+- script: scripts/paper/make_appendix_q1_clean_traj.py
+  config: configs/M9/paper/appendix_q1_clean_traj.yaml

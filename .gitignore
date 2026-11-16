@@ -1,15 +1,60 @@
-.cache/
+# Local Python environments and installed tools
+/.venv*/
+/venv/
+/env/
+/.tools/
+
+# Python, test and editor caches
 __pycache__/
-.pytest_cache/
-outputs/
-runs/
-/data/
-third_party/
-.env
+*.py[cod]
 *.egg-info/
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# Local credentials (keep example files available)
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Runtime outputs and build products, including nested supplemental runs
+runs/
+outputs/
 build/
 dist/
+/third_party/
+/docs/*_LIVE.lock
 
-.venv/
-!data/splits/
-!data/splits/*.json
+# Data stays local; keep frozen splits and milestone inventories in Git.
+# The parent directory must remain traversable for these exceptions to work.
+/data/*
+!/data/splits/
+/data/splits/*
+!/data/splits/*.json
+!/data/M*/
+/data/M*/*
+!/data/M*/freeze.json
+!/data/M*/paper_inputs/
+/data/M*/paper_inputs/*
+!/data/M*/paper_inputs/*.csv
+!/data/M*/paper_inputs/*.json
+# Large per-problem observations stay with the local run artifacts.
+/data/M*/paper_inputs/*problem*.csv
+
+# Supplemental observation caches; source/config/report/freeze files are tracked.
+/supplemental/*/*.parquet
+
+# The current manuscript is an independent Git repository.
+# Its historical frozen snapshot remains versioned at its original path.
+/manuscripts/CVPR27-CLR/

@@ -1,0 +1,123 @@
+{
+  "historical_M12_train_gpu_hours": {
+    "A1": 3.505689274296391,
+    "A2": 3.4116483864694596,
+    "A3": 3.564544635338082,
+    "A4": 3.4737291982028142,
+    "A5": 3.311723428134153
+  },
+  "counts": {
+    "gpt2": {
+      "11": {
+        "run": "/home/me/PaperField/CalReader/runs/20261105T134549665017Z_13a5b7d07c74_c9bce9",
+        "best_epoch": 8,
+        "counts": {
+          "Q1": 740228,
+          "Q2": 140000,
+          "Q3": 860228,
+          "Q4": 279440
+        },
+        "exposure": {
+          "Q1": 5921824,
+          "Q2": 1120000,
+          "Q3": 6881824,
+          "Q4": 2235520
+        },
+        "best_sha256": "d208025975bd607563ed01f2f94acbf4a6861a92d4d76b5fbfee6a837d6f3af2",
+        "manifest_sha256": "f09054fe4bf83c96158d69a9ef2a998003f3d487f6c321474af89b3d3a64d33a"
+      },
+      "22": {
+        "run": "/home/me/PaperField/CalReader/runs/20261105T111703141949Z_078915e779b4_e2c879",
+        "best_epoch": 8,
+        "counts": {
+          "Q1": 740228,
+          "Q2": 140000,
+          "Q3": 860228,
+          "Q4": 279440
+        },
+        "exposure": {
+          "Q1": 5921824,
+          "Q2": 1120000,
+          "Q3": 6881824,
+          "Q4": 2235520
+        },
+        "best_sha256": "7367709808f6c02305443e67699c13546ca49acfb93d0a63bfae7e472bf34435",
+        "manifest_sha256": "f09054fe4bf83c96158d69a9ef2a998003f3d487f6c321474af89b3d3a64d33a"
+      },
+      "33": {
+        "run": "/home/me/PaperField/CalReader/runs/20261105T093924222497Z_259fba41ad54_7528a4",
+        "best_epoch": 8,
+        "counts": {
+          "Q1": 740228,
+          "Q2": 140000,
+          "Q3": 860228,
+          "Q4": 279440
+        },
+        "exposure": {
+          "Q1": 5921824,
+          "Q2": 1120000,
+          "Q3": 6881824,
+          "Q4": 2235520
+        },
+        "best_sha256": "5b3257b9712de0b816c522e6c2af972346a3642b45a38547a3401b530f3aaedf",
+        "manifest_sha256": "f09054fe4bf83c96158d69a9ef2a998003f3d487f6c321474af89b3d3a64d33a"
+      }
+    },
+    "llama": {
+      "11": {
+        "run": "/home/me/PaperField/CalReader/runs/20261106T185456499082Z_79b47607f4bf_d01ceb",
+        "best_epoch": 8,
+        "counts": {
+          "Q1": 252399,
+          "Q2": 47719,
+          "Q3": 293301,
+          "Q4": 95228
+        },
+        "exposure": {
+          "Q1": 2019192,
+          "Q2": 381752,
+          "Q3": 2346408,
+          "Q4": 761824
+        },
+        "best_sha256": "0e61b81fc50d2f56d4af3f1ff74ecd5f9dfcdd9d49e25ef3ff36e83e196306b6",
+        "manifest_sha256": "3e9e9cd9daf7315e0a575c653ab0c42b482659a6a2288de0af6ab0eb704b7346"
+      },
+      "22": {
+        "run": "/home/me/PaperField/CalReader/runs/20261106T185456806698Z_73be8a7da08f_ade4a6",
+        "best_epoch": 8,
+        "counts": {
+          "Q1": 252399,
+          "Q2": 47719,
+          "Q3": 293301,
+          "Q4": 95228
+        },
+        "exposure": {
+          "Q1": 2019192,
+          "Q2": 381752,
+          "Q3": 2346408,
+          "Q4": 761824
+        },
+        "best_sha256": "83f4c573e369a0281d8826c66037761afe365dedefccb5135f4018f20137d009",
+        "manifest_sha256": "3e9e9cd9daf7315e0a575c653ab0c42b482659a6a2288de0af6ab0eb704b7346"
+      },
+      "33": {
+        "run": "/home/me/PaperField/CalReader/runs/20261106T190747159575Z_87431aceb4bc_718662",
+        "best_epoch": 8,
+        "counts": {
+          "Q1": 252399,
+          "Q2": 47719,
+          "Q3": 293301,
+          "Q4": 95228
+        },
+        "exposure": {
+          "Q1": 2019192,
+          "Q2": 381752,
+          "Q3": 2346408,
+          "Q4": 761824
+        },
+        "best_sha256": "72e6c7b122ce53201b434807b22b4c834aa24a763375a13890829177150767a2",
+        "manifest_sha256": "3e9e9cd9daf7315e0a575c653ab0c42b482659a6a2288de0af6ab0eb704b7346"
+      }
+    }
+  }
+}

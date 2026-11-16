@@ -408,3 +408,237 @@ B3 test Q3准确率58.59% ± 0.19pp，Q4 68.26% ± 1.09pp（三seed95% t区间�
 完整估算66.6 GPUh（含20%裕量），上限80；D估算0.451，上限6。详见 [预算](../reports/M4_budget.md) 与 [任务](M4_TASK.md)。
 负面/限制：172条未见eval与新train存在13-gram重叠；259题公式解析失败；均保留记录，不改划分。控制器状态与阈值JSON边界错误已修复，失败run留存。
 最终三seed指标、按题bootstrap与G1结论尚待完成，不能以本记录代替里程碑验收。
+
+## M4 v0 — 完整实验完成，待G1审查
+执行：`scripts/m4_train_suite.py configs/M4_train_v2.yaml`，`scripts/m4_pipeline.py configs/M4_pipeline.yaml`（均使用项目Python与PYTHONPATH=.）。
+三seed11/22/33全部纳入；均值±95%CI、按题10000次配对bootstrap、核心结果表见 [唯一审查文件](../reports/M4_REVIEW.md)。
+完整指标与负面结果见 [完整报告](../reports/M4_clr_v0.md)，所有t/模板/clean-traj结果在 `reports/M4_metrics.csv`。
+预算与实际成本见报告；可选消融未执行、未见池重叠/解析失败及修复记录如实保留。完成不等于G1通过。
+冻结：`data/M4_v0/freeze.json`；M1/M23输入冻结哈希复核一致。未经审查不进入M5。
+
+## M4.1 — A诊断与B学习能力关卡完成，主比较未完成
+命令：`scripts/m41_diagnose.py configs/M41_diagnose_v2.yaml`；`scripts/m41_gate_controller.py configs/M41_gate_controller_retry_v2.yaml`。
+原v0存在非零状态→选项通路，合成Q3/Q4为98.6%/99.6%；1k Q4原配置81.2%，降低LR并追加训练97.0%；曝光不足已确认，未定位单个断路算子。
+候选v1/lite的1k Q4拟合99.2%/99.3%，合成Q3均100%、Q4为98.9%/99.2%，六项≥98%工程门槛通过。上述为固定seed诊断，不冒充三seed泛化结果或CI。
+根因≤3KB及详细证据见[当前审查摘要](../reports/M4.1_REVIEW.md)与data/M41_v1/diagnosis_complete.json、gate_lock.json；M4冻结12946文件SHA一致。
+C真实入口val smoke运行中，最终test仍未访问；最终三seedCI与四项G1待完整实验，不提前宣布修复有效。
+
+## 2026-11-05 — M5a预检完成，全量待预算/范围决定
+实现S0–S3、B4/B3(Q1)/oracle K16及冻结val-only入口；9测试通过，7个冻结probe/normalization哈希一致，未触碰test。
+完整网格5题smoke261秒、50.2秒/题/seed；val300三seed外推12.5GPUh，含20%裕量/已有成本约15.5>10，未启动全量。
+备选同5题smoke116秒：仅S3 oracle限N16/b4全步，其他原设置不变；总估算6.88GPUh，尚未获准用于全量。
+命令/配置/run/成本CSV及负面工程记录见[唯一审查文件](../reports/M5a_REVIEW.md)和[详细报告](../reports/M5a_preflight.md)。
+研究均值±95%CI和accuracy–compute未执行；不能用smoke回答oracle上限或probe比例。预检保守计费0.354GPUh，含中断成本上界预留，非精确总数。
+
+## M4.1 bf16通路复核与恢复验证（2026-11-05）
+`configs/M41_diagnose_bf16.yaml`对应run `20261105T032226938789Z_933a64cec066_27aa41`：80/80批z梯度及置换中心化logit变化非零，0.03255GPUh，test未打开。
+seed11显式checkpointing恢复后训练正常；7项M4.1测试通过。主比较仍运行，未产生最终三seed指标。证据见data/M41_v1/diagnosis_complete.json及docs/M41_LIVE.json。
+
+## 2026-11-05T06:03:47.954732+00:00 — M5a v13继续授权
+用户“允许 继续完成”后执行10GPUh备选，S3 oracle限N16/b4全步；旧预检冻结不改。
+固定5题val smoke102秒、250条通过；9测试通过，各N独立池/价值成本纳入。
+配置configs/M5a_full_v13.yaml；预算data/M5a_v13/budget_plan.json，估算5.89GPUh。
+尚无完整研究结论；协议与预先固定分析见docs/M5a_TASK.md。
+
+## 2026-11-05T11:34:44.657867+00:00 — M5a v13完成待审查
+M5a val300×seed11/22/33完成；oracle同预算S1增益32.8pp，95%CI[27.8,38]（题内平均seed后按题bootstrap10,000次）。
+命令：scripts/m5a_search.py configs/M5a_full_v13.yaml；scripts/m5a_report.py configs/M5a_report_v13.yaml。
+全部B4/B3/S1/S2网格，S3 oracle按继续授权限N16/b4全步；负面结果与比例不稳定情况均保留。
+累计保守5.80961GPUh含smoke/失败/中断预留；无test访问。
+唯一审查reports/M5a_REVIEW.md；完整表/CI/曲线/成本reports/M5a_search.md及data/M5a_v13/analysis/；冻结data/M5a_v13/freeze.json。
+
+## M4.1 用户授权提高预算（2026-11-05）
+总上限35→50 GPUh，新训练单run时限9→14h；设置和seed不变，旧成本全部计入。
+旧进程不被打断或修改快照；必要时从epoch checkpoint新建恢复run。接续configs/M41_budget50_resume.yaml，详见M4.1_TASK.md。
+
+## M4.1 完整实验完成，待审查
+诊断→学习能力门槛→全曝光三seed主比较→val选型迁移→最终校准与Mondrian完成。
+命令：`scripts/m41_pipeline.py configs/M41_pipeline.yaml`；三seed均值±95%CI及10k按题bootstrap见[审查报告](../reports/M4.1_REVIEW.md)。
+全部结果、成本、负面结论与协议偏离见[详细报告](../reports/M4.1_details.md)；冻结data/M41_v1/freeze.json，M4不改。
+
+## 2026-11-06T05:13:28.693528+00:00 — M5b完成待审查
+A重训前缀/单状态消融、B同父MC诊断、C含clean搜索v2与D排序微调，三seed及10k题bootstrap完成。
+命令：scripts/m5b_finish.py configs/M5b_finish.yaml；scripts/m5b_report.py configs/M5b_report.yaml。
+三seed均值/95%CI、全部负面结果与偏离见[唯一审查](../reports/M5b_REVIEW.md)及[详细报告](../reports/M5b_details.md)。
+累计16.8066 GPUh≤25，含失败/smoke/无效run；B/C/D无test，A早期无效test暴露保留并排除。
+冻结data/M5b_v1/freeze.json；run/CSV/曲线/成本索引data/M5b_v1/completion.json与analysis/index.json。
+
+## 2026-11-06T05:16:33.248867+00:00 — M5b完成待审查
+A重训前缀/单状态消融、B同父MC诊断、C含clean搜索v2与D排序微调，三seed及10k题bootstrap完成。
+命令：scripts/m5b_finish.py configs/M5b_finish.yaml；scripts/m5b_report.py configs/M5b_report.yaml。
+三seed均值/95%CI、全部负面结果与偏离见[唯一审查](../reports/M5b_REVIEW.md)及[详细报告](../reports/M5b_details.md)。
+累计16.8066 GPUh≤25，含失败/smoke/无效run；B/C/D无test，A早期无效test暴露保留并排除。
+冻结data/M5b_v1/freeze.json；run/CSV/曲线/成本索引data/M5b_v1/completion.json与analysis/index.json。
+
+## M6 A收尾与B/C/D smoke（2026-11-06）
+A：val300、seed11/22/33，sigma=.3/.75、S3 N8/b4/6步；CLR相对greedy +.111/−.667pp，同时95%CI均跨0，RQ1保留负面分析；详见reports/M6_rq1_closure.md。
+B：40train+2val source smoke 409秒，batch1024训练smoke、val覆盖率代理通过；11项测试通过，最终test尚未推断。
+命令/全成本：configs/M6_*.yaml及data/M6_v1/runs/；控制器tmux clr-m6-pipeline等待完整noise关卡。M6未完成，接续docs/M6_LIVE.json。
+
+## 2026-11-06 — M7 环境、独立KV验收与smoke
+命令 `.venv-comm/bin/python scripts/m7_acceptance.py configs/M7/{smoke,acceptance_full,smoke_cot}.yaml`（逐次独立运行）。
+历史8题receiver logits与重建消息误差0；新raw KV两路径逐元素一致率100%。direct固定val80：message/none/mismatch=45.0/26.3/23.8%。
+cot512 val8在11.9分钟完成：62.5/50.0/12.5%；非同规模比较，不据此声称全量cot已验收。
+源码/标签/选项置换/边界等6项测试通过；source smoke_v2通过2个val基础episode（14秒），不读test。
+完整val长度估算与HiddenBench格式核验见data/M7_v1/plan.json；仅synthetic进入主比较，M7尚未完成。
+
+## M6 B1扩展扫描完成（2026-11-06）
+val300/K16/相对t/seed11，预登记sigma=3/4/6/8均下降≥5pp；完整八点无同时满足两门槛者。
+按用户事前规则选sigma=2：下降1.99pp、非退化14.8%，门槛未达，降级使用；LLaMA Q1单列。
+扩展含smoke/失败/重启1.64GPUh≤2；单seed噪声选择获任务授权，按题10000次CI见reports/M6_noise_selection_v2.md。
+命令：.venv/bin/python scripts/m6_run_extension.py configs/M6_extension_pipeline.yaml；正式数据/训练尚未完成。
+
+## 2026-11-06 — M7完成待审查
+M7非自适应实验完成待审查；唯一审查reports/M7_REVIEW.md。冻结data/M7_v1/freeze.json；缩量/历史raw缺证据/1%无穷门限等限制见审查文件；未启动M8。
+CF/test/k16/名义α=.05：CLR 0.575% [0,1.44]；B3 1.44% [0.287,2.87]；实测FPR与其他基线见唯一审查文件。
+A1/A4 test CLR−B3：-0.018pp [-0.126,0.0898] / 0.251pp [-3.52,3.95]；累计7.73GPUh。
+三seed主比较、按group bootstrap10000次95%CI、natural_commitment附加分析齐全；详见reports/M7_REVIEW.md、analysis/CSV。
+命令/源码快照见configs/M7/、runs/；上游冻结哈希全部一致，test仅最终锁后评估。
+
+## M6 2026-11-07
+M6实验与统计完成，待审查；唯一审查reports/M6_REVIEW.md，冻结data/M6_v1/freeze.json。
+接续：.venv/bin/python -m scripts.m6_pipeline configs/M6_pipeline_noise_v2.yaml；三seed配对CI及负面结果见审查/详细报告。
+新增GPUh=47.6（含smoke/失败/重启）；成本data/M6_v1/analysis/costs.csv。
+
+## 2026-11-07 — M7.1 source smoke
+命令：.venv-comm/bin/python scripts/m71_source.py configs/M71/source.yaml；详情reports/M71_evidence/source_smoke_v2.log。
+val12组21.5秒通过；实际KV到f的K/V梯度有限非零；CPU最小测试5 passed。
+每组clean/CF特征约614kB；全规模含cal/test扰动约10.2GiB，sender保守6.23GPUh，尚非实际总成本。
+首轮确定性cumsum失败已保留0.00650GPUh；无test访问、无模型或规模回退。
+层扫描与主比较尚未完成；接续docs/M71_LIVE.json、任务docs/M7.1_TASK.md。
+
+## 2026-11-07 — M7.1无损存储与附加协议smoke
+fp16+gzip val12组23.4秒、raw controls12组25.4秒通过；28项最小测试通过。
+旧/新GPU与存储3.56e6元素逐项一致、max误差0；完整数据估计9.05GiB，sender保守6.76GPUh。
+M7 2912/M6 35688冻结文件与三生成器源码SHA一致；证据data/M71_v1/upstream_verification.json、storage_comparison.json。
+用户授权receiver cal_A/B各300、natural val100/test300；都按组SHA固定，natural不进阈值或调参。
+scan v1优化振荡保留，v2降低lr继续；C1/主比较未执行，test未打开。日志reports/M71_evidence/；任务docs/M7.1_TASK.md。
+
+## 2026-11-07 — M7.1完成待审查
+C1/C2通过，足量train8000/val1000/cal1500/test2000和三seed主比较/组bootstrap完成；累计15.9GPUh。
+名义α5%的CF：CLR 93.1%[92.5,93.8]、B3 24.0%[22.4,25.5]、norm6.50%[5.45,7.60]；text300为0%；CLR实测FPR5.07%。
+A1/A4较B3 +31.3/+53.8pp；A2/A3近随机，natural正确/错误分布重叠；完整三seed/CI见报告。
+最终冻结22830文件一致，9.65GiB；复核M7 2912/M6 35688文件一致。
+唯一审查reports/M7.1_REVIEW.md；完整证据reports/M7.1_details.md、data/M71_v1/analysis_v3/。
+
+## 2026-11-08 M8a 固定测试完成
+P0公开期望通过，无需重训/重定阈值；固定500组三seed/E0–E4完成，44协议+4统计测试通过，累计9.57/25GPUh（含旧P0、smoke/失败）。
+ε=.03：E1/E2鲁棒失效均69.3%[65.4,73.0]，识别5.07%=clean FPR，实际fp16特征逐位不变；目标达成100%，其中26.8%原本已是目标，已从改变指标排除。
+E3有限搜索失效随ε=.01/.03/.1/.3为69.1/68.3/66.5/66.0%；组bootstrap10000次CI及单λ/seed见报告。早停使50/200预算主曲线相同，不冒称实际执行全部步数。
+命令configs/M8a/full_{0,1,2,3}.yaml→configs/M8a/report_v1.yaml；唯一审查reports/M8a_REVIEW.md，详细reports/M8a_details.md，冻结data/M8a_v1/freeze.json（933文件）。M7/M6/M7.1冻结只读。
+
+## 2026-11-08 — M8b 开始
+任务：R4 receiver状态、R2随机f、R1随机问题、R3全层，预算25GPUh。
+命令：`.venv-comm/bin/python -m scripts.m8b_prepare configs/M8b/base.yaml`；后续入口configs/M8b/。
+提取smoke train100/val20约104秒，4项协议单测通过；A4小样本接近随机，尚非有效性结论。
+详细协议docs/M8b_TASK.md；接续docs/M8b_LIVE.json，尚未最终test。
+
+## 2026-11-09 M8b 设计比较完成
+R1随机问集、R2随机读取、R3全层与R4接收方状态；三seed，test500/PGD val20，clean QA val200/test500。
+命令configs/M8b/final_*.yaml→configs/M8b/statistics_final.yaml；问答、FPR、E1/E2/E3失效及10000次组bootstrap 95%CI见reports/M8b_REVIEW.md。
+全部失败/额外训练/加载及孤儿成本上界计入25GPUh；完整负面结果、k/ε/步数曲线、时延和复现证据见reports/M8b_details.md。
+冻结data/M8b_v1/freeze.json；上游62363项最终SHA复核一致，不更改M8a/M71/M7/M6。
+
+## 2026-11-09 M8c test前预算关卡
+short direct-lookup val200准入93.0/27.0/26.0%；R4三seed曝光达标，val A4均≥99.5%，D0冻结权重重定阈值。
+正式val矩阵90分钟超时，19组完整/末组部分保留；新三ε主矩阵预算估计最大124组（点估计181）<用户下限200。
+CPU预算/报告命令：.venv-comm/bin/python -m scripts.m8c_budget configs/M8c/budget_feasibility.yaml；-m scripts.m8c_budget_report configs/M8c/budget_pause_report.yaml。
+累计6.43/15GPUh；主200组保守累计20.2GPUh，按用户规则停在test前。10项协议测试通过，33897个上游SHA一致。
+均值/95%组bootstrap CI、部分val与预算限制：reports/M8c_REVIEW.md；M8c未完成，未创建final_lock或test预测。
+
+## 2026-11-09 M8c 21GPUh最终协议启动
+用户提高累计硬限至21GPUh，固定主200组/三seed/三ε/λ1/PGD200，已用6.43计入；保守主累计预测20.2。
+先写final_lock.json（n=200、前100次要ID、预算、顺序及5634项SHA），后启动scripts.m8c_controller configs/M8c/controller.yaml。
+GPU1/3/4每seed全部200组；次要只在主完成后按最小成本→E1/E2→λ敏感性顺序。按耗时预测超21则停、不裁主矩阵；尚未完成。
+
+## 2026-11-09 M8c 主矩阵接续完成
+seed22于189组完整后触发8h单run上限；按锁定200ID/三ε/λ1/原部署key只补缺失行，原run和成本保留。
+原final_lock只读；执行补充data/M8c_v1/execution_supplement.json，CPU合并run逐trial校验无重复且全200×6条，不冒充GPU源run。
+共享GPU显存门槛由15改8GiB并明确记录，模型/精度/矩阵不变；主三seed200组完成后才启动次要最小扰动。
+R4 val/test A1/A4=94.2/99.8%与91.7/99.5%；主统计data/M8c_v1/analysis_final21，完整审查待次要项预算停止/收尾。
+
+## 2026-11-09 M8c 依赖设置鲁棒性
+short direct-lookup准入val200：有/无/错配93.0/27.0/26.0%；R4三seed各≥4.224M曝光，D0冻结权重重定阈值。
+最终矩阵由configs/M8c/final_*.yaml与minimum*.yaml驱动；三seed均值/10000组bootstrap CI与次要项进度见reports/M8c_REVIEW.md。
+独立21GPUh硬限，含加载/失败/中断上界；主E3使用冻结test500哈希序前缀200组，不按test选模型或λ。
+冻结data/M8c_v1/freeze.json；上游M71/M8a/M8b SHA不变。
+
+## 2026-11-10 M9启动
+仅补M6 C2：共享CLR-lite、两源adapter/source token、3seed，独立10GPUh账本；原M6数据/训练协议只读复用。
+命令：scripts.m9_train configs/M9/smoke.yaml；scripts.m9_pipeline configs/M9/pipeline.yaml；smoke70.7秒、两源各5训练/val题通过，不触碰test。
+上游105515唯一文件SHA一致；论文B–D仅CPU派生/冻结CSV制图，不新增模型运行。接续docs/M9_LIVE.json。
+
+## 2026-11-10 M9完成
+M6 C2三seed共享CLR-lite补齐；单源/联合Q1–Q4与conformal配对差及95%题bootstrap CI见reports/M9_REVIEW.md。
+A累计7.38/10GPUh（含smoke/加载/训练/校准/评估），源前向0；训练锁后才test。
+命令：scripts.m9_resume_pipeline configs/M9/resume_pipeline.yaml；scripts.m9_finish configs/M9/finish.yaml。
+19份独立表图脚本、输入CSV冻结SHA、隔离制图环境逐字节重建；四贡献/两局限逐条核验，不能主张另列。
+负面/缺失控制与历史偏离保留；唯一审查reports/M9_REVIEW.md，详细reports/M9_details.md，冻结data/M9_v1/freeze.json。
+
+## 2026-11-10 M10 P1 smoke与正式训练启动
+7个GSM设置及M71 B6均通过≤5%/15min的val-only smoke；最小测试3通过，test未打开。
+命令入口：scripts/m10_smoke_queue.py configs/M10/smoke_queue.yaml；吞吐面板configs/M10/throughput_queue.yaml。
+三seed正式训练由configs/M10/full_gsm_queue.yaml和full_audit_queue.yaml驱动；未产生最终指标。
+审计B6 hidden896参数4866177≥单类型B3的4719876；6epoch≥B3三seed总曝光对应5/5/6epoch。
+证据reports/M10_evidence；初步P1估算11–12GPUh，运行账本守卫12/40GPUh硬上限。
+
+## 2026-11-10 M10 HiddenBench/迁移执行进展（未完成里程碑）
+HiddenBench source/reader/eval val-only smoke通过，三种读取器三seed训练完成；63独立组全使用，原始65case。
+跨用途N100/300/1000训练完成，full仍运行；全部GSM评估分支smoke及11项测试通过，未开test。
+上游110122文件SHA全部一致；paper原66文件已逐字节归档；CPU收尾控制器等最终exports后再制图/审查。
+正式吞吐持续复核，成本见docs/M10_LIVE.json；释放25GiB配重并保持自动补足暂停，记录reports/M10_evidence/disk_reserve_release.json。
+这些是运行进展，不能代替最终主表或M10审查/冻结；接续docs/M10_EXECUTION_CONTINUATION.md。
+
+## 2026-11-10 M10最终冻结
+LLaMA缺失格、B6/每类型CLR、HiddenBench和M9主体初始化三seed完成；B5c预算准入失败NR。
+累计13.521/40GPUh，含smoke/失败/校准/推断；全训练hash锁后才test。
+命令configs/M10/final_controller.yaml；论文独立重建、最终证据及CI见reports/M10_REVIEW.md和M10_details.md。
+M9原paper66文件归档，旧freeze不改；更新paper与FINAL_SUMMARY并最终冻结data/M10_v1/freeze.json。
+
+## M10b 启动与准入
+仅CODI-GPT2 B5c Q3/Q4，完整冻结标签、一遍训练、seed11/22/33；预算22GPUh含失败加载校准推断。
+训练smoke20/20组76.7秒、校准/推断reader_val代理15组10.6秒；15项协议单测通过，未访问test。
+实测训练15.2GPUh、训练期val0.461、预留2，准入17.6/22；configs/M10b/controller.yaml，tmux clr-m10b。
+旧M10只读，paper原76文件归档data/M10b_v1/m10_paper_snapshot；最终审查reports/M10b_REVIEW.md（尚未完成）。
+
+## M10b 最终冻结
+仅GPT2 B5c Q3/Q4完整一遍×三seed；CLR−B5c test Q3 -0.659 [-1.51,0.19]pp；Q4 -0.0864 [-0.984,0.83]pp。
+命令configs/M10b/controller.yaml；成本17.2/22 GPUh，含失败加载/校准/推断。
+固定seed整problem bootstrap10000 CI；审计框架修订、附录定位、复现和证据见reports/M10b_REVIEW.md。
+实验永久冻结data/M10b_v1/freeze.json，旧M10 paper字节归档。
+
+## M10c 只读精度–开销
+固定reader_val64，同卡RTX4090、batch1/64三轮中位；无训练/新test推断/重校准。
+CLR对B5c单查询FLOPs低648/437倍，精度CI沿用三seed；conformal整problem bootstrap10000。
+新增GPU成本0.0941h含失败，源前向0；命令configs/M10c/measure.yaml、summarize.yaml、finish.yaml。
+表/配对差/原始三轮/局限见reports/M10c_REVIEW.md；冻结data/M10c_v1/freeze.json。
+
+## 2026-11-12 — M10d 四格补齐
+GPT2 B6复用M10；LLaMA B4按M3训练6817题、三seed/两LR/8epoch，统一锁hash后cal_A独立温度及test最终评估。
+入口：`.venv/bin/python -m scripts.m10d configs/M10d/run.yaml [stage=train|stage=final]`；CPU汇总`scripts.m10d_summarize`。
+Q1 NLL / Q2 AUROC：B6 0.574 / 0.853；B4 0.551 / 0.806；95%按题bootstrap CI见data/M10d_v1/four_cells.json。
+新增0.0289412GPUh≤2，源前向0；20训练/20val smoke4.82秒，3项测试通过。
+论文四TODO/必要加粗及number_audit追加完成，T1/Times编译8页通过；唯一审查reports/M10d_REVIEW.md。
+
+## 2026-11-12T15:34:59.142298+08:00 — M10e
+两源HSRM/CLUE及LLaMA M3 B2完成，三seed或确定性按题bootstrap10000 CI见data/M10e_v1/summary.csv。
+命令：python -m scripts.m10e configs/M10e/run.yaml stage={smoke,train,lock,final}；后接m10e_summarize_v2/audit/finish。
+新增0.942GPUh、源前向0；HSRM后期val NLL上升及负面比较如实保留，不改test/旧冻结。
+用户改为Markdown论文交接，未改稿编译；审查reports/M10e_REVIEW.md，详情reports/M10e_details.md。
+
+## 2026-11-12 — M11-qual
+只读冻结权重/预测导出；命令`python -m scripts.m11_qual configs/M11_qual/export.yaml stage=full`及同配置finish/package。
+val-only smoke通过；12单测；两源各3题概率逐位一致；所需规模齐全。保守0.0849GPUh，源前向0。
+确定性哈希选样，无新统计/CI；三seed已有预测保留；M8c仅已有分数。
+交付/规模/限制见[审查](../reports/M11_qual_REVIEW.md)及`data/M11_qual_v1/qual_export.zip`。
+
+## M12 — 启动与协议smoke
+用户授权A1–A5/三seed，M41完整曝光及早停/校准相同，预算≤30GPUh、11-15 12:00截止，不改论文。
+新增组件隔离/原模型等价/序列化缓存；12项协议测试通过，训练与val代理smoke复核中，尚未访问test。
+入口`.venv/bin/python -m scripts.m12_start configs/M12/base.yaml`；状态docs/M12_LIVE.json，任务docs/M12_TASK.md。
+
+## M12 — CLR-lite组件消融
+M12组件消融完成待审查；5变体三seed，18.1/30GPUh；唯一审查reports/M12_REVIEW.md，冻结data/M12_ablation/freeze.json；未改论文。
+入口：`.venv/bin/python -m scripts.m12_pipeline configs/M12/base.yaml`。
+Q1/Q2/Q3/Q4、按题CI和配对差：data/M12_ablation/summary.csv；置换permutation.csv。
+全部负面结果保留；详细reports/M12_details.md；复用来源逐行记录，无模型/曝光缩量。

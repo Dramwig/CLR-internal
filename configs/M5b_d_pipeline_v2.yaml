@@ -1,0 +1,10 @@
+output: data/M5b_v1
+seeds:
+- 11
+- 22
+- 33
+generation_run: runs/20261106T014712520214Z_44358174d9aa_bfb76f
+training_smoke_run: runs/20261106T015358523741Z_8dc9b13535b9_16432b
+B_run: runs/20261106T014306312129Z_8127b80897ce_107f46
+train_gpu: 2
+search_gpu: 0

@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\centering\scriptsize
+\caption{T4: Audit question accuracy}
+\label{tab:t4-qa}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+Split & Auditor & A1 acc. (\%) & A2 acc. (\%) & A3 acc. (\%) & A4 acc. (\%) \\
+\midrule
+test & CLR & $99.5\;[99.4,\,99.7]$ & $50\;[50,\,50]$ & $51\;[49.9,\,52.1]$ & $99.3\;[99.1,\,99.5]$ \\
+test & B3 & $68.3\;[67.5,\,69.1]$ & $49.8\;[49.6,\,50]$ & $49.7\;[49.3,\,50]$ & $45.5\;[44.2,\,46.8]$ \\
+test & B6 & $71\;[70.6,\,71.5]$ & $50\;[50,\,50.1]$ & $49.9\;[49.7,\,50.1]$ & $98\;[97.7,\,98.3]$ \\
+test & B5c & NR & -- & -- & NR \\
+test & linear & $67\;[66.3,\,67.8]$ & $49.6\;[49.2,\,50]$ & $49.8\;[49.3,\,50.2]$ & $46.2\;[44.9,\,47.6]$ \\
+test & B0 & $50\;[50,\,50]$ & $50\;[50,\,50]$ & $50\;[50,\,50]$ & $25.3\;[24.6,\,26.1]$ \\
+reader\_val & CLR & $99.7\;[99.6,\,99.8]$ & $50\;[49.9,\,50]$ & $49.9\;[48.4,\,51.4]$ & $99.5\;[99.3,\,99.7]$ \\
+reader\_val & B3 & $66.8\;[65.7,\,68]$ & $50.1\;[49.8,\,50.4]$ & $49.8\;[49.2,\,50.3]$ & $45.9\;[44,\,47.7]$ \\
+reader\_val & B6 & $70.6\;[70,\,71.2]$ & $50\;[49.9,\,50.1]$ & $49.7\;[49.4,\,50.1]$ & $97.8\;[97.3,\,98.3]$ \\
+reader\_val & B5c & NR & -- & -- & NR \\
+reader\_val & linear & $66.8\;[65.8,\,67.9]$ & $49.9\;[49.3,\,50.5]$ & $49.7\;[49,\,50.5]$ & $47.4\;[45.5,\,49.3]$ \\
+reader\_val & B0 & $50\;[50,\,50]$ & $50\;[50,\,50]$ & $50\;[50,\,50]$ & $24.6\;[23.5,\,25.8]$ \\
+\bottomrule
+\end{tabular}}
+\par\smallskip\parbox{\textwidth}{\scriptsize Synthetic v2, seen templates; three fixed seeds and 10000 episode-group bootstrap draws. A2/A3 failures prevent claiming a general consistency-QA capability. B5c not run in full under its budget.}
+\end{table*}

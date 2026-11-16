@@ -1,0 +1,9 @@
+test_option_order (tests.test_m8b.Protocol.test_option_order) ... ok
+test_public_expectations_ignore_private (tests.test_m8b.Protocol.test_public_expectations_ignore_private) ... ok
+test_random_cache_and_gradient (tests.test_m8b.Protocol.test_random_cache_and_gradient) ... ok
+test_threshold (tests.test_m8b.Protocol.test_threshold) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.180s
+
+OK

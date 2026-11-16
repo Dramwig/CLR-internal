@@ -1,0 +1,7 @@
+reader_val full completed 480
+reader_val zero completed 480
+reader_val shuffle completed 480
+reader_val value_only completed 160
+reader_val value_remove completed 160
+reader_val critical_only completed 160
+reader_val critical_remove completed 160

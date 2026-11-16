@@ -1,0 +1,7 @@
+milestone: M7.1
+output: data/M71_v1
+representation: pool
+seeds: [11, 22, 33]
+bootstrap_seed: 20261107
+bootstrap_repeats: 10000
+test_log: reports/M71_evidence/tests_resume_v20.log

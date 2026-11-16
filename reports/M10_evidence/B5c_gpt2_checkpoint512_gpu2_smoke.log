@@ -1,0 +1,3 @@
+/home/me/PaperField/CalReader/runs/20261110T100709201111Z_b81a7eb66abf_6040cd
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.71it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.53it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.36it/s]
+{"epoch": 1, "val_nll": {"Q3": 1.6915881030132316, "Q4": 1.603253173828125}, "selection_nll": 1.6474206384206784, "exposure": {"Q3": 845, "Q4": 280}, "training_seconds": 22.72345329693053, "task_seconds": {"Q3": 18.79762099601794, "Q4": 3.925832300912589}, "validation_seconds": 6.964726232923567}

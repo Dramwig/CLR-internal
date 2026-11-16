@@ -1,0 +1,27 @@
+Collecting pypdf
+  Downloading pypdf-7.0.1-py3-none-any.whl.metadata (7.6 kB)
+Collecting pymupdf
+  Downloading pymupdf-2.1-cp311-abi3-manylinux_2_28_x86_64.whl.metadata (26 kB)
+Collecting networkx (from pymupdf)
+  Downloading networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+Requirement already satisfied: numpy in ./.venv-paper/lib/python3.11/site-packages (from pymupdf) (1.26.4)
+Collecting onnxruntime (from pymupdf)
+  Downloading onnxruntime-1.31.1-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (5.8 kB)
+Requirement already satisfied: pyyaml in ./.venv-paper/lib/python3.11/site-packages (from pymupdf) (6.0.3)
+Collecting pymupdf-layout==2.1 (from pymupdf)
+  Downloading pymupdf_layout-2.1-py3-none-any.whl.metadata (657 bytes)
+Collecting psutil (from pymupdf)
+  Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
+Collecting tabulate (from pymupdf)
+  Downloading tabulate-0.10.0-py3-none-any.whl.metadata (40 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 40.8/40.8 kB 922.9 kB/s eta 0:00:00
+Collecting pymupdf4llm==2.1 (from pymupdf)
+  Downloading pymupdf4llm-2.1-py3-none-any.whl.metadata (648 bytes)
+Collecting flatbuffers (from onnxruntime->pymupdf)
+  Downloading flatbuffers-25.12.19-py2.py3-none-any.whl.metadata (1.0 kB)
+Requirement already satisfied: packaging in ./.venv-paper/lib/python3.11/site-packages (from onnxruntime->pymupdf) (26.3)
+Collecting protobuf>=4.25.8 (from onnxruntime->pymupdf)
+  Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+Downloading pypdf-7.0.1-py3-none-any.whl (416 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 416.1/416.1 kB 115.9 kB/s eta 0:00:00
+Downloading pymupdf-2.1-cp311-abi3-manylinux_2_28_x86_64.whl (69.0 MB)

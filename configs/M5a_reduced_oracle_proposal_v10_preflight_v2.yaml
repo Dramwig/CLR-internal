@@ -1,0 +1,59 @@
+milestone: M5a
+version: reduced_oracle_proposal_v10_preflight_v2
+stage: smoke
+seed: 11
+seeds:
+- 11
+- 22
+- 33
+protocol: configs/protocol_codi_v2.yaml
+val_manifest: data/dumps/codi_gpt2_v3/val/manifest.parquet
+val_early: data/dumps/codi_gpt2_v3/val/early_exit.parquet
+baseline_run: runs/20261103T045628621237Z_2964c31f2153_11a348
+templates: clr/data/questions/templates.yaml
+device: cuda:0
+min_free_gib: 11.0
+threads: 2
+batch: 128
+merge_lora: true
+merge_state_tolerance: 0.001
+sigma: 1.5
+oracle_K: 16
+Ns:
+- 4
+- 8
+- 16
+beams:
+- 2
+- 4
+horizons:
+- 6
+- 4
+values:
+- B4
+- B3
+- oracle
+smoke_questions: 1
+smoke_seconds: 900
+max_gpu_hours: 10.0
+budget_points:
+- 128
+- 256
+- 512
+- 1024
+- 2048
+- 4096
+- 8192
+- 16384
+- 32768
+vote_max: 4096
+smoke_run: null
+output: data/M5a_proposal_v10
+resume_run: null
+budget_plan: null
+gpu_uuid: GPU-456e3a58-d0a3-f38c-994d-fed0dc036cda
+noise_mode: batch_iid
+oracle_beam_Ns:
+- 16
+oracle_beam_widths:
+- 4

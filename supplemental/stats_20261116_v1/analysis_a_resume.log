@@ -1,0 +1,19 @@
+A4 gpt2 B4
+A4 gpt2 HSRM
+A4 gpt2 CLUE
+A4 llama B3
+A4 llama B3-prefix
+A4 llama B6
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/supplemental/stats_20261116_v1/analysis_a.py", line 116, in <module>
+    if __name__=='__main__':main(load_config(sys.argv[1]))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/supplemental/stats_20261116_v1/analysis_a.py", line 108, in main
+    raw=pq.read_table(inp.remember(p)).to_pylist();raw=[r for r in raw if r['state_ref']['kind']=='clean'];pp=softmax(np.array([r['calibrated_logits'] for r in raw],float),axis=1);seed=int(p.stem.split('_')[2]);acs.append(pd.DataFrame({'seed':seed,'problem_id':[r['problem_id'] for r in raw],'t':[r['state_ref']['t'] for r in raw],'score':pp[:,1],'label':[r['label'] for r in raw]}))
+                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/supplemental/stats_20261116_v1/analysis_a.py", line 108, in <listcomp>
+    raw=pq.read_table(inp.remember(p)).to_pylist();raw=[r for r in raw if r['state_ref']['kind']=='clean'];pp=softmax(np.array([r['calibrated_logits'] for r in raw],float),axis=1);seed=int(p.stem.split('_')[2]);acs.append(pd.DataFrame({'seed':seed,'problem_id':[r['problem_id'] for r in raw],'t':[r['state_ref']['t'] for r in raw],'score':pp[:,1],'label':[r['label'] for r in raw]}))
+                                                                                                                                ~^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'calibrated_logits'

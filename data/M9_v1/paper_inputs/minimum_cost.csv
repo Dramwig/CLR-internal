@@ -1,0 +1,3 @@
+split,design,pairs,finite_pairs,reader_censored,receiver_censored,already_target,q10,q25,q50,q75,q90,finite_independent_acceptance,planned_groups,complete_groups
+test,D0,45,45,0,0,0,1,1,1,1,1,0.955555555555556,100,15
+test,R4,45,45,0,0,0,1,1,1,1,2,0.933333333333333,100,15

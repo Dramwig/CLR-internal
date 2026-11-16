@@ -1,0 +1,16 @@
+/home/me/PaperField/CalReader/runs/20261106T100717052810Z_cf264c1cffa2_8c2b34
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m6_pipeline.py", line 319, in <module>
+    group=[j for j in full if j[1]['donor']==a]
+                                                
+  File "/home/me/PaperField/CalReader/scripts/m6_pipeline.py", line 217, in main
+    ctl.state['unseen_evaluation_reserved_hours']=decision['six_reader_inference_estimate_gpu_hours'] if decision['status']=='completed' else 0
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m6_pipeline.py", line 140, in train_batch
+    def wait_existing(self,path):
+                                  
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/threading.py", line 327, in wait
+    waiter.acquire()
+KeyboardInterrupt

@@ -1,0 +1,22 @@
+\section{Cost}
+\label{sec:cost}
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+Reader & Params (M) & GFLOPs/query & Latency (ms) & Q3 / Q4\\
+ & train. / total & Q3 / Q4 & b1 / b64 & acc (\%)\\
+\midrule
+B3 MLP & 0.108 / 0.108 & 0.0009 / 0.0002 & 0.58 / 1.49 & 58.6 / 68.3\\
+B6 attention & 0.661 / 39.3 & 0.0073 / 0.0053 & 1.72 / 3.37 & 65.4 / 72.0\\
+B5c verbalizer & 18.9 / 1740 & 165 / 76.6 & 152 / 802 & 76.8 / 76.3\\
+\clr{} & 17.2 / 17.2 & 0.254 / 0.175 & 7.79 / 10.1 & 76.1 / 76.2\\
+\bottomrule
+\end{tabular}}
+\caption{Reader cost on CODI-GPT-2 (one RTX 4090 shared with other jobs, so latencies are not isolated hardware limits; latency shown for Q3, batch 1 / 64; FLOPs at batch 1 count matrix and attention multiply--adds only). B3/B6 trainable parameters are per question type; \clr{} and B5c share one model across types. B6's total includes a frozen 38.7M option-embedding table.}
+\label{tab:cost}
+\end{table}
+\clr{} matches the verbalizer's accuracy with 437--648$\times$ fewer FLOPs per query and 19--80$\times$ lower measured latency (\cref{tab:cost}), because B5c runs a full forward pass of a frozen 1.7B model for every query. \clr{} is not free relative to the source model: one query costs 0.6--0.9 of a cached CODI-GPT-2 latent step (0.29 GFLOPs), so reading every step roughly doubles the latent-reasoning compute. Probes are two to three orders of magnitude cheaper still, which is the price \clr{} pays for its gains on option-conditioned questions.

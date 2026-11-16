@@ -1,0 +1,37 @@
+milestone: M10
+section: P2-5
+section_budget: 12
+stage: hiddenbench_evaluate
+mode: full
+seed: 20261110
+device: cuda:2
+raw_path: /home/me/datasets/HiddenBench/1e3c25b1fd798c6717f4df0463edd3825c8e37f9/benchmark.json
+raw_sha256: 2815afffca4e470d1dfbc81e625160447df1109ce371968181c9e1e6b90443a3
+hidden_root: data/M10_v1/hiddenbench
+group_counts:
+  reader_train: 13
+  reader_val: 20
+  cal_A: 4
+  cal_B: 20
+  test: 6
+layers:
+- 7
+- 16
+- 25
+- 34
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+kinds:
+- CLR
+- B3
+- B6
+seeds:
+- 11
+learning_rates:
+- 0.0003
+epochs: 16
+batch: 16
+eval_batch: 32
+reader_smoke_ref: data/M10_v1/hiddenbench/reader_smoke.json
+training_ref: data/M10_v1/hiddenbench/training.json
+eval_lock: data/M10_v1/final_lock.json
+audit_protocol: data/M10_v1/hiddenbench/protocol_public_v2.json

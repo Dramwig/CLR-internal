@@ -1,0 +1,21 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.00it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.56it/s]
+group 1 20 seconds 1.43 GPUh 0.003
+group 2 20 seconds 0.66 GPUh 0.003
+group 3 20 seconds 1.63 GPUh 0.003
+group 4 20 seconds 0.83 GPUh 0.003
+group 5 20 seconds 1.64 GPUh 0.004
+group 6 20 seconds 0.92 GPUh 0.004
+group 7 20 seconds 1.99 GPUh 0.005
+group 8 20 seconds 2.06 GPUh 0.005
+group 9 20 seconds 0.53 GPUh 0.005
+group 10 20 seconds 0.53 GPUh 0.006
+group 11 20 seconds 1.94 GPUh 0.006
+group 12 20 seconds 0.76 GPUh 0.006
+group 13 20 seconds 0.53 GPUh 0.006
+group 14 20 seconds 1.53 GPUh 0.007
+group 15 20 seconds 1.72 GPUh 0.007
+group 16 20 seconds 0.92 GPUh 0.008
+group 17 20 seconds 1.59 GPUh 0.008
+group 18 20 seconds 1.7 GPUh 0.009
+group 19 20 seconds 0.54 GPUh 0.009
+group 20 20 seconds 1.59 GPUh 0.009

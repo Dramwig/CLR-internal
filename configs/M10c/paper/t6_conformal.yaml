@@ -1,0 +1,5 @@
+artifact: t6_conformal
+caption: 'T6 companion: frozen conformal coverage and paired set sizes'
+input_freeze: data/M10c_v1/paper_inputs/freeze.json
+inputs:
+  conformal: data/M10c_v1/paper_inputs/conformal_paired.csv

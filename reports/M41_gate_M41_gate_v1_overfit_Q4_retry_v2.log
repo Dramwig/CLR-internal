@@ -1,0 +1,3 @@
+{"epoch": 1, "steps": 8, "train": {"nll": 0.696073844909668, "accuracy": 0.537}, "validation": {"nll": 0.696073844909668, "accuracy": 0.537}, "gpu_hours": 0.0018879406002815812}
+{"epoch": 10, "steps": 80, "train": {"nll": 0.08429482650756837, "accuracy": 0.977}, "validation": {"nll": 0.08429482650756837, "accuracy": 0.977}, "gpu_hours": 0.007379141633613875}
+{"epoch": 20, "steps": 160, "train": {"nll": 0.024976434230804444, "accuracy": 0.992}, "validation": {"nll": 0.024976434230804444, "accuracy": 0.992}, "gpu_hours": 0.013826471129165536}

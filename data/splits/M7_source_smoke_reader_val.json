@@ -1,0 +1,12 @@
+{
+  "split": "reader_val",
+  "episode_ids": [
+    "1f8b4047c477fbf54341f780a7d96e83129ba001b815e350dc374e0921ec6dcd",
+    "ebfc47213adb5c1520ce53f538c6a94e008d869bd8f1ace070df8a86929a9757"
+  ],
+  "group_ids": [
+    "val-9c00c15570fa719de691bda4eb4e30ef571b1b9b94205c1fe41bdccb8b9616b2",
+    "val-5fa673cbc4883dd4a874701b74958f2e02bf7eea8c13dbc259278471c59615f9"
+  ],
+  "data_seed": 20261106
+}

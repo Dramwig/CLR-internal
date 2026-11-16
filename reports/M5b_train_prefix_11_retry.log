@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m5b_train_a.py", line 97, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/utils/config.py", line 12, in load_config
+    if parts[-1] not in dest: raise KeyError(key)
+                              ^^^^^^^^^^^^^^^^^^^
+KeyError: 'feature_cache_device'

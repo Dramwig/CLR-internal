@@ -1,0 +1,24 @@
+{
+  "run": "/home/me/PaperField/CalReader/runs/20261112T024518010110Z_2c8d73cccc27_1dba42",
+  "checkpoints": [
+    {
+      "seed": 11,
+      "path": "/home/me/PaperField/CalReader/runs/20261112T024518010110Z_2c8d73cccc27_1dba42/B4_Q1_11.pt",
+      "sha256": "bf818f30cb65df2fab16aff87f9ea2845be39d93c92588f91f3c733dc934cdde"
+    },
+    {
+      "seed": 22,
+      "path": "/home/me/PaperField/CalReader/runs/20261112T024518010110Z_2c8d73cccc27_1dba42/B4_Q1_22.pt",
+      "sha256": "95e80a7c42e9589d4365eede6c5b3002fa1f0859994f3f14bee5451113cf3ab2"
+    },
+    {
+      "seed": 33,
+      "path": "/home/me/PaperField/CalReader/runs/20261112T024518010110Z_2c8d73cccc27_1dba42/B4_Q1_33.pt",
+      "sha256": "47c0ea14a2377b6b1996fbf0e0876655b8c4f97c588e17ca6a0a9de7685ca262"
+    }
+  ],
+  "normalization": "/home/me/PaperField/CalReader/runs/20261112T024518010110Z_2c8d73cccc27_1dba42/normalization.npz",
+  "normalization_sha256": "3b6778d565a8c4ae797a441c652ff340a27b06fa7f1afaf1bf10bce7204ab5d2",
+  "test_opened": false,
+  "locked_before_test": true
+}

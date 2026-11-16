@@ -1,0 +1,16 @@
+{
+  "cells": 123,
+  "differences": [],
+  "input_sha256": {
+    "data/M10_v1/paper_inputs/main.csv": "251d12ea3eb9b428f540557ca2d02774acc80e83bd910245ce854f37c4f46b2d",
+    "data/M10e_v1/summary.csv": "557016b1de9e831caee0d89668b8dbd0e206aa14cbd54d559236d1e3a3d268a1",
+    "data/M10d_v1/B4_summary.csv": "5d6d752ef714bb2ba00512e469193a5de9acd7db0cfd306ba54e885c46beace4",
+    "data/M10b_v1/paper_inputs/B5c_summary.csv": "2d3b2fa5adcb2ce1815afc4315de355f0bd06348ec6b7fdb1bb189dc69037104",
+    "data/M4_v0/evaluation_suite.json": "ceab8bfab0a1d6f9848d3fdcfac892c0f33717c66ff7382e97787770edea67c9",
+    "runs/20261103T045628621237Z_2964c31f2153_11a348/statistics.json": "266dc3bbf9a10630cca37b7a1f120b79e87e13e58db79507f315e52931da85fc",
+    "runs/20261104T034309806032Z_fd58477eb61e_b47aaf/statistics.json": "dbd2802f8e87e64e94bb13331675ccf937779dae9ccf8c8364df3de5fdf38b79",
+    "runs/20261104T034622875568Z_51a665c1545c_572a53/statistics.json": "f9677ff2d2d92dda4771982f9e19c3252f540d80faeda5055bda39f9696a3b05",
+    "runs/20261104T042124601620Z_a913cc835e05_a308f5/statistics.json": "b027e296c2a5ac5101b35520e61ed2c517f01a3b075f8a732960f1e91323e8db",
+    "data/M12_ablation/summary.csv": "5e0a75b31992501675252a8ac4840bce7e32b30e108884d5e7d540df042c4daf"
+  }
+}

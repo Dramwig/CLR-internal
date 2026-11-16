@@ -1,0 +1,6 @@
+/home/me/PaperField/CalReader/runs/20261110T103139340050Z_84e5a35297b9_fcbd21
+{"model": "CLR_11_A1_A4", "epoch": 1, "lr": 0.0003, "val_nll": {"A1": 0.7051781415939331, "A4": 1.3772025108337402}, "val_accuracy": {"A1": 0.5, "A4": 0.375}, "exposure": {"A1": 40, "A4": 20}, "training_seconds": 1.970318179926835}
+{"model": "B3_11_A1", "epoch": 1, "lr": 0.0003, "val_nll": {"A1": 0.9722426533699036}, "val_accuracy": {"A1": 0.5}, "exposure": {"A1": 40}, "training_seconds": 0.2683489010669291}
+{"model": "B3_11_A4", "epoch": 1, "lr": 0.0003, "val_nll": {"A4": 1.3855664730072021}, "val_accuracy": {"A4": 0.375}, "exposure": {"A4": 20}, "training_seconds": 0.15017965307924896}
+{"model": "B6_11_A1", "epoch": 1, "lr": 0.0003, "val_nll": {"A1": 0.8398164510726929}, "val_accuracy": {"A1": 0.5}, "exposure": {"A1": 40}, "training_seconds": 0.21658172202296555}
+{"model": "B6_11_A4", "epoch": 1, "lr": 0.0003, "val_nll": {"A4": 1.380534291267395}, "val_accuracy": {"A4": 0.375}, "exposure": {"A4": 20}, "training_seconds": 0.15863502293359488}

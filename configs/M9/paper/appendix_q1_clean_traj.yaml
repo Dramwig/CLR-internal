@@ -1,0 +1,6 @@
+artifact: appendix_q1_clean_traj
+caption: 'Appendix: Q1 reader validation by state kind'
+input_freeze: data/M9_v1/paper_inputs/freeze.json
+inputs:
+  q1: data/M9_v1/paper_inputs/reader_val_q1_clean_traj.csv
+output_root: paper

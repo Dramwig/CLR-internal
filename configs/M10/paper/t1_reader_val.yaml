@@ -1,0 +1,7 @@
+artifact: t1_reader_val
+caption: 'T1 supplement: reader validation'
+input_freeze: data/M10_v1/paper_inputs/freeze.json
+inputs:
+  main: data/M10_v1/paper_inputs/main.csv
+output_root: paper
+split: reader_val

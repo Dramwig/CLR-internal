@@ -1,0 +1,8 @@
+wait_run: runs/20261106T014306312129Z_8127b80897ce_107f46
+journal: data/M5b_v1/queue_C.json
+env:
+  CUDA_VISIBLE_DEVICES: '0'
+jobs:
+- script: scripts/m5b_bc.py
+  config: configs/M5b_C_full.yaml
+  log: reports/M5b_C_full.log

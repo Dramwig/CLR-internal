@@ -1,0 +1,51 @@
+milestone: M10
+version: v1
+section: P1
+stage: train_gsm
+mode: full
+kind: CLR-per-type
+case: gpt2_CLR-per-type
+seed: 22
+panel_seed: 11
+source: gpt2
+sources:
+  gpt2:
+    root: data/dumps/codi_gpt2_v3
+    qa: data/M23_v1a/full
+    dim: 768
+    normalization: runs/20261103T045628621237Z_2964c31f2153_11a348/normalization.npz
+    panels: data/M6_v1/panels/gpt2
+  llama:
+    root: data/dumps/codi_llama_M6_v1
+    qa: data/M6_v1/qa
+    dim: 2048
+    normalization: data/M6_v1/llama_normalization.npz
+    panels: data/M6_v1/panels/llama
+validation_split: reader_val
+smoke_problems: 20
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+templates: clr/data/questions/templates.yaml
+device: cuda:4
+n_labels: null
+epochs: 10
+min_epochs: 8
+patience: 1
+batch: 1024
+b3_batch: 4096
+eval_batch: 1024
+learning_rate: 0.0003
+b3_lrs:
+- 0.001
+- 0.0003
+weight_decay: 0.0001
+output: data/M10_v1
+validation_every: 1
+validation_problem_limit: null
+section_budget: 12
+smoke_ref: data/M10_v1/trained/gpt2_CLR-per-type_11_smoke.json
+hidden: 256
+learning_rates:
+- 0.001
+- 0.0003
+reference_epochs: 8
+reference_exposure: data/M10_v1/exposure_targets.json

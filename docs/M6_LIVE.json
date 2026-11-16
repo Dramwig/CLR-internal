@@ -1,0 +1,205 @@
+{
+  "stage": "completed_pending_review",
+  "milestone_complete": true,
+  "task": "docs/M6_TASK.md",
+  "budget": {
+    "total": 60,
+    "B": 30,
+    "CD": 27,
+    "A": 3
+  },
+  "source_log": "reports/M6_source_noise.log",
+  "source_smoke": "/home/me/PaperField/CalReader/runs/20261106T100733871102Z_b2a4263260b0_3c865e",
+  "updated_utc": "2026-11-07T03:20:44.745364+00:00",
+  "last_trained": "b5b_llama_100_22",
+  "last_training_run": "/home/me/PaperField/CalReader/runs/20261107T004016431174Z_3bb695759395_adb5cb",
+  "rq1_run": "/home/me/PaperField/CalReader/runs/20261106T071548963602Z_eb6498d61086_716529",
+  "rq1_stage": "completed",
+  "noise_run": "/home/me/PaperField/CalReader/runs/20261106T100707320190Z_183353f6a1b0_81e66b",
+  "training_smoke": "runs/20261106T073552873874Z_cd26cc99795b_53244c",
+  "shift_smoke": "runs/20261106T072959157942Z_71708f35daaa_284ded",
+  "rq1_report": "reports/M6_rq1_closure.md",
+  "pipeline_config": "configs/M6_pipeline_noise_v2.yaml",
+  "gpu_hours_so_far": 47.59734549143249,
+  "pipeline": "data/M6_v1/pipeline_noise_v2.json",
+  "pipeline_run": "runs/20261106T194556751954Z_cf264c1cffa2_db57cb",
+  "tests": "reports/M6_tests_report_sizes_v8.log",
+  "review": "reports/M6_REVIEW.md",
+  "review_status": "complete_pending_review",
+  "noise_progress": "runs/20261106T064505704384Z_46346b5277a6_2acd02/progress.json",
+  "pipeline_log": "reports/M6_parallel_eval_pipeline.log",
+  "reason": null,
+  "noise_report": "reports/M6_noise_selection_v2.md",
+  "noise_report_run": "runs/20261106T100707320190Z_183353f6a1b0_81e66b",
+  "noise_scan_complete": true,
+  "extension_pipeline": "data/M6_v1/extension_controller/pipeline.json",
+  "extension_log": "reports/M6_extension_pipeline.log",
+  "extension_scan_log": "reports/M6_noise_extension_full_v2.log",
+  "preregistration": "data/M6_v1/noise_extension_preregistration.json",
+  "noise_extension_progress": "runs/20261106T083025107007Z_117db313c288_7c4e09/progress.json",
+  "noise_extension_run": "/home/me/PaperField/CalReader/runs/20261106T083025107007Z_117db313c288_7c4e09",
+  "selected_sigma": 2.0,
+  "noise_selection_status": "threshold_unmet_degraded",
+  "noise_selection_run": "/home/me/PaperField/CalReader/runs/20261106T100707320190Z_183353f6a1b0_81e66b",
+  "noise_extension_gpu_hours": 1.6414967694155673,
+  "plan": "data/M6_v1/plan.json",
+  "cost_estimate": {
+    "used_gpu_hours": 3.4625289870558484,
+    "train_seconds_per_problem": 7.354284813749837,
+    "held_seconds_per_problem": 12.253899454488419,
+    "safety_factor": 1.2,
+    "train_count": 6817,
+    "projected_gpu_hours": 29.580359593893952,
+    "initial_train_count": 6817,
+    "actual_fixed_data_gpu_hours": 12.768973068783072,
+    "refinement": "cost-only after complete fixed reader_val/val/cal/test, before any reader_train generation",
+    "initial_plan_sha256": "ae4e7924ba85841e9b7e61044fbe430a36174f53385e0b760d27340d34efcfb1"
+  },
+  "resource_wait": null,
+  "all_three_source_workers_started": true,
+  "storage_reserve_release_additional_gib": 20,
+  "storage_auto_refill_paused": true,
+  "generation_progress": {
+    "source_generate_train_2": "/home/me/PaperField/CalReader/runs/20261106T134305380898Z_baf4f3668024_914dc5/progress.json",
+    "source_generate_train_0": "/home/me/PaperField/CalReader/runs/20261106T134305490490Z_eb2c935b6c36_7b38ec/progress.json",
+    "source_generate_train_1": "/home/me/PaperField/CalReader/runs/20261106T134305324308Z_774137588b48_83fe4a/progress.json"
+  },
+  "q4_marginal_audit_smoke": "runs/20261106T122304750730Z_ae564d11b4f6_2cfc7c",
+  "report_scope_fix": "M6 report only; concurrent M7 status preserved",
+  "generation_counts": {
+    "reader_train": {
+      "persisted": 6817,
+      "planned": 6817
+    },
+    "reader_val": {
+      "persisted": 1000,
+      "planned": 1000
+    },
+    "val": {
+      "persisted": 300,
+      "planned": 300
+    },
+    "cal": {
+      "persisted": 500,
+      "planned": 500
+    },
+    "test": {
+      "persisted": 1005,
+      "planned": 1005
+    }
+  },
+  "gpu_hours_by_section": {
+    "A": 0.4131261349114033,
+    "B": 27.90049499045918,
+    "CD": 19.283724366061904
+  },
+  "data_counts": {
+    "reader_train": {
+      "problems": 6817,
+      "states": 293301,
+      "mc_panels": 0
+    }
+  },
+  "reader_train_count_locked": 6817,
+  "fixed_data_completed": true,
+  "context_width_audit": "Original official cohort widths recomputed with LLaMA tokenizer; zero mismatches; metadata only",
+  "reader_train_persisted": 6817,
+  "context_metadata_audit": "/home/me/PaperField/CalReader/runs/20261106T144645586083Z_b79ee1e1153d_5304e7",
+  "context_width_mismatches": 0,
+  "optional_llama_unseen_cost_policy": "configs/M6_llama_unseen_budget.yaml",
+  "source_generation_complete": true,
+  "test_count": 20,
+  "data_audit": "runs/20261106T185147038791Z_b8b05e845c1b_9144da",
+  "q4_numeric_tvd": {
+    "reader_train": 0.1298147603646001,
+    "reader_val": 0.19819819819819767,
+    "cal": 0.0,
+    "test": 0.0
+  },
+  "priority_handover_config": "configs/M6_priority_resume.yaml",
+  "priority_handover_log": "reports/M6_priority_resume.log",
+  "priority_resume_pipeline_log": "reports/M6_priority_pipeline.log",
+  "controller_handover_waiting_for_C1": false,
+  "c4_cost_refinement": "fixed QA metadata counts; optional val15 throughput smoke; maximum completed family timing only",
+  "priority_resume_run": "/home/me/PaperField/CalReader/runs/20261106T192534243350Z_180e2864dfe1_80d0d0",
+  "required_training_jobs": 78,
+  "priority_handover_complete": true,
+  "controller_resume_run": "/home/me/PaperField/CalReader/runs/20261106T214630343911Z_ac5e02d9e22d_911766",
+  "optional_llama_unseen_cost": {
+    "problem_counts": {
+      "unseen_train": 996,
+      "unseen_eval": 997
+    },
+    "problem_count": 1993,
+    "qa_rows": {
+      "unseen_train": 98964,
+      "unseen_eval": 33201
+    },
+    "source_generation_estimate_gpu_hours": 8.140673870931806,
+    "six_reader_inference_estimate_gpu_hours": 0.2760460850413094,
+    "estimated_additional_gpu_hours": 8.416719955973116,
+    "policy": "configs/M6_llama_unseen_budget.yaml",
+    "basis": "source smoke, C1 reader_val timing and frozen input counts only",
+    "policy_sha256": "2c5fdb2753bce3ffcdc7b79beceed26e3a9611e78f920d3c96dd6ba3670815ac",
+    "policy_config": {
+      "milestone": "M6",
+      "stage": "optional_unseen_cost_assessment",
+      "section": "CD",
+      "plan": "data/M6_v1/plan.json",
+      "pipeline": "data/M6_v1/pipeline_noise_v2.json",
+      "reference_qa": "data/M4_v0/qa",
+      "input_plan": "data/M4_v0/unseen_plan.json",
+      "qa_smoke_log": "reports/M6_questions_smoke.log",
+      "tests_log": "reports/M6_tests_priority_final_v4.log",
+      "splits": [
+        "unseen_train",
+        "unseen_eval"
+      ],
+      "source": "llama",
+      "source_seed": 11,
+      "reader_kinds": [
+        "lite",
+        "b3"
+      ],
+      "reader_seeds": [
+        11,
+        22,
+        33
+      ],
+      "generation_safety_factor": 1.2,
+      "inference_safety_factor": 1.5,
+      "inference_load_seconds_per_model": 90,
+      "gpu_hours_guard": 0.2,
+      "section_cap_gpu_hours": 27,
+      "decision": "cost_only_after_C3_before_C2_C4_with_core_inference_reserved",
+      "scope": "full frozen 1993-problem SVAMP/ASDiv ID pool, heldout K16 pi and pi_T; no resizing or outcome-based admission"
+    },
+    "used_CD_gpu_hours": 9.392257521451349,
+    "remaining_CD_gpu_hours": 17.60774247854865,
+    "existing_inference_reserved_gpu_hours": 5.5698965702887016,
+    "guard_gpu_hours": 0.2,
+    "status": "admitted_source_generation_pending"
+  },
+  "controller_resume_config": "configs/M6_parallel_eval_resume.yaml",
+  "storage_reserve_release_final_gib": 10,
+  "optional_llama_unseen": {
+    "status": "completed",
+    "source_data_only": true,
+    "reader_test_opened": false,
+    "root": "data/M6_v1/llama_unseen/dumps",
+    "qa": "data/M6_v1/llama_unseen/qa",
+    "questions_run": "/home/me/PaperField/CalReader/runs/20261107T002840111803Z_e98d047241a9_f67a2f",
+    "audit_run": "/home/me/PaperField/CalReader/runs/20261107T002850033869Z_a2e7c9fd56a4_e6b5e3",
+    "input_context_audit": "/home/me/PaperField/CalReader/runs/20261106T221550238943Z_417e8c111bbb_18371f/input_context_audit.json",
+    "splits": {
+      "unseen_train": 996,
+      "unseen_eval": 997
+    }
+  },
+  "training_lock": "data/M6_v1/training_lock.json",
+  "final_evaluations_complete": 96,
+  "final_evaluations_planned": 96,
+  "final_reader_test_opened": true,
+  "freeze": "data/M6_v1/freeze.json",
+  "gpu_hours": 47.59734549143249
+}

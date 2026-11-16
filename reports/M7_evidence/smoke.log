@@ -1,0 +1,8 @@
+/home/me/PaperField/CalReader/runs/20261106T082844475312Z_7d01e42f3130_c17a87
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.09it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.09it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.61it/s]
+{"episodes": 8, "reconstructed_message_equal_fraction": 1.0, "message_reconstruction_max_abs": 0.0, "historical_logits_max_abs": 0.0, "historical_logits_mean_abs": 0.0, "receiver_argmax_agreement": 1.0, "historical_raw_KV_saved": false, "passed": true, "scope": "historical seeded prefix reconstructed from frozen adapter; raw relay compared separately"}
+causal 2/8
+causal 4/8
+causal 6/8
+causal 8/8
+{"historical": {"episodes": 8, "reconstructed_message_equal_fraction": 1.0, "message_reconstruction_max_abs": 0.0, "historical_logits_max_abs": 0.0, "historical_logits_mean_abs": 0.0, "receiver_argmax_agreement": 1.0, "historical_raw_KV_saved": false, "passed": true, "scope": "historical seeded prefix reconstructed from frozen adapter; raw relay compared separately"}, "raw_KV_max_abs": 0.0, "raw_KV_equal_fraction": 1.0, "causal_accuracy": {"message": 0.375, "none": 0.5, "mismatch": 0.25}, "sender_accuracy": 0.25, "episodes": 8, "groups": 8, "storage_mean_bytes_per_clean": 9408512.0, "storage_max_bytes_per_clean": 9715712, "projected_target_KV_GiB_2messages_per_episode": 210.296630859375, "smoke_passed": true, "causal_gain_vs_none": -0.125, "causal_gain_vs_mismatch": 0.125}

@@ -1,0 +1,38 @@
+{
+  "artifact": "appendix_labels",
+  "config": {
+    "artifact": "appendix_labels",
+    "caption": "Appendix: Label counts and marginals",
+    "column_widths": [
+      1.1,
+      1.1,
+      0.5,
+      0.3,
+      0.6,
+      0.8,
+      1
+    ],
+    "input_freeze": "data/M9_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "labels": "data/M9_v1/paper_inputs/label_statistics.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "ee2a3fcbc000fb93be57b189fffb810a38c6ccc55271dba63dff1d9b4b508251",
+  "input_freeze_sha256": "3494aa1f8f9596db929a57e29a8e5e442b645865c8b300d6cb03c21963e20c06",
+  "inputs": {
+    "data/M9_v1/paper_inputs/label_statistics.csv": "266116dab5eb26ac9cbf79bf65f5bec5f1cfd47f6cb07fad1efbbef4d791a57f"
+  },
+  "outputs": {
+    "derived/appendix_labels.csv": "266116dab5eb26ac9cbf79bf65f5bec5f1cfd47f6cb07fad1efbbef4d791a57f",
+    "tables/appendix_labels.tex": "accd3365df7c7dbcb8a60e0447a373b9b557879082e498412654e34f57ca75df"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "sha256": {
+    "data/M9_v1/paper_inputs/communication_detection.csv": "bd3c74c2a7536e8979e1b62fddbff4d0e88c05db44dbcf9d7cdf7eccfedbd96f",
+    "data/M9_v1/paper_inputs/communication_paired.csv": "c028c6705e09cdfa35341ee6536c920bb035c898abb0f15fa7d749d1cd94fc8e",
+    "data/M9_v1/paper_inputs/communication_qa.csv": "4cf63d9cd73229cd6dd3a46da7ebb1c17c7e79b93bde845a2639cb23b490168e",
+    "data/M9_v1/paper_inputs/communication_qa_paired.csv": "e09a6995bbff4926e299066c1e592bc35252a945508a273a5e94127a31a2fbd6",
+    "data/M9_v1/paper_inputs/coverage_recovery.csv": "8521b3f5fc7f1cb6558b2642eeecd16e5247b0abbcf51a3c67859750990c4471",
+    "data/M9_v1/paper_inputs/data_scales.csv": "91487c098c645781fe25f88337ec8cea4e4c1cb4e17b46713cfcc4702bca8c8c",
+    "data/M9_v1/paper_inputs/deduplication.csv": "7242af78d68b18a73a3a0f7c6b63c269db107ab6414dbf73133476b9946a1057",
+    "data/M9_v1/paper_inputs/dependent.csv": "948376557068c5bd084cd811ccd5de29ca9f4566e8ab02743a95f0418ff42dcb",
+    "data/M9_v1/paper_inputs/early_exit.csv": "4ea6d9db8126d3a8c206b7f44e91733bb3aecc241c9f4fc561043bd779f37d47",
+    "data/M9_v1/paper_inputs/label_statistics.csv": "266116dab5eb26ac9cbf79bf65f5bec5f1cfd47f6cb07fad1efbbef4d791a57f",
+    "data/M9_v1/paper_inputs/legacy_cost_runs.csv": "dab0c3a4aaac7a8350c0a42da4992c02ebfe70d0d8522e191319636a250693ac",
+    "data/M9_v1/paper_inputs/localization.csv": "139b429df229f75127bf62c83d242eaef824771e4f05468ed3f9b77e3253691c",
+    "data/M9_v1/paper_inputs/noise_gpt2.csv": "3d5124db2f07d48ecd1b1901593c27c04213ae0398ce82b78074d34856e3af0d",
+    "data/M9_v1/paper_inputs/noise_llama.csv": "609b27728f9f49c487aa10b72f7eeecb185e8cf9bdaf69a05bcf782fc08bfdcb",
+    "data/M9_v1/paper_inputs/protocol_alignment.csv": "9bc178eb8b4bb3362d9eb5b6314819d357c20c63c1c436ffb6f02a17495cc0ef",
+    "data/M9_v1/paper_inputs/ranking.csv": "5ffc6776c2da3a3d5970c55c0cb5d7f9e7ddff7dc617d95eaa0aaf69ca99dadc",
+    "data/M9_v1/paper_inputs/search.csv": "477dfff06ee2bdcbf2cc303a196e481c45da11c0fc5a964e213f56c3db3f7ca7",
+    "data/M9_v1/paper_inputs/search_settings.csv": "7032a800e7b057db77593081685665fb4d79b5b7f8203ea9a318fe24c5cdfed6",
+    "data/M9_v1/paper_inputs/shift.csv": "21b9287434721bbd630495efeca5fc0406ea6947bbb38e65868271078230a084",
+    "data/M9_v1/paper_inputs/single_source_paired.csv": "bc415541e895ee871a259e18ae874ebb9df122e227791e97b849ef731cc22b36",
+    "data/M9_v1/paper_inputs/small_sigma.csv": "ef5f687f8504f9af01c1060dea05866c900e4c6d50727d6005cccc898d825bbd",
+    "data/M9_v1/paper_inputs/source_transfer.csv": "7dddfa2ec27dabb2b45d6817d2f2664029229fd30827645fea05f32ea39ee3be",
+    "data/M9_v1/paper_inputs/source_transfer_paired.csv": "5fa4d45a2d250c023debb7c1097effb43feb613c702e30aa5d2c8467472257e3",
+    "data/M9_v1/paper_inputs/type_transfer.csv": "04e94ad186330fb145ca9bc6aaaea6cc875abb09f495eaf1f1ed5f1c2b7a1d2f",
+    "data/M9_v1/paper_inputs/weak_D0.csv": "76fb6abdc7255785031cb6b2d659836e8defea88594bdc7cb222a051ce835023",
+    "data/M9_v1/paper_inputs/weak_designs.csv": "36de02b589bd3063a0814416f494da0657b65cbc8ec156bc92c8de7c0fc3f364"
+  },
+  "version": "M9_static_paper_inputs_v1"
+}

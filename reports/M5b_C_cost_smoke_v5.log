@@ -1,0 +1,10 @@
+/home/me/PaperField/CalReader/runs/20261106T020715318061Z_e6ddffebf95c_ed72e0
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/me/PaperField/CalReader/.venv/lib/python3.11/site-packages/peft/tuners/lora/layer.py:1768: UserWarning: fan_in_fan_out is set to False but the target module is `Conv1D`. Setting fan_in_fan_out to True.
+  warnings.warn(
+Passing a tuple of `past_key_values` is deprecated and will be removed in Transformers v4.53.0. You should pass an instance of `Cache` instead, e.g. `past_key_values=DynamicCache.from_legacy_cache(past_key_values)`.
+{"problem": 0, "seed": 11, "seconds": 30.586453943978995, "gpu_hours": 0.011137397812514488, "lane_forwards": 22870, "counts": {"B": 0, "C": 1}}
+{"problem": 74, "seed": 11, "seconds": 24.960192968021147, "gpu_hours": 0.01808193636584393, "lane_forwards": 42253, "counts": {"B": 0, "C": 2}}
+{"problem": 149, "seed": 11, "seconds": 25.296688263013493, "gpu_hours": 0.025122035259167508, "lane_forwards": 61530, "counts": {"B": 0, "C": 3}}
+{"problem": 224, "seed": 11, "seconds": 25.128604006953537, "gpu_hours": 0.03211341373334613, "lane_forwards": 81937, "counts": {"B": 0, "C": 4}}
+{"problem": 299, "seed": 11, "seconds": 26.119226683978923, "gpu_hours": 0.03937997028056998, "lane_forwards": 102356, "counts": {"B": 0, "C": 5}}

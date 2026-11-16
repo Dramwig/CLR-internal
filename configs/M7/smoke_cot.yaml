@@ -1,0 +1,17 @@
+milestone: M7
+mode: smoke
+seed: 20261106
+output: data/M7_v1
+idea_a: /home/me/PaperField/LatDefer
+reference_run: /home/me/PaperField/LatDefer/runs/20261029T193142287175Z_142891a52ccc_f733c0
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+device: cuda:0
+max_context: 8192
+batch_size: 2
+smoke_groups: 8
+layers: [0, 12, 23, 35]
+max_seconds: 900
+budget_gpu_hours: 40
+historical_logit_atol: 0.001
+answer_mode: cot
+max_new_tokens: 512

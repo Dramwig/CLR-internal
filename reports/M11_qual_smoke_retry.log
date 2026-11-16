@@ -1,0 +1,21 @@
+/home/me/PaperField/CalReader/runs/20261112T120930019017Z_7860e4ef7195_38ca87
+reading gpt2
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 21.65it/s]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m11_qual.py", line 43, in <module>
+    main(load_config(a.config,a.overrides))
+  File "/home/me/PaperField/CalReader/scripts/m11_qual.py", line 23, in main
+    export=Export(c,run);counts,size=export.execute();status='completed'
+                                     ^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/export/qual.py", line 575, in execute
+    print('reading',source,flush=True);counts[source+'_reading']=self.reading(source)
+                                                                 ^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/export/qual.py", line 329, in reading
+    cp=self.conformal(source,method,seed,t)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/export/qual.py", line 261, in conformal
+    assert len({r['threshold'] for r in rows})==1
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

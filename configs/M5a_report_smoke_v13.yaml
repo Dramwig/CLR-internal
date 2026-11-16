@@ -1,0 +1,10 @@
+milestone: M5a
+stage: report_smoke
+seed: 20261105
+search_run: runs/20261105T055735193628Z_def6631ee7c0_0ad0e1
+smoke: true
+bootstrap_repetitions: 10000
+output: data/M5a_report_smoke_v13
+review: reports/M5a_report_smoke.md
+detail: reports/M5a_report_smoke_detail.md
+tests_log: reports/M5a_tests_analysis_v13.log

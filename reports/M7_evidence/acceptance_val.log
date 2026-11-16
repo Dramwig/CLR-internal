@@ -1,0 +1,44 @@
+/home/me/PaperField/CalReader/runs/20261106T083431675524Z_e1ac3124ee9a_1dc1cb
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:02,  1.03s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.01s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:02<00:00,  1.46it/s]
+{"episodes": 8, "reconstructed_message_equal_fraction": 1.0, "message_reconstruction_max_abs": 0.0, "historical_logits_max_abs": 0.0, "historical_logits_mean_abs": 0.0, "receiver_argmax_agreement": 1.0, "historical_raw_KV_saved": false, "passed": true, "scope": "historical seeded prefix reconstructed from frozen adapter; raw relay compared separately"}
+causal 2/80
+causal 4/80
+causal 6/80
+causal 8/80
+causal 10/80
+causal 12/80
+causal 14/80
+causal 16/80
+causal 18/80
+causal 20/80
+causal 22/80
+causal 24/80
+causal 26/80
+causal 28/80
+causal 30/80
+causal 32/80
+causal 34/80
+causal 36/80
+causal 38/80
+causal 40/80
+causal 42/80
+causal 44/80
+causal 46/80
+causal 48/80
+causal 50/80
+causal 52/80
+causal 54/80
+causal 56/80
+causal 58/80
+causal 60/80
+causal 62/80
+causal 64/80
+causal 66/80
+causal 68/80
+causal 70/80
+causal 72/80
+causal 74/80
+causal 76/80
+causal 78/80
+causal 80/80
+{"historical": {"episodes": 8, "reconstructed_message_equal_fraction": 1.0, "message_reconstruction_max_abs": 0.0, "historical_logits_max_abs": 0.0, "historical_logits_mean_abs": 0.0, "receiver_argmax_agreement": 1.0, "historical_raw_KV_saved": false, "passed": true, "scope": "historical seeded prefix reconstructed from frozen adapter; raw relay compared separately"}, "raw_KV_max_abs": 0.0, "raw_KV_equal_fraction": 1.0, "causal_accuracy": {"message": 0.45, "none": 0.2625, "mismatch": 0.2375}, "sender_accuracy": 0.3375, "episodes": 80, "groups": 80, "storage_mean_bytes_per_clean": 2345523.2, "storage_max_bytes_per_clean": 2445312, "projected_target_KV_GiB_2messages_per_episode": 52.42652893066407, "smoke_passed": true, "causal_gain_vs_none": 0.1875, "causal_gain_vs_mismatch": 0.21250000000000002}

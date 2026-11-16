@@ -1,0 +1,14 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Latent reasoning.} Coconut~\cite{hao2024coconut} feeds the last hidden state back as the next input; CODI~\cite{shen2025codi} distills explicit CoT into continuous thoughts by self-distillation; Huginn~\cite{geiping2025huginn} scales test-time compute by recurrent depth. Whether these latents implement step-by-step computation is debated~\cite{latentcot_reason}; our early-exit and readability analyses add evidence for CODI.
+
+\paragraph{Reading activations.} Linear and MLP probes~\cite{alain2016probes} and probe-based monitors of continuous-thought models~\cite{ulterior} answer one question per probe. Patchscopes and SelfIE~\cite{ghandeharioun2024patchscopes,chen2024selfie} decode an activation by patching it into a prompt; LatentQA~\cite{pan2024latentqa} and later verbalizers~\cite{uav,fav} fine-tune a decoder to answer open questions about activations. Cross-model verbalization is reported to largely fail~\cite{privileged}, and none of these methods provides calibrated confidence or coverage. Our verbalizer baseline (B5c) follows LatentQA with a trained projection and LoRA.
+
+\paragraph{Process value and verification.} PRMs score explicit reasoning steps~\cite{lightman2024verify,wang2024mathshepherd}. Latent Thinking Optimization trains a latent reward model on Huginn~\cite{lto}; hidden-state verifiers score explicit CoT~\cite{hsrm,clue}. We evaluate latent value functions inside compute-matched search and separate between-problem from within-problem discrimination.
+
+\paragraph{Latent communication and its security.} LatentMAS and Cache-to-Cache~\cite{latentmas,c2c} exchange latent states or fused KV caches. Tampering with transmitted KV states can collapse collaboration while text outputs look normal, and norm-based detection is bypassed by adaptive attacks~\cite{latentlie}; latent attacks on latent multi-agent systems~\cite{latentattack} and leakage defenses~\cite{lcguard} have also been studied. Causal audits test \emph{whether} latent channels carry information~\cite{latentpay,latentcomm}; we build a per-message auditor of \emph{what} they carry.
+
+\paragraph{Calibration and conformal prediction.} We use temperature scaling~\cite{guo2017calibration}, Mondrian (class-conditional) split conformal~\cite{vovk2005alrw}, and weighted conformal under covariate shift~\cite{tibshirani2019weighted}. Robustness evaluation follows PGD~\cite{madry2018pgd} with expectation over transformation~\cite{athalye2018eot}.
+
+% ---------------------------------------------------------------

@@ -1,0 +1,11 @@
+preserved_run: runs/20261110T105347226216Z_cf4fc54b6977_6517df
+preserved_pid: 3151269
+original_queue: configs/M10/full_gsm_queue.yaml
+supplement: data/M10_v1/gsm_execution_supplement.json
+queues:
+- config: configs/M10/queue_llama_b6_gpu2.yaml
+  log: reports/M10_evidence/queue_llama_b6_gpu2.log
+- config: configs/M10/queue_pertype_gpu3.yaml
+  log: reports/M10_evidence/queue_pertype_gpu3.log
+remaining_gpu4_queue: configs/M10/queue_remaining_gpu4.yaml
+remaining_gpu4_log: reports/M10_evidence/queue_remaining_gpu4.log

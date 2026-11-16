@@ -1,0 +1,2 @@
+{"epoch": 1, "steps": 16, "train": {"nll": 0.5360353240966796, "accuracy": 0.8235}, "validation": {"nll": 0.5391236686706543, "accuracy": 0.824}, "gpu_hours": 0.0027354084913854926}
+{"epoch": 10, "steps": 160, "train": {"nll": 0.038589363813400265, "accuracy": 0.9925}, "validation": {"nll": 0.05248625183105469, "accuracy": 0.989}, "gpu_hours": 0.013248287835837497}

@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m12_pipeline.py", line 89, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');a=p.parse_args();main(load_config(a.config))
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m12_pipeline.py", line 83, in main
+    launch('scripts.m12_permutation',{**c,'mode':'full','reader_device':devices[0]},'permutation')
+  File "/home/me/PaperField/CalReader/scripts/m12_pipeline.py", line 19, in launch
+    subprocess.run(['.venv/bin/python','-m',module,str(p)],stdout=f,stderr=subprocess.STDOUT,check=True)
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['.venv/bin/python', '-m', 'scripts.m12_permutation', 'configs/M12/permutation.yaml']' returned non-zero exit status 1.

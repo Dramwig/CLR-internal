@@ -1,0 +1,37 @@
+milestone: M8c
+mode: report_final21_continuation
+seed: 20261109
+data_seed: 20261107
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8c_v1
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+device: cuda:0
+min_free_GiB: 0
+budget_gpu_hours: 21
+max_seconds: 3600
+reader_seeds:
+- 11
+- 22
+- 33
+designs:
+- D0
+- R4
+epsilons:
+- 0.01
+- 0.1
+- 1.0
+analysis_folder: analysis_final21
+training_folder: training_exposure_v2
+calibration_folder: calibration
+completion_statement: M8c固定主test200组三seed E3完成待审查；次要项按21GPUh余量执行，实际完成数如下。
+gate_limits:
+- R4 val/test A1/A4并列报告；val全部200组，test固定200组，逐seed证据见详细表。
+- 正式val20矩阵90分钟超时，仅19完整组用于描述性E3；不称val20矩阵完成。
+limitations:
+- 主test按用户最终授权固定200组、三seed、ε=.01/.1/1、λ=1、PGD200；原test500不外推，ε=.03/.3裁掉。
+- 次要项仅主200的前100组，按最小扰动→E1/E2→λ敏感性顺序消耗余量；未完成项与部分组分别记录，不再申请预算。
+- 此前15GPUh预算报告及60组提议保留为历史，60组从未运行；21GPUh含此前6.43GPUh、全部失败/中止成本。
+- 最小扰动是有限PGD搜索发现成本，二分最多6次；有限成功对的分位数不是认证最小或100/500组总体保证。
+- seed22原GPU run完成189组后因8h单run时间上限失败；接续继承原部署随机key、只补缺失trial，原结果和8.00GPUh均保留。CPU合并精确1200行，不冒充源GPU运行；不根据test结果改设置。
+- 原final_lock保持只读；运行补充execution_supplement.json记录接续代码/资源门槛，execution_secondary_supplement.json记录次要项资源预检15→8GiB；模型、精度和科学矩阵不变。

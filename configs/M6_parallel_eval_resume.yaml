@@ -1,0 +1,18 @@
+milestone: M6
+section: CD
+stage: parallel_evaluation_controller_handover
+prior_pids:
+- 3609256
+- 3557163
+pipeline: data/M6_v1/pipeline_noise_v2.json
+config: data/M6_v1/extension_controller/configs/production_noise_v2.yaml
+log: reports/M6_parallel_eval_pipeline.log
+reason: Parallel final inference only; unchanged scientific settings and checkpoint
+  selection
+handover_live_stage: C3_completed_parallel_evaluation_handover
+required_models:
+- transfer_llama_to_gpt2_transfer_full_11
+- transfer_llama_to_gpt2_transfer_full_22
+- transfer_llama_to_gpt2_transfer_full_33
+runtime_env:
+  LD_LIBRARY_PATH: /home/me/anaconda3/envs/latdefer/lib

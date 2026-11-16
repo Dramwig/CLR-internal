@@ -1,0 +1,35 @@
+{
+  "stage": "complete",
+  "last_run": "/home/me/PaperField/CalReader/runs/20261110T131350494444Z_85cdb1244d6d_d0615d",
+  "test_opened": true,
+  "updated_utc": "2026-11-10T14:44:31.232233+00:00",
+  "config": "configs/M10/llama_CLR-lite-single_throughput_smoke.yaml",
+  "active_config": "configs/M10/llama_CLR-per-type_22_gpu3.yaml",
+  "active_processes": [
+    {
+      "pid": 3758522,
+      "argv": [
+        ".venv/bin/python",
+        "scripts/m10_train_queue.py",
+        "configs/M10/resume_missing_llama_pertype.yaml"
+      ]
+    },
+    {
+      "pid": 3758539,
+      "argv": [
+        "/home/me/PaperField/CalReader/.venv/bin/python",
+        "scripts/m10_train_gsm.py",
+        "configs/M10/llama_CLR-per-type_11_gpu3.yaml"
+      ]
+    }
+  ],
+  "completed_full_training_count": 23,
+  "GPUh_by_section": {
+    "P1": 9.594821356149621,
+    "P2-4": 0.10085295066748383,
+    "P2-5": 0.6799958251569318,
+    "P2-6": 1.6251337129925378
+  },
+  "milestone_complete": true,
+  "status": "M10投稿补实验及论文产物完成待审查，实验最终冻结；B5c全量因预算NR，HiddenBench仅探索性。唯一审查reports/M10_REVIEW.md；冻结data/M10_v1/freeze.json。"
+}

@@ -1,0 +1,8 @@
+configs:
+- configs/M10/llama_B0_smoke.yaml
+- configs/M10/llama_B3-prefix_smoke.yaml
+- configs/M10/llama_CLR-lite-single_smoke.yaml
+- configs/M10/gpt2_B6_smoke.yaml
+- configs/M10/llama_B6_smoke.yaml
+- configs/M10/gpt2_CLR-per-type_smoke.yaml
+- configs/M10/llama_CLR-per-type_smoke.yaml

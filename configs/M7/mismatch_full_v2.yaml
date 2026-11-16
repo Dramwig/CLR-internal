@@ -1,0 +1,15 @@
+milestone: M7
+mode: full
+seed: 20261106
+data_seed: 20261106
+output: data/M7_v1
+idea_a: /home/me/PaperField/LatDefer
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+device: cuda:2
+max_context: 8192
+layers: [35]
+answer_mode: direct
+counts: {reader_train: 464, reader_val: 58, cal_A: 29, cal_B: 29, test: 116}
+source_splits: [reader_train, reader_val, cal_A, cal_B]
+max_seconds: 7200
+budget_gpu_hours: 40

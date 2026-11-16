@@ -1,0 +1,11 @@
+{
+  "milestone": "M10c",
+  "stage": "complete_pending_review",
+  "no_training": true,
+  "no_recalibration": true,
+  "no_new_test_inference": true,
+  "measurement_run": "/home/me/PaperField/CalReader/runs/20261112T012246477271Z_f559bae52a27_2d1f74",
+  "gpu_hours": 0.09410342804861203,
+  "review": "reports/M10c_REVIEW.md",
+  "freeze": "data/M10c_v1/freeze.json"
+}

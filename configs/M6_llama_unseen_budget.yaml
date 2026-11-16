@@ -1,0 +1,28 @@
+milestone: M6
+stage: optional_unseen_cost_assessment
+section: CD
+plan: data/M6_v1/plan.json
+pipeline: data/M6_v1/pipeline_noise_v2.json
+reference_qa: data/M4_v0/qa
+input_plan: data/M4_v0/unseen_plan.json
+qa_smoke_log: reports/M6_questions_smoke.log
+tests_log: reports/M6_tests_priority_final_v4.log
+splits:
+- unseen_train
+- unseen_eval
+source: llama
+source_seed: 11
+reader_kinds:
+- lite
+- b3
+reader_seeds:
+- 11
+- 22
+- 33
+generation_safety_factor: 1.2
+inference_safety_factor: 1.5
+inference_load_seconds_per_model: 90
+gpu_hours_guard: 0.2
+section_cap_gpu_hours: 27
+decision: cost_only_after_C3_before_C2_C4_with_core_inference_reserved
+scope: full frozen 1993-problem SVAMP/ASDiv ID pool, heldout K16 pi and pi_T; no resizing or outcome-based admission

@@ -1,0 +1,5 @@
+{
+  "run": "supplemental/stats_20261116_v1/runs/20261115T184944562625Z_e161aa9425a1_085c91",
+  "checkpoint": "supplemental/stats_20261116_v1/runs/20261115T173700922431Z_37de8f356cda_2393b3/best.pt",
+  "test_opened": true
+}

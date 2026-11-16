@@ -1,0 +1,11 @@
+milestone: M5a
+stage: report
+seed: 20261105
+search_run: runs/20261105T060403949446Z_3a4adb8b01c7_fd463e
+smoke: false
+bootstrap_repetitions: 10000
+output: data/M5a_v13/analysis
+review: reports/M5a_REVIEW.md
+detail: reports/M5a_search.md
+tests_log: reports/M5a_tests_analysis_v13.log
+vote_extension_run: runs/20261105T113203872032Z_8ac13d9a6bdd_79f616

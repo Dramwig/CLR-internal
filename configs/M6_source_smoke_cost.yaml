@@ -1,0 +1,33 @@
+milestone: M6
+version: v1
+section: B
+stage: smoke
+mode: smoke
+seed: 11
+seeds:
+- 11
+- 22
+- 33
+protocol: configs/protocol_codi_llama_modelscope_v2_gpu4.yaml
+device: cuda:1
+min_free_gib: 14
+gpt2_root: data/dumps/codi_gpt2_v3
+gpt2_plan: data/M1_v3/frozen.json
+output: data/M6_v1
+dump_root: data/dumps/codi_llama_M6_v1
+sigma: 1.5
+sigmas:
+- 0.5
+- 1.0
+- 1.5
+- 2.0
+smoke_val: 2
+smoke_train: 40
+smoke_run: null
+noise_run: null
+cost_safety_factor: 1.2
+splits:
+- reader_train
+- reader_val
+- val
+- cal

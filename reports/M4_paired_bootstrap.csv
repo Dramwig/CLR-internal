@@ -1,0 +1,31 @@
+split,a,b,qtype,metric,delta,ci_low,ci_high,bootstrap,unit
+reader_val,main,b3_multi,Q1,nll,0.058944136108700175,0.054248324257847716,0.0635717261601006,10000,problem cluster; all steps together; mean of three seeds
+reader_val,main,B3,Q3,accuracy,-0.31599999999999995,-0.3322619047619046,-0.30033273809523797,10000,problem cluster; all steps together; mean of three seeds
+reader_val,main,B3,Q4,accuracy,-0.21409485637942552,-0.22485476906193338,-0.2032753006012023,10000,problem cluster; all steps together; mean of three seeds
+reader_val,main,B3,Q1,nll,0.08471953329352613,0.07852124871942105,0.09085251115519395,10000,problem cluster; all steps together; mean of three seeds
+reader_val,main,b3_multi,Q3,accuracy,-0.24107142857142858,-0.25702440476190463,-0.22523630952380957,10000,problem cluster; all steps together; mean of three seeds
+reader_val,main,b3_multi,Q4,accuracy,-0.15847170531539265,-0.16689360864586322,-0.15006143238858663,10000,problem cluster; all steps together; mean of three seeds
+reader_val,main,B3_matched,Q1,nll,0.04757417944168246,0.043193497941113275,0.05187677483363925,10000,problem cluster; all steps together; mean of three seeds
+reader_val,main,B3_matched,Q3,accuracy,-0.23249999999999998,-0.24790476190476202,-0.21711845238095237,10000,problem cluster; all steps together; mean of three seeds
+reader_val,main,B3_matched,Q4,accuracy,-0.025789674587269773,-0.028366256322168073,-0.023177306994942224,10000,problem cluster; all steps together; mean of three seeds
+reader_val,transfer_100,scratch_b3_100,Q4,accuracy,-0.0022187231606069285,-0.004342315583548048,-0.00011928619143048032,10000,problem cluster; all steps together; mean of three seeds
+reader_val,transfer_1000,scratch_b3_1000,Q4,accuracy,-0.03084740910392213,-0.035105926137990226,-0.026612451092661485,10000,problem cluster; all steps together; mean of three seeds
+reader_val,transfer_10000,scratch_b3_10000,Q4,accuracy,-0.09467745013837199,-0.10138163231224369,-0.08808092375226653,10000,problem cluster; all steps together; mean of three seeds
+test,main,b3_multi,Q1,nll,0.0443751519175112,0.03570557670980591,0.05310318700808605,10000,problem cluster; all steps together; mean of three seeds
+test,main,B3,Q3,accuracy,-0.22999289267945985,-0.25136342099028663,-0.207627339493011,10000,problem cluster; all steps together; mean of three seeds
+test,main,B3,Q4,accuracy,-0.18320372503840246,-0.19904533890168982,-0.16726610503072195,10000,problem cluster; all steps together; mean of three seeds
+test,main,B3,Q1,nll,0.08692097743542569,0.07526345923631242,0.09832416851478841,10000,problem cluster; all steps together; mean of three seeds
+test,main,b3_multi,Q3,accuracy,-0.1761194029850746,-0.19739516702203266,-0.15517531390665718,10000,problem cluster; all steps together; mean of three seeds
+test,main,b3_multi,Q4,accuracy,-0.13659274193548387,-0.14801747311827954,-0.1248799923195084,10000,problem cluster; all steps together; mean of three seeds
+test,main,B3_matched,Q1,nll,0.035393284987914615,0.027493039159498987,0.042871918504304204,10000,problem cluster; all steps together; mean of three seeds
+test,main,B3_matched,Q3,accuracy,-0.17010187159440887,-0.18995617152333572,-0.1500118455342336,10000,problem cluster; all steps together; mean of three seeds
+test,main,B3_matched,Q4,accuracy,-0.02388152841781874,-0.02762636808755765,-0.020113287250384033,10000,problem cluster; all steps together; mean of three seeds
+test,transfer_100,scratch_b3_100,Q4,accuracy,-0.0032642089093701996,-0.00643241167434716,2.4001536098310705e-05,10000,problem cluster; all steps together; mean of three seeds
+test,transfer_1000,scratch_b3_1000,Q4,accuracy,-0.03201804915514593,-0.03818644393241166,-0.025921658986175135,10000,problem cluster; all steps together; mean of three seeds
+test,transfer_10000,scratch_b3_10000,Q4,accuracy,-0.08585349462365591,-0.09540610599078321,-0.0759408602150538,10000,problem cluster; all steps together; mean of three seeds
+reader_val,main,B3,Q2,auroc,-0.036440860630626425,-0.0426017832495456,-0.030441661123706446,10000,problem cluster; weighted step AUROC averaged over t and three seeds
+reader_val,main,b3_multi,Q2,auroc,-0.020461406527680248,-0.025944489637566296,-0.015208608725712615,10000,problem cluster; weighted step AUROC averaged over t and three seeds
+reader_val,main,B3_matched,Q2,auroc,-0.0227709527992865,-0.027911069842441537,-0.01764051857212165,10000,problem cluster; weighted step AUROC averaged over t and three seeds
+test,main,B3,Q2,auroc,-0.024575216989062548,-0.03314552588071989,-0.01618083690658181,10000,problem cluster; weighted step AUROC averaged over t and three seeds
+test,main,b3_multi,Q2,auroc,-0.01481358311567956,-0.02248120111408409,-0.007106169834559051,10000,problem cluster; weighted step AUROC averaged over t and three seeds
+test,main,B3_matched,Q2,auroc,-0.01967505156132247,-0.02707842233961856,-0.01255761337306926,10000,problem cluster; weighted step AUROC averaged over t and three seeds

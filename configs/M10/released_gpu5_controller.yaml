@@ -1,0 +1,4 @@
+dependency: data/M10_v1/trained/transfer_full.json
+queue: configs/M10/released_gpu5_queue.yaml
+log: reports/M10_evidence/released_gpu5_queue.log
+completion: data/M10_v1/released_gpu5_controller_completed.json

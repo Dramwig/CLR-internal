@@ -1,0 +1,12 @@
+test_real_group_splits (tests.test_m8b.CandidateAndSplit.test_real_group_splits) ... ok
+test_report_decisions_cannot_select_attack (tests.test_m8b.CandidateAndSplit.test_report_decisions_cannot_select_attack) ... ok
+test_option_order (tests.test_m8b.Protocol.test_option_order) ... ok
+test_public_expectations_ignore_private (tests.test_m8b.Protocol.test_public_expectations_ignore_private) ... ok
+test_random_cache_and_gradient (tests.test_m8b.Protocol.test_random_cache_and_gradient) ... ok
+test_randomized_raw_gradient (tests.test_m8b.Protocol.test_randomized_raw_gradient) ... ok
+test_threshold (tests.test_m8b.Protocol.test_threshold) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.200s
+
+OK

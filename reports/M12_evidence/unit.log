@@ -1,0 +1,21 @@
+...F.                                                                    [100%]
+=================================== FAILURES ===================================
+___________________ test_same_training_gradients_for_control ___________________
+
+    def test_same_training_gradients_for_control():
+        torch.set_num_threads(1);torch.manual_seed(22)
+        old=Lite(vocab_size=16,hidden=16,layers=2,heads=2)
+        new=AblationLite('main',vocab_size=16,hidden=16,layers=2,heads=2);new.load_state_dict(old.state_dict())
+        text,z,m=fixture()
+        for q in ['Q1','Q2','Q3','Q4']:
+            old.zero_grad();new.zero_grad();a=old(text,z,m,q);b=new(text,z,m,q)
+>           assert torch.equal(a,b);a.square().sum().backward();b.square().sum().backward()
+            ^^^^^^^^^^^^^^^^^^^^^^^
+E           assert False
+E            +  where False = <built-in method equal of type object at 0x7f6fbe597240>(tensor([[0.0000, 0.2069]], grad_fn=<StackBackward0>), tensor([[0.0000, 0.2069]], grad_fn=<StackBackward0>))
+E            +    where <built-in method equal of type object at 0x7f6fbe597240> = torch.equal
+
+tests/test_m12.py:55: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_m12.py::test_same_training_gradients_for_control - assert F...
+1 failed, 4 passed in 8.06s

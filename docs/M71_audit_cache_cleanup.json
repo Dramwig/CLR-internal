@@ -1,0 +1,17 @@
+{
+  "reason": "retain space for completion-audit provenance; regenerate-only stale pip download wheels",
+  "files": [
+    {
+      "path": "/tmp/pip-unpack-n8_upz3r/setuptools-60.2.0-py3-none-any.whl",
+      "bytes": 953071,
+      "mtime": 1772612876.3551972,
+      "sha256": "5c89b1a14a67ac5f0956f1cb0aeb7d1d3f4c8ba4e4e1ab7bf1af4933f9a2f0fe"
+    },
+    {
+      "path": "/tmp/pip-unpack-wb_uzbki/cffi-1.17.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "bytes": 446512,
+      "mtime": 1772612880.0431278,
+      "sha256": "0e2b1fac190ae3ebfe37b979cc1ce69c81f4e4fe5746bb401dca63a9062cdaf1"
+    }
+  ]
+}

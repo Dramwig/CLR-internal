@@ -1,0 +1,15 @@
+{
+  "estimated_gpu_hours": 7.522498649775994,
+  "training_by_variant": {
+    "A1": 2.0318422744784175,
+    "A2": 1.9773376574214503,
+    "A4": 2.013318717876126
+  },
+  "train_QA_ratio": 0.3409319093656307,
+  "native_dimension_shared_GPU_safety_factor": 1.7,
+  "smoke_evaluation_failure_reserve_gpu_hours": 1.5,
+  "per_type_reuse_new_gpu_hours": 0,
+  "per_type_origin": "data/M10_v1/trained/llama_CLR-per-type_*_full.json; exact 8 epochs per type, verified before final reporting",
+  "decision": "Run all 3 missing variants; reuse matched-exposure per-type and single step",
+  "recorded_before_training": true
+}

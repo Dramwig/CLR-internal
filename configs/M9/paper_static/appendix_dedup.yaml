@@ -1,0 +1,6 @@
+artifact: appendix_dedup
+caption: 'Appendix: Historical train-versus-heldout overlap'
+input_freeze: data/M9_v1/paper_inputs/static_freeze_v2.json
+inputs:
+  dedup: data/M9_v1/paper_inputs/deduplication.csv
+output_root: paper

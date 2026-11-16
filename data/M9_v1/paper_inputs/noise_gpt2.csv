@@ -1,0 +1,91 @@
+source,sigma,from_step,temperature,metric,mean,lo,hi,interval
+gpt2,0,0,0,accuracy,0.423333333333333,0.366666666666667,0.48,question bootstrap 10000
+gpt2,0,0,0,nondegenerate,0,0,0,question bootstrap 10000
+gpt2,0,0,0,invalid_rate,0,0,0,question bootstrap 10000
+gpt2,0,0,0,distinct_answers,1,1,1,question bootstrap 10000
+gpt2,0,0,0,distinct_answers_including_invalid,1,1,1,question bootstrap 10000
+gpt2,0.1,0,0,accuracy,0.424375,0.423005747790074,0.425744252209926,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.1,0,0,nondegenerate,0.0144444444444444,0.00488299393400858,0.0240058949548803,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.1,0,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.1,0,0,distinct_answers,1.14,1.13171954096093,1.14828045903906,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.1,0,0,distinct_answers_including_invalid,1.14,1.13171954096093,1.14828045903906,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.3,0,0,accuracy,0.424513888888889,0.423211470247368,0.425816307530409,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.3,0,0,nondegenerate,0.0666666666666667,0.0666666666666667,0.0666666666666667,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.3,0,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.3,0,0,distinct_answers,1.54444444444444,1.51097936765792,1.57790952123097,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.3,0,0,distinct_answers_including_invalid,1.54444444444444,1.51097936765792,1.57790952123097,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.5,0,0,accuracy,0.418819444444444,0.415876651742688,0.4217622371462,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.5,0,0,nondegenerate,0.112222222222222,0.0913835239578945,0.13306092048655,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.5,0,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.5,0,0,distinct_answers,1.96111111111111,1.91550589878955,2.00671632343268,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.5,0,0,distinct_answers_including_invalid,1.96111111111111,1.91550589878955,2.00671632343268,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.75,0,0,accuracy,0.411736111111111,0.409776779113444,0.413695443108778,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.75,0,0,nondegenerate,0.192222222222222,0.171383523957894,0.21306092048655,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.75,0,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.75,0,0,distinct_answers,2.53777777777778,2.39692881653779,2.67862673901776,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.75,0,0,distinct_answers_including_invalid,2.53777777777778,2.39692881653779,2.67862673901776,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1,0,0,accuracy,0.392430555555556,0.387968589781164,0.396892521329947,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1,0,0,nondegenerate,0.284444444444444,0.263605746180117,0.305283142708772,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1,0,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1,0,0,distinct_answers,3.31777777777778,3.16103121796443,3.47452433759113,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1,0,0,distinct_answers_including_invalid,3.31777777777778,3.16103121796443,3.47452433759113,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1.5,0,0,accuracy,0.300416666666667,0.289220809298018,0.311612524035315,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1.5,0,0,nondegenerate,0.448888888888889,0.428050190624561,0.469727587153217,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1.5,0,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1.5,0,0,distinct_answers,5.66777777777778,5.57470698980933,5.76084856574623,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1.5,0,0,distinct_answers_including_invalid,5.66777777777778,5.57470698980933,5.76084856574623,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,2,0,0,accuracy,0.181319444444444,0.166751831495882,0.195887057393007,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,2,0,0,nondegenerate,0.424444444444444,0.368080524945734,0.480808363943155,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,2,0,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,2,0,0,distinct_answers,7.83111111111111,7.70819904599362,7.9540231762286,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,2,0,0,distinct_answers_including_invalid,7.83111111111111,7.70819904599362,7.9540231762286,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0,3,0,accuracy,0.423333333333333,0.366666666666667,0.48,question bootstrap 10000
+gpt2,0,3,0,nondegenerate,0,0,0,question bootstrap 10000
+gpt2,0,3,0,invalid_rate,0,0,0,question bootstrap 10000
+gpt2,0,3,0,distinct_answers,1,1,1,question bootstrap 10000
+gpt2,0,3,0,distinct_answers_including_invalid,1,1,1,question bootstrap 10000
+gpt2,0.1,3,0,accuracy,0.423888888888889,0.423098350756899,0.424679427020879,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.1,3,0,nondegenerate,0.0122222222222222,0.00744149696700429,0.0170029474774402,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.1,3,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.1,3,0,distinct_answers,1.10777777777778,1.09054062773618,1.12501492781937,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.1,3,0,distinct_answers_including_invalid,1.10777777777778,1.09054062773618,1.12501492781937,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.3,3,0,accuracy,0.424652777777778,0.422207032607818,0.427098522947738,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.3,3,0,nondegenerate,0.0533333333333333,0.0533333333333333,0.0533333333333333,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.3,3,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.3,3,0,distinct_answers,1.40888888888889,1.38359166866522,1.43418610911255,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.3,3,0,distinct_answers_including_invalid,1.40888888888889,1.38359166866522,1.43418610911255,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.5,3,0,accuracy,0.423333333333333,0.419939670764479,0.426726995902188,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.5,3,0,nondegenerate,0.0866666666666667,0.0579823151353591,0.115351018197974,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.5,3,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.5,3,0,distinct_answers,1.69333333333333,1.66849195621614,1.71817471045053,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.5,3,0,distinct_answers_including_invalid,1.69333333333333,1.66849195621614,1.71817471045053,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.75,3,0,accuracy,0.42,0.417744144740162,0.422255855259838,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.75,3,0,nondegenerate,0.143333333333333,0.105387502997836,0.181279163668831,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.75,3,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.75,3,0,distinct_answers,2.04555555555556,1.97913959771849,2.11197151339262,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0.75,3,0,distinct_answers_including_invalid,2.04555555555556,1.97913959771849,2.11197151339262,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1,3,0,accuracy,0.411736111111111,0.410242134468856,0.413230087753367,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1,3,0,nondegenerate,0.2,0.170144380350271,0.229855619649729,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1,3,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1,3,0,distinct_answers,2.52777777777778,2.42227636716454,2.63327918839102,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1,3,0,distinct_answers_including_invalid,2.52777777777778,2.42227636716454,2.63327918839102,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1.5,3,0,accuracy,0.373888888888889,0.37123313791863,0.376544639859148,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1.5,3,0,nondegenerate,0.328888888888889,0.308050190624561,0.349727587153217,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1.5,3,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1.5,3,0,distinct_answers,3.80555555555556,3.55792506262213,4.05318604848898,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,1.5,3,0,distinct_answers_including_invalid,3.80555555555556,3.55792506262213,4.05318604848898,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,2,3,0,accuracy,0.321041666666667,0.317456122725253,0.32462721060808,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,2,3,0,nondegenerate,0.386666666666667,0.32199421414045,0.451339119192884,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,2,3,0,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,2,3,0,distinct_answers,5.13555555555556,4.98528556534364,5.28582554576747,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,2,3,0,distinct_answers_including_invalid,5.13555555555556,4.98528556534364,5.28582554576747,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0,0,0.5,accuracy,0.422291666666667,0.418668965837076,0.425914367496258,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0,0,0.5,nondegenerate,0.171111111111111,0.129433714582456,0.212788507639766,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0,0,0.5,invalid_rate,0,0,0,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0,0,0.5,distinct_answers,3.65555555555556,3.49470706147067,3.81640404964044,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0,0,0.5,distinct_answers_including_invalid,3.65555555555556,3.49470706147067,3.81640404964044,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0,0,1,accuracy,0.400972222222222,0.39594570678207,0.405998737662375,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0,0,1,nondegenerate,0.317777777777778,0.280439119902613,0.355116435652942,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0,0,1,invalid_rate,0.000138888888888889,-0.000458701768013353,0.000736479545791131,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0,0,1,distinct_answers,5.83222222222222,5.73343341919561,5.93101102524883,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json
+gpt2,0,0,1,distinct_answers_including_invalid,5.83444444444444,5.74211330360197,5.92677558528692,mean and 95% Student-t CI across stochastic seed means; question bootstrap separately in summary.json

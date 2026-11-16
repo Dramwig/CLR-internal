@@ -1,0 +1,11 @@
+/home/me/PaperField/CalReader/runs/20261106T082813762598Z_ad8b9322f77d_4cb371
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m6_run_extension.py", line 37, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m6_run_extension.py", line 30, in main
+    ctl.execute('production_noise_v2','scripts/m6_pipeline.py',production)
+  File "/home/me/PaperField/CalReader/scripts/m6_pipeline.py", line 93, in execute
+    if {k:v for k,v in oldc.items() if k!='device'}!={k:v for k,v in c.items() if k!='device'}:raise ValueError('Completed/failed child config changed: '+name)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: M6 child failed: production_noise_v2; reports/M6_production_noise_v2.log

@@ -1,0 +1,14 @@
+{
+  "11": {
+    "run": "/home/me/PaperField/CalReader/runs/20261110T134336440197Z_5d75c4c1670c_5ce3b0",
+    "training": "data/M10_v1/trained/gpt2_B6_11_full.json"
+  },
+  "22": {
+    "run": "/home/me/PaperField/CalReader/runs/20261110T134418982450Z_cc8bd6f394a2_3c8c05",
+    "training": "data/M10_v1/trained/gpt2_B6_22_full.json"
+  },
+  "33": {
+    "run": "/home/me/PaperField/CalReader/runs/20261110T134500235422Z_1759696b6eef_a1f1ad",
+    "training": "data/M10_v1/trained/gpt2_B6_33_full.json"
+  }
+}

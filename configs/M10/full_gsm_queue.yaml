@@ -1,0 +1,45 @@
+jobs:
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_B0_11.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_B0_22.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_B0_33.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_B3-prefix_11.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_B3-prefix_22.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_B3-prefix_33.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_CLR-lite-single_11.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_CLR-lite-single_22.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_CLR-lite-single_33.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/gpt2_B6_11.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/gpt2_B6_22.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/gpt2_B6_33.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_B6_11.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_B6_22.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_B6_33.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/gpt2_CLR-per-type_11.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/gpt2_CLR-per-type_22.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/gpt2_CLR-per-type_33.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_CLR-per-type_11.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_CLR-per-type_22.yaml
+- script: scripts/m10_train_gsm.py
+  config: configs/M10/llama_CLR-per-type_33.yaml
+completion_file: data/M10_v1/gsm_training_completed.json
+completed_stage: P1_GSM_training_completed

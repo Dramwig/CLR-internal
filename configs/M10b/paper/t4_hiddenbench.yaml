@@ -1,0 +1,6 @@
+artifact: t4_hiddenbench
+caption: 'Appendix: HiddenBench exploratory audit (insufficient data; no conclusion)'
+input_freeze: data/M10_v1/paper_inputs/freeze.json
+inputs:
+  hiddenbench: data/M10_v1/paper_inputs/hiddenbench.csv
+output_root: paper

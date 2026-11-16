@@ -1,0 +1,2 @@
+/home/me/PaperField/CalReader/runs/20261106T071154854835Z_df54462f88fe_8c1ed8
+{"epoch": 1, "val_nll": {"llama:Q1": 9.846594674246651, "llama:Q2": 10.049219403948102, "llama:Q3": 0.8734662192208427, "llama:Q4": 6.011171613420759}, "selection_nll": 6.695112977709089, "gpu_hours": 0.0006874625780457993}

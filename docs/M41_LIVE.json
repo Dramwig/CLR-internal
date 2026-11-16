@@ -1,0 +1,7 @@
+{
+  "updated_beijing": "2026-11-06T00:58:03+08:00",
+  "stage": "completed_pending_G1_review",
+  "details": "M4.1实验完成，待G1审查；唯一审查文件reports/M4.1_REVIEW.md，冻结data/M41_v1/freeze.json。M4原冻结哈希全部一致。",
+  "review": "reports/M4.1_REVIEW.md",
+  "g1_approved": false
+}

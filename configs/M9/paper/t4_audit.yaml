@@ -1,0 +1,8 @@
+artifact: t4_audit
+caption: 'T4: Counterfactual latent communication audit'
+input_freeze: data/M9_v1/paper_inputs/freeze.json
+inputs:
+  detection: data/M9_v1/paper_inputs/communication_detection.csv
+  qa: data/M9_v1/paper_inputs/communication_qa.csv
+  localization: data/M9_v1/paper_inputs/localization.csv
+output_root: paper

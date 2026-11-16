@@ -1,0 +1,13 @@
+milestone: M9
+version: v1
+stage: pipeline
+seed: 11
+output: data/M9_v1
+budget_gpu_hours: 10
+training_configs:
+- configs/M9/train_11.yaml
+- configs/M9/train_22.yaml
+- configs/M9/train_33.yaml
+smoke_ref: data/M9_v1/trained/smoke_multi_11.json
+runtime_env:
+  LD_LIBRARY_PATH: /home/me/anaconda3/envs/latdefer/lib

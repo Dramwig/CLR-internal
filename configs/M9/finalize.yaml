@@ -1,0 +1,10 @@
+milestone: M9
+version: v1
+stage: finalize
+seed: 11
+output: data/M9_v1
+budget_gpu_hours: 10
+terminated_controller_pid: 1269729
+active_logs:
+- finish.log
+- finalize.log

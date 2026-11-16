@@ -1,0 +1,14 @@
+summarized gpt2_HSRM
+summarized llama_HSRM
+summarized gpt2_CLUE
+summarized llama_CLUE
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m10e_summarize.py", line 71, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');a=p.parse_args();main(load_config(a.config))
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m10e_summarize.py", line 54, in main
+    assert err<1e-7,(r,err)
+           ^^^^^^^^
+AssertionError: ({'source': 'llama', 'model': 'B2', 'split': 'reader_val', 'qtype': 'Q4', 'kind': 'clean', 'metric': 'accuracy', 'mean': 0.4994279994279994, 'lo': 0.4920152295152295, 'hi': 0.5067925067925069}, 2.3833357166824776e-05)

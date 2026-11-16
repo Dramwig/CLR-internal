@@ -1,0 +1,13 @@
+artifact: t2_conformal
+caption: 'T2: Conformal coverage and set sizes at alpha=0.1'
+input_freeze: data/M10_v1/paper_inputs/freeze.json
+inputs:
+  conformal: data/M10_v1/paper_inputs/conformal.csv
+output_root: paper
+column_widths:
+- 1.2
+- 1.1
+- 1.3
+- 0.5
+- 2
+- 2

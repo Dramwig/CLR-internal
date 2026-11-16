@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m10_final_controller.py", line 41, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');a=p.parse_args();main(load_config(a.config))
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m10_final_controller.py", line 32, in main
+    execute('.venv-comm/bin/python','scripts/m10_source_hiddenbench.py',c['hidden_source'],'reports/M10_evidence/hiddenbench_source_test.log')
+  File "/home/me/PaperField/CalReader/scripts/m10_final_controller.py", line 11, in execute
+    with p.open('x') as f:subprocess.run([python,script,config],stdout=f,stderr=subprocess.STDOUT,check=True)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['.venv-comm/bin/python', 'scripts/m10_source_hiddenbench.py', 'configs/M10/hiddenbench_source_test.yaml']' returned non-zero exit status 1.

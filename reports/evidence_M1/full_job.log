@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m1_generate.py", line 105, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m1_generate.py", line 32, in main
+    if shutil.disk_usage(output).free<budget['estimated_disk_gib']*2**30+2*2**30:raise RuntimeError('Insufficient disk for measured budget plus 2GiB reserve')
+                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Insufficient disk for measured budget plus 2GiB reserve
+/home/me/PaperField/CalReader/runs/20261030T022523498387Z_aa34c7ac6286_68fb07

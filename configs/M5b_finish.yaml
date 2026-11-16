@@ -1,0 +1,6 @@
+output: data/M5b_v1
+seeds: [11,22,33]
+a_config: configs/M5b_analysis_a.yaml
+bc_base: configs/M5b_analysis_bc_base.yaml
+bc_config: configs/M5b_analysis_bc.yaml
+report_config: configs/M5b_report.yaml

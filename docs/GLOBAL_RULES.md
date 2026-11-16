@@ -59,7 +59,7 @@ CLR：`R(z, q, s) → p(a | z, q)`。z 为来自源模型 s 的潜在思维隐�
 
 记录 GPU 型号、GPU 小时及源模型前向次数，明确成本口径和是否包含 smoke、失败、重启。大型下载或训练前实时检查 GPU 与磁盘；优先复用共享数据和权重，项目派生产物保留在本项目。
 
-按既有授权，需要空间时遵循 `/home/me/disk-reserve/AGENTS.md`，用 `reserve.sh release <整数GiB>` 释放配重，使用期间保持自动填充暂停；不因磁盘余量低主动放弃任务。真实 I/O 错误仍须报错和记录。
+按既有授权，需要空间时遵循 `/home/me/tools/disk-reserve/AGENTS.md`，用 `reserve.sh release <整数GiB>` 释放配重，使用期间保持自动填充暂停；不因磁盘余量低主动放弃任务。真实 I/O 错误仍须报错和记录。
 
 ## 9. 最小测试与输入约束
 

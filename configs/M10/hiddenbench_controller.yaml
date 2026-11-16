@@ -1,0 +1,6 @@
+source_smoke: data/M10_v1/hiddenbench/source_smoke.json
+source_full: configs/M10/hiddenbench_source_full.yaml
+reader_smoke: configs/M10/hiddenbench_reader_smoke.yaml
+reader_smoke_ref: data/M10_v1/hiddenbench/reader_smoke.json
+reader_full: configs/M10/hiddenbench_reader_full.yaml
+eval_smoke: configs/M10/hiddenbench_eval_smoke.yaml

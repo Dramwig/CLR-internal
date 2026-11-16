@@ -1,0 +1,29 @@
+{
+  "artifact": "t4_audit",
+  "config": {
+    "artifact": "t4_audit",
+    "caption": "T4: Counterfactual latent communication audit",
+    "input_freeze": "data/M10_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "detection": "data/M10_v1/paper_inputs/communication_detection.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "3bcda078ad36359b5cfa28b201c5aba59c9f2ebacf466e7ada72ab7e44b6d945",
+  "input_freeze_sha256": "e3740a68245812c57534ba4cf571542dad946ad17c05978611dc542b9f43aa6e",
+  "inputs": {
+    "data/M10_v1/paper_inputs/communication_detection.csv": "9ec66f4eded81493f12c27480a9098429c0c2fe2c5831f06d5517c75aa178a5a"
+  },
+  "outputs": {
+    "derived/t4_audit.csv": "d1b414c775b626f3e87892692639921724e91751d8073bc3d868bef09ff0ca1b",
+    "tables/t4_audit.tex": "d56d44001b796b99601803e0a29bce92028ee2c372c0e8e8716c88bdc6788c02"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

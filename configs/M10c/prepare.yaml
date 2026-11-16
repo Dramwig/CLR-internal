@@ -1,0 +1,24 @@
+milestone: M10c
+version: v1
+stage: read_only_cost_measurement
+seed: 11
+device: cuda:4
+output: data/M10c_v1
+models: [CLR-lite, B3, B6, B5c]
+warmup: 2
+states: data/dumps/codi_gpt2_v3
+qa: data/M23_v1a/full
+normalization: runs/20261103T045628621237Z_2964c31f2153_11a348/normalization.npz
+tokenizer: /home/me/models/huggingface/ModernBERT-base-8949b909
+templates: clr/data/questions/templates.yaml
+clr_checkpoint: runs/20261105T134549665017Z_13a5b7d07c74_c9bce9/best.pt
+b3_run: runs/20261103T045628621237Z_2964c31f2153_11a348
+b6_ref: data/M10_v1/trained/gpt2_B6_11_full.json
+b5c_ref: data/M10b_v1/trained/B5c_gpt2_11_full.json
+manifests:
+  - data/M23_v1a/freeze.json
+  - data/M41_v1/freeze.json
+  - data/M6_v1/freeze.json
+  - data/M10_v1/freeze.json
+  - data/M10b_v1/freeze.json
+  - reports/M1_completed_v3_manifest.json

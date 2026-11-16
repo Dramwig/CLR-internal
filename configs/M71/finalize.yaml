@@ -1,0 +1,5 @@
+milestone: M7.1
+output: data/M71_v1
+verify_config: configs/M71/verify.yaml
+report_config: configs/M71/report.yaml
+freeze_config: configs/M71/freeze.yaml

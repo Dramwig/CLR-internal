@@ -1,0 +1,42 @@
+milestone: M6
+version: v1
+section: CD
+stage: train
+mode: smoke
+kind: transfer
+case: smoke_transfer
+seed: 11
+panel_seed: 11
+source: llama
+sources:
+  llama:
+    root: runs/20261106T064146346524Z_4807a4b10761_3bcaeb/dumps
+    qa: data/M6_v1/qa_smoke
+    dim: 2048
+    normalization: data/M6_v1/smoke_normalization.npz
+  gpt2:
+    root: data/dumps/codi_gpt2_v3
+    qa: data/M23_v1a/full
+    dim: 768
+    normalization: runs/20261103T045628621237Z_2964c31f2153_11a348/normalization.npz
+validation_split: val
+smoke_problems: 2
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+templates: clr/data/questions/templates.yaml
+device: cuda:1
+n_labels: null
+epochs: 1
+min_epochs: 1
+patience: 1
+batch: 256
+b3_batch: 4096
+eval_batch: 256
+learning_rate: 0.0003
+b3_lrs:
+- 0.001
+- 0.0003
+weight_decay: 0.0001
+output: data/M6_v1
+smoke_run: null
+donor: gpt2
+donor_checkpoint: runs/20261105T134549665017Z_13a5b7d07c74_c9bce9/best.pt

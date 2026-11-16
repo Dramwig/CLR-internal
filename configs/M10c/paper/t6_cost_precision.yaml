@@ -1,0 +1,5 @@
+artifact: t6_cost_precision
+caption: 'T6: CODI-GPT2 precision and query cost'
+input_freeze: data/M10c_v1/paper_inputs/freeze.json
+inputs:
+  cost: data/M10c_v1/paper_inputs/cost_precision.csv

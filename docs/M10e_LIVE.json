@@ -1,0 +1,13 @@
+{
+  "status": "completed_pending_review",
+  "completed_at": "2026-11-12T15:34:59.142298+08:00",
+  "output": "data/M10e_v1",
+  "review": "reports/M10e_REVIEW.md",
+  "handoff": "reports/M10e_PAPER_HANDOFF.md",
+  "freeze": "data/M10e_v1/freeze.json",
+  "gpu_hours": 0.942317202071394,
+  "source_forward_calls": 0,
+  "manuscript_edited": false,
+  "compilation_performed": false,
+  "experiments_frozen": true
+}

@@ -1,0 +1,81 @@
+collected CLR-lite 11
+collected CLR-v1 11
+collected CLR-lite-single 11
+collected CLR-per-type 11
+collected CLR-lite-multi 11
+collected CLR-lite 22
+collected CLR-v1 22
+collected CLR-lite-single 22
+collected CLR-per-type 22
+collected CLR-lite-multi 22
+collected CLR-lite 33
+collected CLR-v1 33
+collected CLR-lite-single 33
+collected CLR-per-type 33
+collected CLR-lite-multi 33
+collected A1 33
+collected A1 11
+collected A1 22
+collected A2 33
+collected A2 11
+collected A2 22
+collected A3 33
+collected A3 11
+collected A3 22
+collected A4 33
+collected A4 11
+collected A4 22
+collected A5 33
+collected A5 11
+collected A5 22
+summarized A1 reader_val Q1
+summarized A1 reader_val Q2
+summarized A1 reader_val Q3
+summarized A1 reader_val Q4
+summarized A1 test Q1
+summarized A1 test Q2
+summarized A1 test Q3
+summarized A1 test Q4
+summarized A2 reader_val Q1
+summarized A2 reader_val Q2
+summarized A2 reader_val Q3
+summarized A2 reader_val Q4
+summarized A2 test Q1
+summarized A2 test Q2
+summarized A2 test Q3
+summarized A2 test Q4
+summarized A3 reader_val Q1
+summarized A3 reader_val Q2
+summarized A3 reader_val Q3
+summarized A3 reader_val Q4
+summarized A3 test Q1
+summarized A3 test Q2
+summarized A3 test Q3
+summarized A3 test Q4
+summarized A4 reader_val Q1
+summarized A4 reader_val Q2
+summarized A4 reader_val Q3
+summarized A4 reader_val Q4
+summarized A4 test Q1
+summarized A4 test Q2
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m12_summarize.py", line 139, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');a=p.parse_args();main(load_config(a.config))
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m12_summarize.py", line 134, in main
+    summarize(c)
+  File "/home/me/PaperField/CalReader/scripts/m12_summarize.py", line 103, in summarize
+    cc=cpf[(cpf.variant==variant)&(cpf.split==split)&(cpf.qtype==q)];e=metric_summary(cc,['size','coverage'])
+                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/paper/statistics.py", line 7, in metric_summary
+    point,ci=cluster_estimate(frame,columns)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m6_report.py", line 55, in cluster_estimate
+    ii=rng.integers(len(ids),size=(500,len(ids)));boot.append(finish(numerator[ii].sum(1),w[ii].sum(1)))
+                                                                     ^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/site-packages/numpy/core/_methods.py", line 47, in _sum
+    def _sum(a, axis=None, dtype=None, out=None, keepdims=False,
+    
+KeyboardInterrupt

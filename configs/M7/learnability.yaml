@@ -1,0 +1,13 @@
+milestone: M7
+mode: smoke_overfit_diagnostic
+output: data/M7_v1
+training_fixture: data/M7_reader_smoke
+device: cuda:7
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+seed: 11
+batch_size: 16
+lr: 0.001
+epochs: 500
+threshold: 0.95
+max_seconds: 900
+budget_gpu_hours: 40

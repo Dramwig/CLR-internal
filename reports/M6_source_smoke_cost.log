@@ -1,0 +1,2 @@
+/home/me/PaperField/CalReader/runs/20261106T072708384215Z_1dec084d5a18_da3e8a
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`

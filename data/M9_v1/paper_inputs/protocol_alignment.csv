@@ -1,0 +1,17 @@
+section,field,value
+GPT2 production,base_path,/home/me/models/huggingface/models--openai-community--gpt2/snapshots/607a30d783dfa663caf39e06633721c8d4cfcd7e
+GPT2 production,code_path,third_party/codi
+GPT2 production,dtype,float32
+GPT2 production,layer,-1
+LLaMA production,protocol,configs/protocol_codi_llama_modelscope_v2_gpu4.yaml
+LLaMA production,sigma,1.5
+LLaMA context metadata,protocol_errors,0
+KV storage verification,elements,3563840
+KV storage verification,exact_fraction,1.0
+KV storage verification,maximum_absolute_error,0.0
+M23 cal split,cal_A,250
+M23 cal split,cal_B,250
+M7.1 projection,file,data/M71_v1/projection.pt
+M7.1 projection,sha256,fc7b23c823293ec6f616c36aa25ca11e3347b957a048c791de9419be311dbcfa
+M7.1 projection,seed,20261107
+M7.1 projection,orthogonality_max_abs,4.76837158203125e-07

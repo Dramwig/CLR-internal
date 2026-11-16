@@ -1,0 +1,17 @@
+reader_val Q1 False 74062
+reader_val Q1 True 148124
+reader_val Q2 False 14000
+reader_val Q2 True 28000
+reader_val Q3 False 86062
+reader_val Q3 True 172124
+reader_val Q4 False 27944
+reader_val Q4 True 55888
+test Q1 False 7035
+test Q1 True 14070
+test Q2 False 7035
+test Q2 True 14070
+test Q3 False 7035
+test Q3 True 14070
+test Q4 False 13888
+test Q4 True 27776
+/home/me/PaperField/CalReader/runs/20261105T163457768708Z_672f64f23bb5_78ef75

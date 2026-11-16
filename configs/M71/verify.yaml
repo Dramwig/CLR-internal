@@ -1,0 +1,5 @@
+milestone: M7.1
+output: data/M71_v1
+idea_a: /home/me/PaperField/LatDefer
+seed: 20261107
+freezes: [data/M7_v1/freeze.json, data/M6_v1/freeze.json]

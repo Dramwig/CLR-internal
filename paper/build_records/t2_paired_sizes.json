@@ -1,0 +1,37 @@
+{
+  "artifact": "t2_paired_sizes",
+  "config": {
+    "artifact": "t2_paired_sizes",
+    "caption": "T2: Paired conformal set-size differences",
+    "column_widths": [
+      1.2,
+      1.1,
+      0.5,
+      1.5,
+      1.2,
+      2.5
+    ],
+    "input_freeze": "data/M10_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "paired": "data/M10_v1/paper_inputs/conformal_paired.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "b30ddefee5dd34023a47414848a1829c49d419c6f18504f267ae948d3206a42f",
+  "input_freeze_sha256": "e3740a68245812c57534ba4cf571542dad946ad17c05978611dc542b9f43aa6e",
+  "inputs": {
+    "data/M10_v1/paper_inputs/conformal_paired.csv": "b3c96ee070b7d91f3c7cd0a5ecba276b50ec1daba454b2d8567129ee1f7c2d08"
+  },
+  "outputs": {
+    "derived/t2_paired_sizes.csv": "8a356b2057116114d1c48d57905df6f1dcbf1f4bab81e07dbf417cbb13c6aa30",
+    "tables/t2_paired_sizes.tex": "5bb21228d4ff698b21eafaa1fc3ed2be354c70dd497f81db709ce898aa81e649"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

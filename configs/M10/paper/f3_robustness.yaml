@@ -1,0 +1,8 @@
+artifact: f3_robustness
+caption: 'F3: Monotone envelopes of observed white-box failure'
+input_freeze: data/M9_v1/paper_inputs/freeze.json
+inputs:
+  weak_d0: data/M9_v1/paper_inputs/weak_D0.csv
+  weak_designs: data/M9_v1/paper_inputs/weak_designs.csv
+  dependent: data/M9_v1/paper_inputs/dependent.csv
+output_root: paper

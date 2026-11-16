@@ -1,0 +1,21 @@
+milestone: M10
+version: v1
+section: P1
+section_budget: 12
+stage: train_audit_B6
+mode: full
+seed: 33
+device: cuda:0
+hidden: 1024
+train_groups: 20
+val_groups: 20
+batch: 128
+eval_batch: 256
+epochs: 8
+learning_rates:
+- 0.001
+- 0.0003
+data_root: data/M71_v1
+output: data/M10_v1
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+smoke_ref: data/M10_v1/trained/audit_B6_11_smoke.json

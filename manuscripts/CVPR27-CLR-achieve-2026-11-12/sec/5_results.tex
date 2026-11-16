@@ -1,0 +1,105 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Typed reading of latent thoughts}
+\label{sec:exp-read}
+
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l cccc c cccc}
+\toprule
+& \multicolumn{4}{c}{CODI-GPT-2} && \multicolumn{4}{c}{CODI-LLaMA-1B}\\
+\cmidrule{2-5}\cmidrule{7-10}
+Reader & Q1 NLL$\downarrow$ & Q2 AUROC$\uparrow$ & Q3 acc$\uparrow$ & Q4 acc$\uparrow$ && Q1 NLL$\downarrow$ & Q2 AUROC$\uparrow$ & Q3 acc$\uparrow$ & Q4 acc$\uparrow$\\
+\midrule
+B0 question-only & 0.696 & 0.508 & 35.9 & 49.8 && 0.692 & 0.509 & 39.1 & 50.1\\
+B4 latent RM & \textbf{0.507} & 0.845 & -- & -- && \textbf{0.551} & 0.806 & -- & --\\
+B3 MLP probe & 0.523 & 0.846 & 58.6 & 68.3 && 0.612 & 0.851 & 58.9 & 62.7\\
+B3-prefix & 0.515 & \textbf{0.857} & 61.8 & 68.4 && 0.606 & \textbf{0.852} & 59.3 & 60.3\\
+B6 attention probe & 0.574 & 0.853 & 65.4 & 72.0 && 0.632 & 0.824 & 57.8 & 66.6\\
+B5c LoRA verbalizer (1.7B) & -- & -- & \textbf{76.8} & 76.3 && -- & -- & -- & --\\
+\midrule
+\clr{} single-step & 0.564 & 0.819 & 73.8 & 74.8 && 0.627 & 0.813 & 74.7 & 75.5\\
+\clr{} & 0.548 & 0.830 & 76.1 & 76.2 && 0.615 & 0.821 & 72.1 & 74.2\\
+\clr{} joint (2 sources) & 0.558 & 0.831 & 76.2 & \textbf{76.4} && 0.622 & 0.798 & \textbf{75.0} & \textbf{76.5}\\
+\bottomrule
+\end{tabular}
+\caption{Reading CODI latents on GSM8K test (clean states, seen templates, steps weighted equally, mean of 3 seeds). Q3/Q4 accuracy in \%. B5c was run on GPT-2 Q3/Q4 only.}
+\label{tab:main}
+\end{table*}
+
+\paragraph{Question priors are small.} The question-only baseline B0 is at chance on Q1, Q2, and Q4 (Q4 is exactly balanced by construction); on Q3 it reaches 35.9\% versus 25\% chance because option sets carry a prior, so we report Q3 gains relative to B0 as well. Shuffling latents across problems gives the same numbers as B0.
+
+\paragraph{Option-conditioned questions favor \clr{}.} On Q3 and Q4, which require relating the latent state to an option, \clr{} improves over the MLP probe by 17.5/7.9 points (GPT-2) and 13.2/11.5 points (LLaMA), and over the attention probe B6 by 10.8/4.2 and 14.3/7.6 points (all intervals exclude zero; \cref{tab:main}). A linear probe is at chance on Q4, so the intermediate-value question requires a nonlinear state$\times$option interaction. On Q1 and Q2, which depend on the state alone, probes are as good or slightly better (Q1 NLL $+0.025$, Q2 AUROC $-0.017$ for \clr{} on GPT-2).
+
+\paragraph{The gain is not from reading more steps.} \clr{} reads the latent prefix $z_{0:t}$ while B3 reads $z_t$. Giving B3 the prefix changes Q3/Q4 by only $+3.2$/$+0.1$ points on GPT-2, while \clr{} restricted to the single state still beats B3 by 15.3/6.5 points; on LLaMA \clr{} beats B3-prefix by 12.9/13.9 points.
+
+\paragraph{Matching a verbalizer at lower cost.} The LoRA verbalizer B5c reaches the same Q3/Q4 accuracy as \clr{} (difference $-0.66$ $[-1.51, 0.19]$ and $-0.09$ $[-0.98, 0.83]$ points). B5c saw one pass over the labels, fewer than \clr{}, so we claim parity, not superiority in either direction. \clr{} uses 437--648$\times$ fewer FLOPs per query (\cref{sec:cost}). At $\alpha=0.1$ their conformal sets are nearly identical in size (B5c is smaller by 0.02 options on test, with slightly different coverage), so the two readers are comparable in efficiency of uncertainty as well as accuracy.
+
+\paragraph{Conformal efficiency.} At $\alpha=0.1$ all readers reach near-nominal test coverage, but \clr{} produces smaller sets on option-conditioned questions: Q3 1.49 vs.\ 2.16 and Q4 1.35 vs.\ 1.53 options for B3 on GPT-2, with paired set-size differences of $-0.63$ and $-0.17$ (intervals exclude zero). On Q1/Q2 sets are 0.03--0.08 larger (\cref{tab:cp}).
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccc}
+\toprule
+& Q1 & Q2 & Q3 & Q4\\
+\midrule
+B3 & 1.41 / 90.5 & 1.33 / 89.0 & 2.16 / 92.0 & 1.53 / 90.1\\
+B3-prefix & 1.37 / 89.4 & 1.30 / 88.9 & 2.05 / 92.4 & 1.56 / 91.2\\
+\clr{} & 1.44 / 90.6 & 1.37 / 89.7 & \textbf{1.49} / 91.6 & \textbf{1.35} / 89.7\\
+\bottomrule
+\end{tabular}
+\caption{Mondrian split conformal at $\alpha=0.1$, CODI-GPT-2 test: mean set size / empirical coverage (\%). B5c (Q3/Q4 only): coverage 92.1 / 90.2\%, sets 0.017 / 0.019 smaller than \clr{} (paired, intervals exclude zero).}
+\label{tab:cp}
+\end{table}
+
+\paragraph{Adapting to a new question type.} Pretraining \clr{} on Q1--Q3 and fine-tuning on $N$ labels of the held-out Q4 type reaches 57.8/69.2/73.4\% at $N=100/1\mathrm{k}/10\mathrm{k}$, versus 50.3/53.1/58.6\% for B3 trained from scratch (\cref{fig:transfer}a). Training all four types jointly improves Q4 by 2.5--2.8 points over per-type \clr{} models with matched exposure; Q3 is unchanged.
+
+\paragraph{What the latents encode.} Early-exit accuracy on test rises in steps at odd latent positions (23\%, 25\%, 23\%, 36\%, 37\%, 42\%, 42\% for $t=0..6$), consistent with CODI's alternating value/operator thoughts~\cite{shen2025codi}. Late steps matter little: perturbing only steps 4--6 with $\sigma=1.5$ costs 5 points of accuracy, and the fraction of states with non-degenerate value falls from 41\% at $t=0$ to 10\% at $t=5$.
+
+\subsection{Cross-model reading}
+\label{sec:exp-cross}
+
+\paragraph{Adapter-only transfer.} We train the reader body on one CODI source, freeze it, and train only a new source adapter on $N\in\{100,300\}$ labels of the other source. In both directions and for both Q3 and Q4, the transferred reader beats B3 and \clr{} trained from scratch at the same $N$ in all 20 executed comparisons (interval lower bounds $>0$), and beats the trained-projection verbalizer baseline in the subset where it was run (\cref{fig:transfer}b). At $N=100$, Q3/Q4 test accuracy for GPT-2$\to$LLaMA is 39.1/54.3\% for the transferred reader, 36.6/50.0\% for B3 trained from scratch, and 35.2/50.4\% for \clr{} trained from scratch; for LLaMA$\to$GPT-2, the corresponding accuracies are 36.6/55.4\%, 30.9/50.0\%, and 31.8/50.1\%, respectively.
+
+\paragraph{Joint training.} One shared body with per-source adapters improves LLaMA Q3/Q4 by 2.8/2.3 points and shrinks its Q3 sets by 0.11, while GPT-2 is unchanged (\cref{tab:main}).
+
+\paragraph{Coverage under shift.} We calibrate on one domain and test on another: across sources, from GSM8K to SVAMP/ASDiv, and from early to late steps. Standard Mondrian conformal stays within $-4.8$ to $+4.5$ points of nominal 90\% coverage across all settings; 6 of 32 settings under-cover by more than 2 points (GSM8K$\to$SVAMP for both sources, LLaMA$\to$GPT-2, early$\to$late). Weighted conformal with an estimated density ratio did not reduce the deviation (median change $-0.08$ points) and over-covered with doubled set sizes under step shift, where supports barely overlap. We therefore claim only empirical robustness of coverage, not a guarantee under shift.
+
+\input{fig/transfer}
+
+\subsection{Typed auditing of latent messages}
+\label{sec:exp-audit}
+
+\paragraph{Setup.} Sender and receiver are Qwen3 4B models; the sender's KV cache is relayed to the receiver without training (LatentMAS-style). Episodes come from a procedural generator with known private facts and counterfactual pairs that differ in one private fact. Commitments are generated programmatically from the true facts with three paraphrase templates for all message classes, so text style cannot reveal the class; the sender's own conclusions (correct in 34--50\% of episodes) are analyzed separately. Splits contain 8000/1000/500/1000/2000 episode groups (train/val/cal$_A$/cal$_B$/test), split by counterfactual group. The message carries information: receiver accuracy is 28.7\% with the message vs.\ 23.0\% without, and a change of one private fact moves the target answer probability by 13.8 points.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lccccc}
+\toprule
+Auditor & A1 & A4 & CF@5\% & CF@1\% & AUROC\\
+\midrule
+B0 (zeroed) & 50.0 & 25.3 & 4.3 & -- & 0.500\\
+KV norm & -- & -- & 6.5 & 0.9 & 0.500\\
+Text only & -- & -- & 0.0 & 0.0 & 0.533\\
+Linear probe & -- & -- & 21.8 & -- & 0.733\\
+B3 MLP & 68.3 & 45.5 & 24.0 & 13.3 & 0.735\\
+B6 attention & 71.0 & 98.0 & \textbf{97.9} & \textbf{92.8} & \textbf{0.994}\\
+\clr{} & \textbf{99.5} & \textbf{99.3} & 93.1 & 83.9 & 0.986\\
+\bottomrule
+\end{tabular}
+\caption{Auditing KV messages (synthetic, test, 2000 groups). A1/A4: QA accuracy on clean and counterfactual messages. CF@$\alpha$: counterfactual detection rate at nominal FPR $\alpha$ set on clean $\mathrm{cal}_B$ (measured FPR 5.07\% / 0.93\% for \clr{}), $k=16$ questions.}
+\label{tab:audit}
+\end{table}
+
+\paragraph{Typed decomposition works; end-to-end consistency does not.} With typed auditing, both \clr{} and the attention probe detect counterfactual substitution far above the norm and text audits, which sit at the false-positive rate (\cref{tab:audit}). B6 detects slightly better than \clr{} (97.9 vs.\ 93.1\% at FPR 5\%), even though \clr{} answers A1 much more accurately (99.5 vs.\ 71.0\%), because detection is driven mainly by A4. The contribution here is therefore the auditing framework---typed sub-questions, expected answers derived from public information, and conformal alarm thresholds---rather than a particular reader. Asked directly, the consistency question A3 and the support question A2 stay at chance for every reader, as does a classifier trained specifically to separate clean from counterfactual messages; the signal becomes usable only after decomposition.
+
+\paragraph{What the auditor reads.} A4 is lexical: keeping only the log segment that contains the private value gives 99.9\% accuracy, and removing it gives 2.5\%. With the sender's natural commitments, consistency scores do not separate correct from incorrect senders, so the auditor detects substituted content, not honest reasoning errors. On HiddenBench~\cite{hiddenbench} only 63 groups were available and all auditors are at chance (Appendix).
+
+% ---------------------------------------------------------------

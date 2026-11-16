@@ -1,0 +1,25 @@
+milestone: M8c
+mode: secondary_controller_after_timeout
+seed: 20261109
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8c_v1
+budget_gpu_hours: 21
+log_folder: reports/M8c_evidence
+poll_seconds: 10
+prior_equivalent_groups: 20
+prior_gpu_hours_per_seed_group: 0.015669387228011245
+forecast_min_groups: 20
+forecast_shutdown_reserve_gpu_hours: 0.03
+secondary_start_reserve_gpu_hours: 0.08
+primary_configs:
+- configs/M8c/final_test_seed11.yaml
+- configs/M8c/final_test_seed22.yaml
+- configs/M8c/final_test_seed33.yaml
+secondary_configs:
+- configs/M8c/minimum_test_continuation.yaml
+- configs/M8c/test_blind_continuation.yaml
+- configs/M8c/test_sensitivity_continuation.yaml
+secondary_modules:
+  minimum_test: scripts.m8c_minimum
+  test_blind: scripts.m8c_evaluate
+  test_sensitivity: scripts.m8c_evaluate

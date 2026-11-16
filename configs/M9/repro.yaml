@@ -1,0 +1,9 @@
+milestone: M9
+version: v1
+stage: paper_reproducibility
+seed: 11
+output: data/M9_v1
+python: .venv-paper/bin/python
+repeat_config: configs/M9/paper_repro.yaml
+primary_root: paper
+repeat_root: data/M9_v1/repro_build

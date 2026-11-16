@@ -1,0 +1,12 @@
+milestone: M10
+version: v1
+section: P1
+section_budget: 12
+stage: evaluate_gsm
+mode: full
+seed: 33
+device: cuda:4
+eval_batch: 1024
+training_ref: data/M10_v1/trained/llama_B6_33_full.json
+eval_lock: data/M10_v1/final_lock.json
+output: data/M10_v1

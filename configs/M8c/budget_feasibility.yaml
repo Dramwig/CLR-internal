@@ -1,0 +1,20 @@
+milestone: M8c
+mode: budget_feasibility
+seed: 20261109
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8c_v1
+budget_gpu_hours: 15
+minimum_main_groups: 200
+main_epsilons: [0.01, 0.1, 1.0]
+reader_seeds: [11, 22, 33]
+designs: [D0, R4]
+val_run: runs/20261109T041333353840Z_482eec68a407_a050a8
+val_log: reports/M8c_evidence/val_main_v2.log
+val_expected_groups: 20
+val_original_epsilons: [0.01, 0.03, 0.1, 0.3, 1.0]
+bootstrap_resamples: 10000
+throughput_margin: 0.20
+model_loading_reserve_gpu_hours: 0.05
+interrupted_run: runs/20261109T052533568845Z_f645a165c902_91ae80
+interrupted_end_upper_utc: '2026-11-09T05:31:12.333504+00:00'
+interrupted_reason: 'User revised test protocol; stopped obsolete val sensitivity matrix before any test access. Upper end time is the first UTC clock check after process disappearance.'

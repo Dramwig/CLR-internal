@@ -1,0 +1,9 @@
+/home/me/PaperField/CalReader/runs/20261106T072936670814Z_71708f35daaa_8a3278
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m6_shift.py", line 94, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m6_shift.py", line 68, in main
+    if min(map(len,[a_train,b_train,a_cal,ev]))<2:raise ValueError('Missing RQ4 domain calibration data: '+name)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Missing RQ4 domain calibration data: source_gpt2_to_llama

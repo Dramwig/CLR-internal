@@ -1,0 +1,8 @@
+/home/me/PaperField/CalReader/runs/20261106T192534243350Z_180e2864dfe1_80d0d0
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m6_resume_priority.py", line 32, in <module>
+    
+  File "/home/me/PaperField/CalReader/scripts/m6_resume_priority.py", line 27, in main
+    with log.open('w') as stream:
+                       ^^^^^^^^^^^
+RuntimeError: Resumed M6 controller failed; reports/M6_priority_pipeline.log

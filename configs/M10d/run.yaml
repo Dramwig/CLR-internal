@@ -1,0 +1,16 @@
+milestone: M10d
+version: v1
+stage: smoke
+seed: 11
+seeds: [11, 22, 33]
+root: data/dumps/codi_llama_M6_v1
+qa: data/M6_v1/qa
+templates: clr/data/questions/templates.yaml
+output: data/M10d_v1
+baseline_device: cuda:5
+batch_size: 4096
+epochs: 8
+learning_rates: [0.001, 0.0003]
+weight_decay: 0.0001
+smoke_problems: 20
+gpu_budget_hours: 2.0

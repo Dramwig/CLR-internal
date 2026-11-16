@@ -1,0 +1,10 @@
+/home/me/PaperField/CalReader/runs/20261112T121217545758Z_7860e4ef7195_16161b
+reading gpt2
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 27.43it/s]
+reading llama
+reasoning
+siblings
+audit
+dependent
+checks
+{"passed": true, "run": "/home/me/PaperField/CalReader/runs/20261112T121217545758Z_7860e4ef7195_16161b", "counts": {"gpt2_reading": 1, "llama_reading": 1, "reasoning_states": 16, "sibling_states": 34, "audit_messages": 4, "dependent_trials": 0}, "bytes": 4892256, "wall_seconds": 53.755024871905334, "test_opened": false, "gpu_hours": 0.01493195228666688, "source_forward_calls": 0}

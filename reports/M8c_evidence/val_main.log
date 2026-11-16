@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m8c_evaluate.py", line 100, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');a=p.parse_args();main(load_config(a.config))
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m8c_evaluate.py", line 34, in main
+    relay=KVRelay(c);audits=load_audits(c)
+          ^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/sources/kv_relay.py", line 44, in __init__
+    max_context=config['max_context'])
+                ~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'max_context'

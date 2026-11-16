@@ -1,0 +1,17 @@
+milestone: M5a
+stage: preflight_report
+seed: 11
+full_smoke: runs/20261105T030609609192Z_7b132c67ba79_cd8dad
+full_smoke_log: reports/M5a_representative_smoke_v11.log
+proposal_log: reports/M5a_oracle_full_proposal_v12.log
+output: data/M5a_preflight_v0
+review: reports/M5a_REVIEW.md
+detail: reports/M5a_preflight.md
+cost_csv: reports/M5a_preflight_costs.csv
+interrupted_run: runs/20261105T023101485042Z_4a5f10d1fd71_7ff292
+interrupted_gpu_hours_upper: 0.08
+questions: 300
+seeds: [11, 22, 33]
+budget_gpu_hours: 10
+margin: 1.2
+overhead_gpu_hours: 0.05

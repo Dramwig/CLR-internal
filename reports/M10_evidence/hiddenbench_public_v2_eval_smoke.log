@@ -1,0 +1,21 @@
+/home/me/PaperField/CalReader/runs/20261110T105339605898Z_d1d410df3241_ab97a9
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m10_evaluate_hiddenbench.py", line 103, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.config,a.overrides))
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m10_evaluate_hiddenbench.py", line 43, in main
+    option=OptionFeatures(tc['tokenizer_path']);serializer=FactSerializer(AutoTokenizer.from_pretrained(tc['tokenizer_path'],local_files_only=True));banks={s:Bank(c,'reader_val' if smoke else s,templates=range(6),limit=1 if smoke else None) for s in ['cal_A','cal_B']+(['reader_val'] if smoke else ['reader_val','test'])};results=[];references={}
+                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m10_evaluate_hiddenbench.py", line 43, in <dictcomp>
+    option=OptionFeatures(tc['tokenizer_path']);serializer=FactSerializer(AutoTokenizer.from_pretrained(tc['tokenizer_path'],local_files_only=True));banks={s:Bank(c,'reader_val' if smoke else s,templates=range(6),limit=1 if smoke else None) for s in ['cal_A','cal_B']+(['reader_val'] if smoke else ['reader_val','test'])};results=[];references={}
+                                                                                                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/audit/m10_hiddenbench.py", line 64, in __init__
+    root=Path(source_root or c['hidden_root']);spec=json.loads(Path(c.get('audit_protocol',str(Path(c['hidden_root'])/'protocol.json'))).read_text());panels=spec['panels'][split]
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/anaconda3/envs/latdefer/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/M10_v1/hiddenbench/protocol_public_v2.json'

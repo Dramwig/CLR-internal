@@ -1,0 +1,31 @@
+export model gpt2 B3 11
+export model gpt2 B3 22
+export model gpt2 B3 33
+export model gpt2 CLR-lite 11
+export model gpt2 CLR-lite 22
+export model gpt2 CLR-lite 33
+export model llama B3 11
+export model llama B3 22
+export model llama B3 33
+export model llama CLR-lite 11
+export model llama CLR-lite 22
+export model llama CLR-lite 33
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m9_export.py", line 159, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');a=p.parse_args();main(load_config(a.config))
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m9_export.py", line 156, in main
+    if c.get('include_main',True):e.main_tables(c.get('include_new',True))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m9_export.py", line 88, in main_tables
+    jj=unique_indices(normalized,[i for i,a in enumerate(normalized) if a['state_ref']['t']==t],q,r['seed']);sets=1-p[jj]<=thr
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/calib/m4_evaluation.py", line 19, in unique_indices
+    if p not in unique or rank(i)<rank(unique[p]):unique[p]=i
+                          ^^^^^^^
+  File "/home/me/PaperField/CalReader/clr/calib/m4_evaluation.py", line 16, in rank
+    r=rows[i];return seed(random_seed,r['problem_id'],q,r['state_ref']['t'],tuple(r['options']),r['template_id'])
+                                                                                  ~^^^^^^^^^^^
+KeyError: 'options'

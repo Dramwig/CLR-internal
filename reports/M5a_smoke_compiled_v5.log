@@ -1,0 +1,8 @@
+/home/me/PaperField/CalReader/runs/20261105T024438093439Z_8694173da1ce_466a25
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m5a_search.py", line 240, in <module>
+    main(load_config(args.config, args.overrides))
+  File "/home/me/PaperField/CalReader/scripts/m5a_search.py", line 74, in main
+    torch.set_num_threads(c['threads'])
+    ^^^^^
+UnboundLocalError: cannot access local variable 'torch' where it is not associated with a value

@@ -1,0 +1,29 @@
+{
+  "artifact": "f4_cross_use_transfer",
+  "config": {
+    "artifact": "f4_cross_use_transfer",
+    "caption": "Appendix: cross-use initialization (not an established transfer claim)",
+    "input_freeze": "data/M10_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "transfer": "data/M10_v1/paper_inputs/cross_use_transfer.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "82a05ca17ae1fa873b31371e7081f20ecfee2cf70959d3a733bccf55eda6441a",
+  "input_freeze_sha256": "e3740a68245812c57534ba4cf571542dad946ad17c05978611dc542b9f43aa6e",
+  "inputs": {
+    "data/M10_v1/paper_inputs/cross_use_transfer.csv": "57ecd82c794652b3bc4e01649b0cdc25afa3fee215334c2028df9d1b78941ebe"
+  },
+  "outputs": {
+    "derived/f4_cross_use_transfer.csv": "0d51fee09457633b91752caf18d2710b2a514494e3ff0ae88f65dc1ca6018956",
+    "figures/f4_cross_use_transfer.pdf": "895e88ef198b347c4b7466fafc1dd5ff3fcbf413210951227e06c16fc5e24b4f"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}

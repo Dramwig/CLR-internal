@@ -1,0 +1,10 @@
+milestone: M6
+version: v1
+section: B
+stage: context_metadata_audit
+mode: full
+seed: 11
+parent_plan: data/M1_v3/frozen.json
+plan: data/M6_v1/plan.json
+original_contexts: reports/evidence_v2/protocol_all_questions.json
+protocol: configs/protocol_codi_llama_modelscope_v2_gpu4.yaml

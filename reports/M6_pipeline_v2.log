@@ -1,0 +1,12 @@
+/home/me/PaperField/CalReader/runs/20261106T075705261265Z_0a05b2e7b9b2_2e99df
+Traceback (most recent call last):
+  File "/home/me/PaperField/CalReader/scripts/m6_pipeline.py", line 264, in <module>
+    ctl.train_batch(jobs)
+                          
+  File "/home/me/PaperField/CalReader/scripts/m6_pipeline.py", line 155, in main
+    for gate in [c['source_smoke'],c['training_smoke'],c['shift_smoke']]:
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m6_pipeline.py", line 94, in wait_existing
+    metrics=json.loads(Path(run,'metrics.json').read_text())
+                                                 ^^^^^^^^^^^^
+RuntimeError: Required prior M6 run failed: runs/20261106T064505704384Z_46346b5277a6_2acd02

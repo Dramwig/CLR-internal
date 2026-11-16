@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m8b_verify.py", line 23, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');a=p.parse_args();main(load_config(a.config))
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/me/PaperField/CalReader/scripts/m8b_verify.py", line 16, in main
+    doc=json.loads(Path(file).read_text());hashes=doc['sha256'];bad=[]
+                                                  ~~~^^^^^^^^^^
+KeyError: 'sha256'

@@ -1,0 +1,31 @@
+milestone: M5b
+version: stats_v2
+stage: full
+case: BC_analysis
+seed: 20261106
+seeds:
+- 11
+- 22
+- 33
+expected_questions: 300
+bootstrap: 10000
+B_run: runs/20261106T014306312129Z_8127b80897ce_107f46
+C_runs:
+- /home/me/PaperField/CalReader/runs/20261106T024351355937Z_304a7f06f67d_4fffdd
+- /home/me/PaperField/CalReader/runs/20261106T024402064285Z_684b1f31cd23_33ebf5
+- /home/me/PaperField/CalReader/runs/20261106T024412153109Z_9133845f623f_cc0f93
+D_B_run: /home/me/PaperField/CalReader/runs/20261106T024405258434Z_f459035ddda2_136cc4
+D_C_runs:
+- /home/me/PaperField/CalReader/runs/20261106T025231463673Z_0b6296985ae8_7ec6c8
+budget_points:
+- 32
+- 64
+- 128
+- 256
+- 512
+- 1024
+- 2048
+- 4096
+- 8192
+- 16384
+output: data/M5b_v1

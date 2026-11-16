@@ -1,0 +1,11 @@
+milestone: M7
+output: data/M7_v1
+training_config: configs/M7/train.yaml
+superseded_supervisor_pid: 1932838
+superseded_run: runs/20261106T093932917424Z_c0fee393ab5d_2da6be
+aggregation_supervisor_pid: 1803596
+existing_jobs:
+  - {kind: B3, seed: 22, pid: 2006295, device: 'cuda:2'}
+  - {kind: B0, seed: 11, pid: 2038556, device: 'cuda:7'}
+remaining_jobs: [[CLR, 33], [B3, 33], [linear, 11], [linear, 22], [linear, 33], [B0, 22], [B0, 33]]
+max_wait_seconds: 21600

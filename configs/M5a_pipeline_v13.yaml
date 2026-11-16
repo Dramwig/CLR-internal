@@ -1,0 +1,10 @@
+milestone: M5a
+stage: pipeline
+search_run: runs/20261105T060403949446Z_3a4adb8b01c7_fd463e
+search_session: clr-m5a-full-v13
+prior_gpu_hours: 0.38198254356225436
+poll_seconds: 45
+report_config: configs/M5a_report_v13.yaml
+report_log: reports/M5a_report_v13.log
+finish_config: configs/M5a_finish_v13.yaml
+finish_log: reports/M5a_finish_v13.log

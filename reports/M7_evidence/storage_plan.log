@@ -1,0 +1,38 @@
+{
+  "mode": "val_only_plan",
+  "val_groups": 240,
+  "token_mean": 1952.0,
+  "token_min": 533,
+  "token_max": 3859,
+  "target_KV_GiB_by_layers": {
+    "1": 178.7109375,
+    "4": 714.84375,
+    "8": 1429.6875
+  },
+  "chosen_layers": [
+    35
+  ],
+  "chosen_episode_counts": {
+    "reader_train": 464,
+    "reader_val": 58,
+    "cal_A": 29,
+    "cal_B": 29,
+    "test": 116
+  },
+  "planned_KV_allowance_GiB": 12,
+  "safety_factor": 1.15,
+  "changed_settings": [
+    "saved layers 4->1",
+    "episode counts reduced for 15GiB cap"
+  ],
+  "test_opened": false,
+  "source_forward_calls": 0,
+  "gpu_hours": 0,
+  "hiddenbench": {
+    "available": true,
+    "sha256": "2815afffca4e470d1dfbc81e625160447df1109ce371968181c9e1e6b90443a3",
+    "top_type": "list",
+    "top_keys": [],
+    "scope": "availability and schema only; not included in M7 comparison"
+  }
+}

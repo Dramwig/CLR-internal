@@ -1,0 +1,7 @@
+wait_for:
+- data/M8b_v1/gpu_matched_smoke_v3_part0.json
+max_wait_seconds: 3600
+jobs:
+- module: scripts.m8b_evaluate
+  config: configs/M8b/final_reader_val.yaml
+  log: reports/M8b_evidence/final_reader_val.log

@@ -1,0 +1,95 @@
+{
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "在已测两个CODI源的Q3/Q4上优于MLP与注意力探针；在CODI-GPT2上与训练式语言化解码器精度相当（描述性），但单查询FLOPs低约648倍（Q3）/437倍（Q4）。",
+      "evidence": "T1；gpt2：Q3 17.5 [16.1,19]pp；Q4 7.93 [6.35,9.52]pp；llama：Q3 13.2 [11.7,14.8]pp；Q4 11.5 [9.81,13.1]pp。T2 cal_B集合size差（覆盖率不等）：gpt2 Q3 -0.666 [-0.691,-0.642], Q4 -0.179 [-0.198,-0.16]；llama Q3 -0.424 [-0.447,-0.403], Q4 -0.23 [-0.25,-0.21]。M5b冻结CSV（equal_coverage_paired.csv）中GPT2同覆盖率描述性size差 Q3: -0.632 [-0.689,-0.574]；Q4: -0.173 [-0.21,-0.136]。F1：GPT2新类型Q4、N100的迁移−scratch B3 7.56 [6.5,8.6]pp。 M10c T6：M10c T6：GPT2 CLR−B5c test Q3 −0.659 [−1.51,0.190]pp，Q4 −0.0864 [−0.984,0.830]pp；CI跨零并不证明统计等价。FLOPs倍数含B5c冻结Qwen3完整前向；batch64为621/472倍。共享RTX4090上batch1延迟低19.5/18.8倍，batch64低79.7/44.3倍；并发负载/预处理排除限制外推。训练成本口径与任务曝光不同；B3独立耗时缺失。沿用cal_B阈值α=.1，test B5c−CLR size配对差Q3 -0.0169 [-0.0269,-0.00692]，Q4 -0.0194 [-0.0326,-0.00634]，覆盖率不同，不是同覆盖率优势。",
+      "limits": "限Q3/Q4与两个CODI源；新类型迁移仅GPT2。容量、表示、优化与曝光仍混杂。Q1/Q2没有全面优势；描述性同覆盖率结果使用评估标签，不能作为部署保证。 M10 B6对照见新增配对CSV，不能把整体架构差距单独归因于类型化接口。"
+    },
+    {
+      "id": "C2",
+      "claim": "冻结主体、只训适配器可实现已测试方向的小样本跨模型读取",
+      "evidence": "F1：N100/300、Q3/Q4的20/20个已执行配对95%CI下界>0；例如N100对B3：gpt2->llama Q3 2.47 [0.194,4.8]pp；llama->gpt2 Q3 5.74 [3.58,7.88]pp。",
+      "limits": "只测GPT2与LLaMA两个方向；N是QA标签数；B5b未覆盖整个网格；不能宣称所有基线/所有预算全胜。"
+    },
+    {
+      "id": "C3",
+      "claim": "类型化审计框架（问题分解 + 公开期望 + conformal 阈值），读取器可采用CLR或注意力探针B6",
+      "evidence": "T4：synthetic counterfactual检测@5%，CLR 93.1 [92.5,93.8]%，B6 97.9 [97.5,98.2]%；期望仅由commitment/x_pub推导。",
+      "limits": "不主张CLR检测优于B6；框架组件没有完整因果隔离；程序化commitment、synthetic v2、弱receiver、text仅300组。"
+    },
+    {
+      "id": "C4",
+      "claim": "多数已测试偏移的经验覆盖接近目标，加权方法未见系统收益",
+      "evidence": "T3：alpha=.1、Q3/Q4，6/32个standard设置低于88%；最低覆盖率 85.2 [83.6,86.8]%；weighted绝对覆盖偏差中位改善 -0.0774pp（描述性）。",
+      "limits": "这是经验结果。交换性不成立的任意偏移下无保证；source-only Mondrian缺stratum返回全集，target-cal使用额外数据；weighted跨step支持不重叠。"
+    },
+    {
+      "id": "N1",
+      "claim": "跨题价值可分不等于可用于同父状态候选排序，搜索未建立正收益",
+      "evidence": "F2：CLR跨题AUROC 0.827 [0.817,0.837]；组内rho 0.0992 [0.0799,0.118]。最高观察搜索差 -0.889 [-4.69,2.92]pp（全网格同时CI，val300）。",
+      "limits": "组内相关仍显著大于零，不能说完全只有题目难度；也不能据最高观察设置作后验选型。预算是源调用加FLOPs等价，不是严格同延迟。"
+    },
+    {
+      "id": "N2",
+      "claim": "内容审计不能提供白盒KV扰动的完整性保证",
+      "evidence": "F3：依赖receiver E3，epsilon=.01的D0/R4失效为 96.5 [94,98.5]%/81.7 [78.3,85]%；两者点估计包络至epsilon=1均持平；R4原始点为 81.7%, 72%, 64%。",
+      "limits": "有限PGD给未知最坏失效的经验下界；R4消费后才检查。最小扰动仅15/100完整组，条件比值中位数1、P90=2，不是认证最小值。传输完整性保护是部署建议，本项目未测试其实现。"
+    }
+  ],
+  "cannot_claim": [
+    "所有问题类型都优于探针，或优势已被证明由类型化接口单独造成。",
+    "所有模型/所有小样本预算/所有基线的跨模型读取全胜；同一主体已跨推理与通信联合迁移。",
+    "93%是白盒攻击检测率，或端到端一致性判断在一般意义上无效。",
+    "源/数据集/步骤偏移或自适应攻击下拥有无条件conformal保证。",
+    "随机问题数带来已验证的指数鲁棒性，或R4提供显著扰动成本放大/认证鲁棒性。",
+    "搜索已获得正收益，或有限PGD失效率是已认证的最坏情况上界。"
+  ],
+  "M10_update": {
+    "review": "reports/M10_REVIEW.md",
+    "gsm_paired": "data/M10_v1/paper_inputs/M10_gsm_paired.csv",
+    "audit_paired": "data/M10_v1/paper_inputs/M10_audit_paired.csv",
+    "cross_use": "data/M10_v1/paper_inputs/cross_use_transfer_paired.csv",
+    "limitations": [
+      "B6 comparison does not isolate causal contribution of typed interface",
+      "M10b completed GPT2 Q3/Q4 B5c; LLaMA and audit remain unavailable",
+      "HiddenBench only 6 independent test groups and fact-panel adaptation",
+      "Cross-use experiment fine-tunes initialized body; not adapter-only frozen transfer"
+    ]
+  },
+  "appendix_only": {
+    "cross_use": "F4为初始化后共同微调，不能主张推理与审计读取器可迁移。",
+    "HiddenBench": "数据不足，test仅6独立组，无法得出结论。"
+  },
+  "M10b_update": {
+    "status": "complete",
+    "test_CLR_minus_B5c": "Q3 -0.659 [-1.51,0.19]pp；Q4 -0.0864 [-0.984,0.83]pp",
+    "scope": "GPT2 Q3/Q4 only; one full training pass; lower exposure than CLR",
+    "paired_csv": "data/M10b_v1/paper_inputs/CLR_minus_B5c.csv",
+    "review": "reports/M10b_REVIEW.md"
+  },
+  "M10c_update": {
+    "review": "reports/M10c_REVIEW.md",
+    "cost_ratios": {
+      "Q3_b1": {
+        "flops": 648.1266844435012,
+        "latency": 19.509124004819782
+      },
+      "Q3_b64": {
+        "flops": 620.7113453263837,
+        "latency": 79.72400222637177
+      },
+      "Q4_b1": {
+        "flops": 437.05196305242316,
+        "latency": 18.83627913873358
+      },
+      "Q4_b64": {
+        "flops": 472.36754544612256,
+        "latency": 44.304014221964366
+      }
+    },
+    "conformal": "paper/tables/t6_conformal.tex",
+    "no_training": true,
+    "no_recalibration": true
+  }
+}

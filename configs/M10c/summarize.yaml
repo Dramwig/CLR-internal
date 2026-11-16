@@ -1,0 +1,13 @@
+output: data/M10c_v1
+measurement: data/M10c_v1/full_measurement.json
+source_protocol: configs/protocol_codi_v2.yaml
+source_manifest: data/dumps/codi_gpt2_v3/reader_val/manifest.parquet
+clr_costs: reports/M41_costs.csv
+b6_refs: data/M10_v1/trained/gpt2_B6_{seed}_full.json
+b6_ledger: data/M10_v1/cost_ledger.json
+b5c_refs: data/M10b_v1/trained/B5c_gpt2_{seed}_full.json
+b5c_ledger: data/M10b_v1/cost_ledger.json
+b3_metrics: runs/20261103T045628621237Z_2964c31f2153_11a348/metrics.json
+main_csv: data/M10b_v1/paper_inputs/main.csv
+clr_conformal: data/M10_v1/paper_inputs/conformal_problem.csv
+b5c_conformal: data/M10b_v1/paper_inputs/B5c_conformal_problem.csv

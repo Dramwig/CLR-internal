@@ -1,0 +1,30 @@
+milestone: M8b
+seed: 20261108
+data_seed: 20261107
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8b_v1
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+device: cuda:3
+max_context: 8192
+min_free_GiB: 25
+budget_gpu_hours: 25
+max_seconds: 900
+counts: {reader_train: 8000, reader_val: 1000, cal_A: 500, cal_B: 1000, test: 2000}
+reader_seeds: [11, 22, 33]
+layers: [7, 16, 25, 34]
+mode: smoke
+train_groups: 100
+val_groups: 20
+split: reader_val
+groups: 20
+designs: [R4, R2, R1, R3]
+smoke_models: true
+kinds: [E2, E1, E3]
+epsilons: [0.03]
+steps: [5]
+step_multiplier: 1.25
+lambdas: [1]
+eot_k: 16
+selection_panels: 1
+early_success: true

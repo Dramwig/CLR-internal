@@ -1,0 +1,17 @@
+milestone: M8c
+mode: upstream_verify_final
+seed: 20261109
+data_seed: 20261107
+idea_a: /home/me/PaperField/LatDefer
+output: data/M8c_v1
+model_path: /home/me/models/Qwen3-4B/1cfa9a7208912126459214e8b04321603b3df60c
+tokenizer_path: /home/me/models/huggingface/ModernBERT-base-8949b909
+device: cuda:0
+min_free_GiB: 0
+budget_gpu_hours: 21
+max_seconds: 3600
+freeze_manifests:
+- data/M71_v1/freeze.json
+- data/M8a_v1/freeze.json
+- data/M8b_v1/freeze.json
+verification_name: upstream_final.json

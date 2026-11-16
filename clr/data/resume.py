@@ -16,7 +16,7 @@ def ensure_space(path, minimum_gib=20):
     """Release managed ballast proactively; low free space itself never aborts."""
     free = shutil.disk_usage(path).free / 2**30
     if free < minimum_gib:
-        result = subprocess.run(['/home/me/disk-reserve/reserve.sh', 'release', str(math.ceil(minimum_gib-free+5))], capture_output=True, text=True)
+        result = subprocess.run(['/home/me/tools/disk-reserve/reserve.sh', 'release', str(math.ceil(minimum_gib-free+5))], capture_output=True, text=True)
         print(json.dumps({'disk_release_returncode': result.returncode, 'output': result.stdout, 'error': result.stderr}), flush=True)
 
 

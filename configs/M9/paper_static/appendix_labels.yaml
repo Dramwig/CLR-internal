@@ -1,0 +1,14 @@
+artifact: appendix_labels
+caption: 'Appendix: Label counts and marginals'
+input_freeze: data/M9_v1/paper_inputs/static_freeze_v2.json
+inputs:
+  labels: data/M9_v1/paper_inputs/label_statistics.csv
+output_root: paper
+column_widths:
+- 1.1
+- 1.1
+- 0.5
+- 0.3
+- 0.6
+- 0.8
+- 1

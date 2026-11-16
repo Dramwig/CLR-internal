@@ -1,0 +1,16 @@
+source,split,problems,qa_rows,unit
+gpt2,reader_train,20000,2019896,problem
+gpt2,reader_val,2000,606204,problem
+gpt2,val,300,31332,problem
+gpt2,cal,500,52080,problem
+gpt2,test,1005,104979,problem
+llama,reader_train,6817,688647,problem; seen templates only
+llama,reader_val,1000,101270,problem; seen templates only
+llama,val,300,10444,problem; seen templates only
+llama,cal,500,17360,problem; seen templates only
+llama,test,1005,34993,problem; seen templates only
+synthetic_v2_M7.1,reader_train,8000,,counterfactual group
+synthetic_v2_M7.1,reader_val,1000,,counterfactual group
+synthetic_v2_M7.1,cal_A,500,,counterfactual group
+synthetic_v2_M7.1,cal_B,1000,,counterfactual group
+synthetic_v2_M7.1,test,2000,,counterfactual group

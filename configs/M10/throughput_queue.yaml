@@ -1,0 +1,4 @@
+configs:
+- configs/M10/gpt2_B6_throughput_smoke.yaml
+- configs/M10/gpt2_CLR-per-type_throughput_smoke.yaml
+- configs/M10/llama_CLR-lite-single_throughput_smoke.yaml

@@ -1,0 +1,11 @@
+wait_run: runs/20261106T014102482338Z_bc28fed53f53_ffb35a
+journal: data/M5b_v1/queue_prefix.json
+env:
+  CUDA_VISIBLE_DEVICES: '7'
+jobs:
+- script: scripts/m5b_train_a.py
+  config: configs/M5b_train_prefix_22.yaml
+  log: reports/M5b_train_prefix_22.log
+- script: scripts/m5b_train_a.py
+  config: configs/M5b_train_prefix_33.yaml
+  log: reports/M5b_train_prefix_33.log

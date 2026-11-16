@@ -1,0 +1,6 @@
+output: data/M10_v1
+python: .venv-paper/bin/python
+primary_build: configs/M10/paper_build.yaml
+repeat_build: configs/M10/paper_repro.yaml
+primary_root: paper
+repeat_root: data/M10_v1/repro_build

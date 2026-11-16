@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/me/PaperField/CalReader/scripts/m8b_evaluate.py", line 184, in <module>
+    p=argparse.ArgumentParser();p.add_argument('config');p.add_argument('overrides',nargs='*');a=p.parse_args();main(load_config(a.configgroup 2 20 seconds 16.94 GPUh 0.012
+group 3 20 seconds 18.19 GPUh 0.017
+group 4 20 seconds 22.43 GPUh 0.023
+group 5 20 seconds 21.8 GPUh 0.029
+group 6 20 seconds 15.98 GPUh 0.034
+group 7 20 seconds 20.29 GPUh 0.039
+group 8 20 seconds 19.88 GPUh 0.045
+group 9 20 seconds 16.0 GPUh 0.049
+group 10 20 seconds 17.42 GPUh 0.054
+group 11 20 seconds 21.5 GPUh 0.06
+group 12 20 seconds 16.5 GPUh 0.065
+group 13 20 seconds 18.94 GPUh 0.07
+group 14 20 seconds 31.7 GPUh 0.079
+group 15 20 seconds 27.34 GPUh 0.086
+group 16 20 seconds 17.61 GPUh 0.091
+group 17 20 seconds 21.31 GPUh 0.097
+group 18 20 seconds 29.2 GPUh 0.105
+group 19 20 seconds 14.21 GPUh 0.109
+group 20 20 seconds 22.71 GPUh 0.116

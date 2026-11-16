@@ -1,0 +1,29 @@
+{
+  "artifact": "appendix_q1_clean_traj",
+  "config": {
+    "artifact": "appendix_q1_clean_traj",
+    "caption": "Appendix: Q1 reader validation by state kind",
+    "input_freeze": "data/M10_v1/paper_inputs/freeze.json",
+    "inputs": {
+      "q1": "data/M10_v1/paper_inputs/reader_val_q1_clean_traj.csv"
+    },
+    "output_root": "paper"
+  },
+  "entrypoint_sha256": "d81f490fb9b020b221d357a9d978549c709a746622ad6117d0dd296b8fbab6ef",
+  "input_freeze_sha256": "e3740a68245812c57534ba4cf571542dad946ad17c05978611dc542b9f43aa6e",
+  "inputs": {
+    "data/M10_v1/paper_inputs/reader_val_q1_clean_traj.csv": "1e10a6fa42aa1ac676e97adaf6ee3989a14d991c68f6d9e5225a4244c3c86bb2"
+  },
+  "outputs": {
+    "derived/appendix_q1_clean_traj.csv": "1e10a6fa42aa1ac676e97adaf6ee3989a14d991c68f6d9e5225a4244c3c86bb2",
+    "tables/appendix_q1_clean_traj.tex": "809d1f3db15361ebc54936095c40d5d001a1cf3b14cfb9e82fb8e78f2e3dcd64"
+  },
+  "render_source_sha256": "e3db42261c4f6ed96187555e72bdac8707be39ac477cff821929dafb1c306d45",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.10.7",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python": "3.11.13"
+  }
+}
